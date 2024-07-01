@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.6 Item Reduction | Survey Design and Analysis</title>
+  <meta name="description" content="Notes cobbled together from books, online classes, etc. to be used as quick reference for common work projects." />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.6 Item Reduction | Survey Design and Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notes cobbled together from books, online classes, etc. to be used as quick reference for common work projects." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.6 Item Reduction | Survey Design and Analysis" />
+  
+  <meta name="twitter:description" content="Notes cobbled together from books, online classes, etc. to be used as quick reference for common work projects." />
+  
+
+<meta name="author" content="Michael Foley" />
+
+
+<meta name="date" content="2024-01-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="surveyadministration.html"/>
+<link rel="next" href="confirmatoryfactoranalysis.html"/>
+<script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="assets/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="assets/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="item-selection.html"><a href="item-selection.html"><i class="fa fa-check"></i><b>1</b> Item Selection</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reliability-and-validity.html"><a href="reliability-and-validity.html"><i class="fa fa-check"></i><b>1.1</b> Reliability and Validity</a></li>
+<li class="chapter" data-level="1.2" data-path="itemgeneration.html"><a href="itemgeneration.html"><i class="fa fa-check"></i><b>1.2</b> Item Generation</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="itemgeneration.html"><a href="itemgeneration.html#cohens-kappa"><i class="fa fa-check"></i><b>1.2.1</b> Cohen’s Kappa</a></li>
+<li class="chapter" data-level="1.2.2" data-path="itemgeneration.html"><a href="itemgeneration.html#lawshes-cvr"><i class="fa fa-check"></i><b>1.2.2</b> Lawshe’s CVR</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="survey-design.html"><a href="survey-design.html"><i class="fa fa-check"></i><b>2</b> Survey Design</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="srs.html"><a href="srs.html"><i class="fa fa-check"></i><b>2.1</b> Simple Random Sampling</a></li>
+<li class="chapter" data-level="2.2" data-path="stratified-srs.html"><a href="stratified-srs.html"><i class="fa fa-check"></i><b>2.2</b> Stratified SRS</a></li>
+<li class="chapter" data-level="2.3" data-path="power-analysis.html"><a href="power-analysis.html"><i class="fa fa-check"></i><b>2.3</b> Power Analysis</a></li>
+<li class="chapter" data-level="2.4" data-path="appendix-bias.html"><a href="appendix-bias.html"><i class="fa fa-check"></i><b>2.4</b> Appendix: Bias</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>3</b> Statistical Power</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="statistical-power.html"><a href="statistical-power.html#case-study"><i class="fa fa-check"></i><b>3.0.1</b> Case Study</a></li>
+<li class="chapter" data-level="3.1" data-path="multi-stage.html"><a href="multi-stage.html"><i class="fa fa-check"></i><b>3.1</b> Multi-Stage</a></li>
+<li class="chapter" data-level="3.2" data-path="survey-weights.html"><a href="survey-weights.html"><i class="fa fa-check"></i><b>3.2</b> Survey Weights</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analyzing-survey-data.html"><a href="analyzing-survey-data.html"><i class="fa fa-check"></i><b>4</b> Analyzing Survey Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="defining-the-survey-design.html"><a href="defining-the-survey-design.html"><i class="fa fa-check"></i><b>4.1</b> Defining the Survey Design</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="defining-the-survey-design.html"><a href="defining-the-survey-design.html#simple-random-sample"><i class="fa fa-check"></i><b>4.1.1</b> Simple Random Sample</a></li>
+<li class="chapter" data-level="4.1.2" data-path="defining-the-survey-design.html"><a href="defining-the-survey-design.html#stratified-sample"><i class="fa fa-check"></i><b>4.1.2</b> Stratified Sample</a></li>
+<li class="chapter" data-level="4.1.3" data-path="defining-the-survey-design.html"><a href="defining-the-survey-design.html#clustered"><i class="fa fa-check"></i><b>4.1.3</b> Clustered</a></li>
+<li class="chapter" data-level="4.1.4" data-path="defining-the-survey-design.html"><a href="defining-the-survey-design.html#example-nhanes"><i class="fa fa-check"></i><b>4.1.4</b> Example: NHANES</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="exploring-categorical-items.html"><a href="exploring-categorical-items.html"><i class="fa fa-check"></i><b>4.2</b> Exploring Categorical Items</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-quantitative-data.html"><a href="exploring-quantitative-data.html"><i class="fa fa-check"></i><b>4.3</b> Exploring Quantitative Data</a></li>
+<li class="chapter" data-level="4.4" data-path="modeling-quantitative-data.html"><a href="modeling-quantitative-data.html"><i class="fa fa-check"></i><b>4.4</b> Modeling Quantitative Data</a></li>
+<li class="chapter" data-level="4.5" data-path="surveyadministration.html"><a href="surveyadministration.html"><i class="fa fa-check"></i><b>4.5</b> Survey Administration</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="surveyadministration.html"><a href="surveyadministration.html#instrument-validity-and-reliability"><i class="fa fa-check"></i><b>4.5.1</b> Instrument: Validity and Reliability</a></li>
+<li class="chapter" data-level="4.5.2" data-path="surveyadministration.html"><a href="surveyadministration.html#data-collection"><i class="fa fa-check"></i><b>4.5.2</b> Data Collection</a></li>
+<li class="chapter" data-level="4.5.3" data-path="surveyadministration.html"><a href="surveyadministration.html#frequencies"><i class="fa fa-check"></i><b>4.5.3</b> Frequencies</a></li>
+<li class="chapter" data-level="4.5.4" data-path="surveyadministration.html"><a href="surveyadministration.html#correlations"><i class="fa fa-check"></i><b>4.5.4</b> Correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="itemreduction.html"><a href="itemreduction.html"><i class="fa fa-check"></i><b>4.6</b> Item Reduction</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="itemreduction.html"><a href="itemreduction.html#parallel-analysis"><i class="fa fa-check"></i><b>4.6.1</b> Parallel Analysis</a></li>
+<li class="chapter" data-level="4.6.2" data-path="itemreduction.html"><a href="itemreduction.html#exporatory-factor-analysis"><i class="fa fa-check"></i><b>4.6.2</b> Exporatory Factor Analysis</a></li>
+<li class="chapter" data-level="4.6.3" data-path="itemreduction.html"><a href="itemreduction.html#cronbachs-alpha"><i class="fa fa-check"></i><b>4.6.3</b> Cronbach’s Alpha</a></li>
+<li class="chapter" data-level="4.6.4" data-path="itemreduction.html"><a href="itemreduction.html#split-half"><i class="fa fa-check"></i><b>4.6.4</b> Split-Half</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="confirmatoryfactoranalysis.html"><a href="confirmatoryfactoranalysis.html"><i class="fa fa-check"></i><b>4.7</b> Confirmatory Factor Analysis</a></li>
+<li class="chapter" data-level="4.8" data-path="convergentvalidity.html"><a href="convergentvalidity.html"><i class="fa fa-check"></i><b>4.8</b> Convergent/Discriminant Validity</a></li>
+<li class="chapter" data-level="4.9" data-path="replication.html"><a href="replication.html"><i class="fa fa-check"></i><b>4.9</b> Replication</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="replication.html"><a href="replication.html#criterion-validity"><i class="fa fa-check"></i><b>4.9.1</b> Criterion Validity</a></li>
+<li class="chapter" data-level="4.9.2" data-path="replication.html"><a href="replication.html#test-retest-reliability"><i class="fa fa-check"></i><b>4.9.2</b> Test-Retest Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>4.10</b> Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple.html"><a href="simple.html"><i class="fa fa-check"></i><b>5</b> Simple Random Samples</a></li>
+<li class="chapter" data-level="6" data-path="stratified.html"><a href="stratified.html"><i class="fa fa-check"></i><b>6</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="7" data-path="best-worst-scaling.html"><a href="best-worst-scaling.html"><i class="fa fa-check"></i><b>7</b> Best-Worst Scaling</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="count-analysis.html"><a href="count-analysis.html"><i class="fa fa-check"></i><b>7.1</b> Count Analysis</a></li>
+<li class="chapter" data-level="7.2" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>7.2</b> Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="case-study-1.html"><a href="case-study-1.html"><i class="fa fa-check"></i><b>8</b> Case Study</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sample-design-report.html"><a href="sample-design-report.html"><i class="fa fa-check"></i><b>8.1</b> Sample Design Report</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sample-design-report.html"><a href="sample-design-report.html#executive-summary"><i class="fa fa-check"></i><b>8.1.1</b> Executive summary</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sample-design-report.html"><a href="sample-design-report.html#sample-design"><i class="fa fa-check"></i><b>8.1.2</b> Sample design</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sample-design-report.html"><a href="sample-design-report.html#sample-size-and-allocation"><i class="fa fa-check"></i><b>8.1.3</b> Sample size and allocation</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sample-design-report.html"><a href="sample-design-report.html#appendix"><i class="fa fa-check"></i><b>8.1.4</b> Appendix</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Survey Design and Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="itemreduction" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Item Reduction<a href="itemreduction.html#itemreduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The third phase, explores the mapping of the factors (aka “manifest variables”) to the latent variable’s “dimensions” and refines the survey to exclude factors that do not map to a dimension. A latent variable may have several dimensions. E.g., “brand loyalty” may consist of “brand identification”, “perceived value”, and “brand trust”. Exploratory factor analysis (EFA), identifies the dimensions in the data, and whether any items do <em>not</em> reveal information about the latent variable. EFA establishes the <em>internal reliability</em>, whether similar items produce similar scores.</p>
+<p>Start with a parallel analysis and scree plot. This will suggest the number of factors in the data. Use this number as the input to an exploratory factor analysis.</p>
+<div id="parallel-analysis" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Parallel Analysis<a href="itemreduction.html#parallel-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <a href="https://www.sciencedirect.com/topics/mathematics/scree-plot">scree plot</a> is a line plot of the eigenvalues. An eigenvalue is the proportion of variance explained by each factor. Only factors with eigenvalues greater than those from uncorrelated data are useful. You want to find a sharp reduction in the size of the eigenvalues (like a cliff), with the rest of the smaller eigenvalues constituting rubble (scree!). After the eigenvalues drop dramatically in size, additional factors add relatively little to the information already extracted.</p>
+<p>Parallel analysis helps to make the interpretation of scree plots more objective. The eigenvalues are plotted along with eigenvalues of simulated variables with population correlations of 0. The number of eigenvalues above the point where the two lines intersect is the suggested number of factors. The rationale for parallel analysis is that useful factors account for more variance than could be expected by chance.</p>
+<p><code>psych::fa.parallel()</code> compares a scree of your data set to a random data set to identify the number of factors. The elbow below here is at 3 factors.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="itemreduction.html#cb67-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa.parallel</span>(brand_rep)</span></code></pre></div>
+<p><img src="survey_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  3  and the number of components =  2</code></pre>
+</div>
+<div id="exporatory-factor-analysis" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Exporatory Factor Analysis<a href="itemreduction.html#exporatory-factor-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>psych::fa()</code> to perform the factor analysis with your chosen number of factors. The number of factors may be the result of your parallel analysis, or the opinion of the SMEs. In this case, we’ll go with the 3 factors identified by the parallel analysis.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="itemreduction.html#cb69-1" tabindex="-1"></a>brand_rep_efa <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Loading required namespace: GPArotation</code></pre>
+<pre><code>## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
+## am sorry, to do these rotations requires the GPArotation package to be
+## installed</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="itemreduction.html#cb72-1" tabindex="-1"></a><span class="co"># psych::scree(brand_rep) # psych makes scree plot&#39;s too.</span></span>
+<span id="cb72-2"><a href="itemreduction.html#cb72-2" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa.diagram</span>(brand_rep_efa)</span></code></pre></div>
+<p><img src="survey_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Using EFA, you may tweak the number of factors or drop poorly-loading items. Each item should load highly to one and only one dimension. This one dimension is the item’s primary loading. Generally, a primary loading &gt; .7 is excellent, &gt;.6 is very good, &gt;.5 is good, &gt;.4 is fair, and &lt;.4 is poor. Here are the factor loadings from the 3 factor model.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="itemreduction.html#cb73-1" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>loadings</span></code></pre></div>
+<pre><code>## 
+## Loadings:
+##                MR1    MR2    MR3   
+## well_made       0.727 -0.528  0.145
+## consistent      0.709 -0.594  0.144
+## poor_workman_r  0.556 -0.457  0.123
+## higher_price    0.691  0.305  0.160
+## lot_more        0.566  0.499  0.316
+## go_up           0.650  0.520  0.313
+## stands_out      0.812  0.174 -0.553
+## unique          0.760  0.114 -0.485
+## one_of_a_kind   0.554              
+## 
+##                  MR1   MR2   MR3
+## SS loadings    4.104 1.496 0.830
+## Proportion Var 0.456 0.166 0.092
+## Cumulative Var 0.456 0.622 0.714</code></pre>
+<p>The brand-rep survey items load to 3 factors well except for the <code>one_of_a_kind</code> item. Its primary factor loading (0.309) is poor. The others are either very good (.6-.7) and excellent (&gt;.7) range.</p>
+<p>Look at the model eigenvalues. There should be one eigenvalue per dimension. Eigenvalues a little less than one may be contaminating the model.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="itemreduction.html#cb75-1" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>e.value</span></code></pre></div>
+<pre><code>## [1] 4.35629549 1.75381015 0.98701607 0.67377072 0.39901205 0.35865598 0.23915591
+## [8] 0.14238807 0.08989556</code></pre>
+<p>Look at the factor score correlations. They should all be around 0.6. Much smaller means they are not describing the same latent variable. Much larger means they are describing the same dimension of the latent variable.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="itemreduction.html#cb77-1" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>r.scores</span></code></pre></div>
+<pre><code>##              MR1          MR2         MR3
+## MR1  1.000000000 -0.005039388 -0.05631023
+## MR2 -0.005039388  1.000000000 -0.04588444
+## MR3 -0.056310232 -0.045884440  1.00000000</code></pre>
+<p>If you have a poorly loaded dimension, drop factors one at a time from the scale. <code>one_of_a_kind</code> loads across all three factors, but does not load strongly onto any one factor. <code>one_of_a_kind</code> is not clearly measuring any dimension of the latent variable. Drop it and try again.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="itemreduction.html#cb79-1" tabindex="-1"></a>brand_rep_efa <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>one_of_a_kind), <span class="at">nfactors =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Loading required namespace: GPArotation</code></pre>
+<pre><code>## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
+## am sorry, to do these rotations requires the GPArotation package to be
+## installed</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="itemreduction.html#cb82-1" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>loadings</span></code></pre></div>
+<pre><code>## 
+## Loadings:
+##                MR1    MR2    MR3   
+## well_made       0.721 -0.522  0.157
+## consistent      0.713 -0.600  0.166
+## poor_workman_r  0.552 -0.455  0.134
+## higher_price    0.669  0.297  0.147
+## lot_more        0.565  0.501  0.321
+## go_up           0.658  0.534  0.337
+## stands_out      0.816  0.166 -0.527
+## unique          0.774  0.111 -0.488
+## 
+##                  MR1   MR2   MR3
+## SS loadings    3.799 1.504 0.825
+## Proportion Var 0.475 0.188 0.103
+## Cumulative Var 0.475 0.663 0.766</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="itemreduction.html#cb84-1" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>e.value</span></code></pre></div>
+<pre><code>## [1] 4.00884429 1.75380537 0.97785883 0.42232527 0.36214534 0.24086772 0.14404264
+## [8] 0.09011054</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="itemreduction.html#cb86-1" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>r.scores</span></code></pre></div>
+<pre><code>##              MR1          MR2         MR3
+## MR1  1.000000000 -0.005574388 -0.03945015
+## MR2 -0.005574388  1.000000000 -0.03352857
+## MR3 -0.039450149 -0.033528573  1.00000000</code></pre>
+<p>This is better. We have three dimensions of brand reputation:</p>
+<ul>
+<li>items <code>well_made</code>, <code>consistent</code>, and <code>poor_workman_r</code> describe <em>Product Quality</em>,</li>
+<li>items <code>higher_price</code>, <code>lot_more</code>, and <code>go_up</code> describe <em>Willingness to Pay</em>, and</li>
+<li>items <code>stands_out</code> and <code>unique</code> describe <em>Product Differentiation</em></li>
+</ul>
+<p>Even if the data and your theory suggest otherwise, explore what happens when you include more or fewer factors in your EFA.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="itemreduction.html#cb88-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">2</span>)<span class="sc">$</span>loadings</span></code></pre></div>
+<pre><code>## Loading required namespace: GPArotation</code></pre>
+<pre><code>## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
+## am sorry, to do these rotations requires the GPArotation package to be
+## installed</code></pre>
+<pre><code>## 
+## Loadings:
+##                MR1    MR2   
+## well_made       0.744 -0.504
+## consistent      0.725 -0.569
+## poor_workman_r  0.570 -0.442
+## higher_price    0.704  0.343
+## lot_more        0.558  0.495
+## go_up           0.641  0.517
+## stands_out      0.730  0.145
+## unique          0.704  0.105
+## one_of_a_kind   0.566       
+## 
+##                  MR1   MR2
+## SS loadings    3.971 1.436
+## Proportion Var 0.441 0.160
+## Cumulative Var 0.441 0.601</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="itemreduction.html#cb92-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">4</span>)<span class="sc">$</span>loadings</span></code></pre></div>
+<pre><code>## Loading required namespace: GPArotation</code></pre>
+<pre><code>## Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
+## am sorry, to do these rotations requires the GPArotation package to be
+## installed</code></pre>
+<pre><code>## 
+## Loadings:
+##                MR1    MR2    MR3    MR4   
+## well_made       0.719 -0.522  0.112  0.124
+## consistent      0.706 -0.599  0.108  0.165
+## poor_workman_r  0.551 -0.454         0.106
+## higher_price    0.685  0.301  0.140       
+## lot_more        0.561  0.499  0.262  0.185
+## go_up           0.652  0.537  0.266  0.236
+## stands_out      0.795  0.164 -0.540       
+## unique          0.758  0.112 -0.526       
+## one_of_a_kind   0.657         0.306 -0.686
+## 
+##                  MR1   MR2   MR3   MR4
+## SS loadings    4.167 1.506 0.854 0.620
+## Proportion Var 0.463 0.167 0.095 0.069
+## Cumulative Var 0.463 0.630 0.725 0.794</code></pre>
+<p>The two-factor loading worked okay. The 4 factor loading only loaded one variable to the fourth factor. In this example the SME expected a three-factor model and the data did not contradict the theory, so stick with three.</p>
+<p>Whereas the item generation phase tested for item equivalence, the EFA phase tests for internal reliability (<em>consistency</em>) of items. Internal reliability means the survey produces consistent results. The more common statistics for assessing internal reliability are Cronbach’s Alpha, and split-half.</p>
+</div>
+<div id="cronbachs-alpha" class="section level3 hasAnchor" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Cronbach’s Alpha<a href="itemreduction.html#cronbachs-alpha" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In general, an alpha &lt;.6 is unacceptable, &lt;.65 is undesirable, &lt;.7 is minimally acceptable, &lt;.8 is respectable, &lt;.9 is very good, and &gt;=.9 suggests items are <em>too</em> alike. A very low alpha means items may not be measuring the same construct, so you should drop items. A very high alpha means items are multicollinear, and you should drop items. Here is Cronbach’s alpha for the brand reputation survey, after removing the poorly-loading <code>one_of_a_kind</code> variable.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="itemreduction.html#cb96-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])<span class="sc">$</span>total<span class="sc">$</span>std.alpha</span></code></pre></div>
+<pre><code>## [1] 0.8557356</code></pre>
+<p>This value is in the “very good” range. Cronbach’s alpha is often used to measure the reliability of a single dimension. Here are the values for the 3 dimensions.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="itemreduction.html#cb98-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])<span class="sc">$</span>total<span class="sc">$</span>std <span class="co"># Product Quality</span></span>
+<span id="cb98-2"><a href="itemreduction.html#cb98-2" tabindex="-1"></a><span class="do">## [1] 0.8918025</span></span>
+<span id="cb98-3"><a href="itemreduction.html#cb98-3" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])<span class="sc">$</span>total<span class="sc">$</span>std <span class="co"># Willingness to Pay</span></span>
+<span id="cb98-4"><a href="itemreduction.html#cb98-4" tabindex="-1"></a><span class="do">## [1] 0.8517566</span></span>
+<span id="cb98-5"><a href="itemreduction.html#cb98-5" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>])<span class="sc">$</span>total<span class="sc">$</span>std <span class="co"># Product Differentiation</span></span>
+<span id="cb98-6"><a href="itemreduction.html#cb98-6" tabindex="-1"></a><span class="do">## [1] 0.951472</span></span></code></pre></div>
+<p>Alpha is &gt;0.7 for each dimension. Sometimes the alpha for our survey as a whole is greater than that of the dimensions. This can happen because Cronbach’s alpha is sensitive to the number of items. Over-inflation of the alpha statistic can be a concern when working with surveys containing a large number of items.</p>
+</div>
+<div id="split-half" class="section level3 hasAnchor" number="4.6.4">
+<h3><span class="header-section-number">4.6.4</span> Split-Half<a href="itemreduction.html#split-half" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>psych::splitHalf()</code> to split the survey in half and test whether all parts of the survey contribute equally to measurement. <em>This method is much less popular than Cronbach’s alpha.</em></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="itemreduction.html#cb99-1" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">splitHalf</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span></code></pre></div>
+<pre><code>## Split half reliabilities  
+## Call: psych::splitHalf(r = brand_rep[, 1:8])
+## 
+## Maximum split half reliability (lambda 4) =  0.93
+## Guttman lambda 6                          =  0.92
+## Average split half reliability            =  0.86
+## Guttman lambda 3 (alpha)                  =  0.86
+## Guttman lambda 2                          =  0.87
+## Minimum split half reliability  (beta)    =  0.66
+## Average interitem r =  0.43  with median =  0.4</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="surveyadministration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="confirmatoryfactoranalysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

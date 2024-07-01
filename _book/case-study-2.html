@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Case Study 2 | Statistical Inference</title>
+  <meta name="description" content="Notes cobbled together from books, online classes, etc. to be used as quick reference for common work projects." />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Case Study 2 | Statistical Inference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notes cobbled together from books, online classes, etc. to be used as quick reference for common work projects." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Case Study 2 | Statistical Inference" />
+  
+  <meta name="twitter:description" content="Notes cobbled together from books, online classes, etc. to be used as quick reference for common work projects." />
+  
+
+<meta name="author" content="Michael Foley" />
+
+
+<meta name="date" content="2023-04-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="wilcoxonsignedrank.html"/>
+<link rel="next" href="onewayanova.html"/>
+<script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="assets/kePrint-0.0.1/kePrint.js"></script>
+<link href="assets/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="assets/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="assets/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="frequentist-statistics.html"><a href="frequentist-statistics.html"><i class="fa fa-check"></i><b>1</b> Frequentist Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="central-tendancy-and-dispersion.html"><a href="central-tendancy-and-dispersion.html"><i class="fa fa-check"></i><b>1.1</b> Central Tendancy and Dispersion</a></li>
+<li class="chapter" data-level="1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>1.2</b> Hypothesis Testing</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="likelihood-statistics.html"><a href="likelihood-statistics.html"><i class="fa fa-check"></i><b>2</b> Likelihood Statistics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i><b>2.1</b> Maximum Likelihood Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="bayesian-statistics.html"><a href="bayesian-statistics.html"><i class="fa fa-check"></i><b>3</b> Bayesian Statistics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bayes-law.html"><a href="bayes-law.html"><i class="fa fa-check"></i><b>3.1</b> Bayes’ Law</a></li>
+<li class="chapter" data-level="3.2" data-path="bayesian-inference.html"><a href="bayesian-inference.html"><i class="fa fa-check"></i><b>3.2</b> Bayesian Inference</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-cases.html"><a href="discrete-cases.html"><i class="fa fa-check"></i><b>3.3</b> Discrete Cases</a></li>
+<li class="chapter" data-level="3.4" data-path="continuous-cases.html"><a href="continuous-cases.html"><i class="fa fa-check"></i><b>3.4</b> Continuous Cases</a></li>
+<li class="chapter" data-level="3.5" data-path="bayes-factors.html"><a href="bayes-factors.html"><i class="fa fa-check"></i><b>3.5</b> Bayes Factors</a></li>
+<li class="chapter" data-level="3.6" data-path="a-gentler-introduction.html"><a href="a-gentler-introduction.html"><i class="fa fa-check"></i><b>3.6</b> A Gentler Introduction</a></li>
+<li class="chapter" data-level="3.7" data-path="coursera-notes-inference.html"><a href="coursera-notes-inference.html"><i class="fa fa-check"></i><b>3.7</b> Coursera Notes Inference</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="one-sample.html"><a href="one-sample.html"><i class="fa fa-check"></i><b>4</b> One-Sample</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="one-sample-mean-z-test.html"><a href="one-sample-mean-z-test.html"><i class="fa fa-check"></i><b>4.1</b> One-Sample Mean z Test</a></li>
+<li class="chapter" data-level="4.2" data-path="one-sample-mean-t-test.html"><a href="one-sample-mean-t-test.html"><i class="fa fa-check"></i><b>4.2</b> One-Sample Mean t Test</a></li>
+<li class="chapter" data-level="4.3" data-path="one-sample-median-wilcoxon-test.html"><a href="one-sample-median-wilcoxon-test.html"><i class="fa fa-check"></i><b>4.3</b> One-Sample Median Wilcoxon Test</a></li>
+<li class="chapter" data-level="4.4" data-path="chi-squared-goodness-of-fit-test.html"><a href="chi-squared-goodness-of-fit-test.html"><i class="fa fa-check"></i><b>4.4</b> Chi-Squared Goodness-of-Fit Test</a></li>
+<li class="chapter" data-level="4.5" data-path="g-test.html"><a href="g-test.html"><i class="fa fa-check"></i><b>4.5</b> G-Test</a></li>
+<li class="chapter" data-level="4.6" data-path="one-sample-poisson-test.html"><a href="one-sample-poisson-test.html"><i class="fa fa-check"></i><b>4.6</b> One-Sample Poisson Test</a></li>
+<li class="chapter" data-level="4.7" data-path="exact-binomial-test.html"><a href="exact-binomial-test.html"><i class="fa fa-check"></i><b>4.7</b> Exact Binomial Test</a></li>
+<li class="chapter" data-level="4.8" data-path="one-sample-proportion-z-test.html"><a href="one-sample-proportion-z-test.html"><i class="fa fa-check"></i><b>4.8</b> One-Sample Proportion z Test</a></li>
+<li class="chapter" data-level="4.9" data-path="sample-t-test-for-categorical-var.html"><a href="sample-t-test-for-categorical-var.html"><i class="fa fa-check"></i><b>4.9</b> 1 sample t Test for Categorical Var</a></li>
+<li class="chapter" data-level="4.10" data-path="wilcoxon-1-sample-median-test-for-categorical-var.html"><a href="wilcoxon-1-sample-median-test-for-categorical-var.html"><i class="fa fa-check"></i><b>4.10</b> Wilcoxon 1-Sample Median Test for Categorical Var</a></li>
+<li class="chapter" data-level="4.11" data-path="multivariate-statistics.html"><a href="multivariate-statistics.html"><i class="fa fa-check"></i><b>4.11</b> Multivariate Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="group-differences.html"><a href="group-differences.html"><i class="fa fa-check"></i><b>5</b> Group Differences</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>5.1</b> Independent Samples t-Test</a></li>
+<li class="chapter" data-level="5.2" data-path="wilcoxonranksum.html"><a href="wilcoxonranksum.html"><i class="fa fa-check"></i><b>5.2</b> Wilcoxon Rank Sum Test</a></li>
+<li class="chapter" data-level="" data-path="case-study-1.html"><a href="case-study-1.html"><i class="fa fa-check"></i>Case Study 1</a></li>
+<li class="chapter" data-level="5.3" data-path="pairedttest.html"><a href="pairedttest.html"><i class="fa fa-check"></i><b>5.3</b> Paired Samples t-Test</a></li>
+<li class="chapter" data-level="5.4" data-path="wilcoxonsignedrank.html"><a href="wilcoxonsignedrank.html"><i class="fa fa-check"></i><b>5.4</b> Wilcoxon Signed-Rank Test</a></li>
+<li class="chapter" data-level="" data-path="case-study-2.html"><a href="case-study-2.html"><i class="fa fa-check"></i>Case Study 2</a></li>
+<li class="chapter" data-level="5.5" data-path="onewayanova.html"><a href="onewayanova.html"><i class="fa fa-check"></i><b>5.5</b> One-way ANOVA</a></li>
+<li class="chapter" data-level="5.6" data-path="kw.html"><a href="kw.html"><i class="fa fa-check"></i><b>5.6</b> Kruskal–Wallis Test</a></li>
+<li class="chapter" data-level="" data-path="groupdiffscs3.html"><a href="groupdiffscs3.html"><i class="fa fa-check"></i>Case Study 3</a></li>
+<li class="chapter" data-level="5.7" data-path="chisqhomogeneity.html"><a href="chisqhomogeneity.html"><i class="fa fa-check"></i><b>5.7</b> Chi-Square Test of Homogeneity</a></li>
+<li class="chapter" data-level="5.8" data-path="fisherexact.html"><a href="fisherexact.html"><i class="fa fa-check"></i><b>5.8</b> Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="" data-path="case-study-4.html"><a href="case-study-4.html"><i class="fa fa-check"></i>Case Study 4</a></li>
+<li class="chapter" data-level="5.9" data-path="pairwiseproptest.html"><a href="pairwiseproptest.html"><i class="fa fa-check"></i><b>5.9</b> Pairwise Prop Test</a></li>
+<li class="chapter" data-level="5.10" data-path="mcnemar.html"><a href="mcnemar.html"><i class="fa fa-check"></i><b>5.10</b> McNemar’s Test</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="association.html"><a href="association.html"><i class="fa fa-check"></i><b>6</b> Association</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="pearson.html"><a href="pearson.html"><i class="fa fa-check"></i><b>6.1</b> Pearson’s Correlation</a></li>
+<li class="chapter" data-level="6.2" data-path="spearman.html"><a href="spearman.html"><i class="fa fa-check"></i><b>6.2</b> Spearman’s Rho</a></li>
+<li class="chapter" data-level="6.3" data-path="kendall.html"><a href="kendall.html"><i class="fa fa-check"></i><b>6.3</b> Kendal’s Tau</a></li>
+<li class="chapter" data-level="6.4" data-path="case-study-pearson-spearman-kendall.html"><a href="case-study-pearson-spearman-kendall.html"><i class="fa fa-check"></i><b>6.4</b> Case Study: Pearson, Spearman, Kendall</a></li>
+<li class="chapter" data-level="6.5" data-path="chisq-independence.html"><a href="chisq-independence.html"><i class="fa fa-check"></i><b>6.5</b> Chi-Square Test of Independence</a></li>
+<li class="chapter" data-level="6.6" data-path="fisher-exact.html"><a href="fisher-exact.html"><i class="fa fa-check"></i><b>6.6</b> Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="6.7" data-path="case-study-chi-square-fisher.html"><a href="case-study-chi-square-fisher.html"><i class="fa fa-check"></i><b>6.7</b> Case Study: Chi-Square, Fisher</a></li>
+<li class="chapter" data-level="6.8" data-path="kruskals-lambda.html"><a href="kruskals-lambda.html"><i class="fa fa-check"></i><b>6.8</b> Kruskal’s Lambda</a></li>
+<li class="chapter" data-level="6.9" data-path="relative-risk.html"><a href="relative-risk.html"><i class="fa fa-check"></i><b>6.9</b> Relative Risk</a></li>
+<li class="chapter" data-level="6.10" data-path="odds-ratio.html"><a href="odds-ratio.html"><i class="fa fa-check"></i><b>6.10</b> Odds Ratio</a></li>
+<li class="chapter" data-level="6.11" data-path="partial-correlation.html"><a href="partial-correlation.html"><i class="fa fa-check"></i><b>6.11</b> Partial Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="matrix-algebra.html"><a href="matrix-algebra.html"><i class="fa fa-check"></i><b>7</b> Matrix Algebra</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="central-tendancy-dispersion-and-association.html"><a href="central-tendancy-dispersion-and-association.html"><i class="fa fa-check"></i><b>7.1</b> Central Tendancy, Dispersion, and Association</a></li>
+<li class="chapter" data-level="7.2" data-path="linear-transformations.html"><a href="linear-transformations.html"><i class="fa fa-check"></i><b>7.2</b> Linear Transformations</a></li>
+<li class="chapter" data-level="7.3" data-path="multivariate-normal-distribution.html"><a href="multivariate-normal-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Multivariate Normal Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Inference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="case-study-2" class="section level2 unnumbered hasAnchor">
+<h2>Case Study 2<a href="case-study-2.html#case-study-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(n\)</span> = 20 athletes consume a carb-only or carb+protein drink prior to running as far as possible in 2 hours and a researcher records their distances under each condition. Do the distances differ from 0?</p>
+<p><a href="https://statistics.laerd.com/">Laerd</a> has three data sets for this example. One meets the conditions for a t-test. The second fails the normality condition, but is symmetric and meets the conditions for the Wilcoxon test. The third fails the symmetry condition and requires the sign test.</p>
+<div id="t-test-data-set" class="section level5 unnumbered hasAnchor">
+<h5>t-test data set<a href="case-study-2.html#t-test-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="case-study-2.html#cb160-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>t_gt <span class="ot">&lt;-</span> drink<span class="sc">$</span>t_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb160-2"><a href="case-study-2.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>))</span>
+<span id="cb160-3"><a href="case-study-2.html#cb160-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="qkkybgfmvo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qkkybgfmvo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qkkybgfmvo thead, #qkkybgfmvo tbody, #qkkybgfmvo tfoot, #qkkybgfmvo tr, #qkkybgfmvo td, #qkkybgfmvo th {
+  border-style: none;
+}
+
+#qkkybgfmvo p {
+  margin: 0;
+  padding: 0;
+}
+
+#qkkybgfmvo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qkkybgfmvo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qkkybgfmvo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qkkybgfmvo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qkkybgfmvo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qkkybgfmvo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qkkybgfmvo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qkkybgfmvo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qkkybgfmvo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qkkybgfmvo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qkkybgfmvo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qkkybgfmvo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qkkybgfmvo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qkkybgfmvo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qkkybgfmvo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkkybgfmvo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qkkybgfmvo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qkkybgfmvo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qkkybgfmvo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkkybgfmvo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qkkybgfmvo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkkybgfmvo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qkkybgfmvo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkkybgfmvo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qkkybgfmvo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkkybgfmvo .gt_left {
+  text-align: left;
+}
+
+#qkkybgfmvo .gt_center {
+  text-align: center;
+}
+
+#qkkybgfmvo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qkkybgfmvo .gt_font_normal {
+  font-weight: normal;
+}
+
+#qkkybgfmvo .gt_font_bold {
+  font-weight: bold;
+}
+
+#qkkybgfmvo .gt_font_italic {
+  font-style: italic;
+}
+
+#qkkybgfmvo .gt_super {
+  font-size: 65%;
+}
+
+#qkkybgfmvo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qkkybgfmvo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qkkybgfmvo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qkkybgfmvo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qkkybgfmvo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qkkybgfmvo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qkkybgfmvo .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 20&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 20</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">carb</td>
+<td headers="stat_0" class="gt_row gt_center">11.17 (0.73)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">carb_protein</td>
+<td headers="stat_0" class="gt_row gt_center">11.30 (0.71)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">diff</td>
+<td headers="stat_0" class="gt_row gt_center">0.14 (0.10)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<blockquote>
+<p>There were 20 participants. Data are mean <span class="math inline">\(\pm\)</span> standard deviation, unless otherwise stated. Participants ran further after consuming the carbohydrate-protein drink, 11.30 (0.71) km, than the carbohydrate-only drink, 11.17 (0.73) km.</p>
+</blockquote>
+</div>
+<div id="wilcoxon-data-set" class="section level5 unnumbered hasAnchor">
+<h5>Wilcoxon data set<a href="case-study-2.html#wilcoxon-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Once you learn you need Wilcoxon or the sign-test, show the median and IQR summary statistics instead.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="case-study-2.html#cb161-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>wilcoxon_gt <span class="ot">&lt;-</span> drink<span class="sc">$</span>wilcoxon_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb161-2"><a href="case-study-2.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>()</span>
+<span id="cb161-3"><a href="case-study-2.html#cb161-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="wkrvjkbdzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wkrvjkbdzu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wkrvjkbdzu thead, #wkrvjkbdzu tbody, #wkrvjkbdzu tfoot, #wkrvjkbdzu tr, #wkrvjkbdzu td, #wkrvjkbdzu th {
+  border-style: none;
+}
+
+#wkrvjkbdzu p {
+  margin: 0;
+  padding: 0;
+}
+
+#wkrvjkbdzu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wkrvjkbdzu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wkrvjkbdzu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wkrvjkbdzu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wkrvjkbdzu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wkrvjkbdzu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wkrvjkbdzu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wkrvjkbdzu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wkrvjkbdzu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wkrvjkbdzu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wkrvjkbdzu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wkrvjkbdzu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wkrvjkbdzu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wkrvjkbdzu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wkrvjkbdzu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wkrvjkbdzu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wkrvjkbdzu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wkrvjkbdzu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wkrvjkbdzu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wkrvjkbdzu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wkrvjkbdzu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wkrvjkbdzu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wkrvjkbdzu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wkrvjkbdzu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wkrvjkbdzu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wkrvjkbdzu .gt_left {
+  text-align: left;
+}
+
+#wkrvjkbdzu .gt_center {
+  text-align: center;
+}
+
+#wkrvjkbdzu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wkrvjkbdzu .gt_font_normal {
+  font-weight: normal;
+}
+
+#wkrvjkbdzu .gt_font_bold {
+  font-weight: bold;
+}
+
+#wkrvjkbdzu .gt_font_italic {
+  font-style: italic;
+}
+
+#wkrvjkbdzu .gt_super {
+  font-size: 65%;
+}
+
+#wkrvjkbdzu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wkrvjkbdzu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wkrvjkbdzu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wkrvjkbdzu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wkrvjkbdzu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wkrvjkbdzu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wkrvjkbdzu .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 20&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 20</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">carb</td>
+<td headers="stat_0" class="gt_row gt_center">11.28 (10.43, 11.72)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">carb_protein</td>
+<td headers="stat_0" class="gt_row gt_center">11.37 (10.92, 11.81)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">diff</td>
+<td headers="stat_0" class="gt_row gt_center">0.19 (-0.10, 0.47)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<blockquote>
+<p>There were 20 participants. Data are medians and IQR unless otherwise stated. Participants ran further after consuming the carbohydrate-protein drink, 11.37 (10.92, 11.81) km, than the carbohydrate-only drink, 11.28 (10.43, 11.72) km.</p>
+</blockquote>
+</div>
+<div id="sign-data-set" class="section level5 unnumbered hasAnchor">
+<h5>Sign data set<a href="case-study-2.html#sign-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="case-study-2.html#cb162-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>sign_gt <span class="ot">&lt;-</span> drink<span class="sc">$</span>sign_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb162-2"><a href="case-study-2.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>()</span>
+<span id="cb162-3"><a href="case-study-2.html#cb162-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="blsklmwltf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#blsklmwltf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#blsklmwltf thead, #blsklmwltf tbody, #blsklmwltf tfoot, #blsklmwltf tr, #blsklmwltf td, #blsklmwltf th {
+  border-style: none;
+}
+
+#blsklmwltf p {
+  margin: 0;
+  padding: 0;
+}
+
+#blsklmwltf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#blsklmwltf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#blsklmwltf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#blsklmwltf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#blsklmwltf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#blsklmwltf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#blsklmwltf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#blsklmwltf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#blsklmwltf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#blsklmwltf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#blsklmwltf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#blsklmwltf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#blsklmwltf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#blsklmwltf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#blsklmwltf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#blsklmwltf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#blsklmwltf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#blsklmwltf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#blsklmwltf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#blsklmwltf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#blsklmwltf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#blsklmwltf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#blsklmwltf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#blsklmwltf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#blsklmwltf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#blsklmwltf .gt_left {
+  text-align: left;
+}
+
+#blsklmwltf .gt_center {
+  text-align: center;
+}
+
+#blsklmwltf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#blsklmwltf .gt_font_normal {
+  font-weight: normal;
+}
+
+#blsklmwltf .gt_font_bold {
+  font-weight: bold;
+}
+
+#blsklmwltf .gt_font_italic {
+  font-style: italic;
+}
+
+#blsklmwltf .gt_super {
+  font-size: 65%;
+}
+
+#blsklmwltf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#blsklmwltf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#blsklmwltf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#blsklmwltf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#blsklmwltf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#blsklmwltf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#blsklmwltf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 20&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 20</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">carb</td>
+<td headers="stat_0" class="gt_row gt_center">11.11 (10.43, 11.49)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">carb_protein</td>
+<td headers="stat_0" class="gt_row gt_center">11.37 (10.92, 11.81)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">diff</td>
+<td headers="stat_0" class="gt_row gt_center">0.23 (0.12, 0.55)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<blockquote>
+<p>There were 20 participants. Data are median and IQR unless otherwise stated. Participants ran further after consuming the carbohydrate-protein drink, 11.37 (10.92, 11.81) km, than the carbohydrate-only drink, 11.11 (10.43, 11.49) km.</p>
+</blockquote>
+</div>
+<div id="conditions-5" class="section level4 unnumbered hasAnchor">
+<h4>Conditions<a href="case-study-2.html#conditions-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The paired samples <em>t</em> test applies when the variable is continuous and partitioned into dependent pairs, Additionally, there are two conditions related to the data distribution. If either condition fails, consider the suggested work-around or move to the nonparametric alternatives.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Outliers</strong>. There should be no outliers in the differences because they exert a large influence on the mean and standard deviation. Test with a box plot. If there are outliers, you might be able to drop them if they do not affect the conclusion, or you can transform the data.</li>
+<li><strong>Normality</strong>. Differences should be <em>nearly</em> normally distributed (“nearly” because the <em>t</em>-test is robust to the normality assumption). This condition is especially important with small sample sizes. Test with Q-Q plots or the Shapiro-Wilk test for normality. If the data is very non-normal, you might be able to transform the data.</li>
+</ol>
+<div id="outliers-1" class="section level5 unnumbered hasAnchor">
+<h5>Outliers<a href="case-study-2.html#outliers-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Assess outliers with a box plot. Box plot whiskers extend up to 1.5*IQR from the upper and lower hinges and outliers (beyond the whiskers) are are plotted individually.</p>
+<p><img src="statistics_files/figure-html/unnamed-chunk-141-1.png" width="720" /></p>
+<blockquote>
+<p>There were no outliers in the data, as assessed by inspection of a boxplot.</p>
+</blockquote>
+<p>Had there been outliers, you might report</p>
+<blockquote>
+<p><em>X</em> outliers were detected. Inspection of their values did not reveal them to be extreme and they were kept in the analysis.</p>
+</blockquote>
+<p>If the outliers are data entry errors or measurement errors, fix them or discard them. If the outliers are genuine, you can try leaving them in or transforming the data.</p>
+</div>
+<div id="normality-1" class="section level5 unnumbered hasAnchor">
+<h5>Normality<a href="case-study-2.html#normality-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Assume the population is normally distributed if <em>n</em> <span class="math inline">\(\ge\)</span> 30. These data sets have <em>n</em> = 20 observations, so you cannot assume normality. Asses a Q-Q plot, skewness and kurtosis values, histogram, or Shapiro-Wilk test.</p>
+<p><img src="statistics_files/figure-html/unnamed-chunk-142-1.png" width="720" /></p>
+<p>For the t-test data set,</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="case-study-2.html#cb163-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>t_shapiro <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(drink<span class="sc">$</span>t_dat<span class="sc">$</span>diff))</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  drink$t_dat$diff
+## W = 0.97119, p-value = 0.7797</code></pre>
+<blockquote>
+<p>The differences between the distance ran in the carbohydrate-only and carbohydrate-protein trial were normally distributed, as assessed by Shapiro-Wilk’s test (<em>p</em> = 0.780).</p>
+</blockquote>
+<p>For the Wilcoxon data set,</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="case-study-2.html#cb165-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>wilcoxon_shapiro <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(drink<span class="sc">$</span>wilcoxon_dat<span class="sc">$</span>diff))</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  drink$wilcoxon_dat$diff
+## W = 0.87077, p-value = 0.01212</code></pre>
+<blockquote>
+<p>The differences between the distance ran in the carbohydrate-only and carbohydrate-protein trial were <em>not</em> normally distributed, as assessed by Shapiro-Wilk’s test (<em>p</em> = 0.012).</p>
+</blockquote>
+<p>For the sign-test data set,</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="case-study-2.html#cb167-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>sign_shapiro <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(drink<span class="sc">$</span>sign_dat<span class="sc">$</span>diff))</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  drink$sign_dat$diff
+## W = 0.8968, p-value = 0.03593</code></pre>
+<blockquote>
+<p>The differences between the distance ran in the carbohydrate-only and carbohydrate-protein trial were <em>not</em> normally distributed, as assessed by Shapiro-Wilk’s test (<em>p</em> = 0.036).</p>
+</blockquote>
+<p>If the data is normally distributed, use the t-test. If not, you try transforming the dependent variable, or carrying on regardless since the <em>t</em>-test is fairly robust to deviations from normality.</p>
+</div>
+<div id="symmetric-distribution" class="section level5 unnumbered hasAnchor">
+<h5>Symmetric Distribution<a href="case-study-2.html#symmetric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>If the data passed the outliers test, but failed the normality test, as the Wilcoxon and sign test data sets above did, you will use the Wilcoxon signed-rank test or sign test. Now you need to test the distribution to determine which test. If the distribution is symmetric, use Wilcoxon; otherwise use the sign test.</p>
+<p><img src="statistics_files/figure-html/unnamed-chunk-146-1.png" width="720" /></p>
+<p>For the Wilcoxon data set,</p>
+<blockquote>
+<p>The distribution of the differences between the carbohydrate-protein drink and the carbohydrate-only was symmetric, as assessed by visual inspection.</p>
+</blockquote>
+<p>For the sign data set,</p>
+<blockquote>
+<p>The distribution of the differences between the carbohydrate-protein drink and the carbohydrate-only was <em>not</em> asymmetric, as assessed by visual inspection.</p>
+</blockquote>
+</div>
+</div>
+<div id="test-1" class="section level4 unnumbered hasAnchor">
+<h4>Test<a href="case-study-2.html#test-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="t-test-1" class="section level5 unnumbered hasAnchor">
+<h5>t-test<a href="case-study-2.html#t-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="case-study-2.html#cb169-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>t_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> drink<span class="sc">$</span>t_dat<span class="sc">$</span>carb_protein, <span class="at">y =</span> drink<span class="sc">$</span>t_dat<span class="sc">$</span>carb, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb169-2"><a href="case-study-2.html#cb169-2" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  drink$t_dat$carb_protein and drink$t_dat$carb
+## t = 6.3524, df = 19, p-value = 4.283e-06
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  0.09085492 0.18014508
+## sample estimates:
+## mean difference 
+##          0.1355</code></pre>
+<blockquote>
+<p>The carbohydrate-protein drink elicited an increase of 0.135 (95% CI, 0.091 to 0.180) km in the distance run in two hours compared to a carbohydrate-only drink.</p>
+</blockquote>
+<p>The effect size, called Cohen’s <em>d</em>, is the number of standard deviations the measured mean difference is from the hypothesized difference, <span class="math inline">\((\bar{d}-d_0) / s\)</span>, where <span class="math inline">\(s\)</span> is the sample standard deviation. .2 is small, .5 is medium, and .8 is large. This one is large.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="case-study-2.html#cb171-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>t_d <span class="ot">&lt;-</span> effectsize<span class="sc">::</span><span class="fu">cohens_d</span>(drink<span class="sc">$</span>t_dat<span class="sc">$</span>diff))</span></code></pre></div>
+<pre><code>## Cohen&#39;s d |       95% CI
+## ------------------------
+## 1.42      | [0.78, 2.04]</code></pre>
+<p>You are about to reject the null hypothesis. Construct a plot as a sanity check on your reasoning.</p>
+<p><img src="statistics_files/figure-html/unnamed-chunk-149-1.png" width="624" /></p>
+<p>Report the results.</p>
+<blockquote>
+<p>A paired-samples t-test was used to determine the effect of a new formula of sports drink on running performance. Instead of the regular, carbohydrate-only drink, the new sports drink contains a new carbohydrate-protein mixture. Twenty participants were recruited to the study who each performed two trials in which they had to run as far as possible in two hours on a treadmill. In one of the trials they drank the carbohydrate-only drink and in the other trial they drank the carbohydrate-protein drink. The order of the trials was counterbalanced and the distance they ran in both trials was recorded.</p>
+<p>Two outliers were detected that were more than 1.5 box-lengths from the edge of the box in a boxplot. Inspection of their values did not reveal them to be extreme and they were kept in the analysis. The assumption of normality was not violated, as assessed by Shapiro-Wilk’s test (<em>p</em> = 0.780).</p>
+<p>Data are mean <span class="math inline">\(\pm\)</span> standard deviation, unless otherwise stated. Participants ran further after consuming the carbohydrate-protein drink, 11.30 (0.71) km, than the carbohydrate-only drink, 11.17 (0.73) km, a statistically significant increase of 0.135 (95% CI, 0.091 to 0.180) km, <em>t</em>(19) = 6.352, <em>p</em> = 0.0000, <em>d</em> = 1.42.</p>
+</blockquote>
+</div>
+<div id="wilcoxon-signed-rank-test" class="section level5 unnumbered hasAnchor">
+<h5>Wilcoxon Signed-Rank Test<a href="case-study-2.html#wilcoxon-signed-rank-test" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>From the distribution plot, you can see that most of the signs were positive, and the largest absolute difference values were among the positives, so expect a pretty large test statistic.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="case-study-2.html#cb173-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>wilcoxon_test <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(drink<span class="sc">$</span>wilcoxon_dat<span class="sc">$</span>carb_protein,</span>
+<span id="cb173-2"><a href="case-study-2.html#cb173-2" aria-hidden="true" tabindex="-1"></a>                                    drink<span class="sc">$</span>wilcoxon_dat<span class="sc">$</span>carb, </span>
+<span id="cb173-3"><a href="case-study-2.html#cb173-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon signed rank exact test
+## 
+## data:  drink$wilcoxon_dat$carb_protein and drink$wilcoxon_dat$carb
+## V = 162, p-value = 0.03277
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<blockquote>
+<p>The carbohydrate-protein drink elicited a statistically significant median increase in distance run in two hours compared to the carbohydrate-only drink, <em>W</em> = 162, <em>p</em> = 0.033.</p>
+</blockquote>
+<p>Report the results.</p>
+<blockquote>
+<p>A Wilcoxon signed-rank test was conducted to determine the effect of a new formula of sports drink on running performance. Instead of the regular, carbohydrate-only drink, the new sports drink contains a new carbohydrate-protein mixture. Twenty participants were recruited to the study who each performed two trials in which they had to run as far as possible in two hours on a treadmill. In one of the trials they drank the carbohydrate-only drink and in the other trial they drank the carbohydrate-protein drink. The order of the trials was counterbalanced and the distance they ran in both trials was recorded.</p>
+<p>The difference scores were approximately symmetrically distributed, as assessed by a histogram with superimposed normal curve.</p>
+<p>Data are medians unless otherwise stated. Of the 20 participants recruited to the study, the carbohydrate-protein drink elicited an increase in the distance run in 17 participants compared to the carbohydrate-only drink, whereas two participants saw no improvement and one participant did not run as far with the carbohydrate-protein drink. There was a statistically significant median increase in distance run (0.2300 km) when subjects imbibed the carbohydrate-protein drink (11.368 km) compared to the carbohydrate-only drink (11.108 km), <em>W</em> = 162, <em>p</em> = 0.0328.</p>
+</blockquote>
+</div>
+<div id="sign-signed-rank-test" class="section level5 unnumbered hasAnchor">
+<h5>Sign Signed-Rank Test<a href="case-study-2.html#sign-signed-rank-test" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Conduct the exact sign test since the n-size is not so large that we need the normal approximation to the binomial. Notice <code>n</code> is the count of <em>non-zero</em> differences.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="case-study-2.html#cb175-1" aria-hidden="true" tabindex="-1"></a>(drink<span class="sc">$</span>sign_test <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="fu">sum</span>(drink<span class="sc">$</span>sign_dat<span class="sc">$</span>diff <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
+<span id="cb175-2"><a href="case-study-2.html#cb175-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">n =</span> <span class="fu">sum</span>(drink<span class="sc">$</span>sign_dat<span class="sc">$</span>diff <span class="sc">!=</span> <span class="dv">0</span>)))</span></code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  sum(drink$sign_dat$diff &gt; 0) and sum(drink$sign_dat$diff != 0)
+## number of successes = 18, number of trials = 18, p-value = 7.629e-06
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.814698 1.000000
+## sample estimates:
+## probability of success 
+##                      1</code></pre>
+<blockquote>
+<p>The carbohydrate-protein drink elicited a statistically significant median increase in distance run (0.230 km) compared to the carbohydrate-only drink, <em>p</em> = 0.000.</p>
+</blockquote>
+<p>Report the results.</p>
+<blockquote>
+<p>An exact sign test was conducted to determine the effect of a new formula of sports drink on running performance. Instead of the regular, carbohydrate-only drink, the new sports drink contains a new carbohydrate-protein mixture. Twenty participants were recruited to the study who each performed two trials in which they had to run as far as possible in two hours on a treadmill. In one of the trials they drank the carbohydrate-only drink and in the other trial they drank the carbohydrate-protein drink. The order of the trials was counterbalanced and the distance they ran in both trials was recorded.</p>
+<p>An exact sign test was used to determine whether there was a statistically significant median difference between the distance ran when participants drank a carbohydrate-protein drink compared to a carbohydrate-only drink. Data are medians unless otherwise stated. Of the 20 participants recruited to the study, the carbohydrate-protein drink elicited an increase in the distance run in 18 participants compared to the carbohydrate-only drink, whereas 0 participants did not run as far and 2 participant saw no improvement with the carbohydrate-protein drink. There was a statistically significant median increase in distance run (0.2300 km) when subjects imbibed the carbohydrate-protein drink (11.368 km) compared to the carbohydrate-only drink (11.108 km), <em>p</em> = 0.0000.</p>
+</blockquote>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wilcoxonsignedrank.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="onewayanova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
