@@ -23,7 +23,7 @@
 <meta name="author" content="Michael Foley" />
 
 
-<meta name="date" content="2024-01-07" />
+<meta name="date" content="2024-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -128,6 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -257,11 +258,12 @@ div.csl-indent {
 <p>Suppose you have simple random sample (SRS) of size <span class="math inline">\(n\)</span> from a population of size <span class="math inline">\(N\)</span>. The estimated population parameter is <span class="math inline">\(\bar{Y}\)</span> with variance <span class="math inline">\(S^2\)</span>. The sample mean, <span class="math inline">\(\bar{y}\)</span>, is the expected value of <span class="math inline">\(\bar{Y}\)</span>. Under repeated sampling, the sample means would differ with variance</p>
 <p><span class="math display" id="eq:var-of-estimate">\[
 \begin{equation}
-V(\bar{y}) = \left(1 - \frac{n}{N} \right) \frac{S^2}{n}.
+var(\bar{y}) = \left(1 - \frac{n}{N} \right) \frac{S^2}{n}.
 \tag{2.1}
 \end{equation}
 \]</span></p>
-<p>Equation <a href="srs.html#eq:var-of-estimate">(2.1)</a> is square of the familiar formula for the standard error of the estimate, <span class="math inline">\(SE(\bar{y}) = S / \sqrt{n}\)</span>, multiplied by the <em>finite population correction</em> factor (FPC), <span class="math inline">\(1 - n / N\)</span>. The FPC reduces the expected variance for finite (small) populations. The ratio of the corrected <span class="math inline">\(SE\)</span> and <span class="math inline">\(\bar{Y}\)</span> is called the <em>coefficient of variation</em>, CV. It is often expressed as its square, <span class="math inline">\(CV^2(\bar{y}) = V(\bar{y}) / \bar{Y}^2\)</span>,</p>
+<p>Equation <a href="srs.html#eq:var-of-estimate">(2.1)</a> is the square of the familiar formula for the standard error of the estimate, <span class="math inline">\(SE(\bar{y}) = S / \sqrt{n} \sim s / \sqrt{n}\)</span>, multiplied by the <em>finite population correction</em> factor (FPC), <span class="math inline">\(1 - n / N\)</span>. The FPC reduces the expected variance for finite (small) populations. In practice, you can ignore the FPC when <span class="math inline">\(n/N &lt; .05\)</span>. <span class="math inline">\(S\)</span> is an unknown population parameter which you estimate from the sample, <span class="math inline">\(s\)</span>. A 95% CI for the population mean would be calculated as <span class="math inline">\(\bar{y} \pm t_{.975,n-1} se(\bar{y})\)</span>.</p>
+<p>The ratio of the corrected <span class="math inline">\(SE\)</span> and <span class="math inline">\(\bar{Y}\)</span> is called the <em>coefficient of variation</em>, CV. It is often expressed as its square, <span class="math inline">\(CV^2(\bar{y}) = V(\bar{y}) / \bar{Y}^2\)</span>,</p>
 <p><span class="math display" id="eq:cv2">\[
 \begin{equation}
 CV^2(\bar{y}) = \left(1 - \frac{n}{N} \right) \cdot \frac{1}{n} \cdot \frac{S^2}{\bar{Y}^2}

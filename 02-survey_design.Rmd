@@ -9,7 +9,7 @@ theme_set(
 )
 ```
 
-The best survey design (aka, sampling strategy) depends on how study objectives are translated into survey questions, the units of analysis from the target population, the variables and covariates, and the available sampling frames for data collection [@valliant2013]. Exploratory surveys often sample individuals with qualifying characteristics by convenience, snowball (referrals), quota, or purposeful sampling [@lau2017]. In contrast to these *non-probability sampling* strategies, descriptive and explanatory surveys use *probability sampling*, including simple random sapling (SRS) and stratified sampling.^[Cluster sampling, systematic sampling and Poisson sampling are other sampling methods to at least be aware of. I'm not ready to deal with these yet.] Regardless of the survey design, sample size is set using one of three target values: i) coefficient of variation, $CV_0(\theta) = SE / \theta$; ii) $SE$; or iii) margin of error (aka, *tolerance*), $MOE = \pm z_{1-\alpha} \cdot SE$.
+The survey design (aka, sampling strategy) depends on how study objectives are translated into survey questions, the units of analysis from the target population, the variables and covariates, and the available sampling frames for data collection [@valliant2013]. Exploratory surveys often sample individuals with qualifying characteristics by convenience, snowball (referrals), quota, or purposeful sampling [@lau2017]. In contrast to these *non-probability sampling* strategies, descriptive and explanatory surveys use *probability sampling*, including simple random sampling (SRS) and stratified sampling.^[Cluster sampling, systematic sampling and Poisson sampling are other sampling methods to at least be aware of. I'm not ready to deal with these yet.] Regardless of the survey design, sample size is set using one of three target values: i) coefficient of variation, $CV_0(\theta) = SE / \theta$; ii) $SE$; or iii) margin of error (aka, *tolerance*), $MOE = \pm z_{1-\alpha} \cdot SE$.
 
 ## Simple Random Sampling {#srs}
 
@@ -17,12 +17,14 @@ Suppose you have simple random sample (SRS) of size $n$ from a population of siz
 
 $$
 \begin{equation}
-V(\bar{y}) = \left(1 - \frac{n}{N} \right) \frac{S^2}{n}.
+var(\bar{y}) = \left(1 - \frac{n}{N} \right) \frac{S^2}{n}.
 (\#eq:var-of-estimate)
 \end{equation}
 $$
 
-Equation \@ref(eq:var-of-estimate) is square of the familiar formula for the standard error of the estimate, $SE(\bar{y}) = S / \sqrt{n}$, multiplied by the *finite population correction* factor (FPC), $1 - n / N$. The FPC reduces the expected variance for finite (small) populations. The ratio of the corrected $SE$ and $\bar{Y}$ is called the *coefficient of variation*, CV. It is often expressed as its square, $CV^2(\bar{y}) = V(\bar{y}) / \bar{Y}^2$,
+Equation \@ref(eq:var-of-estimate) is the square of the familiar formula for the standard error of the estimate, $SE(\bar{y}) = S / \sqrt{n} \sim s / \sqrt{n}$, multiplied by the *finite population correction* factor (FPC), $1 - n / N$. The FPC reduces the expected variance for finite (small) populations. In practice, you can ignore the FPC when $n/N < .05$. $S$ is an unknown population parameter which you estimate from the sample, $s$. A 95% CI for the population mean would be calculated as $\bar{y} \pm t_{.975,n-1} se(\bar{y})$.
+
+The ratio of the corrected $SE$ and $\bar{Y}$ is called the *coefficient of variation*, CV. It is often expressed as its square, $CV^2(\bar{y}) = V(\bar{y}) / \bar{Y}^2$,
 
 $$
 \begin{equation}
@@ -126,12 +128,18 @@ In a stratified design, the measured mean or proportion of the population is the
 
 $$
 \begin{equation}
-V(\bar{y}_{st}) = \sum W_h^2 \cdot \left(1 - \frac{n_h}{N} \right) \cdot \frac{1}{n_h} \cdot S_h^2.
+var(\bar{y}_{st}) = \sum W_h^2 \cdot \left(1 - \frac{n_h}{N} \right) \cdot \frac{1}{n_h} \cdot S_h^2.
 (\#eq:var-stratified)
 \end{equation}
 $$
 
 Use the SRS sampling methods described in Section \@ref(srs) to estimate each stratum.
+
+The effect of stratification relative to SRS is captured in the _design effect_ ratio, 
+
+$$
+D^2(\hat{\theta}) = \frac{var(\hat{\theta})_\mathrm{complex}}{var(\hat{\theta})_\mathrm{SRS}}
+$$
 
 **Example**. Suppose you are measuring expenditure within a company of $N = 875$ employees and want to stratify by the $h = 6$ departments. You target a $CV_0(\bar{y_s}) = .10.$
 
