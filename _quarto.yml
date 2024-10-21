@@ -1,0 +1,29 @@
+project:
+  type: book
+
+book:
+  title: "Survey Design and Analysis"
+  author: "Michael Foley"
+  date: "2024-10-19"
+  chapters:
+    - index.qmd
+    - 01-item_selection.qmd
+    - 02-sample_size.qmd
+    - 03-statistical_power.qmd
+    - 04-analysis.qmd
+    - 05-simple_random_sample.qmd
+    - 06-stratified_random_sample.qmd
+    - 07-best_worst_scaling.qmd
+    - 08-case_study.qmd
+    - 10-references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: source
+

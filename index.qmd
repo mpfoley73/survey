@@ -1,0 +1,3 @@
+# Preface {-}
+
+Survey analysis starts with a problem/objectives statement, understanding of the sample design, respondent attributes, and underlying constructs. Only then does the data analysis begin. The survey objective may be to describe the characteristics of the target population, or to infer statistical relationship (causal or associative).

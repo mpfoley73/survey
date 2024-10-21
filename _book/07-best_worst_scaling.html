@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Best-Worst Scaling – Survey Design and Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08-case_study.html" rel="next">
+<link href="./06-stratified_random_sample.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-best_worst_scaling.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Best-Worst Scaling</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Survey Design and Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-item_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample_size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample Size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-statistical_power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analyzing Survey Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-simple_random_sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Simple Random Samples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-stratified_random_sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stratified Sampling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-best_worst_scaling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Best-Worst Scaling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#count-analysis" id="toc-count-analysis" class="nav-link active" data-scroll-target="#count-analysis"><span class="header-section-number">7.1</span> Count Analysis</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="header-section-number">7.2</span> Model</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Best-Worst Scaling</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Best–worst scaling (BWS) is a method for measuring preferences among pre-defined items.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> BWS presents subsets of the items for evaluation, asking the respondent to identify the best and worst (or most important and least important) from the subset. BWS studies usually use a balanced incomplete block design (BIBD) to construct choice sets.</p>
+<p>BIBD is a category of designs where <code>trt</code> treatments (items) are presented to the survey respondent in <code>b</code> blocks (survey questions) of <code>k</code> treatments (items). For example, seven items might be presented in seven survey questions with four of the items show in each question.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"origin"</span>, <span class="st">"variety"</span>, <span class="st">"price"</span>, <span class="st">"taste"</span>, <span class="st">"safety"</span>, <span class="st">"washfree"</span>, <span class="st">"milling"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8041</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>bibd <span class="ot">&lt;-</span> <span class="fu">find.BIB</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">trt =</span> <span class="fu">length</span>(items),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">length</span>(items),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">k =</span> <span class="dv">4</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The documentation for <code>isGYD()</code> explains design balance. A balanced block design has three qualities: i) Each treatment appears equally often. ii) Each treatment appears in each block either <em>n</em> or <em>n+1</em> times (usually 0 or 1 times). iii) The concurrences of <em>i</em> and <em>j</em> are the same for all pairs of treatments (<em>i</em>, <em>j</em>). A design balanced with respect to both rows and columns is called a generalized Youden design (GYD). A design with less columns (rows) than treatments is <em>incomplete</em> with respect to rows (columns). That’s what you will have in a BWS. A design in which each treatment occurs once per row and column is a <em>latin square</em>. If each treatment occurs the same number of times per row and column, it is a <em>generalized latin square</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isGYD</span>(bibd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+[1] The design is a balanced incomplete block design w.r.t. rows.</code></pre>
+</div>
+</div>
+<p>There are other design with a BIBD:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find.BIB</span>(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">isGYD</span>()   <span class="co"># 6 items shown in 10 blocks of 3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find.BIB</span>(<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">isGYD</span>()    <span class="co"># 7 items shown in 7 blocks of 3</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">find.BIB</span>(<span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">6</span>) <span class="sc">%&gt;%</span> <span class="fu">isGYD</span>()   <span class="co"># 9 items shown in 12 blocks of 6</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">find.BIB</span>(<span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">isGYD</span>()  <span class="co"># 11 items shown in 11 blocks of 5</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">find.BIB</span>(<span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">isGYD</span>()  <span class="co"># 13 items shown in 13 blocks of 4</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find.BIB</span>(<span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">6</span>) <span class="sc">%&gt;%</span> <span class="fu">isGYD</span>()  <span class="co"># 16 items shown in 16 blocks of 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The resulting questionaire might look like this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bws.questionnaire</span>(bibd, <span class="at">design.type =</span> <span class="dv">2</span>, <span class="at">item.names =</span> items)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Q1
+ Best Items   Worst
+ [ ]  variety [ ]  
+ [ ]  price   [ ]  
+ [ ]  taste   [ ]  
+ [ ]  milling [ ]  
+
+Q2
+ Best Items    Worst
+ [ ]  origin   [ ]  
+ [ ]  variety  [ ]  
+ [ ]  price    [ ]  
+ [ ]  washfree [ ]  
+
+Q3
+ Best Items   Worst
+ [ ]  origin  [ ]  
+ [ ]  variety [ ]  
+ [ ]  safety  [ ]  
+ [ ]  milling [ ]  
+
+Q4
+ Best Items    Worst
+ [ ]  variety  [ ]  
+ [ ]  taste    [ ]  
+ [ ]  safety   [ ]  
+ [ ]  washfree [ ]  
+
+Q5
+ Best Items  Worst
+ [ ]  origin [ ]  
+ [ ]  price  [ ]  
+ [ ]  taste  [ ]  
+ [ ]  safety [ ]  
+
+Q6
+ Best Items    Worst
+ [ ]  price    [ ]  
+ [ ]  safety   [ ]  
+ [ ]  washfree [ ]  
+ [ ]  milling  [ ]  
+
+Q7
+ Best Items    Worst
+ [ ]  origin   [ ]  
+ [ ]  taste    [ ]  
+ [ ]  washfree [ ]  
+ [ ]  milling  [ ]  </code></pre>
+</div>
+</div>
+<p>Consider the following response data from a BIBD with 7 items shown in 7 blocks of 3. <code>b1</code> is the item selected as best in question 1, <code>w1</code> is the item selected as worst in question 1, etc. <code>age</code>, <code>hp</code>, and <code>chem</code> are respondent covariates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"ricebws1"</span>, <span class="at">package =</span> <span class="st">"support.BWS"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> ricebws1</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 90
+Columns: 18
+$ id   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19…
+$ b1   &lt;int&gt; 4, 2, 3, 2, 3, 2, 2, 3, 2, 3, 2, 2, 2, 2, 3, 2, 2, 3, 2, 3, 4, 2,…
+$ w1   &lt;int&gt; 1, 4, 4, 1, 4, 4, 1, 4, 1, 4, 4, 4, 4, 4, 1, 1, 4, 1, 3, 1, 1, 1,…
+$ b2   &lt;int&gt; 1, 3, 3, 3, 2, 3, 3, 2, 4, 3, 3, 1, 3, 3, 2, 3, 3, 1, 1, 1, 2, 3,…
+$ w2   &lt;int&gt; 3, 4, 4, 4, 4, 4, 2, 4, 2, 4, 4, 4, 1, 4, 4, 4, 1, 4, 4, 4, 4, 4,…
+$ b3   &lt;int&gt; 1, 3, 1, 3, 2, 1, 4, 1, 4, 1, 2, 3, 3, 1, 2, 3, 3, 3, 1, 1, 4, 4,…
+$ w3   &lt;int&gt; 3, 4, 2, 2, 3, 2, 3, 4, 2, 4, 4, 2, 1, 4, 1, 2, 1, 2, 3, 2, 1, 2,…
+$ b4   &lt;int&gt; 3, 3, 2, 3, 1, 2, 1, 3, 4, 2, 2, 2, 4, 3, 2, 3, 3, 2, 1, 2, 2, 2,…
+$ w4   &lt;int&gt; 4, 4, 4, 4, 4, 4, 2, 4, 1, 4, 4, 4, 1, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
+$ b5   &lt;int&gt; 4, 2, 3, 2, 3, 2, 2, 4, 2, 3, 2, 4, 2, 2, 3, 2, 4, 3, 1, 1, 3, 2,…
+$ w5   &lt;int&gt; 3, 1, 1, 3, 1, 1, 3, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 2, 4, 4, 1, 4,…
+$ b6   &lt;int&gt; 2, 1, 1, 1, 1, 1, 1, 2, 4, 1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 2, 1,…
+$ w6   &lt;int&gt; 3, 3, 3, 3, 3, 3, 4, 3, 2, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3,…
+$ b7   &lt;int&gt; 1, 2, 2, 1, 2, 2, 4, 2, 4, 2, 2, 2, 3, 2, 2, 2, 2, 1, 1, 2, 2, 4,…
+$ w7   &lt;int&gt; 3, 3, 3, 3, 3, 3, 2, 3, 1, 3, 4, 3, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3,…
+$ age  &lt;int&gt; 3, 1, 3, 1, 3, 1, 1, 3, 3, 2, 2, 2, 2, 3, 1, 2, 3, 1, 2, 2, 1, 2,…
+$ hp   &lt;int&gt; 2, 2, 2, 3, 2, 3, 1, 2, 2, 2, 3, 3, 2, 3, 3, 2, 1, 2, 3, 3, 3, 2,…
+$ chem &lt;int&gt; 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0,…</code></pre>
+</div>
+</div>
+<p>Convert each response into one row per possible best-worse pair. There are <code>k(k-1)</code> possible pairs, in this case 4x3=12 pairs. <code>bws.dataset()</code> lengthens the 90 rows to 90 x 7 questions x 12 possible pairs per question = 7,560 rows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bws <span class="ot">&lt;-</span> <span class="fu">bws.dataset</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dat,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">response.type =</span> <span class="dv">1</span>, <span class="co"># format of response variables: 1 = row number format</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">choice.sets =</span> bibd,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">design.type =</span> <span class="dv">2</span>, <span class="co"># BIBD</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">item.names =</span> items,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"id"</span>, <span class="co"># respondent id variable</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> <span class="fu">colnames</span>(dat)[<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>], <span class="co"># response variables</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"maxdiff"</span> <span class="co">#  type of dataset to create</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 90 respondents x 7 questions x 12 possible pairs per question</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7560   19</code></pre>
+</div>
+</div>
+<p>Question 1 presented items [variety, price, taste, milling]. Respondent <code>id</code> = 1 selected choice 4 (<code>items[bibd[1, 4]]</code> = milling) for the Best (<code>b1</code>) and choice 1 (<code>items[bibd[1, 1]]</code> = variety) for Worst (<code>w1</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id b1 w1 b2 w2 b3 w3 b4 w4 b5 w5 b6 w6 b7 w7 age hp chem
+1  1  4  1  1  3  1  3  3  4  4  3  2  3  1  3   3  2    1</code></pre>
+</div>
+</div>
+<p>The converted data set is easier to translate. Column <code>RES = TRUE</code> in row 10 indicates the pair the respondent selected. Best was item 7 (<code>items[7]</code> = milling) and the Worst was item 2 (<code>items[2]</code> = variety). You can also get that from the +1 and -1 indicators for <code>milling</code> and <code>variety</code> used for modeling.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bws <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>, Q <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id Q PAIR BEST WORST RES.B RES.W   RES origin variety price taste safety
+1   1 1    1    2     3     7     2 FALSE      0       1    -1     0      0
+2   1 1    2    2     4     7     2 FALSE      0       1     0    -1      0
+3   1 1    3    2     7     7     2 FALSE      0       1     0     0      0
+4   1 1    4    3     2     7     2 FALSE      0      -1     1     0      0
+5   1 1    5    3     4     7     2 FALSE      0       0     1    -1      0
+6   1 1    6    3     7     7     2 FALSE      0       0     1     0      0
+7   1 1    7    4     2     7     2 FALSE      0      -1     0     1      0
+8   1 1    8    4     3     7     2 FALSE      0       0    -1     1      0
+9   1 1    9    4     7     7     2 FALSE      0       0     0     1      0
+10  1 1   10    7     2     7     2  TRUE      0      -1     0     0      0
+11  1 1   11    7     3     7     2 FALSE      0       0    -1     0      0
+12  1 1   12    7     4     7     2 FALSE      0       0     0    -1      0
+   washfree milling STR age hp chem
+1         0       0 101   3  2    1
+2         0       0 101   3  2    1
+3         0      -1 101   3  2    1
+4         0       0 101   3  2    1
+5         0       0 101   3  2    1
+6         0      -1 101   3  2    1
+7         0       0 101   3  2    1
+8         0       0 101   3  2    1
+9         0      -1 101   3  2    1
+10        0       1 101   3  2    1
+11        0       1 101   3  2    1
+12        0       1 101   3  2    1</code></pre>
+</div>
+</div>
+<section id="count-analysis" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="count-analysis"><span class="header-section-number">7.1</span> Count Analysis</h2>
+<p>You can see below that respondent 1 selected item 1 (origin) Best three times, item 5 (safety) Best three times, and item 7 (milling) Best once. Respondent 1 selected items 2 (variety), 3 (price), 4 (taste), and 5 (safety) Worst once and item 6 (washfree) worst three times.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bws <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>, RES <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_cross</span>(BEST, WORST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="rdknuhdizy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rdknuhdizy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rdknuhdizy thead, #rdknuhdizy tbody, #rdknuhdizy tfoot, #rdknuhdizy tr, #rdknuhdizy td, #rdknuhdizy th {
+  border-style: none;
+}
+
+#rdknuhdizy p {
+  margin: 0;
+  padding: 0;
+}
+
+#rdknuhdizy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rdknuhdizy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rdknuhdizy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rdknuhdizy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rdknuhdizy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rdknuhdizy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rdknuhdizy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rdknuhdizy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rdknuhdizy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rdknuhdizy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rdknuhdizy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rdknuhdizy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rdknuhdizy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rdknuhdizy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rdknuhdizy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rdknuhdizy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rdknuhdizy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rdknuhdizy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rdknuhdizy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rdknuhdizy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rdknuhdizy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rdknuhdizy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rdknuhdizy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rdknuhdizy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rdknuhdizy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rdknuhdizy .gt_left {
+  text-align: left;
+}
+
+#rdknuhdizy .gt_center {
+  text-align: center;
+}
+
+#rdknuhdizy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rdknuhdizy .gt_font_normal {
+  font-weight: normal;
+}
+
+#rdknuhdizy .gt_font_bold {
+  font-weight: bold;
+}
+
+#rdknuhdizy .gt_font_italic {
+  font-style: italic;
+}
+
+#rdknuhdizy .gt_super {
+  font-size: 65%;
+}
+
+#rdknuhdizy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rdknuhdizy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rdknuhdizy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rdknuhdizy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rdknuhdizy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rdknuhdizy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rdknuhdizy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#rdknuhdizy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rdknuhdizy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings gt_spanner_row">
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th colspan="5" id="<div data-qmd-base64=&quot;V09SU1Q=&quot;><div class='gt_from_md'><p>WORST</p>
+</div></div>" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner"></span>
+<p>WORST</p>
+</th>
+<th rowspan="2" id="<div data-qmd-base64=&quot;VG90YWw=&quot;><div class='gt_from_md'><p>Total</p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p>Total</p></th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="<div data-qmd-base64=&quot;Mg==&quot;><div class='gt_from_md'><p>2</p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p>2</p></th>
+<th id="<div data-qmd-base64=&quot;Mw==&quot;><div class='gt_from_md'><p>3</p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p>3</p></th>
+<th id="<div data-qmd-base64=&quot;NA==&quot;><div class='gt_from_md'><p>4</p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p>4</p></th>
+<th id="<div data-qmd-base64=&quot;NQ==&quot;><div class='gt_from_md'><p>5</p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p>5</p></th>
+<th id="<div data-qmd-base64=&quot;Ng==&quot;><div class='gt_from_md'><p>6</p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p>6</p></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">BEST</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_4"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_5"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">1</td>
+<td class="gt_row gt_center" headers="stat_3">0</td>
+<td class="gt_row gt_center" headers="stat_4">1</td>
+<td class="gt_row gt_center" headers="stat_5">1</td>
+<td class="gt_row gt_center" headers="stat_0">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+<td class="gt_row gt_center" headers="stat_3">1</td>
+<td class="gt_row gt_center" headers="stat_4">0</td>
+<td class="gt_row gt_center" headers="stat_5">2</td>
+<td class="gt_row gt_center" headers="stat_0">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7</td>
+<td class="gt_row gt_center" headers="stat_1">1</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+<td class="gt_row gt_center" headers="stat_3">0</td>
+<td class="gt_row gt_center" headers="stat_4">0</td>
+<td class="gt_row gt_center" headers="stat_5">0</td>
+<td class="gt_row gt_center" headers="stat_0">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Total</td>
+<td class="gt_row gt_center" headers="stat_1">1</td>
+<td class="gt_row gt_center" headers="stat_2">1</td>
+<td class="gt_row gt_center" headers="stat_3">1</td>
+<td class="gt_row gt_center" headers="stat_4">1</td>
+<td class="gt_row gt_center" headers="stat_5">3</td>
+<td class="gt_row gt_center" headers="stat_0">7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><code>bws.count()</code> calculates counts for (b)est, (w)orst, best-minus-worst (bw), and standardized bw (sbw = bw / number of levels) for each item.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>bws_count <span class="ot">&lt;-</span> <span class="fu">bws.count</span>(bws, <span class="at">cl =</span> <span class="dv">2</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bws_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 90 32</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bws_count <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 32
+$ id           &lt;dbl&gt; 1
+$ b.origin     &lt;dbl&gt; 3
+$ b.variety    &lt;dbl&gt; 0
+$ b.price      &lt;dbl&gt; 0
+$ b.taste      &lt;dbl&gt; 0
+$ b.safety     &lt;dbl&gt; 3
+$ b.washfree   &lt;dbl&gt; 0
+$ b.milling    &lt;dbl&gt; 1
+$ w.origin     &lt;dbl&gt; 0
+$ w.variety    &lt;dbl&gt; 1
+$ w.price      &lt;dbl&gt; 1
+$ w.taste      &lt;dbl&gt; 1
+$ w.safety     &lt;dbl&gt; 1
+$ w.washfree   &lt;dbl&gt; 3
+$ w.milling    &lt;dbl&gt; 0
+$ bw.origin    &lt;dbl&gt; 3
+$ bw.variety   &lt;dbl&gt; -1
+$ bw.price     &lt;dbl&gt; -1
+$ bw.taste     &lt;dbl&gt; -1
+$ bw.safety    &lt;dbl&gt; 2
+$ bw.washfree  &lt;dbl&gt; -3
+$ bw.milling   &lt;dbl&gt; 1
+$ sbw.origin   &lt;dbl&gt; 0.75
+$ sbw.variety  &lt;dbl&gt; -0.25
+$ sbw.price    &lt;dbl&gt; -0.25
+$ sbw.taste    &lt;dbl&gt; -0.25
+$ sbw.safety   &lt;dbl&gt; 0.5
+$ sbw.washfree &lt;dbl&gt; -0.75
+$ sbw.milling  &lt;dbl&gt; 0.25
+$ age          &lt;int&gt; 3
+$ hp           &lt;int&gt; 2
+$ chem         &lt;int&gt; 1</code></pre>
+</div>
+</div>
+<p><code>plot()</code> shows the relationship between the level means and standard deviations. Price, taste, and safety are similarly important, but price has a higher standard deviation, meaning its importance varies.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bws_count, <span class="at">score =</span> <span class="st">"bw"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-best_worst_scaling_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The column plot shows the item ranks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bws_count <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, <span class="fu">starts_with</span>(<span class="st">"sbw"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.groups =</span> <span class="st">"drop"</span>, <span class="at">M =</span> <span class="fu">mean</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(M) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_inorder</span>(name), <span class="at">x =</span> M)) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-best_worst_scaling_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="model" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="model"><span class="header-section-number">7.2</span> Model</h2>
+<p>Fit a conditional logit model. A simple model uses the dummy vars, excluding one (washfree) to avoid singularity. The last term “- 1” means that the model has no alternative-specific constants. Use <code>dfidx()</code> to convert the data into a format appropriate for the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fmla <span class="ot">&lt;-</span> RES <span class="sc">~</span> origin <span class="sc">+</span> variety <span class="sc">+</span> price <span class="sc">+</span> taste <span class="sc">+</span> safety <span class="sc">+</span> milling <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>bws_dfidx <span class="ot">&lt;-</span> <span class="fu">dfidx</span>(bws, <span class="at">idx =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"STR"</span>, <span class="st">"id"</span>), <span class="st">"PAIR"</span>), <span class="at">choice =</span> <span class="st">"RES"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>mlogit_fit <span class="ot">&lt;-</span> <span class="fu">mlogit</span>(<span class="at">formula =</span> fmla, <span class="at">data =</span> bws_dfidx)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlogit_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+mlogit(formula = RES ~ origin + variety + price + taste + safety + 
+    milling - 1, data = bws_dfidx, method = "nr")
+
+Frequencies of alternatives:choice
+       1        2        3        4        5        6        7        8 
+0.036508 0.095238 0.082540 0.119048 0.123810 0.122222 0.098413 0.053968 
+       9       10       11       12 
+0.147619 0.053968 0.030159 0.036508 
+
+nr method
+5 iterations, 0h:0m:0s 
+g'(-H)^-1g = 8.32E-06 
+successive function values within tolerance limits 
+
+Coefficients :
+        Estimate Std. Error z-value  Pr(&gt;|z|)    
+origin   1.13096    0.11785  9.5969 &lt; 2.2e-16 ***
+variety  1.10765    0.11615  9.5364 &lt; 2.2e-16 ***
+price    2.01292    0.12565 16.0205 &lt; 2.2e-16 ***
+taste    1.84700    0.12378 14.9213 &lt; 2.2e-16 ***
+safety   2.07194    0.12622 16.4156 &lt; 2.2e-16 ***
+milling  0.96028    0.11494  8.3546 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Log-Likelihood: -1318</code></pre>
+</div>
+</div>
+<p><code>bws.sp()</code> shows the shares of preference.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the name of the base since it isn't in model.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>(bws_sp <span class="ot">&lt;-</span> <span class="fu">bws.sp</span>(mlogit_fit, <span class="at">base =</span> <span class="st">"washfree"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    origin    variety      price      taste     safety    milling   washfree 
+0.09835520 0.09608950 0.23759085 0.20126594 0.25203440 0.08292247 0.03174165 </code></pre>
+</div>
+</div>
+<p>Safety was most important and was <code>0.252 / 0.238</code> = 1.0607917 times as important as the second place price.</p>
+<p>This model isn’t a great fit, unfortunately. You cannot pull the McFadden’s R-squared easily, but the calculation is straight-forward.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ll0 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">90</span> <span class="sc">*</span> <span class="dv">7</span> <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">12</span>) <span class="co"># log-likelihood at zero</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>llb <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mlogit_fit<span class="sc">$</span>logLik)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (llb<span class="sc">/</span>ll0) <span class="co"># McFadden's R-squared</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.1580881</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> ((llb<span class="dv">-6</span>)<span class="sc">/</span>ll0) <span class="co"># Adjusted McFadden's R-squared</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.1542554</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A possible improvement is the random parameters logit model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fmla_rp <span class="ot">&lt;-</span> RES <span class="sc">~</span> origin <span class="sc">+</span> variety <span class="sc">+</span> price <span class="sc">+</span> taste <span class="sc">+</span> safety <span class="sc">+</span> milling <span class="sc">-</span> <span class="dv">1</span> <span class="sc">|</span> <span class="dv">0</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>mlogit_rp_fit <span class="ot">&lt;-</span> <span class="fu">mlogit</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  fmla_rp,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  bws_dfidx,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">rpar =</span> <span class="fu">c</span>(<span class="at">origin =</span> <span class="st">"n"</span>, <span class="at">variety =</span> <span class="st">"n"</span>, <span class="at">price =</span> <span class="st">"n"</span>, <span class="at">taste =</span> <span class="st">"n"</span>, <span class="at">safety =</span> <span class="st">"n"</span>, <span class="at">milling =</span> <span class="st">"n"</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">halton =</span> <span class="cn">NA</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel =</span> <span class="cn">TRUE</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlogit_rp_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+mlogit(formula = RES ~ origin + variety + price + taste + safety + 
+    milling - 1 | 0, data = bws_dfidx, rpar = c(origin = "n", 
+    variety = "n", price = "n", taste = "n", safety = "n", milling = "n"), 
+    R = 100, halton = NA, panel = TRUE)
+
+Frequencies of alternatives:choice
+       1        2        3        4        5        6        7        8 
+0.036508 0.095238 0.082540 0.119048 0.123810 0.122222 0.098413 0.053968 
+       9       10       11       12 
+0.147619 0.053968 0.030159 0.036508 
+
+bfgs method
+24 iterations, 0h:0m:14s 
+g'(-H)^-1g = 9.32E-07 
+gradient close to zero 
+
+Coefficients :
+           Estimate Std. Error z-value  Pr(&gt;|z|)    
+origin      1.74079    0.15489 11.2386 &lt; 2.2e-16 ***
+variety     1.78710    0.15324 11.6624 &lt; 2.2e-16 ***
+price       3.98883    0.24281 16.4277 &lt; 2.2e-16 ***
+taste       3.09265    0.19980 15.4787 &lt; 2.2e-16 ***
+safety      3.62784    0.19816 18.3078 &lt; 2.2e-16 ***
+milling     1.63816    0.16366 10.0093 &lt; 2.2e-16 ***
+sd.origin   1.66733    0.17842  9.3451 &lt; 2.2e-16 ***
+sd.variety  1.86579    0.17869 10.4414 &lt; 2.2e-16 ***
+sd.price    2.68927    0.23760 11.3186 &lt; 2.2e-16 ***
+sd.taste    2.00738    0.18984 10.5740 &lt; 2.2e-16 ***
+sd.safety   1.95473    0.21113  9.2584 &lt; 2.2e-16 ***
+sd.milling  1.60534    0.18671  8.5983 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Log-Likelihood: -1093.1
+
+random coefficients
+        Min.   1st Qu.   Median     Mean  3rd Qu. Max.
+origin  -Inf 0.6161939 1.740794 1.740794 2.865394  Inf
+variety -Inf 0.5286426 1.787098 1.787098 3.045554  Inf
+price   -Inf 2.1749395 3.988827 3.988827 5.802715  Inf
+taste   -Inf 1.7386952 3.092652 3.092652 4.446608  Inf
+safety  -Inf 2.3093963 3.627839 3.627839 4.946282  Inf
+milling -Inf 0.5553767 1.638164 1.638164 2.720951  Inf</code></pre>
+</div>
+</div>
+<p>McFadden’s R-squared increased substantially.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>llb_rp <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mlogit_rp_fit<span class="sc">$</span>logLik)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (llb_rp<span class="sc">/</span>ll0) <span class="co"># McFadden's R-squared</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.3017665</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> ((llb_rp<span class="dv">-6</span>)<span class="sc">/</span>ll0) <span class="co"># Adjusted McFadden's R-squared</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2979339</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the name of the base since it isn't in model.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>(bws_rp_sp <span class="ot">&lt;-</span> <span class="fu">bws.sp</span>(mlogit_rp_fit, <span class="at">base =</span> <span class="st">"washfree"</span>, <span class="at">coef =</span> items[<span class="sc">-</span><span class="dv">6</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     origin     variety       price       taste      safety     milling 
+0.043367459 0.045422777 0.410650578 0.167597772 0.286218165 0.039137418 
+   washfree 
+0.007605832 </code></pre>
+</div>
+</div>
+<p>Now (surprisingly?), price is most important and was <code>0.411 / 0.286</code> = 1.4347467 times as important as the second place safety.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Notes are from http://lab.agr.hokudai.ac.jp/nmvr/03-bws1.html.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06-stratified_random_sample.html" class="pagination-link" aria-label="Stratified Sampling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stratified Sampling</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08-case_study.html" class="pagination-link" aria-label="Case Study">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

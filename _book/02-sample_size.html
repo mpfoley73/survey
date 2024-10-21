@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Sample Size – Survey Design and Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-statistical_power.html" rel="next">
+<link href="./01-item_selection.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-sample_size.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample Size</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Survey Design and Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-item_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample_size.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample Size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-statistical_power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analyzing Survey Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-simple_random_sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Simple Random Samples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-stratified_random_sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stratified Sampling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-best_worst_scaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Best-Worst Scaling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-case_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#srs" id="toc-srs" class="nav-link active" data-scroll-target="#srs"><span class="header-section-number">2.1</span> Simple Random Sampling</a>
+  <ul class="collapse">
+  <li><a href="#continuous-values" id="toc-continuous-values" class="nav-link" data-scroll-target="#continuous-values"><span class="header-section-number">2.1.1</span> Continuous Values</a></li>
+  <li><a href="#proportions" id="toc-proportions" class="nav-link" data-scroll-target="#proportions"><span class="header-section-number">2.1.2</span> Proportions</a></li>
+  </ul></li>
+  <li><a href="#stratified-srs" id="toc-stratified-srs" class="nav-link" data-scroll-target="#stratified-srs"><span class="header-section-number">2.2</span> Stratified SRS</a></li>
+  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">2.3</span> Power Analysis</a></li>
+  <li><a href="#appendix-bias" id="toc-appendix-bias" class="nav-link" data-scroll-target="#appendix-bias"><span class="header-section-number">2.4</span> Appendix: Bias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample Size</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The survey design (aka, sampling strategy) depends on how study objectives are translated into survey questions, the units of analysis from the target population, the variables and covariates, and the available sampling frames for data collection <span class="citation" data-cites="valliant2013">(<a href="10-references.html#ref-valliant2013" role="doc-biblioref">Valliant 2013</a>)</span>. Exploratory surveys often sample individuals with qualifying characteristics by convenience, snowball (referrals), quota, or purposeful sampling <span class="citation" data-cites="lau2017">(<a href="10-references.html#ref-lau2017" role="doc-biblioref">Lau 2017</a>)</span>. In contrast to these <em>non-probability sampling</em> strategies, descriptive and explanatory surveys use <em>probability sampling</em>, including simple random sampling (SRS) and stratified sampling.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Regardless of the survey design, sample size is set using one of two target values: i) coefficient of variation, <span class="math inline">\(CV_0(\theta) = SE / \theta\)</span>, and ii) margin of error (aka, <em>tolerance</em>), <span class="math inline">\(MOE = \pm z_{1-\alpha} \cdot SE\)</span>.</p>
+<section id="srs" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="srs"><span class="header-section-number">2.1</span> Simple Random Sampling</h2>
+<section id="continuous-values" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="continuous-values"><span class="header-section-number">2.1.1</span> Continuous Values</h3>
+<p>Suppose you estimate a population (univeral) mean, <span class="math inline">\(\bar{y}_U\)</span>, from the mean of a simple random sample, <span class="math inline">\(\bar{y}_s\)</span>. Under repeated sampling, the sample means would have variance related to the population variance, <span class="math inline">\(S^2\)</span>.</p>
+<p><span id="eq-ybar-var"><span class="math display">\[
+V(\bar{y}_s) = \left(1 - \frac{n}{N} \right) \frac{S^2}{n}
+\tag{2.1}\]</span></span></p>
+<p><a href="#eq-ybar-var" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> is the square of the standard error with a <em>finite population correction</em> factor (FPC), <span class="math inline">\(1 - n / N\)</span>. The FPC reduces the expected variance for small populations. In practice, the FPC is only important for sample size calculations when <span class="math inline">\(n/N &lt; .05\)</span> - frequently the case in internal company surveys. <span class="math inline">\(S\)</span> is an unknown population parameter estimated from the sample, <span class="math inline">\(s\)</span>, or by a rule of thumb.</p>
+<p>The ratio <span class="math inline">\(V(\bar{y}_s) / \bar{y}_U^2\)</span> is the square of the targeted <em>coefficient of variation</em>, <span class="math inline">\(CV_0\)</span>.</p>
+<p><span id="eq-cv2"><span class="math display">\[
+CV_0^2(\bar{y}) = \left(1 - \frac{n}{N} \right) \cdot \frac{1}{n} \cdot \frac{S^2}{\bar{y}_U^2}
+\tag{2.2}\]</span></span></p>
+<p>Solve <a href="#eq-cv2" class="quarto-xref">Equation&nbsp;<span>2.2</span></a> for the required sample size to achieve <span class="math inline">\(CV_0(\bar{y}_s)\)</span>.</p>
+<p><span id="eq-cv-n"><span class="math display">\[
+n = \frac{S^2 / \bar{y}_U^2}{CV_0^2 + S^2 / (N \cdot \bar{y}_U^2)}
+\tag{2.3}\]</span></span></p>
+<p>The numerator in <a href="#eq-cv-n" class="quarto-xref">Equation&nbsp;<span>2.3</span></a> is the population CV (a.k.a., unit CV).</p>
+<p>Use <code>PracTools::nCont()</code> to calculate <span class="math inline">\(n\)</span>. Setting the unit CV is somewhat of a chicken-and-egg problem since <span class="math inline">\(S^2\)</span> and <span class="math inline">\(\bar{y}_U^2\)</span> are the population parameters you are estimating. Either rely on prior research or a best guess. The <a href="https://www.statology.org/range-rule-of-thumb/">range rule of thumb</a> is <span class="math inline">\(S = \mathrm{range} / 4\)</span>. The targeted CV is usually set to 5% or 10%, or something better than prior research.</p>
+<p><strong>Example</strong>. Prior experience suggests the unit CV is approximately <span class="math inline">\(2\)</span>. Your survey targets <span class="math inline">\(CV_0(\bar{y}_s) = 0.05\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># N defaults to Inf. Use this for "large" populations.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nCont</span>(<span class="at">CV0 =</span> .<span class="dv">05</span>, <span class="at">CVpop =</span> <span class="dv">2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1600</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For a company survey, include N. for 10,000 employees you can survey a few less.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nCont</span>(<span class="at">CV0 =</span> .<span class="dv">05</span>, <span class="at">CVpop =</span> <span class="dv">2</span>, <span class="at">N =</span> <span class="dv">10000</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1379.31</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Even for a small population, you can still survey about half.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nCont</span>(<span class="at">CV0 =</span> .<span class="dv">05</span>, <span class="at">CVpop =</span> <span class="dv">2</span>, <span class="at">N =</span> <span class="dv">1000</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 615.3846</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># If you don't know CVpop or ybarU and S2, but have an expectation about ybarU </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and the range, use the range rule of thumb.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nCont</span>(<span class="at">CV0 =</span> .<span class="dv">10</span>, <span class="at">S2 =</span> (<span class="fu">abs</span>(<span class="dv">0</span> <span class="sc">-</span> <span class="dv">800</span>) <span class="sc">/</span> <span class="dv">4</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="at">ybarU =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">ceiling</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 400</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When does N become important? It depends on CV0, but N=20,000 seems to be upper limit.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-sample_size_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternatively, you can target a margin of error.</p>
+<p><span id="eq-moe"><span class="math display">\[
+MOE = t_{(1-\alpha), (n-1)} SE(\bar{y})
+\tag{2.4}\]</span></span></p>
+<p><strong>Example</strong>. You want a margin of error of 20. You estimate an overall range of 800.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nContMoe</span>(<span class="at">moe.sw =</span> <span class="dv">1</span>, <span class="at">e =</span> <span class="dv">20</span>, <span class="at">S2 =</span> (<span class="fu">abs</span>(<span class="dv">0</span> <span class="sc">-</span> <span class="dv">800</span>) <span class="sc">/</span> <span class="dv">4</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">ceiling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 385</code></pre>
+</div>
+</div>
+</section>
+<section id="proportions" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="proportions"><span class="header-section-number">2.1.2</span> Proportions</h3>
+<p>If the population parameter is a proportion, <span class="math inline">\(p\)</span>, the CV is</p>
+<p><span id="eq-unit-cv-pop"><span class="math display">\[
+CV^2(p_s) = \left(1 - \frac{n}{N} \right) \cdot \frac{1}{n} \cdot \frac{N}{N-1} \cdot \frac{1 - p_U}{p_U}
+\tag{2.5}\]</span></span></p>
+<p>where <span class="math inline">\(\frac{N}{N-1} \cdot \frac{1 - p_U}{p_U}\)</span> is the square of the unit CV. When <span class="math inline">\(N\)</span> is large, <a href="#eq-unit-cv-pop" class="quarto-xref">Equation&nbsp;<span>2.5</span></a> reduces to <span class="math inline">\(CV^2(p_s) \approx \frac{1}{n} \cdot \frac{1 - p_U}{P_U}\)</span>. From here you can see that <span class="math inline">\(n\)</span> varies inversely with <span class="math inline">\(p_U\)</span>. <code>PracTools::nProp()</code> calculates <span class="math inline">\(n\)</span> for proportions.</p>
+<p><strong>Example</strong>. From prior experience you think <span class="math inline">\(p_U = .01\)</span> and <span class="math inline">\(N\)</span> is large. You set a targeted CV of <span class="math inline">\(CV_0^2(p_s) = 0.05\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nProp</span>(<span class="at">CV0 =</span> .<span class="dv">05</span>, <span class="at">pU =</span> .<span class="dv">01</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 39600</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Whoa, <span class="math inline">\(n\)</span> is huge!</p>
+<p>You might choose to target a margin of error instead, <span class="math inline">\(MOE = \pm z_{1-\alpha} \cdot SE\)</span>. Recall that <span class="math inline">\(P(|p_s - p_U| &lt; MOE) = 1 - \alpha\)</span>. <code>PracTools::nPropMoe()</code> and <code>PracTools::nContMoe()</code> calculate <span class="math inline">\(n\)</span> for MOEs.</p>
+<p><strong>Example</strong>. Continuing from above, suppose you set a tolerance of a half percentage point, <span class="math inline">\(MOE \pm 0.5\%\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MOE <span class="ot">&lt;-</span> .<span class="dv">005</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># moe.sw = 1 sets MOE based on SE; moe.sw = 2 sets MOE based on CV.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nPropMoe</span>(<span class="at">moe.sw =</span> <span class="dv">1</span>, <span class="at">e =</span> MOE, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">pU =</span> .<span class="dv">01</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1521.218</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The long way using nProp: </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>(z_025 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="at">p =</span> .<span class="dv">05</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.959964</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>(SE <span class="ot">&lt;-</span> MOE <span class="sc">/</span> z_025)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.002551067</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nProp</span>(<span class="at">V0 =</span> SE<span class="sc">^</span><span class="dv">2</span>, <span class="at">pU =</span> .<span class="dv">01</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1521.218</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># When pU is extreme (~0 or ~1), the 95% CI can pass the [0,1] limits. The </span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilson  method accounts for that (not discussed here). Notice the 95% CI is</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># not symmetric about pU. The 95% CI calculation is one of the reasons it is</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># used.</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nWilson</span>(<span class="at">moe.sw =</span> <span class="dv">1</span>, <span class="at">e =</span> MOE, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">pU =</span> .<span class="dv">01</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="do">## $n.sam</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1605.443</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="do">## $`CI lower limit`</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.00616966</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">## $`CI upper limit`</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.01616966</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="do">## $`length of CI`</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.01</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># The log odds is another approach that does about the same thing.</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>PracTools<span class="sc">::</span><span class="fu">nLogOdds</span>(<span class="at">moe.sw =</span> <span class="dv">1</span>, <span class="at">e =</span> MOE, <span class="at">alpha =</span> .<span class="dv">05</span>, <span class="at">pU =</span> .<span class="dv">01</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1637.399</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="stratified-srs" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="stratified-srs"><span class="header-section-number">2.2</span> Stratified SRS</h2>
+<p>Stratified samples partition the population by dimensions of interest before sampling. This way, important domains are assured of adequate representation. Stratifying often reduce variances. Choose stratification if i) an SRS risks poor distribution across the population, ii) you have domains you will study separately, or iii) there are units with similar mean and variances that can be grouped to increase efficiency.</p>
+<p>In a stratified design, the measured mean or proportion of the population is the simple weighted sum of the <span class="math inline">\(h\)</span> strata, <span class="math inline">\(\bar{y}_{st} = \sum{W_h}\bar{y}_{sh}\)</span> and <span class="math inline">\(p_{st} = \sum{W_h}p_{sh}\)</span>. The population sampling variance is analogous,</p>
+<p><span class="math display">\[
+\begin{equation}
+var(\bar{y}_{st}) = \sum W_h^2 \cdot \left(1 - \frac{n_h}{N} \right) \cdot \frac{1}{n_h} \cdot S_h^2.
+(\#eq:var-stratified)
+\end{equation}
+\]</span></p>
+<p>Use the SRS sampling methods described in Section @ref(srs) to estimate each stratum.</p>
+<p>The effect of stratification relative to SRS is captured in the <em>design effect</em> ratio,</p>
+<p><span class="math display">\[
+D^2(\hat{\theta}) = \frac{var(\hat{\theta})_\mathrm{complex}}{var(\hat{\theta})_\mathrm{SRS}}
+\]</span></p>
+<p><strong>Example</strong>. Suppose you are measuring expenditure within a company of <span class="math inline">\(N = 875\)</span> employees and want to stratify by the <span class="math inline">\(h = 6\)</span> departments. You target a <span class="math inline">\(CV_0(\bar{y_s}) = .10.\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(smho98, <span class="at">package =</span> <span class="st">"PracTools"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll survey 560 people across the 16 strata.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>smho98 <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(STRATUM) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Nh =</span> <span class="fu">n</span>(), <span class="at">Mh =</span> <span class="fu">mean</span>(EXPTOTAL), <span class="at">Sh =</span> <span class="fu">sd</span>(EXPTOTAL)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">CVpop =</span> Sh <span class="sc">/</span> Mh,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nh =</span> <span class="fu">map2_dbl</span>(CVpop, Nh, <span class="sc">~</span>PracTools<span class="sc">::</span><span class="fu">nCont</span>(<span class="at">CV0 =</span> .<span class="dv">10</span>, <span class="at">CVpop =</span> .x, <span class="at">N =</span> .y) <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>())</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_totals</span>(<span class="st">"row"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, <span class="at">name =</span> <span class="st">"Total"</span>, Nh, nh)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  STRATUM  Nh         Mh         Sh     CVpop  nh</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="do">##        1 151 13066021.0 14792181.7 1.1321107  70</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="do">##        2  64 40526852.3 37126887.6 0.9161059  37</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">##        3  43 11206761.2 11531709.1 1.0289957  31</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="do">##        4  22  7714828.7  8422580.5 1.0917391  19</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">##        5 150  4504517.9  6228212.0 1.3826589  85</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="do">##        6  23  2938983.2  3530750.8 1.2013511  20</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="do">##        7  65  7207527.1  9097011.5 1.2621543  47</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="do">##        8  14  1879611.1  1912347.8 1.0174168  13</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="do">##        9  38 13841123.7 11609453.3 0.8387652  25</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="do">##       10  12  5867993.8  6427340.3 1.0953216  11</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="do">##       11  13   925512.8   659352.8 0.7124189  11</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="do">##       12  77  4740554.8  6905571.9 1.4567012  57</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="do">##       13  59  9060838.1 12884439.0 1.4219920  46</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="do">##       14  86  9511349.0  6741831.0 0.7088196  32</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="do">##       15  39 34251923.7 82591916.4 2.4113074  37</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="do">##       16  19  4629061.5  9817393.7 2.1208173  19</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="do">##    Total 875         NA         NA        NA 560</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># What if we don't stratify? Only 290!</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>smho98 <span class="sc">%&gt;%</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Nh =</span> <span class="fu">n</span>(), <span class="at">Mh =</span> <span class="fu">mean</span>(EXPTOTAL), <span class="at">Sh =</span> <span class="fu">sd</span>(EXPTOTAL)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">CVpop =</span> Sh <span class="sc">/</span> Mh,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">nh =</span> <span class="fu">map2_dbl</span>(CVpop, Nh, <span class="sc">~</span>PracTools<span class="sc">::</span><span class="fu">nCont</span>(<span class="at">CV0 =</span> .<span class="dv">10</span>, <span class="at">CVpop =</span> .x, <span class="at">N =</span> .y) <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>())</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">as_tabyl</span>()</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   Nh       Mh       Sh    CVpop  nh</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="do">##  875 11664181 24276522 2.081288 290</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If a fixed budget constrains you to <span class="math inline">\(n\)</span> participants you have five options: i) if <span class="math inline">\(S_h\)</span> are approximately equal and you are okay with small stratum getting very few units, allocate <span class="math inline">\(n\)</span> by proportion, <span class="math inline">\(n_h = nW_h\)</span>; ii) if your strata are study domains, allocate <span class="math inline">\(n\)</span> equally, <span class="math inline">\(n_h = n / H\)</span>; iii) use Neyman allocation to minimize the population sampling variance; iv) use cost-constrained allocation to minimize cost, or v) use precision-constrained allocation to minimize population sampling variance. Options iv and v take into account variable costs. Use function <code>PracTools::strAlloc()</code>.</p>
+<p>The <em>Neyman</em> allocation allocates by stratum weight,</p>
+<p><span class="math display">\[
+\begin{equation}
+n_h = n \cdot \frac{W_h S_h}{\sum W_h S_h}.
+(\#eq:neyman-allocation)
+\end{equation}
+\]</span></p>
+<p>Suppose your costs vary by stratum, <span class="math inline">\(c_h\)</span>. The <em>cost-constrained allocation</em> starts with <span class="math inline">\(C = c_0 + \sum n_h c_h.\)</span> Minimizing the population sampling variance,</p>
+<p><span class="math display">\[
+\begin{equation}
+n_h = (C - c_0) \frac{W_hS_h / \sqrt{c_h}}{\sum W_h S_h \sqrt{c_h}}.
+(\#eq:cost-allocation)
+\end{equation}
+\]</span></p>
+<p>This method allocates more population to larger strata and strata with larger variances. The <em>precision-constrained allocation</em> is</p>
+<p><span class="math display">\[
+\begin{equation}
+n_h = (W_h S_h / \sqrt{c_h}) \frac{\sum W_h S_h \sqrt{c_h}}{V_0 + N^{-1} \sum W_h S_h^2}.
+(\#eq:precision-allocation)
+\end{equation}
+\]</span></p>
+<p><strong>Example</strong>. Suppose you have a fixed budget of $100,000. If sampling costs are $1,000 person, survey <span class="math inline">\(n = 100\)</span> people and allocate <span class="math inline">\(n\)</span> to <span class="math inline">\(n_h\)</span> with options i-iii). If sampling costs vary by stratum, use options iv-v).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratum per capita survey costs</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ch <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1400</span>, <span class="dv">400</span>, <span class="dv">300</span>, <span class="dv">600</span>, <span class="dv">450</span>, <span class="dv">1000</span>, <span class="dv">950</span>, <span class="dv">250</span>, <span class="dv">350</span>, <span class="dv">650</span>, <span class="dv">450</span>, <span class="dv">950</span>, <span class="dv">80</span>, <span class="dv">70</span>, <span class="dv">900</span>, <span class="dv">80</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>smho98 <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(STRATUM) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Nh =</span> <span class="fu">n</span>(), <span class="at">Mh =</span> <span class="fu">mean</span>(EXPTOTAL), <span class="at">Sh =</span> <span class="fu">sd</span>(EXPTOTAL)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">i) prop</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ceiling</span>(.<span class="sc">$</span>Nh <span class="sc">/</span> <span class="fu">sum</span>(.<span class="sc">$</span>Nh) <span class="sc">*</span> <span class="dv">100</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">ii) equal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ceiling</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="fu">nrow</span>(.) <span class="sc">*</span> <span class="dv">100</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">iii) neyman</span><span class="st">`</span> <span class="ot">=</span> PracTools<span class="sc">::</span><span class="fu">strAlloc</span>(<span class="at">n.tot =</span> <span class="dv">100</span>, <span class="at">Nh =</span> .<span class="sc">$</span>Nh, <span class="at">Sh =</span> .<span class="sc">$</span>Sh, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">alloc =</span> <span class="st">"neyman"</span>) <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">"nh"</span>) <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>(),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ch =</span> ch,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">iv) cost</span><span class="st">`</span> <span class="ot">=</span> PracTools<span class="sc">::</span><span class="fu">strAlloc</span>(<span class="at">Nh =</span> .<span class="sc">$</span>Nh, <span class="at">Sh =</span> .<span class="sc">$</span>Sh, <span class="at">cost =</span> <span class="dv">100000</span>, <span class="at">ch =</span> ch, </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">alloc =</span> <span class="st">"totcost"</span>) <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">"nh"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ceiling</span>(),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">v) prec.</span><span class="st">`</span> <span class="ot">=</span> PracTools<span class="sc">::</span><span class="fu">strAlloc</span>(<span class="at">Nh =</span> .<span class="sc">$</span>Nh, <span class="at">Sh =</span> .<span class="sc">$</span>Sh, <span class="at">CV0 =</span> .<span class="dv">10</span>, <span class="at">ch =</span> ch, </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">ybarU =</span> .<span class="sc">$</span>Mh, <span class="at">alloc =</span> <span class="st">"totvar"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pluck</span>(<span class="st">"nh"</span>) <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Mh, Sh)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_totals</span>(<span class="st">"row"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, <span class="at">name =</span> <span class="st">"Total"</span>, Nh, </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                        <span class="st">`</span><span class="at">i) prop</span><span class="st">`</span>, <span class="st">`</span><span class="at">ii) equal</span><span class="st">`</span>, <span class="st">`</span><span class="at">iii) neyman</span><span class="st">`</span>, <span class="st">`</span><span class="at">iv) cost</span><span class="st">`</span>, <span class="st">`</span><span class="at">v) prec.</span><span class="st">`</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  STRATUM  Nh i) prop ii) equal iii) neyman   ch iv) cost v) prec.</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="do">##        1 151      18         7          18 1400       19       12</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="do">##        2  64       8         7          19  400       37        3</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="do">##        3  43       5         7           4  300        9        7</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="do">##        4  22       3         7           2  600        3        3</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="do">##        5 150      18         7           8  450       14       25</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="do">##        6  23       3         7           1 1000        1        2</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="do">##        7  65       8         7           5  950        6        8</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="do">##        8  14       2         7           1  250        1        2</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="do">##        9  38       5         7           4  350        8        5</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="do">##       10  12       2         7           1  650        1        2</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="do">##       11  13       2         7           1  450        1        1</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="do">##       12  77       9         7           5  950        6       10</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="do">##       13  59       7         7           6   80       27       26</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="do">##       14  86      10         7           5   70       22       20</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="do">##       15  39       5         7          26  900       34        4</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="do">##       16  19       3         7           2   80        7       12</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="do">##    Total 875     108       112         108   NA      196      142</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="power-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">2.3</span> Power Analysis</h2>
+<p>Sections @ref(srs) and @ref(stratified-srs) calculated sample sizes based on the desired precision of the population parameter using CV, MOE, and cost constraints. Another approach is to calculate the sample size required to detect the alternative value in a hypothesis test. Power is a measure of the likelihood of detecting some magnitude difference <span class="math inline">\(\delta\)</span> between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Power calculations are best suited for studies that estimate theoretical population values, not for studies that estimate group differences in a finite population <span class="citation" data-cites="valliant2013">(<a href="10-references.html#ref-valliant2013" role="doc-biblioref">Valliant 2013</a>)</span>.</p>
+<p>A measured <span class="math inline">\(t = \frac{\hat{\bar{y}} - \mu_0}{\sqrt{v(\hat{\bar{y}})}}\)</span> test statistic would vary with repeated measurements and have a <span class="math inline">\(t\)</span> distribution. A complication about the degrees of freedom arises in survey analysis. It is usually defined using a rule of thumb: <span class="math inline">\(df = n_{psu} - n_{strata}\)</span>. So if you have 10 strata and 100 PSUs per stratum, <span class="math inline">\(df\)</span> would equal 1,000 - 100 = 900.</p>
+<p><strong>Example</strong>. Suppose you want to measure mean household income for married couples. From prior research, you expect the mean is $55,000 with 6% CV. You hypothesize <span class="math inline">\(\mu\)</span> is greater than $55,000, but only care if the difference is at least $5,000.</p>
+<p>The 6% CV implies SE = 6% * $55,000 = $3,300. Supposing <span class="math inline">\(\sigma\)</span> = $74,000, the original research would have use a sample of size <em>n</em> = <span class="math inline">\((\$74,000 / \$3,300)^2\)</span> = 503.</p>
+<p>Don’t use <em>n</em> = 503 for your sample though. The probability of measuring a sample mean &gt;= $60,000 with an acceptable <em>p</em>-value is the power of the study. For <em>n</em> = 503 the power is only 0.448. The area of 1 - <span class="math inline">\(\beta\)</span> in the top panel below is only <code>pnorm(qnorm(.95, 50000, 3300), 55000, 3300, lower.tail = FALSE)</code> = 0.448. To achieve a 1-<span class="math inline">\(\beta\)</span> = .80 power, you need <em>n</em> = 1,356. That’s what the bottom panel shows. Notice that a sample mean of $59,000 still rejects H0: <span class="math inline">\(\mu\)</span> = $55,000. The power of the test tells you the sample size you need to draw a sample mean large enough to reject H0 1-<span class="math inline">\(\beta\)</span> percent of the time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-sample_size_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The power of the test from the original study was only 0.448.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"one.sample"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">503</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta =</span> <span class="dv">5000</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="dv">74000</span>, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> .<span class="dv">05</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"one.sided"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     One-sample t test power calculation 
+
+              n = 503
+          delta = 5000
+             sd = 74000
+      sig.level = 0.05
+          power = 0.4476846
+    alternative = one.sided</code></pre>
+</div>
+</div>
+<p>With such a low power of the study, a sample mean of $59,000 isn’t large enough to reject H0. Its <em>p</em>-value would be <code>pt(q = (59000-55000)/(74000/sqrt(503)), df = 503 - 1, lower.tail = FALSE)</code> = 0.113. To find the right sample size, use the power calculation with 1 - <span class="math inline">\(\beta\)</span> and <em>n</em> unspecified.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"one.sample"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta =</span> <span class="dv">5000</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="dv">74000</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> .<span class="dv">05</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> .<span class="dv">80</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"one.sided"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     One-sample t test power calculation 
+
+              n = 1355.581
+          delta = 5000
+             sd = 74000
+      sig.level = 0.05
+          power = 0.8
+    alternative = one.sided</code></pre>
+</div>
+</div>
+</section>
+<section id="appendix-bias" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="appendix-bias"><span class="header-section-number">2.4</span> Appendix: Bias</h2>
+<p>A consideration not explored here, but which should be on your mind is the risk of bias. Here are a few types of bias to beware of <span class="citation" data-cites="lau2017">(<a href="10-references.html#ref-lau2017" role="doc-biblioref">Lau 2017</a>)</span>.</p>
+<ul>
+<li><strong>Coverage bias</strong>. The sampling frame is not representative of the population. E.g., school club members is a poor sampling frame if target population is high school students.</li>
+<li><strong>Sampling bias</strong>. The sample itself is not representative of the population. This occurs when response rates differ, or sub-population sizes differ. Explicitly define the target population and sampling frame, and use systematic sampling methods such as stratified sampling. Adjust analysis and interpretation for response rate differences.</li>
+<li><strong>Non-response bias</strong>. Responded have different attributes than non-respondents. You can offer incentives to increase response rate, follow up with non-respondents to find out the reasons for their lack of response, or compare the characteristics of non-respondents with respondents or known external benchmarks for differences.</li>
+<li><strong>Measurement bias</strong>. Survey results differ from the population values. The major cause is deficient instrument design due to ambiguous items, unclear instructions, or poor usability. Reduce measurement bias with pretesting or pilot testing of the instrument, and formal tests for validity and reliability.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-lau2017" class="csl-entry" role="listitem">
+Lau, C. Kuziemesky, F. 2017. <em>Handbook of eHealth Evaluation: An Evidence-Based Approach</em>. Wiley. <a href="https://www.ncbi.nlm.nih.gov/books/NBK481602/">https://www.ncbi.nlm.nih.gov/books/NBK481602/</a>.
+</div>
+<div id="ref-valliant2013" class="csl-entry" role="listitem">
+Valliant, Jill A.; Kreuter, Richard; Dever. 2013. <em>Practical Tools for Designing and Weighting Survey Samples</em>. Springer. <a href="https://doi.org/10.1007/978-3-319-93632-1">https://doi.org/10.1007/978-3-319-93632-1</a>.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Cluster sampling, systematic sampling and Poisson sampling are other sampling methods to at least be aware of. I’m not ready to deal with these yet.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See <a href="https://bookdown.org/mpfoley1973/statistics/frequentist-statistics.html">statistics handbook</a> section on frequentist statistics for discussion of Type I and II errors.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-item_selection.html" class="pagination-link" aria-label="Item Selection">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-statistical_power.html" class="pagination-link" aria-label="Statistical Power">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical Power</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

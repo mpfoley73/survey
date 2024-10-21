@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michael Foley">
-<meta name="dcterms.date" content="2024-10-19">
 
-<title>Survey Design and Analysis</title>
+<title>1&nbsp; Item Selection – Survey Design and Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,7 +84,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-item_selection.html" rel="next">
+<link href="./02-sample_size.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,6 +123,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-item_selection.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -109,13 +191,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-item_selection.html" class="sidebar-item-text sidebar-link">
+  <a href="./01-item_selection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span></a>
   </div>
 </li>
@@ -177,7 +259,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#reliability-and-validity" id="toc-reliability-and-validity" class="nav-link active" data-scroll-target="#reliability-and-validity"><span class="header-section-number">1.1</span> Reliability and Validity</a></li>
+  <li><a href="#itemgeneration" id="toc-itemgeneration" class="nav-link" data-scroll-target="#itemgeneration"><span class="header-section-number">1.2</span> Item Generation</a>
+  <ul class="collapse">
+  <li><a href="#cohens-kappa" id="toc-cohens-kappa" class="nav-link" data-scroll-target="#cohens-kappa"><span class="header-section-number">1.2.1</span> Cohen’s Kappa</a></li>
+  <li><a href="#lawshes-cvr" id="toc-lawshes-cvr" class="nav-link" data-scroll-target="#lawshes-cvr"><span class="header-section-number">1.2.2</span> Lawshe’s CVR</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -186,26 +273,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Survey Design and Analysis</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Michael Foley </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 19, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -215,11 +290,165 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Survey analysis starts with a problem/objectives statement, understanding of the sample design, respondent attributes, and underlying constructs. Only then does the data analysis begin. The survey objective may be to describe the characteristics of the target population, or to infer statistical relationship (causal or associative).</p>
+<p>The design and analysis of a survey depends on its purpose. <strong>Exploratory</strong> surveys investigate topics with no particular expectation. They are usually qualitative and often ask open-ended questions which are analyzed for content (word/phrase frequency counts) and themes. <strong>Descriptive</strong> surveys measure the association between the survey topic(s) and the respondent attributes. They typically ask Likert scale questions. <strong>Explanatory</strong> surveys explain and quantify hypothesized relationships with inferential statistics.</p>
+<section id="reliability-and-validity" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="reliability-and-validity"><span class="header-section-number">1.1</span> Reliability and Validity</h2>
+<p>A high quality survey will be both reliable (consistent) and valid (accurate).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> A reliable survey is reproducible under similar conditions. It produces consistent results across time, samples, and sub-samples within the survey itself. Reliable surveys are not necessarily <em>accurate</em> though. A valid survey accurately measures its latent variable. Its results are compatible with established theory and with other measures of the concept. Valid surveys are usually reliable too.</p>
+<p><strong>Reliability</strong> can entail one or more of the following:</p>
+<ul>
+<li><strong>Inter-rater reliability (aka Equivalence)</strong>. Each survey item is unambiguous, so subject matter experts should respond identically. This applies to opinion surveys of factual concepts, not personal preference surveys. E.g., two psychologists completing a survey assessing a patient’s mental health should respond identically. Use the Cohen’s Kappa test of inter-rater reliability to test equivalence (<em>see</em> Section @ref(itemgeneration) on item generation).</li>
+<li><strong>Internal consistency</strong>. Survey items measuring the same latent variable are highly correlated. Use the Cronbach alpha test and split-half test to assess internal consistency (<em>see</em> Section @ref(itemreduction) on item reduction).</li>
+<li><strong>Stability (aka Test-retest)</strong>. Repeated measurements yield the same results. You use the test-retest construct to assess stability in the <em>Replication</em> phase.</li>
+</ul>
+<p>There are three assessments of <strong>validity</strong>:</p>
+<ul>
+<li><strong>Content validity</strong>. The survey items cover <em>all</em> aspects of the latent variable. Use Lawshe’s CVR to assess content validity (<em>see</em> Section @ref(itemgeneration) on item generation).</li>
+<li><strong>Construct validity</strong>. The survey items are properly grounded on a theory of the latent variable. Use convergent analysis and discriminant analysis to assess construct validity in the <em>Convergent/Discriminant Validity</em> phase.</li>
+<li><strong>Criterion validity</strong>. The survey item results correspond to other valid measures of the same latent variable. Use concurrent analysis and predictive analysis to assess criterion validity in the <em>Replication</em> phase.</li>
+</ul>
+<p>Survey considerations</p>
+<ul>
+<li>Question order, selection order</li>
+<li>respondent burden and fatigue</li>
+</ul>
+<p>Quality of Measurement: Reliability and Validity (internal and external)</p>
+<p>Pretest and pilot test</p>
+<p>Probability Sampling: - simple random, systematic random, stratified random, cluster, and multistate cluster. - power analysis</p>
+<p>Reporting - Descriptive statistics - Write-up</p>
+<p>Continuous latent variables (e.g., level of satisfaction) can be measured with factor analysis (exploratory and confirmatory) or item response theory (IRT) models. Categorical or discrete variables (e.g., market segment) can be modeled with latent class analysis (LCA) or latent mixture modeling. You can even combine models, e.g., satisfaction within market segment.</p>
+<p>In practice, you specify the model, evaluate the fit, then revise the model or add/drop items from the survey.</p>
+<p>A full survey project usually consists of six phases.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<ol type="1">
+<li><p><strong>Item Generation</strong> (Section @ref(itemgeneration)). Start by generating a list of candidate survey items. With help from SMEs, you evaluate the equivalence (interrater reliability) and content validity of the candidate survey items and pare down the list into the final survey.</p></li>
+<li><p><strong>Survey Administration</strong> (Section @ref(surveyadministration)). Administer the survey to respondents and perform an exploratory data analysis. Summarize the Likert items with plots and look for correlations among the variables.</p></li>
+<li><p><strong>Item Reduction</strong> (Section @ref(itemreduction)). Explore the dimensions of the latent variable in the survey data with parallel analysis and exploratory factor analysis. Assess the internal consistency of the items with Cronbach’s alpha and split-half tests, and remove items that do not add value and/or amend your theory of the number of dimensions.</p></li>
+<li><p><strong>Confirmatory Factor Analysis</strong> (Section @ref(confirmatoryfactoranalysis)). Perform a formal hypothesis test of the theory that emerged from the exploratory factor analysis.</p></li>
+<li><p><strong>Convergent/Discriminant Validity</strong> (Section @ref(convergentvalidity)). Test for convergent and discriminant construct validity.</p></li>
+<li><p><strong>Replication</strong> (Section @ref(replication)). Establish test-retest reliability and criterion validity.</p></li>
+</ol>
+</section>
+<section id="itemgeneration" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="itemgeneration"><span class="header-section-number">1.2</span> Item Generation</h2>
+<p>Define your latent variable(s), that is, the unquantifiable variables you intend to infer from variables you <em>can</em> quntify. E.g., “Importance of 401(k) matching”</p>
+<p>After you generate a list of candidate survey items, enlist SMEs to assess their inter-rater reliability with <em>Cohen’s Kappa</em> and content validity with <em>Lawshe’s CVR</em>.</p>
+<section id="cohens-kappa" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="cohens-kappa"><span class="header-section-number">1.2.1</span> Cohen’s Kappa</h3>
+<p>An item has inter-rater reliability if it produces consistent results across raters. One way to test this is by having SMEs take the survey. Their answers should be close to each other. Conduct an inter-rater reliability test by measuring the statistical significance of SME response agreement using the Kohen’s kappa test statistic.</p>
+<p>Suppose your survey measures brand loyalty and two SMEs answer 13 survey items like this. The SMEs agreed on 6 of the 13 items (46%).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sme <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">agreement =</span> RATER_A <span class="sc">==</span> RATER_B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   RATER_A RATER_B agreement
+1        1       1      TRUE
+2        2       2      TRUE
+3        3       2     FALSE
+4        2       3     FALSE
+5        1       3     FALSE
+6        1       1      TRUE
+7        1       1      TRUE
+8        2       1     FALSE
+9        3       2     FALSE
+10       3       3      TRUE
+11       2       3     FALSE
+12       1       3     FALSE
+13       1       1      TRUE</code></pre>
+</div>
+</div>
+<p>You could measure SME agreement with a simple correlation matrix (<code>cor(sme)</code>) or by measuring the percentage of items they rate identically (<code>irr::agree(sme)</code>), but these measures do not test for statistical validity.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(sme)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##           RATER_A   RATER_B</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## RATER_A 1.0000000 0.3291403</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## RATER_B 0.3291403 1.0000000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>irr<span class="sc">::</span><span class="fu">agree</span>(sme)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  Percentage agreement (Tolerance=0)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  Subjects = 13 </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    Raters = 2 </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   %-agree = 46.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Instead, calculate the Kohen’s kappa test statistic, <span class="math inline">\(\kappa\)</span>, to assess statistical validity. Cohen’s kappa compares the observed agreement (accuracy) to the probability of chance agreement. <span class="math inline">\(\kappa\)</span> &gt;= 0.8 is very strong agreement, <span class="math inline">\(\kappa\)</span> &gt;= 0.6 substantial, <span class="math inline">\(\kappa\)</span> &gt;= 0.4 moderate, and <span class="math inline">\(\kappa\)</span> &lt; 0.4 is poor agreement. In this example, <span class="math inline">\(\kappa\)</span> is only 0.32 (poor agreement).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">cohen.kappa</span>(sme)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: cohen.kappa1(x = x, w = w, n.obs = n.obs, alpha = alpha, levels = levels, 
+    w.exp = w.exp)
+
+Cohen Kappa and Weighted Kappa correlation coefficients and confidence boundaries 
+                 lower estimate upper
+unweighted kappa -0.18     0.19  0.55
+weighted kappa   -0.13     0.32  0.76
+
+ Number of subjects = 13 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">cohen.kappa</span>(sme2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: cohen.kappa1(x = x, w = w, n.obs = n.obs, alpha = alpha, levels = levels, 
+    w.exp = w.exp)
+
+Cohen Kappa and Weighted Kappa correlation coefficients and confidence boundaries 
+                 lower estimate upper
+unweighted kappa -0.22     0.17  0.56
+weighted kappa    0.30     0.56  0.83
+
+ Number of subjects = 13 </code></pre>
+</div>
+</div>
+<p>Use the weighted kappa for ordinal measures like Likert items (<em>see</em> <a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Wikipedia</a>).</p>
+</section>
+<section id="lawshes-cvr" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="lawshes-cvr"><span class="header-section-number">1.2.2</span> Lawshe’s CVR</h3>
+<p>An item has content validity if SMEs agree on its relevance to the latent variable. Test content validity with Lawshe’s content validity ratio (CVR),</p>
+<p><span class="math display">\[CVR = \frac{E - N/2}{N/2}\]</span> where <span class="math inline">\(N\)</span> is the number of SMEs and <span class="math inline">\(E\)</span> is the number who rate the item as <em>essential</em>. CVR can range from -1 to 1. E.g., suppose three SMEs (A, B, and C) assess the relevance of 5 survey items as “Not Necessary”, “Useful”, or “Essential”:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  item            A            B            C
+1    1    Essential       Useful Not necesary
+2    2       Useful Not necesary       Useful
+3    3 Not necesary Not necesary    Essential
+4    4    Essential       Useful    Essential
+5    5    Essential    Essential    Essential</code></pre>
+</div>
+</div>
+<p>Use the <code>psychometric::CVratio()</code> function to calculate CVR. The threshold <em>CVR</em> to keep or drop an item depends on the number of raters. CVR should be &gt;= 0.99 for 5 experts; &gt;= 0.49 for 15, and &gt;= 0.29 for 40.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sme2 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>item, <span class="at">names_to =</span> <span class="st">"expert"</span>, <span class="at">values_to =</span> <span class="st">"rating"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(item) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.groups =</span> <span class="st">"drop"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_sme =</span> <span class="fu">length</span>(<span class="fu">unique</span>(expert)),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_ess =</span> <span class="fu">sum</span>(rating <span class="sc">==</span> <span class="st">"Essential"</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">CVR =</span> psychometric<span class="sc">::</span><span class="fu">CVratio</span>(<span class="at">NTOTAL =</span> n_sme, <span class="at">NESSENTIAL =</span> n_ess))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+   item n_sme n_ess    CVR
+  &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+1     1     3     1 -0.333
+2     2     3     0 -1    
+3     3     3     1 -0.333
+4     4     3     2  0.333
+5     5     3     3  1    </code></pre>
+</div>
+</div>
+<p>In this example, items vary widely in content validity from unanimous consensus for to unanimous consensus against.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-middleton2022" class="csl-entry" role="listitem">
+Middleton, Fiona. 2022. <span>“Reliability Vs. Validity in Research | Difference, Types and Examples.”</span> <a href="https://www.scribbr.com/methodology/reliability-vs-validity/" class="uri">https://www.scribbr.com/methodology/reliability-vs-validity/</a>.
+</div>
+<div id="ref-mount" class="csl-entry" role="listitem">
+Mount, George. n.d. <span>“Survey and Measurement Development in r.”</span> <a href="https://app.datacamp.com/learn/courses/survey-and-measurement-development-in-r">https://app.datacamp.com/learn/courses/survey-and-measurement-development-in-r</a>.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This section is aided by Fiona Middleton’s “Reliability vs.&nbsp;Validity in Research | Difference, Types and Examples” <span class="citation" data-cites="middleton2022">(<a href="10-references.html#ref-middleton2022" role="doc-biblioref">Middleton 2022</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This section is primarily from George Mount’s Data Camp course <span class="citation" data-cites="mount">(<a href="10-references.html#ref-mount" role="doc-biblioref">Mount, n.d.</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -645,10 +874,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-item_selection.html" class="pagination-link" aria-label="Item Selection">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-sample_size.html" class="pagination-link" aria-label="Sample Size">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample Size</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
