@@ -30,7 +30,7 @@ execute:
 format:
   html:
     theme: cosmo
-    toc-tile: "On this page"
+    toc-title: "On this page"
     toc-depth: 4
     code-tools: true
     code-overflow: scroll
