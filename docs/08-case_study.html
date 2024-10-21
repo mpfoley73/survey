@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michael Foley">
-<meta name="dcterms.date" content="2024-10-21">
 
-<title>Survey Design and Analysis</title>
+<title>8&nbsp; Case Study – Survey Design and Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -66,7 +84,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-item_selection.html" rel="next">
+<link href="./10-references.html" rel="next">
+<link href="./07-best_worst_scaling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-case_study.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -191,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-case_study.html" class="sidebar-item-text sidebar-link">
+  <a href="./08-case_study.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study</span></span></a>
   </div>
 </li>
@@ -211,7 +230,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#sample-design-report" id="toc-sample-design-report" class="nav-link active" data-scroll-target="#sample-design-report"><span class="header-section-number">8.1</span> Sample Design Report</a>
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link" data-scroll-target="#executive-summary"><span class="header-section-number">8.1.1</span> Executive summary</a></li>
+  <li><a href="#sample-design" id="toc-sample-design" class="nav-link" data-scroll-target="#sample-design"><span class="header-section-number">8.1.2</span> Sample design</a></li>
+  <li><a href="#sample-size-and-allocation" id="toc-sample-size-and-allocation" class="nav-link" data-scroll-target="#sample-size-and-allocation"><span class="header-section-number">8.1.3</span> Sample size and allocation</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">8.1.4</span> Appendix</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -220,26 +245,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Survey Design and Analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Case Study</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Michael Foley </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 21, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -249,14 +262,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1><p><img src="cover.png" title="Survey Design and Analysis" class="quarto-cover-image img-fluid"></p>
-<p>Survey analysis starts with a problem/objectives statement, understanding of the sample design, respondent attributes, and underlying constructs. Only then does the data analysis begin. The survey objective may be to describe the characteristics of the target population, or to infer statistical relationship (causal or associative).</p>
+<p>The sample design report outline is from <span class="citation" data-cites="valliant2013">(<a href="10-references.html#ref-valliant2013" role="doc-biblioref">Valliant 2013</a>)</span>.</p>
+<section id="sample-design-report" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sample-design-report"><span class="header-section-number">8.1</span> Sample Design Report</h2>
+<section id="executive-summary" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">8.1.1</span> Executive summary</h3>
+<ul>
+<li>Provide a brief overview of the survey including information related to general study goals and year when annual survey was first implemented.</li>
+<li>Describe the purpose of this document.</li>
+<li>Provide a table of the sample size to be selected per business unit (i.e., respondent sample size inflated for ineligibility and nonresponse).</li>
+<li>Discuss the contents of the remaining section of the report.</li>
+</ul>
+</section>
+<section id="sample-design" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="sample-design"><span class="header-section-number">8.1.2</span> Sample design</h3>
+<ul>
+<li>Describe the target population.</li>
+<li>Describe the sampling frame including the date and source database.</li>
+<li>Describe the type of sample and method of sample selection to be used.</li>
+</ul>
+</section>
+<section id="sample-size-and-allocation" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="sample-size-and-allocation"><span class="header-section-number">8.1.3</span> Sample size and allocation</h3>
+<ul>
+<li>Optimization requirements – Optimization details including constraints and budget.<br>
+– Detail the minimum domain sizes and mechanics used to determine the sizes.</li>
+<li>Optimization results<br>
+– Results: minimum respondent sample size per stratum<br>
+– Marginal sample sizes for key reporting domains<br>
+– Estimated precision achieved by optimization results<br>
+</li>
+<li>Inflation adjustments to allocation solution<br>
+– Nonresponse adjustments<br>
+– Adjustments for ineligible sample members<br>
+</li>
+<li>Final sample allocation<br>
+– Marginal sample sizes for key reporting domains<br>
+</li>
+<li>Sensitivity analysis<br>
+– Results from comparing deviations to allocation after introducing changes to the optimization system</li>
+</ul>
+</section>
+<section id="appendix" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="appendix"><span class="header-section-number">8.1.4</span> Appendix</h3>
+<ul>
+<li>Sample size per strata (table), full sample and expected number of respondents</li>
+<li>Other relevant detailed tables including preliminary analysis</li>
+</ul>
 
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-valliant2013" class="csl-entry" role="listitem">
+Valliant, Jill A.; Kreuter, Richard; Dever. 2013. <em>Practical Tools for Designing and Weighting Survey Samples</em>. Springer. <a href="https://doi.org/10.1007/978-3-319-93632-1">https://doi.org/10.1007/978-3-319-93632-1</a>.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -733,16 +795,56 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./07-best_worst_scaling.html" class="pagination-link" aria-label="Best-Worst Scaling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Best-Worst Scaling</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-item_selection.html" class="pagination-link" aria-label="Item Selection">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./10-references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Preface {-}</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Case Study</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Survey analysis starts with a problem/objectives statement, understanding of the sample design, respondent attributes, and underlying constructs. Only then does the data analysis begin. The survey objective may be to describe the characteristics of the target population, or to infer statistical relationship (causal or associative).</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>The sample design report outline is from <span class="co">[</span><span class="ot">@valliant2013</span><span class="co">]</span>.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample Design Report  </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">### Executive summary</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the purpose of this document.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss the contents of the remaining section of the report.  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sample design</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the target population.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the sampling frame including the date and source database.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the type of sample and method of sample selection to be used.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sample size and allocation</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization requirements</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  – Optimization details including constraints and budget.  </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  – Detail the minimum domain sizes and mechanics used to determine  the sizes. </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization results  </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  – Results: minimum respondent sample size per stratum  </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  – Estimated precision achieved by optimization results  </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inflation adjustments to allocation solution  </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  – Nonresponse adjustments  </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  – Adjustments for ineligible sample members  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final sample allocation  </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sensitivity analysis  </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  – Results from comparing deviations to allocation after introducing  changes to the optimization system  </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Appendix  </span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sample size per strata (table), full sample and expected number of  respondents</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Other relevant detailed tables including preliminary analysis </span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

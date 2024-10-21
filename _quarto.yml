@@ -1,10 +1,12 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "Survey Design and Analysis"
   author: "Michael Foley"
-  date: "2024-10-19"
+  date: today
+  cover-image: cover.png
   chapters:
     - index.qmd
     - 01-item_selection.qmd
@@ -19,11 +21,24 @@ book:
 
 bibliography: references.bib
 
+execute: 
+  echo: true
+  message: false
+  error: false
+  warning: false
+
 format:
   html:
     theme: cosmo
+    toc-tile: "On this page"
+    toc-depth: 4
+    code-tools: true
+    code-overflow: scroll
+    code-fold: true
   pdf:
     documentclass: scrreprt
 
 editor: source
 
+language: 
+  code-summary: "Show the code"
