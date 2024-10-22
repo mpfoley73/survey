@@ -34,7 +34,7 @@ format:
     toc-depth: 4
     code-tools: true
     code-overflow: scroll
-    code-fold: true
+    code-fold: show
   pdf:
     documentclass: scrreprt
 
