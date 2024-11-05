@@ -9,9 +9,9 @@ book:
   cover-image: cover.png
   chapters:
     - index.qmd
-    - 01-item_selection.qmd
-    - 02-sample_size.qmd
-    - 03-statistical_power.qmd
+    - 01-project.qmd
+    - 02-item_selection.qmd
+    - 03-sampling.qmd
     - 04-analysis.qmd
     - 05-simple_random_sample.qmd
     - 06-stratified_random_sample.qmd

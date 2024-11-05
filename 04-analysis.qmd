@@ -1,50 +1,122 @@
 # Analyzing Survey Data
 
-```{r warning=FALSE, message=FALSE, include=FALSE}
+```{r setup, include=FALSE}
 library(tidyverse)
-library(survey)
 library(janitor)
+library(scales)
+library(survey)
+library(srvyr)
+library(srvyrexploR)
+library(censusapi)
 library(flextable)
 ```
 
-This is a tutorial for using the **survey** package survey to analyze complex survey data. "Complex" surveys are those with stratification and/or clustering. The package handles weights, and adjusts statistical tests for the survey design.
+This section shows how to use the survey and srvyr packages to analyze complex survey data. "Complex" surveys are those with stratification and/or clustering. The packages handles weights, and adjusts statistical tests for the survey design.
 
-## Defining the Survey Design
+## Load the Data
 
-Below are some examples defining the most common survey designs. The **survey** package includes the *Student performance in California schools* data set (`api`), a record of the Academic Performance Index based on standardized testing. `api` contains sub-data sets that illustrate the design types.
+The design object specifies the sampling design, weights, and other information. We'll work with five datasets.
+
+The survey package includes the *Student performance in California schools* data, `api`, a record of the Academic Performance Index based on standardized testing. `api` contains three datasets that illustrate design types.
 
 -   `apisrs` is a simple random sample of (*n* = 200) schools,
 -   `apistrat` is stratified sample of 3 school types (elementary, middle, high) with simple random sampling of different sizes in each stratum,
 -   `apiclus2` is a two-stage cluster sample of schools within districts.
 
-```{r include=FALSE}
+```{r}
+#| code-fold: false
 data(api, package = "survey")
 ```
 
-You create a survey design object with the `svydesign(data, ...)` function. There are parameter settings for each design type.
+Next is the American National Election Studies (ANES) dataset from the srvyrexploR package. It contain election surveys from 2020, `anes_2020`. `anes_2020` is weighted to the sample, not the population. To make population inferences, ANES recommends using the Current Population Survey (CPS) to scale the weights up to the number of non-institutional U.S. citizens aged 18 or older living in the 50 U.S. states or D.C. in March 2020.[^04-analysis-1]
 
-### Simple Random Sample
+[^04-analysis-1]: To pull data from the U.S. Census, visit their [API page](https://api.census.gov/data/key_signup.html) to request a key (free and fast). Create a .Renviron file in your RStudio project directory with `CENSUS_KEY="<your assigned key>"`. Make sure .Renviron is not tracked in GitHub by adding `.Renviron` to the .gitignore file.
 
-A simple random sample has no clusters, so indicate this with `ids = ~1`. The response weights will always be the same, equaling the population size divided by the sample size. Typically, the response weight is identified in a column. There is another parameter called the finite population correction (`fpc`) that is used to reduce the variance when a substantial fraction of the total population has been sampled. Set `fpc` to the stratum population size. A simple random sample has no strata, so it will always be the same, equaling the population size.
+```{r}
+#| code-fold: false
+data(anes_2020, package = "srvyrexploR")
 
-For `apisrs` the population size is 6,194 (the number of schools in California). The sample size is 200, so the response weights all equal 6,194 / 200 = 30.97.
-
-```{r collapse=TRUE}
-nrow(apisrs)
-apisrs %>% count(pw, fpc)
-```
-
-Here is the design object.
-
-```{r collapse=TRUE}
-apisrs_design <- svydesign(
-  data = apisrs, 
-  weights = ~pw, 
-  fpc = ~fpc, 
-  ids = ~1
+# Mar 2020, state-level population estimates.
+cps_state <- censusapi::getCensus(
+  name = "cps/basic/mar",
+  vintage = 2020,
+  region = "state",
+  vars = c(
+    "HRMONTH", "HRYEAR4",  # month and year of interview
+    "PRTAGE", "PRCITSHP",  # age and citizenship
+    "PWSSWGT"  # final person-level weight.
+  ),
+  key = Sys.getenv("CENSUS_KEY")
 )
-summary(apisrs_design)
+
+# Age 18+ with U.S. citizenship.
+target_pop <- 
+  cps_state |> 
+  mutate(across(everything(), as.numeric)) |>
+  filter(PRTAGE >= 18, PRCITSHP %in% c(1:4)) |>
+  pull(PWSSWGT) |>
+  sum()
+
+# Scale the individual person weights to the population of interest.
+anes <- anes_2020 |> mutate(Weight = V200010b / sum(V200010b) * target_pop)
 ```
+
+`anes_2020` contains `r comma(nrow(anes_2020), 1)` rows. Because of stratification, the rows are weighted to account for over/under representation. Column `V200010b` is the full sample weight and ranges from `r comma(min(anes_2020$V200010b), .001)` to `r comma(max(anes_2020$V200010b), .001)` with a sum of `r comma(sum(anes_2020$V200010b), 1)`. The last line of code scales the weights so that they sum to the CPS population value, `r comma(target_pop, 1)`.
+
+Last is the Residential Energy Consumption Survey (RECS) dataset, `recs_2020`. RECS is a study that measures energy consumption and expenditure in American households.
+
+```{r}
+#| code-fold: false
+data(recs_2020, package = "srvyrexploR")
+```
+
+## Create the Design Object
+
+Most analysis is performed on a survey design object. You can use `survey::svydesign()` or the `srvyr::as_survey_design()` wrapper function. Use the srvyr package is usually preferable because it was designed with tidy principles.
+
+There are two parameters in the design object creation function `srvyr::as_survey_design()` that reference columns in the data frame.
+
+-   Population weights, `weights`. 
+  - For an SRS design, the responses are equally weighted, so the column values should just be the population size divided by the sample size.
+  
+-   Finite population correction, `fpc`. The FPC reduces the variance when a substantial fraction of the total population has been sampled. Set it to the stratum population size. 
+  - SRS has no strata, so the column values should just be the population size.
+
+::: panel-tabset
+
+### SRS
+
+`apisrs` is a simple random sample of 200 schools from a population of 6,194 California schools. The FPC are in column `fpc` and all equal 6,194. The weights are in column `pw` and all equal 6,194 / 200 = 30.97.
+
+```{r}
+#| code-fold: false
+apisrs_des <- as_survey_design(apisrs, weights = pw, fpc = fpc)
+
+summary(apisrs_des)
+```
+
+### Stratified
+
+### Clustered
+
+### ANES
+
+### RECS
+:::
+
+```{r}
+anes_des <- as_survey_design(
+    anes,
+    weights = Weight,
+    strata = V200010d,
+    ids = V200010c,
+    nest = TRUE
+  )
+
+anes_des
+```
+
+You create a survey design object with the `svydesign(data, ...)` function. There are parameter settings for each design type.
 
 ### Stratified Sample
 

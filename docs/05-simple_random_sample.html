@@ -177,20 +177,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-item_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Item Selection</span></span></a>
+  <a href="./01-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Survey Projects</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-sample_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample Size</span></span></a>
+  <a href="./02-item_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Item Selection</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-statistical_power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  <a href="./03-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sample Size</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -278,14 +278,14 @@ window.Quarto = {
 <p>Data set <code>apisrs</code> is a simple random sample of the Academic Performance Index (API) of <em>n</em> = 200 of the <em>N</em> = 6,194 schools in California.</p>
 <p>All <strong>survey</strong> objects require that you specify the columns identifying the clusters from largest to smallest level. In simple random designs like this, there are no clusters, and you specify just the constant <code>id = ~1</code>. The <code>fpc</code> parameter specifies the column with the finite population correction. In a simple random sample, it equals <em>N</em>. The <code>fpc</code> functions to both adjust the variance estimate, and to set the observation weights.</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>srs_design <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">id =</span> <span class="sc">~</span><span class="dv">1</span>,  <span class="at">fpc =</span> <span class="sc">~</span>fpc, <span class="at">data =</span> apisrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><span class="math inline">\(\hat{T}_X\)</span>, <span class="math inline">\(\mathrm{var} [\hat{T}_X]\)</span>, <span class="math inline">\(\hat{\mu}_X\)</span>, and <span class="math inline">\(\hat{\mathrm{var}}[\hat{\mu}_X]\)</span> are</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">svytotal</span>(<span class="sc">~</span>enroll, srs_design)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">##          total     SE</span></span>
@@ -297,7 +297,7 @@ window.Quarto = {
 </div>
 <p>When the sample is much smaller than the population, the finite population correction makes little difference. You can omit the <code>fpc</code> parameter, but then you must supply the samplying weight instead. In this case, the sampling weight is 200/6194, and is in variable <code>pw</code>. The total and mean are unchanged, but the variance increases a little without the correction.</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>srs_design2 <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">id =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">weights =</span> <span class="sc">~</span>pw, <span class="at">data =</span> apisrs)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">svytotal</span>(<span class="sc">~</span>enroll, srs_design2)</span>

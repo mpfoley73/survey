@@ -39,4 +39,6 @@ rsconnect/
 data/
 assets/chadwick
 
+# Other
 /.quarto/
+.Renviron
