@@ -15,7 +15,7 @@ This section shows how to use the survey and srvyr packages to analyze complex s
 
 ## Load the Data
 
-The design object specifies the sampling design, weights, and other information. We'll work with five datasets.
+The design object specifies the sampling design, weights, and other information. We'll work with six datasets.
 
 The survey package includes the *Student performance in California schools* data, `api`, a record of the Academic Performance Index based on standardized testing. `api` contains three datasets that illustrate design types.
 
@@ -63,33 +63,49 @@ anes <- anes_2020 |> mutate(Weight = V200010b / sum(V200010b) * target_pop)
 
 `anes_2020` contains `r comma(nrow(anes_2020), 1)` rows. Because of stratification, the rows are weighted to account for over/under representation. Column `V200010b` is the full sample weight and ranges from `r comma(min(anes_2020$V200010b), .001)` to `r comma(max(anes_2020$V200010b), .001)` with a sum of `r comma(sum(anes_2020$V200010b), 1)`. The last line of code scales the weights so that they sum to the CPS population value, `r comma(target_pop, 1)`.
 
-Last is the Residential Energy Consumption Survey (RECS) dataset, `recs_2020`. RECS is a study that measures energy consumption and expenditure in American households.
+Next is the Residential Energy Consumption Survey (RECS) dataset, `recs_2020`. RECS is a study that measures energy consumption and expenditure in American households.
 
 ```{r}
 #| code-fold: false
 data(recs_2020, package = "srvyrexploR")
 ```
 
+Last is the National Health and Nutrition Examination Survey (NHANES). The survey collected 78 attributes from (*n* = 20,293) persons.
+
+```{r}
+#| code-fold: false
+data(NHANESraw, package = "NHANES")
+
+# correction to weights
+NHANESraw <- NHANESraw |> mutate(WTMEC4YR = WTMEC2YR / 2) 
+```
+
 ## Create the Design Object
 
-Most analysis is performed on a survey design object. You can use `survey::svydesign()` or the `srvyr::as_survey_design()` wrapper function. Use the srvyr package is usually preferable because it was designed with tidy principles.
+Most analysis is performed on a survey design object. You can use `survey::svydesign()` or the `srvyr::as_survey_design()` wrapper function. The srvyr package is usually preferable because it was designed with tidy principles.
 
-There are two parameters in the design object creation function `srvyr::as_survey_design()` that reference columns in the data frame.
+There are two parameters in `srvyr::as_survey_design()` that reference columns in the data frame.
 
 -   Population weights, `weights`. 
+
   - For an SRS design, the responses are equally weighted, so the column values should just be the population size divided by the sample size.
+  - For a stratified design, the values should equal the sampled fraction of the strata population.
   
 -   Finite population correction, `fpc`. The FPC reduces the variance when a substantial fraction of the total population has been sampled. Set it to the stratum population size. 
+
   - SRS has no strata, so the column values should just be the population size.
+  - Stratified designs should use the stratum population.
 
 ::: panel-tabset
 
 ### SRS
 
-`apisrs` is a simple random sample of 200 schools from a population of 6,194 California schools. The FPC are in column `fpc` and all equal 6,194. The weights are in column `pw` and all equal 6,194 / 200 = 30.97.
+`apisrs` is a simple random sample of 200 schools from a population of 6,194 California schools. FPC column `fpc` all equal 6,194. Weights column `pw` all equal 6,194 / 200 = 30.97.
 
 ```{r}
 #| code-fold: false
+apisrs |> count(pw, fpc) |> knitr::kable()
+
 apisrs_des <- as_survey_design(apisrs, weights = pw, fpc = fpc)
 
 summary(apisrs_des)
@@ -97,12 +113,42 @@ summary(apisrs_des)
 
 ### Stratified
 
-### Clustered
+`apistrat` is stratified on school type (`stype`): *E* = Elementary, *M* = Middle, and *H* = High School. Samples of 100/4421 (E), 50/1018 = (M), and 50/755 (H) determine the population weights, `pw = fpc / n`. Stratified designs require the `strata` parameter.
 
-### ANES
+```{r}
+#| code-fold: false
+apistrat |> 
+  count(stype, pw, fpc) |>
+  mutate(`pw*n` = pw * n) |>
+  adorn_totals(,,,, -pw) |>
+  knitr::kable()
 
-### RECS
-:::
+apistrat_des <- as_survey_design(apistrat, weights = pw, fpc = fpc, strata = stype)
+
+summary(apistrat_des)
+```
+
+### Two-stage Cluster
+
+`apiclus2` is a two-level cluster design. First, 40 school districts (id `dnum`) were randomly selected from the 755 districts in the state (`fpc1` = 757). Then a random sample of up to 5 schools (id `snum`) were sampled from the `fpc2` schools in the districts. Clustered designs require the cluster `ids` from largest to smallest level. `pw = fpc1 / 40`.
+
+```{r}
+apiclus2 |> count(dnum, snum, pw, fpc1, fpc2) |> 
+  adorn_totals(,,,,,n) |> DT::datatable()
+
+apiclus_design <- svydesign(
+  id = ~dnum + snum, # district id + school id
+  data = apiclus2, 
+  weights = ~pw, 
+  fpc = ~fpc1 + fpc2 # districts in state + schools in district
+)
+
+summary(apiclus_design)
+```
+
+### Stratified Cluster (ANES)
+
+Set `nest=TRUE` to nest clusters within the strata.
 
 ```{r}
 anes_des <- as_survey_design(
@@ -116,89 +162,55 @@ anes_des <- as_survey_design(
 anes_des
 ```
 
-You create a survey design object with the `svydesign(data, ...)` function. There are parameter settings for each design type.
-
-### Stratified Sample
-
-Define a stratified sample by specifying with the `strata` parameter. The schools in `apistrat` are stratified based on the school type *E* = Elementary, *M* = Middle, and *H* = High School. For each school type, a simple random sample of schools was taken: $n_E$ = 100, $n_M$ = 50, and $n_H$ = 50. The 100 elementary schools represent 100 / 4,421 of the state's elementary schools, so their weights = 44.21. Similarly, the weights are 50 / 1,018 = 20.36 for the middle schools, and 50 / 755 = 15.10 for the high schools.
+### Unstratified Cluster (RECS)
 
 ```{r}
-apistrat %>% 
-  count(stype, pw, fpc) %>% 
-  mutate(`pw*n` = pw * n) %>%
-  adorn_totals(,,,, -pw) %>% 
-  flextable() %>% colformat_num(j = 2, digits = 2) %>% colformat_int(j = c(3:5))
-```
-
-Here is the design object.
-
-```{r}
-apistrat_design <- svydesign(
-  data = apistrat, 
-  weights = ~pw, 
-  fpc = ~fpc, 
-  ids = ~1, 
-  strata = ~stype
+recs_des <- as_survey_rep(
+  recs_2020,
+  weights = NWEIGHT,
+  repweights = NWEIGHT1:NWEIGHT60,
+  type = "JK1",
+  scale = 59 / 60,
+  mse = TRUE
 )
-summary(apistrat_design)
+
+recs_des
 ```
 
-### Clustered
+### 4-stage (NHANES)
 
-Define a clustered sample by specifying the the cluster `ids` from largest to smallest level. The schools in `apiclus2` are clustered in two stages, first by the (`fpc1` = 757) school districts and a random sample of (*n* = 40) school districts (`dnum`) were selected. Then a random sample of (*n* \<= 5) schools (`snum`) were selected from the `fpc2` schools in the selected school districts.
-
-```{r}
-apiclus_design <- svydesign(
-  id = ~dnum + snum, 
-  data = apiclus2, 
-  weights = ~pw, 
-  fpc = ~fpc1 + fpc2
-)
-summary(apiclus_design)
-```
-
-### Example: NHANES
-
-Let's create a complex survey design for the National Health and Nutrition Examination Survey (NHANES). The survey collected 78 attributes of (*n* = 20,293) persons.
+The survey used a 4-stage design: stage 0 stratified the US by geography and proportion of minority populations; stage 1 randomly selected counties within strata; stage 2 randomly selected city blocks within counties; stage 3 randomly selected households within city blocks; and stage 4 randomly selected persons within households. When there are multiple levels of clusters like this, the convention is to assign the first cluster to `ids`. Set `nest = TRUE` because the cluster ids are nested within the strata (i.e., they are not unique).
 
 ```{r}
-data(NHANESraw, package = "NHANES")
-NHANESraw <- NHANESraw %>% 
-  mutate(WTMEC4YR = WTMEC2YR / 2) # correction to weights
-```
-
-The survey used a 4-stage design: stage 0 stratified the US by geography and proportion of minority populations; stage 1 randomly selected counties within strata; stage 2 randomly seleted city blocks within counties; stage 3 randomly selected households within city blocks; and stage 4 randomly selected persons within households. When there are multiple levels of clusters like this, the convention is to assign the first cluster to `ids`. Set `nest = TRUE` because the cluster ids are nested within the strata (i.e., they are not unique).
-
-```{r}
-NHANES_design <- svydesign(
-  data = NHANESraw, 
-  strata = ~SDMVSTRA, 
-  ids = ~SDMVPSU, 
+nhanes_des <- as_survey_design(
+  NHANESraw, 
+  strata = SDMVSTRA, 
+  ids = SDMVPSU, 
   nest = TRUE, 
-  weights = ~WTMEC4YR
+  weights = WTMEC4YR
 )
-summary(NHANES_design)
+
+summary(nhanes_des)
 ```
 
-Survey weights for minorities are typically lower to account for their large sample sizes relative to population representation. You can see how the weights sum to the sub-populations and the total population.
+Survey weights for minorities are typically lower because designers over-sample to get adequate representation. The weights sum to the sub-populations and the total population. I.e., `WTMEC4YR` = sub population size / sample size.
 
 ```{r}
-NHANESraw %>% 
-  group_by(Race1) %>% 
-  summarize(.groups = "drop", 
+NHANESraw |>
+  summarize(.by = Race1, 
             `Sum(WTMEC4YR)` = sum(WTMEC4YR), 
             `Avg(WTMEC4YR)` = mean(WTMEC4YR), 
-            n = n()) %>%
-  mutate(`Avg * n` = `Avg(WTMEC4YR)` * n) %>%
-  janitor::adorn_totals(where = "row") %>%
-  flextable::flextable() %>%
-  flextable::colformat_int(j = c(2:5))
+            n = n()) |>
+  mutate(`Avg * n` = `Avg(WTMEC4YR)` * n) |>
+  janitor::adorn_totals() |>
+  gt::gt() |>
+  gt::fmt_number(decimals = 0)
 ```
 
 The **survey** package functions handle the survey designs and weights. The population figures from the table above could have been built with `svytable()`.
 
 ```{r}
-svytable(~Race1, design = NHANES_design) %>%
+svytable(~Race1, design = nhanes_des) %>%
   as.data.frame() %>%
   mutate(prop = Freq / sum(Freq) * 100) %>%
   arrange(desc(prop)) %>%
@@ -208,12 +220,14 @@ svytable(~Race1, design = NHANES_design) %>%
   colformat_num(j = 3, suffix = "%", digits = 0)
 ```
 
+:::
+
 ## Exploring Categorical Items
 
 Create a contingency table by including two variables in `svytable()`. Here is contingency table for self-reported health by depression expressed as a 100% stacked bar chart.
 
 ```{r}
-svytable(~Depressed + HealthGen, design = NHANES_design) %>%
+svytable(~Depressed + HealthGen, design = nhanes_des) %>%
   data.frame() %>%
   group_by(HealthGen) %>%
   mutate(n_HealthGen = sum(Freq), Prop_Depressed = Freq / sum(Freq)) %>%
@@ -227,13 +241,13 @@ svytable(~Depressed + HealthGen, design = NHANES_design) %>%
 Perform a chi-square test of independence on contingency tables using the `svychisq()` function. Here is a test ofthe null hypothesis that depression is independent of general health.
 
 ```{r}
-svychisq(~Depressed + HealthGen, design = NHANES_design, statistic = "Chisq")
+svychisq(~Depressed + HealthGen, design = nhanes_des, statistic = "Chisq")
 ```
 
 The chi-square test with Rao & Scott adjustment is evidently not a standard chi-square test. *Maybe in how it factors in survey design?* The test statistic is usually $X^2 = \sum (O - E)^2 / E.$
 
 ```{r collapse=TRUE}
-O <- svytable(~Depressed + HealthGen, design = NHANES_design) %>% as.matrix()
+O <- svytable(~Depressed + HealthGen, design = nhanes_des) %>% as.matrix()
 E <- sum(O) * prop.table(O, 1) * prop.table(O, 2)
 (X2 <- sum((O - E)^2 / E))
 pchisq(X2, df = (nrow(O)-1) * (ncol(O) - 1), lower.tail = FALSE)
@@ -242,7 +256,7 @@ pchisq(X2, df = (nrow(O)-1) * (ncol(O) - 1), lower.tail = FALSE)
 which is what `chisq.test()` does.
 
 ```{r}
-svytable(~Depressed + HealthGen, design = NHANES_design) %>% 
+svytable(~Depressed + HealthGen, design = nhanes_des) %>% 
   as.matrix() %>% 
   chisq.test()
 ```
@@ -253,16 +267,16 @@ The `svymean()`, `svytotal()`, and `svyquantile()` functions summarize quantitat
 
 ```{r}
 svyquantile(x = ~SleepHrsNight, 
-            design = NHANES_design, 
+            design = nhanes_des, 
             na.rm = TRUE, 
             quantiles = c(.01, .25, .50, .75, .99))
 
-svymean(x = ~SleepHrsNight, design = NHANES_design, na.rm = TRUE)
+svymean(x = ~SleepHrsNight, design = nhanes_des, na.rm = TRUE)
 ```
 
 ```{r}
 svyby(formula = ~SleepHrsNight, by = ~Depressed, FUN = svymean, 
-      design = NHANES_design, na.rm = TRUE, keep.names = FALSE) %>%
+      design = nhanes_des, na.rm = TRUE, keep.names = FALSE) %>%
   ggplot(aes(x = Depressed, y = SleepHrsNight, 
              ymin = SleepHrsNight - 2*se, ymax = SleepHrsNight + 2*se)) +
   geom_col(fill = "lightblue") +
@@ -289,7 +303,7 @@ NHANESraw %>%
 Test whether the population averages differ with a two-sample survey-weighted t-test. Use the `svytest()` function to incorporate the survey design.
 
 ```{r}
-svyttest(formula = SleepHrsNight ~ Gender, design = NHANES_design)
+svyttest(formula = SleepHrsNight ~ Gender, design = nhanes_des)
 ```
 
 ## Modeling Quantitative Data
@@ -341,7 +355,7 @@ ggplot(mapping = aes(x = BPDiaAve, y = BPSysAve, size = WTMEC4YR, color = Diabet
     guides(size = FALSE) + 
     geom_smooth(method = "lm", formula = y ~ x, se = FALSE, mapping = aes(weight = WTMEC4YR))
 
-mod <- svyglm(BPSysAve ~ BPDiaAve*Diabetes, design = NHANES_design)
+mod <- svyglm(BPSysAve ~ BPDiaAve*Diabetes, design = nhanes_des)
 summary(mod)
 ```
 
