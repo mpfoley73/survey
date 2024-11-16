@@ -6,18 +6,29 @@ book:
   title: "Survey Design and Analysis"
   author: "Michael Foley"
   date: today
-  cover-image: cover.png
+  cover-image: images/survey-says.png
   chapters:
     - index.qmd
-    - 01-project.qmd
-    - 02-item_selection.qmd
-    - 03-sampling.qmd
-    - 04-analysis.qmd
-    - 05-simple_random_sample.qmd
-    - 06-stratified_random_sample.qmd
-    - 07-best_worst_scaling.qmd
-    - 08-case_study.qmd
-    - 10-references.qmd
+    - part: Design
+      chapters:
+      - survey_projects.qmd
+      - item_selection.qmd
+      - sampling_strategy.qmd
+    - part: "Analysis"
+      chapters:
+      - data_preparation.qmd
+      - descriptive-stats.qmd
+      - statistical-tests.qmd
+      - 07-modeling.qmd
+    - part: "Case Studies"
+      chapters: 
+      - 08-best_worst_scaling.qmd
+      - 11-other.qmd
+    - part: "Case Studies"
+      chapters: 
+      - 09-case_study_nhanes.qmd
+      - 10-case_study_ncsr.qmd
+    - 12-references.qmd
 
 bibliography: references.bib
 
@@ -34,7 +45,8 @@ format:
     toc-depth: 4
     code-tools: true
     code-overflow: scroll
-    code-fold: show
+    code-fold: false
+    fig-cap-location: top
   pdf:
     documentclass: scrreprt
 

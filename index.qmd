@@ -1,3 +1,5 @@
 # Preface {-}
 
-Survey analysis starts with a problem/objectives statement, understanding of the sample design, respondent attributes, and underlying constructs. Only then does the data analysis begin. The survey objective may be to describe the characteristics of the target population, or to infer statistical relationship (causal or associative).
+These notes are a personal reference related to my survey work. The notes primarily rely on the **Applied Survey Data Analysis** text by @Heeringa2017, and **Exploring Complex Survey Data Analysis Using R** by @zimmer2024.
+
+Repo for this quarto book: [https://github.com/mpfoley73/survey](https://github.com/mpfoley73/survey).

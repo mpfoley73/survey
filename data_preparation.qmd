@@ -1,0 +1,82 @@
+# Data Preparation {#sec-data-preparation}
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+library(janitor)
+library(survey)
+library(srvyr)
+library(gtsummary)
+```
+
+This book uses the `api` datasets from the *survey* package for examples. The Academic Performance Index (API) was a school rating system used in California for several years. The *survey* package includes several datasets that mimic survey samples from the overall population of 6,194 schools.
+
+`data(api)` returns several data files: a simple random sample (`apisrs`), a stratified simple random sample (`apistrat`), and a two-stage cluster (`apiclus2`).
+
+```{r}
+data(api, package = "survey")
+
+# Make `stype` (School type) an ordered factor variable for ordinal examples.
+fct_stype <- function(x) {factor(x, levels = c("E", "M", "H"), ordered = TRUE)}
+
+apisrs <- apisrs |> mutate(stype = fct_stype(stype))
+
+apistrat <- apistrat |> mutate(stype = fct_stype(stype))
+
+apiclus2 <- apiclus2 |> mutate(stype = fct_stype(stype))
+```
+
+Schools are uniquely identified by column `snum`. Schools roll up to districts, `dnum`. Two other columns contain metadata related to the sampling design.
+
+- `fpc`: **finite population correction (FPC)**. The FPC adjusts the variance calculation (@sec-sd-srs). The FPC is important when the sample size is >=5% of the population size. `fpc` equals the size of the population that the respondent is drawn from. For an SRS, that's the _entire_ population of 6,194 schools. For a 2 stage cluster design, that's the second stage population.
+- `pw`: **sampling weight**. The sampling weight scales the sample up to the population. Think of it as saying, "this respondent represents `pw` respondents from the total population."
+
+Let's create the design objects.
+
+::: panel-tabset
+
+## Simple Random Sample
+
+`apisrs` is a simple random sample of 200 schools from a population of 6,194, so `fpc` = 6194 and `pw` = 6194 / 200 = 30.97 for all rows.
+
+```{r}
+apisrs_des <- as_survey_design(apisrs, weights = pw, fpc = fpc)
+
+summary(apisrs_des)
+```
+
+## Stratified
+
+`apistrat` is a sample of 200 schools from a population stratified by school type, `stype`: *E* = Elementary (*n* = 100, `fpc` = 4421, `pw` = `r comma(4421/100, .1)`), *M* = Middle (*n* = 50, `fpc` = 1018, `pw` = `r comma(1018/50, .1)`), and *H* = High School (*n* = 50, `fpc` = 755, `pw` = `r comma(755/50, .1)`). `pw` equals the `fpc` / *n*.
+
+```{r}
+apistrat_des <- as_survey_design(apistrat, weights = pw, fpc = fpc, strata = stype)
+
+summary(apistrat_des)
+```
+
+## Two-Stage Cluster
+
+`apiclus2` is a two-stage cluster sample of 126 schools within districts. The first stage is random sample of 40 of the 757 school districts (`dnum`). The second stage is a random sample of up to 5 schools (`snum`) from each district. For cluster designs, the cluster ids are specified in the design object from largest to smallest level.
+
+```{r}
+apiclus2_des <- as_survey_design(
+  apiclus2,
+  id = c(dnum, snum),
+  weights = pw,
+  fpc = c(fpc1, fpc2),
+)
+
+summary(apiclus2_des)
+```
+
+:::
+
+```{r include=FALSE}
+save(
+  apisrs, apisrs_des, 
+  apistrat, apistrat_des,
+  apiclus2, apiclus2_des,
+  file = "input/api.Rdata"
+)
+```

@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Item Selection – Survey Design and Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./sampling_strategy.html" rel="next">
+<link href="./survey_projects.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey_projects.html">Design</a></li><li class="breadcrumb-item"><a href="./item_selection.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Item Selection</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Survey Design and Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Design</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./survey_projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Survey Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./item_selection.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Item Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sampling_strategy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling Strategy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Preparation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive-stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistical-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-best_worst_scaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Best-Worst Scaling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-other.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-case_study_nhanes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Case Study: NHANES</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-case_study_ncsr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Case Study: NCS-R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#survey-design-and-item-development" id="toc-survey-design-and-item-development" class="nav-link active" data-scroll-target="#survey-design-and-item-development"><span class="header-section-number">2.0.1</span> 1. <strong>Survey Design and Item Development</strong></a></li>
+  <li><a href="#pilot-testing-and-exploratory-factor-analysis-efa" id="toc-pilot-testing-and-exploratory-factor-analysis-efa" class="nav-link" data-scroll-target="#pilot-testing-and-exploratory-factor-analysis-efa"><span class="header-section-number">2.0.2</span> 2. <strong>Pilot Testing and Exploratory Factor Analysis (EFA)</strong></a></li>
+  <li><a href="#item-reduction-and-refinement" id="toc-item-reduction-and-refinement" class="nav-link" data-scroll-target="#item-reduction-and-refinement"><span class="header-section-number">2.0.3</span> 3. <strong>Item Reduction and Refinement</strong></a></li>
+  <li><a href="#field-testing-and-confirmatory-factor-analysis-cfa" id="toc-field-testing-and-confirmatory-factor-analysis-cfa" class="nav-link" data-scroll-target="#field-testing-and-confirmatory-factor-analysis-cfa"><span class="header-section-number">2.0.4</span> 4. <strong>Field Testing and Confirmatory Factor Analysis (CFA)</strong></a></li>
+  <li><a href="#final-survey-administration-and-data-collection" id="toc-final-survey-administration-and-data-collection" class="nav-link" data-scroll-target="#final-survey-administration-and-data-collection"><span class="header-section-number">2.0.5</span> 5. <strong>Final Survey Administration and Data Collection</strong></a></li>
+  <li><a href="#data-analysis-and-reporting" id="toc-data-analysis-and-reporting" class="nav-link" data-scroll-target="#data-analysis-and-reporting"><span class="header-section-number">2.0.6</span> 6. <strong>Data Analysis and Reporting</strong></a></li>
+  <li><a href="#reliability-and-validity" id="toc-reliability-and-validity" class="nav-link" data-scroll-target="#reliability-and-validity"><span class="header-section-number">2.1</span> Reliability and Validity</a></li>
+  <li><a href="#itemgeneration" id="toc-itemgeneration" class="nav-link" data-scroll-target="#itemgeneration"><span class="header-section-number">2.2</span> Item Generation</a>
+  <ul>
+  <li><a href="#cohens-kappa" id="toc-cohens-kappa" class="nav-link" data-scroll-target="#cohens-kappa"><span class="header-section-number">2.2.1</span> Cohen’s Kappa</a></li>
+  <li><a href="#lawshes-cvr" id="toc-lawshes-cvr" class="nav-link" data-scroll-target="#lawshes-cvr"><span class="header-section-number">2.2.2</span> Lawshe’s CVR</a></li>
+  </ul></li>
+  <li><a href="#itemreduction" id="toc-itemreduction" class="nav-link" data-scroll-target="#itemreduction"><span class="header-section-number">2.3</span> Item Reduction</a>
+  <ul>
+  <li><a href="#parallel-analysis" id="toc-parallel-analysis" class="nav-link" data-scroll-target="#parallel-analysis"><span class="header-section-number">2.3.1</span> Parallel Analysis</a></li>
+  <li><a href="#exporatory-factor-analysis" id="toc-exporatory-factor-analysis" class="nav-link" data-scroll-target="#exporatory-factor-analysis"><span class="header-section-number">2.3.2</span> Exporatory Factor Analysis</a></li>
+  <li><a href="#cronbachs-alpha" id="toc-cronbachs-alpha" class="nav-link" data-scroll-target="#cronbachs-alpha"><span class="header-section-number">2.3.3</span> Cronbach’s Alpha</a></li>
+  <li><a href="#split-half" id="toc-split-half" class="nav-link" data-scroll-target="#split-half"><span class="header-section-number">2.3.4</span> Split-Half</a></li>
+  </ul></li>
+  <li><a href="#confirmatoryfactoranalysis" id="toc-confirmatoryfactoranalysis" class="nav-link" data-scroll-target="#confirmatoryfactoranalysis"><span class="header-section-number">2.4</span> Confirmatory Factor Analysis</a></li>
+  <li><a href="#convergentvalidity" id="toc-convergentvalidity" class="nav-link" data-scroll-target="#convergentvalidity"><span class="header-section-number">2.5</span> Convergent/Discriminant Validity</a></li>
+  <li><a href="#replication" id="toc-replication" class="nav-link" data-scroll-target="#replication"><span class="header-section-number">2.6</span> Replication</a>
+  <ul>
+  <li><a href="#criterion-validity" id="toc-criterion-validity" class="nav-link" data-scroll-target="#criterion-validity"><span class="header-section-number">2.6.1</span> Criterion Validity</a>
+  <ul class="collapse">
+  <li><a href="#concurrent-validity" id="toc-concurrent-validity" class="nav-link" data-scroll-target="#concurrent-validity"><span class="header-section-number">2.6.1.1</span> Concurrent Validity</a></li>
+  <li><a href="#predictive-validity" id="toc-predictive-validity" class="nav-link" data-scroll-target="#predictive-validity"><span class="header-section-number">2.6.1.2</span> Predictive Validity</a></li>
+  </ul></li>
+  <li><a href="#test-retest-reliability" id="toc-test-retest-reliability" class="nav-link" data-scroll-target="#test-retest-reliability"><span class="header-section-number">2.6.2</span> Test-Retest Reliability</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey_projects.html">Design</a></li><li class="breadcrumb-item"><a href="./item_selection.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Item Selection</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-item-selection" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Item Selection</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The design and analysis of a survey depends on its purpose. <strong>Exploratory</strong> surveys investigate topics with no particular expectation. They are usually qualitative and often ask open-ended questions which are analyzed for content (word/phrase frequency counts) and themes. <strong>Descriptive</strong> surveys measure the association between the survey topic(s) and the respondent attributes. They typically ask Likert scale questions. <strong>Explanatory</strong> surveys explain and quantify hypothesized relationships with inferential statistics.</p>
+<p>In a survey project, exploratory factor analysis (EFA), item reduction, and confirmatory factor analysis (CFA) play critical roles in refining and validating the questionnaire. Here’s how they fit into the major phases of a survey project:</p>
+<section id="survey-design-and-item-development" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="survey-design-and-item-development"><span class="header-section-number">2.0.1</span> 1. <strong>Survey Design and Item Development</strong></h3>
+<ul>
+<li><strong>Item Generation</strong>: During the initial design phase, you generate items (questions) based on the concepts you wish to measure. This involves creating questions that capture each domain or construct of interest.</li>
+<li><strong>Preliminary Item Pool</strong>: You often start with a larger pool of items than you plan to use in the final survey. The aim is to cover all relevant aspects of the constructs comprehensively, knowing that some items will be refined or removed later.</li>
+</ul>
+</section>
+<section id="pilot-testing-and-exploratory-factor-analysis-efa" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="pilot-testing-and-exploratory-factor-analysis-efa"><span class="header-section-number">2.0.2</span> 2. <strong>Pilot Testing and Exploratory Factor Analysis (EFA)</strong></h3>
+<ul>
+<li><strong>Pilot Survey Administration</strong>: After developing the preliminary item pool, a pilot survey is administered to a small group from the target population.</li>
+<li><strong>Exploratory Factor Analysis (EFA)</strong>: EFA is conducted to explore the underlying structure of the data without imposing any predefined structure. This helps identify latent factors (or constructs) that the items represent and assess if the items group together as expected.
+<ul>
+<li><strong>Purpose</strong>: EFA provides insights into whether items align with the hypothesized constructs or if adjustments are needed.</li>
+<li><strong>Outcome</strong>: The result of EFA often leads to item reduction, where redundant or low-loading items (items that don’t contribute well to the factors) are removed to create a cleaner, more interpretable structure.</li>
+</ul></li>
+</ul>
+</section>
+<section id="item-reduction-and-refinement" class="level3" data-number="2.0.3">
+<h3 data-number="2.0.3" class="anchored" data-anchor-id="item-reduction-and-refinement"><span class="header-section-number">2.0.3</span> 3. <strong>Item Reduction and Refinement</strong></h3>
+<ul>
+<li><strong>Item Reduction</strong>: Based on the results from EFA, items that don’t load well on any factor or that cause cross-loading issues (loading on multiple factors) are removed. This results in a streamlined set of items that reliably measure the intended constructs.</li>
+<li><strong>Revised Survey Development</strong>: A revised version of the survey is developed with the refined item pool, improving clarity, reducing redundancy, and ensuring that each item is relevant to a single construct.</li>
+</ul>
+</section>
+<section id="field-testing-and-confirmatory-factor-analysis-cfa" class="level3" data-number="2.0.4">
+<h3 data-number="2.0.4" class="anchored" data-anchor-id="field-testing-and-confirmatory-factor-analysis-cfa"><span class="header-section-number">2.0.4</span> 4. <strong>Field Testing and Confirmatory Factor Analysis (CFA)</strong></h3>
+<ul>
+<li><strong>Larger Sample Administration</strong>: The refined survey is then administered to a larger, more representative sample to test its reliability and validity.</li>
+<li><strong>Confirmatory Factor Analysis (CFA)</strong>: CFA is conducted to validate the factor structure identified in the EFA phase. CFA requires specifying the number of factors and their relationships based on prior knowledge or the EFA results.
+<ul>
+<li><strong>Purpose</strong>: CFA tests how well the items fit the hypothesized structure and whether the constructs align with theoretical expectations. Good model fit in CFA indicates that the items reliably measure each intended factor.</li>
+</ul></li>
+</ul>
+</section>
+<section id="final-survey-administration-and-data-collection" class="level3" data-number="2.0.5">
+<h3 data-number="2.0.5" class="anchored" data-anchor-id="final-survey-administration-and-data-collection"><span class="header-section-number">2.0.5</span> 5. <strong>Final Survey Administration and Data Collection</strong></h3>
+<ul>
+<li>With a validated survey, you can proceed to full-scale data collection, confident that the items are reliable and valid measures of the constructs.</li>
+</ul>
+</section>
+<section id="data-analysis-and-reporting" class="level3" data-number="2.0.6">
+<h3 data-number="2.0.6" class="anchored" data-anchor-id="data-analysis-and-reporting"><span class="header-section-number">2.0.6</span> 6. <strong>Data Analysis and Reporting</strong></h3>
+<ul>
+<li>Following data collection, analysis is performed, often including descriptive statistics, correlations, and further structural equation modeling if needed.</li>
+<li><strong>Reporting</strong>: The results and insights gained through EFA, item reduction, and CFA help demonstrate the survey’s validity and reliability, which is crucial when presenting findings to stakeholders.</li>
+</ul>
+<p>Each of these steps is important to ensure that the survey effectively measures the constructs of interest, minimizes measurement error, and provides meaningful insights for your study or project.</p>
+</section>
+<section id="reliability-and-validity" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="reliability-and-validity"><span class="header-section-number">2.1</span> Reliability and Validity</h2>
+<p>A high quality survey will be both reliable (consistent) and valid (accurate).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> A reliable survey is reproducible under similar conditions. It produces consistent results across time, samples, and sub-samples within the survey itself. Reliable surveys are not necessarily <em>accurate</em> though. A valid survey accurately measures its latent variable. Its results are compatible with established theory and with other measures of the concept. Valid surveys are usually reliable too.</p>
+<p><strong>Reliability</strong> can entail one or more of the following:</p>
+<ul>
+<li><strong>Inter-rater reliability (aka Equivalence)</strong>. Each survey item is unambiguous, so subject matter experts should respond identically. This applies to opinion surveys of factual concepts, not personal preference surveys. E.g., two psychologists completing a survey assessing a patient’s mental health should respond identically. Use the Cohen’s Kappa test of inter-rater reliability to test equivalence (<em>see</em> Section @ref(itemgeneration) on item generation).</li>
+<li><strong>Internal consistency</strong>. Survey items measuring the same latent variable are highly correlated. Use the Cronbach alpha test and split-half test to assess internal consistency (<em>see</em> Section @ref(itemreduction) on item reduction).</li>
+<li><strong>Stability (aka Test-retest)</strong>. Repeated measurements yield the same results. You use the test-retest construct to assess stability in the <em>Replication</em> phase.</li>
+</ul>
+<p>There are three assessments of <strong>validity</strong>:</p>
+<ul>
+<li><strong>Content validity</strong>. The survey items cover <em>all</em> aspects of the latent variable. Use Lawshe’s CVR to assess content validity (<em>see</em> Section @ref(itemgeneration) on item generation).</li>
+<li><strong>Construct validity</strong>. The survey items are properly grounded on a theory of the latent variable. Use convergent analysis and discriminant analysis to assess construct validity in the <em>Convergent/Discriminant Validity</em> phase.</li>
+<li><strong>Criterion validity</strong>. The survey item results correspond to other valid measures of the same latent variable. Use concurrent analysis and predictive analysis to assess criterion validity in the <em>Replication</em> phase.</li>
+</ul>
+<p>Survey considerations</p>
+<ul>
+<li>Question order, selection order</li>
+<li>respondent burden and fatigue</li>
+</ul>
+<p>Quality of Measurement: Reliability and Validity (internal and external)</p>
+<p>Pretest and pilot test</p>
+<p>Probability Sampling: - simple random, systematic random, stratified random, cluster, and multistate cluster. - power analysis</p>
+<p>Reporting - Descriptive statistics - Write-up</p>
+<p>Continuous latent variables (e.g., level of satisfaction) can be measured with factor analysis (exploratory and confirmatory) or item response theory (IRT) models. Categorical or discrete variables (e.g., market segment) can be modeled with latent class analysis (LCA) or latent mixture modeling. You can even combine models, e.g., satisfaction within market segment.</p>
+<p>In practice, you specify the model, evaluate the fit, then revise the model or add/drop items from the survey.</p>
+<p>A full survey project usually consists of six phases.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<ol type="1">
+<li><p><strong>Item Generation</strong> (Section @ref(itemgeneration)). Start by generating a list of candidate survey items. With help from SMEs, you evaluate the equivalence (interrater reliability) and content validity of the candidate survey items and pare down the list into the final survey.</p></li>
+<li><p><strong>Survey Administration</strong> (Section @ref(surveyadministration)). Administer the survey to respondents and perform an exploratory data analysis. Summarize the Likert items with plots and look for correlations among the variables.</p></li>
+<li><p><strong>Item Reduction</strong> (Section @ref(itemreduction)). Explore the dimensions of the latent variable in the survey data with parallel analysis and exploratory factor analysis. Assess the internal consistency of the items with Cronbach’s alpha and split-half tests, and remove items that do not add value and/or amend your theory of the number of dimensions.</p></li>
+<li><p><strong>Confirmatory Factor Analysis</strong> (Section @ref(confirmatoryfactoranalysis)). Perform a formal hypothesis test of the theory that emerged from the exploratory factor analysis.</p></li>
+<li><p><strong>Convergent/Discriminant Validity</strong> (Section @ref(convergentvalidity)). Test for convergent and discriminant construct validity.</p></li>
+<li><p><strong>Replication</strong> (Section @ref(replication)). Establish test-retest reliability and criterion validity.</p></li>
+</ol>
+</section>
+<section id="itemgeneration" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="itemgeneration"><span class="header-section-number">2.2</span> Item Generation</h2>
+<p>Define your latent variable(s), that is, the unquantifiable variables you intend to infer from variables you <em>can</em> quntify. E.g., “Importance of 401(k) matching”</p>
+<p>After you generate a list of candidate survey items, enlist SMEs to assess their inter-rater reliability with <em>Cohen’s Kappa</em> and content validity with <em>Lawshe’s CVR</em>.</p>
+<section id="cohens-kappa" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="cohens-kappa"><span class="header-section-number">2.2.1</span> Cohen’s Kappa</h3>
+<p>An item has inter-rater reliability if it produces consistent results across raters. One way to test this is by having SMEs take the survey. Their answers should be close to each other. Conduct an inter-rater reliability test by measuring the statistical significance of SME response agreement using the Kohen’s kappa test statistic.</p>
+<p>Suppose your survey measures brand loyalty and two SMEs answer 13 survey items like this. The SMEs agreed on 6 of the 13 items (46%).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sme <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">agreement =</span> RATER_A <span class="sc">==</span> RATER_B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   RATER_A RATER_B agreement
+1        1       1      TRUE
+2        2       2      TRUE
+3        3       2     FALSE
+4        2       3     FALSE
+5        1       3     FALSE
+6        1       1      TRUE
+7        1       1      TRUE
+8        2       1     FALSE
+9        3       2     FALSE
+10       3       3      TRUE
+11       2       3     FALSE
+12       1       3     FALSE
+13       1       1      TRUE</code></pre>
+</div>
+</div>
+<p>You could measure SME agreement with a simple correlation matrix (<code>cor(sme)</code>) or by measuring the percentage of items they rate identically (<code>irr::agree(sme)</code>), but these measures do not test for statistical validity.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(sme)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##           RATER_A   RATER_B</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## RATER_A 1.0000000 0.3291403</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## RATER_B 0.3291403 1.0000000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>irr<span class="sc">::</span><span class="fu">agree</span>(sme)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  Percentage agreement (Tolerance=0)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  Subjects = 13 </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    Raters = 2 </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">##   %-agree = 46.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Instead, calculate the Kohen’s kappa test statistic, <span class="math inline">\(\kappa\)</span>, to assess statistical validity. Cohen’s kappa compares the observed agreement (accuracy) to the probability of chance agreement. <span class="math inline">\(\kappa\)</span> &gt;= 0.8 is very strong agreement, <span class="math inline">\(\kappa\)</span> &gt;= 0.6 substantial, <span class="math inline">\(\kappa\)</span> &gt;= 0.4 moderate, and <span class="math inline">\(\kappa\)</span> &lt; 0.4 is poor agreement. In this example, <span class="math inline">\(\kappa\)</span> is only 0.32 (poor agreement).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">cohen.kappa</span>(sme)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: cohen.kappa1(x = x, w = w, n.obs = n.obs, alpha = alpha, levels = levels, 
+    w.exp = w.exp)
+
+Cohen Kappa and Weighted Kappa correlation coefficients and confidence boundaries 
+                 lower estimate upper
+unweighted kappa -0.18     0.19  0.55
+weighted kappa   -0.13     0.32  0.76
+
+ Number of subjects = 13 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">cohen.kappa</span>(sme2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: cohen.kappa1(x = x, w = w, n.obs = n.obs, alpha = alpha, levels = levels, 
+    w.exp = w.exp)
+
+Cohen Kappa and Weighted Kappa correlation coefficients and confidence boundaries 
+                 lower estimate upper
+unweighted kappa -0.22     0.17  0.56
+weighted kappa    0.30     0.56  0.83
+
+ Number of subjects = 13 </code></pre>
+</div>
+</div>
+<p>Use the weighted kappa for ordinal measures like Likert items (<em>see</em> <a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa">Wikipedia</a>).</p>
+</section>
+<section id="lawshes-cvr" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="lawshes-cvr"><span class="header-section-number">2.2.2</span> Lawshe’s CVR</h3>
+<p>An item has content validity if SMEs agree on its relevance to the latent variable. Test content validity with Lawshe’s content validity ratio (CVR),</p>
+<p><span class="math display">\[CVR = \frac{E - N/2}{N/2}\]</span> where <span class="math inline">\(N\)</span> is the number of SMEs and <span class="math inline">\(E\)</span> is the number who rate the item as <em>essential</em>. CVR can range from -1 to 1. E.g., suppose three SMEs (A, B, and C) assess the relevance of 5 survey items as “Not Necessary”, “Useful”, or “Essential”:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  item            A            B            C
+1    1    Essential       Useful Not necesary
+2    2       Useful Not necesary       Useful
+3    3 Not necesary Not necesary    Essential
+4    4    Essential       Useful    Essential
+5    5    Essential    Essential    Essential</code></pre>
+</div>
+</div>
+<p>Use the <code>psychometric::CVratio()</code> function to calculate CVR. The threshold <em>CVR</em> to keep or drop an item depends on the number of raters. CVR should be &gt;= 0.99 for 5 experts; &gt;= 0.49 for 15, and &gt;= 0.29 for 40.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sme2 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>item, <span class="at">names_to =</span> <span class="st">"expert"</span>, <span class="at">values_to =</span> <span class="st">"rating"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(item) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.groups =</span> <span class="st">"drop"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_sme =</span> <span class="fu">length</span>(<span class="fu">unique</span>(expert)),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_ess =</span> <span class="fu">sum</span>(rating <span class="sc">==</span> <span class="st">"Essential"</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">CVR =</span> psychometric<span class="sc">::</span><span class="fu">CVratio</span>(<span class="at">NTOTAL =</span> n_sme, <span class="at">NESSENTIAL =</span> n_ess))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+   item n_sme n_ess    CVR
+  &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+1     1     3     1 -0.333
+2     2     3     0 -1    
+3     3     3     1 -0.333
+4     4     3     2  0.333
+5     5     3     3  1    </code></pre>
+</div>
+</div>
+<p>In this example, items vary widely in content validity from unanimous consensus for to unanimous consensus against.</p>
+</section>
+</section>
+<section id="itemreduction" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="itemreduction"><span class="header-section-number">2.3</span> Item Reduction</h2>
+<p>The third phase, explores the mapping of the factors (aka “manifest variables”) to the latent variable’s “dimensions” and refines the survey to exclude factors that do not map to a dimension. A latent variable may have several dimensions. E.g., “brand loyalty” may consist of “brand identification”, “perceived value”, and “brand trust”. Exploratory factor analysis (EFA), identifies the dimensions in the data, and whether any items do <em>not</em> reveal information about the latent variable. EFA establishes the <em>internal reliability</em>, whether similar items produce similar scores.</p>
+<p>Start with a parallel analysis and scree plot. This will suggest the number of factors in the data. Use this number as the input to an exploratory factor analysis.</p>
+<section id="parallel-analysis" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="parallel-analysis"><span class="header-section-number">2.3.1</span> Parallel Analysis</h3>
+<p>A <a href="https://www.sciencedirect.com/topics/mathematics/scree-plot">scree plot</a> is a line plot of the eigenvalues. An eigenvalue is the proportion of variance explained by each factor. Only factors with eigenvalues greater than those from uncorrelated data are useful. You want to find a sharp reduction in the size of the eigenvalues (like a cliff), with the rest of the smaller eigenvalues constituting rubble (scree!). After the eigenvalues drop dramatically in size, additional factors add relatively little to the information already extracted.</p>
+<p>Parallel analysis helps to make the interpretation of scree plots more objective. The eigenvalues are plotted along with eigenvalues of simulated variables with population correlations of 0. The number of eigenvalues above the point where the two lines intersect is the suggested number of factors. The rationale for parallel analysis is that useful factors account for more variance than could be expected by chance.</p>
+<p><code>psych::fa.parallel()</code> compares a scree of your data set to a random data set to identify the number of factors. The elbow below here is at 3 factors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>brand_rep <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">url</span>(<span class="st">"https://assets.datacamp.com/production/repositories/4494/datasets/59b5f2d717ddd647415d8c88aa40af6f89ed24df/brandrep-cleansurvey-extraitem.csv"</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa.parallel</span>(brand_rep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="item_selection_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parallel analysis suggests that the number of factors =  3  and the number of components =  2 </code></pre>
+</div>
+</div>
+</section>
+<section id="exporatory-factor-analysis" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="exporatory-factor-analysis"><span class="header-section-number">2.3.2</span> Exporatory Factor Analysis</h3>
+<p>Use <code>psych::fa()</code> to perform the factor analysis with your chosen number of factors. The number of factors may be the result of your parallel analysis, or the opinion of the SMEs. In this case, we’ll go with the 3 factors identified by the parallel analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">3</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># psych::scree(brand_rep) # psych makes scree plot's too.</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa.diagram</span>(brand_rep_efa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="item_selection_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Using EFA, you may tweak the number of factors or drop poorly-loading items. Each item should load highly to one and only one dimension. This one dimension is the item’s primary loading. Generally, a primary loading &gt; .7 is excellent, &gt;.6 is very good, &gt;.5 is good, &gt;.4 is fair, and &lt;.4 is poor. Here are the factor loadings from the 3 factor model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+               MR2    MR1    MR3   
+well_made       0.896              
+consistent      0.947              
+poor_workman_r  0.739              
+higher_price    0.127  0.632  0.149
+lot_more               0.850       
+go_up                  0.896       
+stands_out                    1.008
+unique                        0.896
+one_of_a_kind   0.309  0.295  0.115
+
+                 MR2   MR1   MR3
+SS loadings    2.361 2.012 1.858
+Proportion Var 0.262 0.224 0.206
+Cumulative Var 0.262 0.486 0.692</code></pre>
+</div>
+</div>
+<p>The brand-rep survey items load to 3 factors well except for the <code>one_of_a_kind</code> item. Its primary factor loading (0.309) is poor. The others are either very good (.6-.7) and excellent (&gt;.7) range.</p>
+<p>Look at the model eigenvalues. There should be one eigenvalue per dimension. Eigenvalues a little less than one may be contaminating the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>e.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.35629549 1.75381015 0.98701607 0.67377072 0.39901205 0.35865598 0.23915591
+[8] 0.14238807 0.08989556</code></pre>
+</div>
+</div>
+<p>Look at the factor score correlations. They should all be around 0.6. Much smaller means they are not describing the same latent variable. Much larger means they are describing the same dimension of the latent variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>r.scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]      [,3]
+[1,] 1.0000000 0.3147485 0.4778759
+[2,] 0.3147485 1.0000000 0.5428218
+[3,] 0.4778759 0.5428218 1.0000000</code></pre>
+</div>
+</div>
+<p>If you have a poorly loaded dimension, drop factors one at a time from the scale. <code>one_of_a_kind</code> loads across all three factors, but does not load strongly onto any one factor. <code>one_of_a_kind</code> is not clearly measuring any dimension of the latent variable. Drop it and try again.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>one_of_a_kind), <span class="at">nfactors =</span> <span class="dv">3</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+               MR2    MR3    MR1   
+well_made       0.887              
+consistent      0.958              
+poor_workman_r  0.735              
+higher_price    0.120  0.596  0.170
+lot_more               0.845       
+go_up                  0.918       
+stands_out                    0.990
+unique                        0.916
+
+                 MR2   MR3   MR1
+SS loadings    2.261 1.915 1.850
+Proportion Var 0.283 0.239 0.231
+Cumulative Var 0.283 0.522 0.753</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>e.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.00884429 1.75380537 0.97785883 0.42232527 0.36214534 0.24086772 0.14404264
+[8] 0.09011054</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>r.scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]      [,3]
+[1,] 1.0000000 0.2978009 0.4802138
+[2,] 0.2978009 1.0000000 0.5351654
+[3,] 0.4802138 0.5351654 1.0000000</code></pre>
+</div>
+</div>
+<p>This is better. We have three dimensions of brand reputation:</p>
+<ul>
+<li>items <code>well_made</code>, <code>consistent</code>, and <code>poor_workman_r</code> describe <em>Product Quality</em>,</li>
+<li>items <code>higher_price</code>, <code>lot_more</code>, and <code>go_up</code> describe <em>Willingness to Pay</em>, and</li>
+<li>items <code>stands_out</code> and <code>unique</code> describe <em>Product Differentiation</em></li>
+</ul>
+<p>Even if the data and your theory suggest otherwise, explore what happens when you include more or fewer factors in your EFA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">2</span>)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+               MR1    MR2   
+well_made              0.884
+consistent             0.932
+poor_workman_r         0.728
+higher_price    0.745       
+lot_more        0.784 -0.131
+go_up           0.855 -0.103
+stands_out      0.591  0.286
+unique          0.540  0.307
+one_of_a_kind   0.378  0.305
+
+                 MR1   MR2
+SS loadings    2.688 2.485
+Proportion Var 0.299 0.276
+Cumulative Var 0.299 0.575</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">4</span>)<span class="sc">$</span>loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+               MR2    MR1    MR3    MR4   
+well_made       0.879                     
+consistent      0.964                     
+poor_workman_r  0.732                     
+higher_price           0.552  0.150  0.168
+lot_more               0.835              
+go_up                  0.929              
+stands_out                    0.976       
+unique                        0.932       
+one_of_a_kind                        0.999
+
+                 MR2   MR1   MR3   MR4
+SS loadings    2.244 1.866 1.846 1.029
+Proportion Var 0.249 0.207 0.205 0.114
+Cumulative Var 0.249 0.457 0.662 0.776</code></pre>
+</div>
+</div>
+<p>The two-factor loading worked okay. The 4 factor loading only loaded one variable to the fourth factor. In this example the SME expected a three-factor model and the data did not contradict the theory, so stick with three.</p>
+<p>Whereas the item generation phase tested for item equivalence, the EFA phase tests for internal reliability (<em>consistency</em>) of items. Internal reliability means the survey produces consistent results. The more common statistics for assessing internal reliability are Cronbach’s Alpha, and split-half.</p>
+</section>
+<section id="cronbachs-alpha" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="cronbachs-alpha"><span class="header-section-number">2.3.3</span> Cronbach’s Alpha</h3>
+<p>In general, an alpha &lt;.6 is unacceptable, &lt;.65 is undesirable, &lt;.7 is minimally acceptable, &lt;.8 is respectable, &lt;.9 is very good, and &gt;=.9 suggests items are <em>too</em> alike. A very low alpha means items may not be measuring the same construct, so you should drop items. A very high alpha means items are multicollinear, and you should drop items. Here is Cronbach’s alpha for the brand reputation survey, after removing the poorly-loading <code>one_of_a_kind</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])<span class="sc">$</span>total<span class="sc">$</span>std.alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8557356</code></pre>
+</div>
+</div>
+<p>This value is in the “very good” range. Cronbach’s alpha is often used to measure the reliability of a single dimension. Here are the values for the 3 dimensions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])<span class="sc">$</span>total<span class="sc">$</span>std <span class="co"># Product Quality</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.8918025</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>])<span class="sc">$</span>total<span class="sc">$</span>std <span class="co"># Willingness to Pay</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.8517566</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>])<span class="sc">$</span>total<span class="sc">$</span>std <span class="co"># Product Differentiation</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.951472</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alpha is &gt;0.7 for each dimension. Sometimes the alpha for our survey as a whole is greater than that of the dimensions. This can happen because Cronbach’s alpha is sensitive to the number of items. Over-inflation of the alpha statistic can be a concern when working with surveys containing a large number of items.</p>
+</section>
+<section id="split-half" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="split-half"><span class="header-section-number">2.3.4</span> Split-Half</h3>
+<p>Use <code>psych::splitHalf()</code> to split the survey in half and test whether all parts of the survey contribute equally to measurement. <em>This method is much less popular than Cronbach’s alpha.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">splitHalf</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Split half reliabilities  
+Call: psych::splitHalf(r = brand_rep[, 1:8])
+
+Maximum split half reliability (lambda 4) =  0.93
+Guttman lambda 6                          =  0.92
+Average split half reliability            =  0.86
+Guttman lambda 3 (alpha)                  =  0.86
+Guttman lambda 2                          =  0.87
+Minimum split half reliability  (beta)    =  0.66
+Average interitem r =  0.43  with median =  0.4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="confirmatoryfactoranalysis" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="confirmatoryfactoranalysis"><span class="header-section-number">2.4</span> Confirmatory Factor Analysis</h2>
+<p>Whereas EFA is used to develop a theory of the number of factors needed to explain the relationships among the survey items, confirmatory factor analysis (CFA) is a formal hypothesis test of the EFA theory. CFA measures construct validity, that is, whether you are really measuring what you claim to measure.</p>
+<p>These notes explain how to use CFA, but do not explain the theory. For that you need to learn about <a href="https://www.datacamp.com/courses/dimensionality-reduction-in-r">dimensionality reduction</a>, and <a href="https://www.datacamp.com/courses/structural-equation-modeling-with-lavaan-in-r">structural equation modeling</a>.</p>
+<p>Use the <strong>lavaan</strong> package (latent variable analysis package), passing in the model definition. Here is the model for the three dimensions in the brand reputation survey. Lavaan’s default estimator is maximum likelihood, which assumes normality. You can change it to MLR which uses robust standard errors to mitigate non-normality. The summary prints a ton of output. Concentrate on the <code>lambda</code> - the factor loadings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>brand_rep_mdl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdQl =~ well_made + consistent + poor_workman_r"</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WillPay =~ higher_price + lot_more + go_up"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdDff =~ stands_out + unique"</span>, </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>brand_rep_cfa <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> brand_rep_mdl, <span class="at">data =</span> brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">estimator =</span> <span class="st">"MLR"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># lavaan::summary(brand_rep_cfa, fit.measures = TRUE, standardized = TRUE)</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(brand_rep_cfa, <span class="at">rotation =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="item_selection_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">inspect</span>(brand_rep_cfa, <span class="st">"std"</span>)<span class="sc">$</span>lambda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               PrdQl WillPy PrdDff
+well_made      0.914  0.000  0.000
+consistent     0.932  0.000  0.000
+poor_workman_r 0.730  0.000  0.000
+higher_price   0.000  0.733  0.000
+lot_more       0.000  0.812  0.000
+go_up          0.000  0.902  0.000
+stands_out     0.000  0.000  0.976
+unique         0.000  0.000  0.930</code></pre>
+</div>
+</div>
+<p>The CFA hypothesis test is a chi-square test, so is sensitive to normality assumptions and n-size. Other fit measure are reported too: * Comparative Fit Index (CFI) (look for value &gt;.9) * Tucker-Lewis Index (TLI) (look for value &gt;.9) * Root mean squared Error of Approximation (RMSEA) (look for value &lt;.05)</p>
+<p>There are actually 78 fit measures to choose from! Focus on CFI and TLI.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">fitMeasures</span>(brand_rep_cfa, <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">"cfi"</span>, <span class="st">"tli"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cfi   tli 
+0.980 0.967 </code></pre>
+</div>
+</div>
+<p>This output indicates a good model because both measures are &gt;.9. Check the standardized estimates for each item. The standardized factor loadings are the basis of establishing construct validity. While we call these measures ‘loadings,’ they are better described as correlations of each manifest item with the dimensions. As you calculated, the difference between a perfect correlation and the observed is considered ‘error.’ This relationship between the so-called ‘true’ and ‘observed’ scores is the basis of classical test theory.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">standardizedSolution</span>(brand_rep_cfa) <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lhs, rhs, est.std, pvalue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      lhs            rhs est.std pvalue
+1   PrdQl      well_made   0.914      0
+2   PrdQl     consistent   0.932      0
+3   PrdQl poor_workman_r   0.730      0
+4 WillPay   higher_price   0.733      0
+5 WillPay       lot_more   0.812      0
+6 WillPay          go_up   0.902      0
+7  PrdDff     stands_out   0.976      0
+8  PrdDff         unique   0.930      0</code></pre>
+</div>
+</div>
+<p>If you have a survey that meets your assumptions, performs well under EFA, but fails under CFA, return to your survey and revisit your scale, examine the CFA modification indices, factor variances, etc.</p>
+</section>
+<section id="convergentvalidity" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="convergentvalidity"><span class="header-section-number">2.5</span> Convergent/Discriminant Validity</h2>
+<p>Construct validity means the survey measures what it intends to measure. It is composed of convergent validity and discriminant validity. Convergent validity means factors address the same concept. Discriminant validity means factors address different aspects of the concept.</p>
+<p>Test for construct validity <em>after</em> assessing CFA model strength (with CFI, TFI, and RMSEA) – a poor-fitting model may have greater construct validity than a better-fitting model. Use the <code>semTools::reliability()</code> function. The average variance extracted (AVE) measures convergent validity (<code>avevar</code>) and should be &gt; .5. The composite reliability (CR) measures discriminant validity (<code>omega</code>) and should be &gt; .7.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>semTools<span class="sc">::</span><span class="fu">reliability</span>(brand_rep_cfa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           PrdQl   WillPay    PrdDff
+alpha  0.8926349 0.8521873 0.9514719
+omega  0.9017514 0.8605751 0.9520117
+omega2 0.9017514 0.8605751 0.9520117
+omega3 0.9019287 0.8646975 0.9520114
+avevar 0.7573092 0.6756174 0.9084654</code></pre>
+</div>
+</div>
+<p>These values look good for all three dimensions. As an aside, <code>alpha</code> is Cronbach’s alpha. Do not be tempted to test reliability and validity in the same step. Start with reliability because it is a necessary but insufficient condition for validity. By checking for internal consistency first, as measured by alpha, then construct validity, as measured by AVE and CR, you establish the necessary reliability of the scale as a whole was met, then took it to the next level by checking for construct validity among the unique dimensions.</p>
+<p>At this point you have established that the latent and manifest variables are related as hypothesized, and that the survey measures what you intended to measure, in this case, brand reputation.</p>
+</section>
+<section id="replication" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="replication"><span class="header-section-number">2.6</span> Replication</h2>
+<p>The replication phase establishes criterion validity and stability (reliability). Criterion validity is a measure of the relationship between the construct and some external measure of interest. Measure criterion validity with <em>concurrent validity</em>, how well items correlate with an external metric measured at the same time, and with <em>predictive validity</em>, how well an item predicts an external metric. Stability means the survey produces similar results over repeated <em>test-retest</em> administrations.</p>
+<section id="criterion-validity" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="criterion-validity"><span class="header-section-number">2.6.1</span> Criterion Validity</h3>
+<section id="concurrent-validity" class="level4" data-number="2.6.1.1">
+<h4 data-number="2.6.1.1" class="anchored" data-anchor-id="concurrent-validity"><span class="header-section-number">2.6.1.1</span> Concurrent Validity</h4>
+<p>Concurrent validity is a measure of whether our latent construct is significantly correlated to some outcome measured at the same time.</p>
+<p>Suppose you have an additional data set of consumer spending on the brand. The consumer’s perception of the brand should correlate with their spending. Before checking for concurrent validity, standardize the data so that likert and other variable types are on the same scale.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20201004</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>brand_rep <span class="ot">&lt;-</span> brand_rep <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spend =</span> ((well_made <span class="sc">+</span> consistent <span class="sc">+</span> poor_workman_r)<span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span> <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                  (higher_price <span class="sc">+</span> lot_more <span class="sc">+</span> go_up)<span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> <span class="dv">3</span> <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>                  (stands_out <span class="sc">+</span> unique)<span class="sc">/</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">10</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>brand_rep<span class="sc">$</span>spend <span class="ot">&lt;-</span> brand_rep<span class="sc">$</span>spend <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">559</span>, <span class="dv">5</span>, <span class="dv">4</span>) <span class="co"># add randomness</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>brand_rep_scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(brand_rep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Do respondents with higher scores on our the brand reputation scale also tend to spend more at the store? Build model, and latentize <code>spend</code> as <code>Spndng</code> and model with the <code>~~</code> operator. Fit the model with the <code>semTools::sem()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>brand_rep_cv_mdl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdQl =~ well_made + consistent + poor_workman_r"</span>,</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WillPay =~ higher_price + lot_more + go_up"</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdDff =~ stands_out + unique"</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Spndng =~ spend"</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Spndng ~~ PrdQl + WillPay + PrdDff"</span>,</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>brand_rep_cv <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(<span class="at">data =</span> brand_rep_scaled, <span class="at">model =</span> brand_rep_cv_mdl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here are the standardized covariances. Because the data is standardized, interpret these as correlations. The p-vales are not significant because the spending data was random.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">standardizedSolution</span>(brand_rep_cv) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rhs <span class="sc">==</span> <span class="st">"Spndng"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>op, <span class="sc">-</span>rhs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      lhs est.std    se     z pvalue ci.lower ci.upper
+1   PrdQl   0.174 0.043 4.092      0    0.091    0.258
+2 WillPay   0.241 0.043 5.654      0    0.157    0.324
+3  PrdDff   0.198 0.041 4.779      0    0.117    0.279
+4  Spndng   1.000 0.000    NA     NA    1.000    1.000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(brand_rep_cv, <span class="at">whatLabels =</span> <span class="st">"est.std"</span>, <span class="at">edge.label.cex =</span> .<span class="dv">8</span>, <span class="at">rotation =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="item_selection_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Each dimension of brand reputation is positively correlated to spending history and the relationships are all significant.</p>
+</section>
+<section id="predictive-validity" class="level4" data-number="2.6.1.2">
+<h4 data-number="2.6.1.2" class="anchored" data-anchor-id="predictive-validity"><span class="header-section-number">2.6.1.2</span> Predictive Validity</h4>
+<p>Predictive validity is established by regressing some future outcome on your established construct. Assess predictive validity just as you would with any linear regression – regression estimates and p-values (<code>starndardizedSolution()</code>), and the r-squared coefficient of determination <code>inspect()</code>.</p>
+<p>Build a regression model with the single <code>~</code> operator. Then fit the model to the data as before.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>brand_rep_pv_mdl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdQl =~ well_made + consistent + poor_workman_r"</span>,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WillPay =~ higher_price + lot_more + go_up"</span>,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdDff =~ stands_out + unique"</span>,</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"spend ~ PrdQl + WillPay + PrdDff"</span>,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>brand_rep_pv <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(<span class="at">data =</span> brand_rep_scaled, <span class="at">model =</span> brand_rep_pv_mdl)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co">#lavaan::summary(brand_rep_pv, standardized = T, fit.measures = T, rsquare = T)</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(brand_rep_pv, <span class="at">whatLabels =</span> <span class="st">"est.std"</span>, <span class="at">edge.label.cex =</span> .<span class="dv">8</span>, <span class="at">rotation =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="item_selection_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">standardizedSolution</span>(brand_rep_pv) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"~"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    lhs op     rhs est.std    se     z pvalue ci.lower ci.upper
+1 spend  ~   PrdQl   0.094 0.048 1.949  0.051   -0.001    0.189
+2 spend  ~ WillPay   0.182 0.052 3.486  0.000    0.080    0.284
+3 spend  ~  PrdDff   0.060 0.055 1.092  0.275   -0.047    0.167</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">inspect</span>(brand_rep_pv, <span class="st">"r2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     well_made     consistent poor_workman_r   higher_price       lot_more 
+         0.837          0.867          0.533          0.537          0.658 
+         go_up     stands_out         unique          spend 
+         0.816          0.951          0.866          0.072 </code></pre>
+</div>
+</div>
+<p>There is a statistically significant relationship between one dimension of brand quality (Willingness to Pay) and spending. At this point you may want to drop the other two dimensions. However, the R^2 is not good - only 7% of the variability in Spending can be explained by the three dimension of our construct.</p>
+<p>Factor scores represent individual respondents’ standing on a latent factor. While not used for scale validation per se, factor scores can be used for customer segmentation via clustering, network analysis and other statistical techniques.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>brand_rep_cfa <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(brand_rep_pv_mdl, <span class="at">data =</span> brand_rep_scaled)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>brand_rep_cfa_scores <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">predict</span>(brand_rep_cfa) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(brand_rep_cfa_scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        vars   n mean   sd median trimmed  mad   min  max range  skew kurtosis
+PrdQl      1 559    0 0.88  -0.50   -0.19 0.09 -0.57 4.02  4.59  2.31     6.18
+WillPay    2 559    0 0.69   0.00    0.01 0.86 -1.15 1.16  2.31 -0.05    -1.18
+PrdDff     3 559    0 0.96  -0.04   -0.15 1.17 -0.88 2.54  3.41  1.09     0.35
+          se
+PrdQl   0.04
+WillPay 0.03
+PrdDff  0.04</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">multi.hist</span>(brand_rep_cfa_scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="item_selection_files/figure-html/test385-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(brand_rep_cfa_scores, shapiro.test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$PrdQl
+
+    Shapiro-Wilk normality test
+
+data:  .x[[i]]
+W = 0.66986, p-value &lt; 2.2e-16
+
+
+$WillPay
+
+    Shapiro-Wilk normality test
+
+data:  .x[[i]]
+W = 0.94986, p-value = 7.811e-13
+
+
+$PrdDff
+
+    Shapiro-Wilk normality test
+
+data:  .x[[i]]
+W = 0.82818, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>These scores are not normally distributed, which makes clustering a great choice for modeling factor scores. Clustering does not mean distance-based clustering, such as K-means, in this context. Mixture models consider data as coming from a distribution which itself is a mixture of clusters. To learn more about model-based clustering in the <a href="https://www.datacamp.com/courses/hierarchical-and-mixed-effects-models">Hierarchical and Mixed Effects Models</a> DataCamp course.</p>
+<p>Factor scores can be extracted from a structural equation model and used as inputs in other models. For example, you can use the factor scores from the brand reputation dimensions as regressors for a regrssion on spending.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>brand_rep_fs_reg_dat <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(brand_rep_cfa_scores, <span class="at">spend =</span> brand_rep<span class="sc">$</span>spend)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>brand_rep_fs_reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(spend <span class="sc">~</span> PrdQl <span class="sc">+</span> WillPay <span class="sc">+</span> PrdDff, <span class="at">data =</span> brand_rep_fs_reg_dat)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(brand_rep_fs_reg)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Estimate Std. Error    t value      Pr(&gt;|t|)
+(Intercept) 7.1555354  0.1591195 44.9695738 3.363705e-187
+PrdQl       0.4260875  0.2062002  2.0663774  3.925620e-02
+WillPay     1.1365087  0.2805960  4.0503388  5.842799e-05
+PrdDff      0.1714031  0.2181813  0.7855993  4.324375e-01</code></pre>
+</div>
+</div>
+<p>The coefficients and r-squared of the lm() and sem() models closely resemble each other, but keeping the regression inside the lavaan framework provides more information (as witnessed in the higher estimates and r-squared). A construct, once validated, can be combined with a wide range of outcomes and models to produce valuable information about consumer behavior and habits.</p>
+</section>
+</section>
+<section id="test-retest-reliability" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="test-retest-reliability"><span class="header-section-number">2.6.2</span> Test-Retest Reliability</h3>
+<p>Test-retest reliability is the ability to achieve the same result from a respondent at two closely-spaced points in time (repeated measures).</p>
+<p>Suppose you had two surveys, identified by an <code>id</code> field.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># svy_1 &lt;- brand_rep[sample(1:559, 300),] %&gt;% as.data.frame()</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co"># svy_2 &lt;- brand_rep[sample(1:559, 300),] %&gt;% as.data.frame()</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co"># survey_test_retest &lt;- psych::testRetest(t1 = svy_1, t2 = svy_2, id = "id")</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># survey_test_retest$r12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An r^2 &lt;.7 is unacceptable, &lt;.9 good, and &gt;.9 very good. This one is unacceptable.</p>
+<p>One way to check for replication is by splitting the data in half.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># svy &lt;- bind_rows(svy_1, svy_2, .id = "time")</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># psych::describeBy(svy, "time")</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_test_retest &lt;- psych::testRetest(</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   t1 = filter(svy, time == 1),</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   t2 = filter(svy, time == 2),</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   id = "id")</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_test_retest$r12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If the correlation of scaled scores across time 1 and time 2 is greater than .9, that indicates very strong test-retest reliability. This measure can be difficult to collect because it requires the same respondents to answer the survey at two points in time. However, it’s a good technique to have in your survey development toolkit.</p>
+<p>When validating a scale, it’s a good idea to split the survey results into two samples, using one for EFA and one for CFA. This works as a sort of cross-validation such that the overall fit of the model is less likely due to chance of any one sample’s makeup.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_efa_data &lt;- brand_rep[1:280,]</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_cfa_data &lt;- brand_rep[281:559,]</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  </span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co"># efa &lt;- psych::fa(brand_rep_efa_data, nfactors = 3)</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co"># efa$loadings</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_cfa &lt;- lavaan::cfa(brand_rep_mdl, data = brand_rep_cfa_data)</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="co"># lavaan::inspect(brand_rep_cfa, what = "call")</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co"># lavaan::fitmeasures(brand_rep_cfa)[c("cfi","tli","rmsea")]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-middleton2022" class="csl-entry" role="listitem">
+Middleton, Fiona. 2022. <span>“Reliability Vs. Validity in Research | Difference, Types and Examples.”</span> <a href="https://www.scribbr.com/methodology/reliability-vs-validity/" class="uri">https://www.scribbr.com/methodology/reliability-vs-validity/</a>.
+</div>
+<div id="ref-mount" class="csl-entry" role="listitem">
+Mount, George. n.d. <span>“Survey and Measurement Development in r.”</span> <a href="https://app.datacamp.com/learn/courses/survey-and-measurement-development-in-r">https://app.datacamp.com/learn/courses/survey-and-measurement-development-in-r</a>.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This section is aided by Fiona Middleton’s “Reliability vs.&nbsp;Validity in Research | Difference, Types and Examples” <span class="citation" data-cites="middleton2022">(<a href="12-references.html#ref-middleton2022" role="doc-biblioref">Middleton 2022</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This section is primarily from George Mount’s Data Camp course <span class="citation" data-cites="mount">(<a href="12-references.html#ref-mount" role="doc-biblioref">Mount, n.d.</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./survey_projects.html" class="pagination-link" aria-label="Survey Projects">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Survey Projects</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./sampling_strategy.html" class="pagination-link" aria-label="Sampling Strategy">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling Strategy</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb64" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Item Selection {#sec-item-selection}</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r warning=FALSE, message=FALSE, include=FALSE}</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="in">library(scales)</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>The design and analysis of a survey depends on its purpose. **Exploratory** surveys investigate topics with no particular expectation. They are usually qualitative and often ask open-ended questions which are analyzed for content (word/phrase frequency counts) and themes. **Descriptive** surveys measure the association between the survey topic(s) and the respondent attributes. They typically ask Likert scale questions. **Explanatory** surveys explain and quantify hypothesized relationships with inferential statistics.</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>In a survey project, exploratory factor analysis (EFA), item reduction, and confirmatory factor analysis (CFA) play critical roles in refining and validating the questionnaire. Here’s how they fit into the major phases of a survey project:</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. **Survey Design and Item Development**</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Item Generation**: During the initial design phase, you generate items (questions) based on the concepts you wish to measure. This involves creating questions that capture each domain or construct of interest.</span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Preliminary Item Pool**: You often start with a larger pool of items than you plan to use in the final survey. The aim is to cover all relevant aspects of the constructs comprehensively, knowing that some items will be refined or removed later.</span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. **Pilot Testing and Exploratory Factor Analysis (EFA)**</span></span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Pilot Survey Administration**: After developing the preliminary item pool, a pilot survey is administered to a small group from the target population.</span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Exploratory Factor Analysis (EFA)**: EFA is conducted to explore the underlying structure of the data without imposing any predefined structure. This helps identify latent factors (or constructs) that the items represent and assess if the items group together as expected.</span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>**Purpose**: EFA provides insights into whether items align with the hypothesized constructs or if adjustments are needed. </span>
+<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>**Outcome**: The result of EFA often leads to item reduction, where redundant or low-loading items (items that don’t contribute well to the factors) are removed to create a cleaner, more interpretable structure.</span>
+<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. **Item Reduction and Refinement**</span></span>
+<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Item Reduction**: Based on the results from EFA, items that don’t load well on any factor or that cause cross-loading issues (loading on multiple factors) are removed. This results in a streamlined set of items that reliably measure the intended constructs.</span>
+<span id="cb64-25"><a href="#cb64-25" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Revised Survey Development**: A revised version of the survey is developed with the refined item pool, improving clarity, reducing redundancy, and ensuring that each item is relevant to a single construct.</span>
+<span id="cb64-26"><a href="#cb64-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-27"><a href="#cb64-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. **Field Testing and Confirmatory Factor Analysis (CFA)**</span></span>
+<span id="cb64-28"><a href="#cb64-28" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Larger Sample Administration**: The refined survey is then administered to a larger, more representative sample to test its reliability and validity.</span>
+<span id="cb64-29"><a href="#cb64-29" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Confirmatory Factor Analysis (CFA)**: CFA is conducted to validate the factor structure identified in the EFA phase. CFA requires specifying the number of factors and their relationships based on prior knowledge or the EFA results. </span>
+<span id="cb64-30"><a href="#cb64-30" aria-hidden="true" tabindex="-1"></a><span class="ss">     - </span>**Purpose**: CFA tests how well the items fit the hypothesized structure and whether the constructs align with theoretical expectations. Good model fit in CFA indicates that the items reliably measure each intended factor.</span>
+<span id="cb64-31"><a href="#cb64-31" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb64-32"><a href="#cb64-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. **Final Survey Administration and Data Collection**</span></span>
+<span id="cb64-33"><a href="#cb64-33" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>With a validated survey, you can proceed to full-scale data collection, confident that the items are reliable and valid measures of the constructs.</span>
+<span id="cb64-34"><a href="#cb64-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-35"><a href="#cb64-35" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. **Data Analysis and Reporting**</span></span>
+<span id="cb64-36"><a href="#cb64-36" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Following data collection, analysis is performed, often including descriptive statistics, correlations, and further structural equation modeling if needed.</span>
+<span id="cb64-37"><a href="#cb64-37" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>**Reporting**: The results and insights gained through EFA, item reduction, and CFA help demonstrate the survey's validity and reliability, which is crucial when presenting findings to stakeholders.</span>
+<span id="cb64-38"><a href="#cb64-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-39"><a href="#cb64-39" aria-hidden="true" tabindex="-1"></a>Each of these steps is important to ensure that the survey effectively measures the constructs of interest, minimizes measurement error, and provides meaningful insights for your study or project.</span>
+<span id="cb64-40"><a href="#cb64-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-41"><a href="#cb64-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-42"><a href="#cb64-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-43"><a href="#cb64-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reliability and Validity</span></span>
+<span id="cb64-44"><a href="#cb64-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-45"><a href="#cb64-45" aria-hidden="true" tabindex="-1"></a>A high quality survey will be both reliable (consistent) and valid (accurate).<span class="ot">[^01-item_selection-1]</span> A reliable survey is reproducible under similar conditions. It produces consistent results across time, samples, and sub-samples within the survey itself. Reliable surveys are not necessarily *accurate* though. A valid survey accurately measures its latent variable. Its results are compatible with established theory and with other measures of the concept. Valid surveys are usually reliable too.</span>
+<span id="cb64-46"><a href="#cb64-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-47"><a href="#cb64-47" aria-hidden="true" tabindex="-1"></a><span class="ot">[^01-item_selection-1]: </span>This section is aided by Fiona Middleton's "Reliability vs. Validity in Research \| Difference, Types and Examples" <span class="co">[</span><span class="ot">@middleton2022</span><span class="co">]</span>.</span>
+<span id="cb64-48"><a href="#cb64-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-49"><a href="#cb64-49" aria-hidden="true" tabindex="-1"></a>**Reliability** can entail one or more of the following:</span>
+<span id="cb64-50"><a href="#cb64-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-51"><a href="#cb64-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Inter-rater reliability (aka Equivalence)**. Each survey item is unambiguous, so subject matter experts should respond identically. This applies to opinion surveys of factual concepts, not personal preference surveys. E.g., two psychologists completing a survey assessing a patient's mental health should respond identically. Use the Cohen's Kappa test of inter-rater reliability to test equivalence (*see* Section \@ref(itemgeneration) on item generation).</span>
+<span id="cb64-52"><a href="#cb64-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Internal consistency**. Survey items measuring the same latent variable are highly correlated. Use the Cronbach alpha test and split-half test to assess internal consistency (*see* Section \@ref(itemreduction) on item reduction).</span>
+<span id="cb64-53"><a href="#cb64-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Stability (aka Test-retest)**. Repeated measurements yield the same results. You use the test-retest construct to assess stability in the *Replication* phase.</span>
+<span id="cb64-54"><a href="#cb64-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-55"><a href="#cb64-55" aria-hidden="true" tabindex="-1"></a>There are three assessments of **validity**:</span>
+<span id="cb64-56"><a href="#cb64-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-57"><a href="#cb64-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Content validity**. The survey items cover *all* aspects of the latent variable. Use Lawshe's CVR to assess content validity (*see* Section \@ref(itemgeneration) on item generation).</span>
+<span id="cb64-58"><a href="#cb64-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Construct validity**. The survey items are properly grounded on a theory of the latent variable. Use convergent analysis and discriminant analysis to assess construct validity in the *Convergent/Discriminant Validity* phase.</span>
+<span id="cb64-59"><a href="#cb64-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Criterion validity**. The survey item results correspond to other valid measures of the same latent variable. Use concurrent analysis and predictive analysis to assess criterion validity in the *Replication* phase.</span>
+<span id="cb64-60"><a href="#cb64-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-61"><a href="#cb64-61" aria-hidden="true" tabindex="-1"></a>Survey considerations</span>
+<span id="cb64-62"><a href="#cb64-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-63"><a href="#cb64-63" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Question order, selection order</span>
+<span id="cb64-64"><a href="#cb64-64" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>respondent burden and fatigue</span>
+<span id="cb64-65"><a href="#cb64-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-66"><a href="#cb64-66" aria-hidden="true" tabindex="-1"></a>Quality of Measurement: Reliability and Validity (internal and external)</span>
+<span id="cb64-67"><a href="#cb64-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-68"><a href="#cb64-68" aria-hidden="true" tabindex="-1"></a>Pretest and pilot test</span>
+<span id="cb64-69"><a href="#cb64-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-70"><a href="#cb64-70" aria-hidden="true" tabindex="-1"></a>Probability Sampling: - simple random, systematic random, stratified random, cluster, and multistate cluster. - power analysis</span>
+<span id="cb64-71"><a href="#cb64-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-72"><a href="#cb64-72" aria-hidden="true" tabindex="-1"></a>Reporting - Descriptive statistics - Write-up</span>
+<span id="cb64-73"><a href="#cb64-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-74"><a href="#cb64-74" aria-hidden="true" tabindex="-1"></a>Continuous latent variables (e.g., level of satisfaction) can be measured with factor analysis (exploratory and confirmatory) or item response theory (IRT) models. Categorical or discrete variables (e.g., market segment) can be modeled with latent class analysis (LCA) or latent mixture modeling. You can even combine models, e.g., satisfaction within market segment.</span>
+<span id="cb64-75"><a href="#cb64-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-76"><a href="#cb64-76" aria-hidden="true" tabindex="-1"></a>In practice, you specify the model, evaluate the fit, then revise the model or add/drop items from the survey.</span>
+<span id="cb64-77"><a href="#cb64-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-78"><a href="#cb64-78" aria-hidden="true" tabindex="-1"></a>A full survey project usually consists of six phases.<span class="ot">[^01-item_selection-2]</span></span>
+<span id="cb64-79"><a href="#cb64-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-80"><a href="#cb64-80" aria-hidden="true" tabindex="-1"></a><span class="ot">[^01-item_selection-2]: </span>This section is primarily from George Mount's Data Camp course <span class="co">[</span><span class="ot">@mount</span><span class="co">]</span>.</span>
+<span id="cb64-81"><a href="#cb64-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-82"><a href="#cb64-82" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Item Generation** (Section \@ref(itemgeneration)). Start by generating a list of candidate survey items. With help from SMEs, you evaluate the equivalence (interrater reliability) and content validity of the candidate survey items and pare down the list into the final survey.</span>
+<span id="cb64-83"><a href="#cb64-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-84"><a href="#cb64-84" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Survey Administration** (Section \@ref(surveyadministration)). Administer the survey to respondents and perform an exploratory data analysis. Summarize the Likert items with plots and look for correlations among the variables.</span>
+<span id="cb64-85"><a href="#cb64-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-86"><a href="#cb64-86" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Item Reduction** (Section \@ref(itemreduction)). Explore the dimensions of the latent variable in the survey data with parallel analysis and exploratory factor analysis. Assess the internal consistency of the items with Cronbach's alpha and split-half tests, and remove items that do not add value and/or amend your theory of the number of dimensions.</span>
+<span id="cb64-87"><a href="#cb64-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-88"><a href="#cb64-88" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Confirmatory Factor Analysis** (Section \@ref(confirmatoryfactoranalysis)). Perform a formal hypothesis test of the theory that emerged from the exploratory factor analysis.</span>
+<span id="cb64-89"><a href="#cb64-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-90"><a href="#cb64-90" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Convergent/Discriminant Validity** (Section \@ref(convergentvalidity)). Test for convergent and discriminant construct validity.</span>
+<span id="cb64-91"><a href="#cb64-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-92"><a href="#cb64-92" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Replication** (Section \@ref(replication)). Establish test-retest reliability and criterion validity.</span>
+<span id="cb64-93"><a href="#cb64-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-94"><a href="#cb64-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Item Generation {#itemgeneration}</span></span>
+<span id="cb64-95"><a href="#cb64-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-96"><a href="#cb64-96" aria-hidden="true" tabindex="-1"></a>Define your latent variable(s), that is, the unquantifiable variables you intend to infer from variables you *can* quntify. E.g., "Importance of 401(k) matching"</span>
+<span id="cb64-97"><a href="#cb64-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-98"><a href="#cb64-98" aria-hidden="true" tabindex="-1"></a>After you generate a list of candidate survey items, enlist SMEs to assess their inter-rater reliability with *Cohen's Kappa* and content validity with *Lawshe's CVR*.</span>
+<span id="cb64-99"><a href="#cb64-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-100"><a href="#cb64-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cohen's Kappa</span></span>
+<span id="cb64-101"><a href="#cb64-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-102"><a href="#cb64-102" aria-hidden="true" tabindex="-1"></a>An item has inter-rater reliability if it produces consistent results across raters. One way to test this is by having SMEs take the survey. Their answers should be close to each other. Conduct an inter-rater reliability test by measuring the statistical significance of SME response agreement using the Kohen's kappa test statistic.</span>
+<span id="cb64-103"><a href="#cb64-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-104"><a href="#cb64-104" aria-hidden="true" tabindex="-1"></a>Suppose your survey measures brand loyalty and two SMEs answer 13 survey items like this. The SMEs agreed on 6 of the 13 items (46%).</span>
+<span id="cb64-105"><a href="#cb64-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-106"><a href="#cb64-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r include=FALSE}</span></span>
+<span id="cb64-107"><a href="#cb64-107" aria-hidden="true" tabindex="-1"></a><span class="in">sme &lt;- data.frame(</span></span>
+<span id="cb64-108"><a href="#cb64-108" aria-hidden="true" tabindex="-1"></a><span class="in">  RATER_A = c(1, 2, 3, 2, 1, 1, 1, 2, 3, 3, 2, 1, 1),</span></span>
+<span id="cb64-109"><a href="#cb64-109" aria-hidden="true" tabindex="-1"></a><span class="in">  RATER_B = c(1, 2, 2, 3, 3, 1, 1, 1, 2, 3, 3, 3, 1)</span></span>
+<span id="cb64-110"><a href="#cb64-110" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb64-111"><a href="#cb64-111" aria-hidden="true" tabindex="-1"></a><span class="in">sme2 &lt;- sme %&gt;% mutate(RATER_B = if_else(RATER_A == 1 &amp; RATER_B == 3, 2, RATER_B))</span></span>
+<span id="cb64-112"><a href="#cb64-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-113"><a href="#cb64-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-114"><a href="#cb64-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r paged.print=TRUE}</span></span>
+<span id="cb64-115"><a href="#cb64-115" aria-hidden="true" tabindex="-1"></a><span class="in">sme %&gt;% mutate(agreement = RATER_A == RATER_B)</span></span>
+<span id="cb64-116"><a href="#cb64-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-117"><a href="#cb64-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-118"><a href="#cb64-118" aria-hidden="true" tabindex="-1"></a>You could measure SME agreement with a simple correlation matrix (<span class="in">`cor(sme)`</span>) or by measuring the percentage of items they rate identically (<span class="in">`irr::agree(sme)`</span>), but these measures do not test for statistical validity.</span>
+<span id="cb64-119"><a href="#cb64-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-120"><a href="#cb64-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r collapse=TRUE}</span></span>
+<span id="cb64-121"><a href="#cb64-121" aria-hidden="true" tabindex="-1"></a><span class="in">cor(sme)</span></span>
+<span id="cb64-122"><a href="#cb64-122" aria-hidden="true" tabindex="-1"></a><span class="in">irr::agree(sme)</span></span>
+<span id="cb64-123"><a href="#cb64-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-124"><a href="#cb64-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-125"><a href="#cb64-125" aria-hidden="true" tabindex="-1"></a>Instead, calculate the Kohen's kappa test statistic, $\kappa$, to assess statistical validity. Cohen's kappa compares the observed agreement (accuracy) to the probability of chance agreement. $\kappa$ <span class="sc">\&gt;</span>= 0.8 is very strong agreement, $\kappa$ <span class="sc">\&gt;</span>= 0.6 substantial, $\kappa$ <span class="sc">\&gt;</span>= 0.4 moderate, and $\kappa$ <span class="sc">\&lt;</span> 0.4 is poor agreement. In this example, $\kappa$ is only 0.32 (poor agreement).</span>
+<span id="cb64-126"><a href="#cb64-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-129"><a href="#cb64-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-130"><a href="#cb64-130" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">cohen.kappa</span>(sme)</span>
+<span id="cb64-131"><a href="#cb64-131" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">cohen.kappa</span>(sme2)</span>
+<span id="cb64-132"><a href="#cb64-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-133"><a href="#cb64-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-134"><a href="#cb64-134" aria-hidden="true" tabindex="-1"></a>Use the weighted kappa for ordinal measures like Likert items (*see* <span class="co">[</span><span class="ot">Wikipedia</span><span class="co">](https://en.wikipedia.org/wiki/Cohen%27s_kappa)</span>).</span>
+<span id="cb64-135"><a href="#cb64-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-136"><a href="#cb64-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lawshe's CVR</span></span>
+<span id="cb64-137"><a href="#cb64-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-138"><a href="#cb64-138" aria-hidden="true" tabindex="-1"></a>An item has content validity if SMEs agree on its relevance to the latent variable. Test content validity with Lawshe's content validity ratio (CVR),</span>
+<span id="cb64-139"><a href="#cb64-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-140"><a href="#cb64-140" aria-hidden="true" tabindex="-1"></a>$$CVR = \frac{E - N/2}{N/2}$$ where $N$ is the number of SMEs and $E$ is the number who rate the item as *essential*. CVR can range from -1 to 1. E.g., suppose three SMEs (A, B, and C) assess the relevance of 5 survey items as "Not Necessary", "Useful", or "Essential":</span>
+<span id="cb64-141"><a href="#cb64-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-142"><a href="#cb64-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo=FALSE}</span></span>
+<span id="cb64-143"><a href="#cb64-143" aria-hidden="true" tabindex="-1"></a><span class="in">sme2 &lt;- data.frame(</span></span>
+<span id="cb64-144"><a href="#cb64-144" aria-hidden="true" tabindex="-1"></a><span class="in">  item = c(1:5),</span></span>
+<span id="cb64-145"><a href="#cb64-145" aria-hidden="true" tabindex="-1"></a><span class="in">  A = c("Essential", "Useful", "Not necesary", "Essential", "Essential"),</span></span>
+<span id="cb64-146"><a href="#cb64-146" aria-hidden="true" tabindex="-1"></a><span class="in">  B = c("Useful", "Not necesary", "Not necesary", "Useful", "Essential"),</span></span>
+<span id="cb64-147"><a href="#cb64-147" aria-hidden="true" tabindex="-1"></a><span class="in">  C = c("Not necesary", "Useful", "Essential", "Essential", "Essential")</span></span>
+<span id="cb64-148"><a href="#cb64-148" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb64-149"><a href="#cb64-149" aria-hidden="true" tabindex="-1"></a><span class="in">print(sme2)</span></span>
+<span id="cb64-150"><a href="#cb64-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-151"><a href="#cb64-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-152"><a href="#cb64-152" aria-hidden="true" tabindex="-1"></a>Use the <span class="in">`psychometric::CVratio()`</span> function to calculate CVR. The threshold *CVR* to keep or drop an item depends on the number of raters. CVR should be <span class="sc">\&gt;</span>= 0.99 for 5 experts; <span class="sc">\&gt;</span>= 0.49 for 15, and <span class="sc">\&gt;</span>= 0.29 for 40.</span>
+<span id="cb64-153"><a href="#cb64-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-156"><a href="#cb64-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-157"><a href="#cb64-157" aria-hidden="true" tabindex="-1"></a>sme2 <span class="sc">%&gt;%</span> </span>
+<span id="cb64-158"><a href="#cb64-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>item, <span class="at">names_to =</span> <span class="st">"expert"</span>, <span class="at">values_to =</span> <span class="st">"rating"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-159"><a href="#cb64-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(item) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-160"><a href="#cb64-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.groups =</span> <span class="st">"drop"</span>,</span>
+<span id="cb64-161"><a href="#cb64-161" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_sme =</span> <span class="fu">length</span>(<span class="fu">unique</span>(expert)),</span>
+<span id="cb64-162"><a href="#cb64-162" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_ess =</span> <span class="fu">sum</span>(rating <span class="sc">==</span> <span class="st">"Essential"</span>),</span>
+<span id="cb64-163"><a href="#cb64-163" aria-hidden="true" tabindex="-1"></a>            <span class="at">CVR =</span> psychometric<span class="sc">::</span><span class="fu">CVratio</span>(<span class="at">NTOTAL =</span> n_sme, <span class="at">NESSENTIAL =</span> n_ess))</span>
+<span id="cb64-164"><a href="#cb64-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-165"><a href="#cb64-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-166"><a href="#cb64-166" aria-hidden="true" tabindex="-1"></a>In this example, items vary widely in content validity from unanimous consensus for to unanimous consensus against.</span>
+<span id="cb64-167"><a href="#cb64-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-168"><a href="#cb64-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-169"><a href="#cb64-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-170"><a href="#cb64-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-171"><a href="#cb64-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Item Reduction {#itemreduction}</span></span>
+<span id="cb64-172"><a href="#cb64-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-173"><a href="#cb64-173" aria-hidden="true" tabindex="-1"></a>The third phase, explores the mapping of the factors (aka "manifest variables") to the latent variable's "dimensions" and refines the survey to exclude factors that do not map to a dimension. A latent variable may have several dimensions. E.g., "brand loyalty" may consist of "brand identification", "perceived value", and "brand trust". Exploratory factor analysis (EFA), identifies the dimensions in the data, and whether any items do *not* reveal information about the latent variable. EFA establishes the *internal reliability*, whether similar items produce similar scores.</span>
+<span id="cb64-174"><a href="#cb64-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-175"><a href="#cb64-175" aria-hidden="true" tabindex="-1"></a>Start with a parallel analysis and scree plot. This will suggest the number of factors in the data. Use this number as the input to an exploratory factor analysis.</span>
+<span id="cb64-176"><a href="#cb64-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-177"><a href="#cb64-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parallel Analysis</span></span>
+<span id="cb64-178"><a href="#cb64-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-179"><a href="#cb64-179" aria-hidden="true" tabindex="-1"></a>A <span class="co">[</span><span class="ot">scree plot</span><span class="co">](https://www.sciencedirect.com/topics/mathematics/scree-plot)</span> is a line plot of the eigenvalues. An eigenvalue is the proportion of variance explained by each factor. Only factors with eigenvalues greater than those from uncorrelated data are useful. You want to find a sharp reduction in the size of the eigenvalues (like a cliff), with the rest of the smaller eigenvalues constituting rubble (scree!). After the eigenvalues drop dramatically in size, additional factors add relatively little to the information already extracted.</span>
+<span id="cb64-180"><a href="#cb64-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-181"><a href="#cb64-181" aria-hidden="true" tabindex="-1"></a>Parallel analysis helps to make the interpretation of scree plots more objective. The eigenvalues are plotted along with eigenvalues of simulated variables with population correlations of 0. The number of eigenvalues above the point where the two lines intersect is the suggested number of factors. The rationale for parallel analysis is that useful factors account for more variance than could be expected by chance.</span>
+<span id="cb64-182"><a href="#cb64-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-183"><a href="#cb64-183" aria-hidden="true" tabindex="-1"></a><span class="in">`psych::fa.parallel()`</span> compares a scree of your data set to a random data set to identify the number of factors. The elbow below here is at 3 factors.</span>
+<span id="cb64-184"><a href="#cb64-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-185"><a href="#cb64-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.height=4}</span></span>
+<span id="cb64-186"><a href="#cb64-186" aria-hidden="true" tabindex="-1"></a><span class="in">brand_rep &lt;- read_csv(url("https://assets.datacamp.com/production/repositories/4494/datasets/59b5f2d717ddd647415d8c88aa40af6f89ed24df/brandrep-cleansurvey-extraitem.csv"))</span></span>
+<span id="cb64-187"><a href="#cb64-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-188"><a href="#cb64-188" aria-hidden="true" tabindex="-1"></a><span class="in">psych::fa.parallel(brand_rep)</span></span>
+<span id="cb64-189"><a href="#cb64-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-190"><a href="#cb64-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-191"><a href="#cb64-191" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exporatory Factor Analysis</span></span>
+<span id="cb64-192"><a href="#cb64-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-193"><a href="#cb64-193" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`psych::fa()`</span> to perform the factor analysis with your chosen number of factors. The number of factors may be the result of your parallel analysis, or the opinion of the SMEs. In this case, we'll go with the 3 factors identified by the parallel analysis.</span>
+<span id="cb64-194"><a href="#cb64-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-197"><a href="#cb64-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-198"><a href="#cb64-198" aria-hidden="true" tabindex="-1"></a>brand_rep_efa <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">3</span>)</span>
+<span id="cb64-199"><a href="#cb64-199" aria-hidden="true" tabindex="-1"></a><span class="co"># psych::scree(brand_rep) # psych makes scree plot's too.</span></span>
+<span id="cb64-200"><a href="#cb64-200" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa.diagram</span>(brand_rep_efa)</span>
+<span id="cb64-201"><a href="#cb64-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-202"><a href="#cb64-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-203"><a href="#cb64-203" aria-hidden="true" tabindex="-1"></a>Using EFA, you may tweak the number of factors or drop poorly-loading items. Each item should load highly to one and only one dimension. This one dimension is the item's primary loading. Generally, a primary loading <span class="sc">\&gt;</span> .7 is excellent, <span class="sc">\&gt;</span>.6 is very good, <span class="sc">\&gt;</span>.5 is good, <span class="sc">\&gt;</span>.4 is fair, and <span class="sc">\&lt;</span>.4 is poor. Here are the factor loadings from the 3 factor model.</span>
+<span id="cb64-204"><a href="#cb64-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-207"><a href="#cb64-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-208"><a href="#cb64-208" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>loadings</span>
+<span id="cb64-209"><a href="#cb64-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-210"><a href="#cb64-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-211"><a href="#cb64-211" aria-hidden="true" tabindex="-1"></a>The brand-rep survey items load to 3 factors well except for the <span class="in">`one_of_a_kind`</span> item. Its primary factor loading (0.309) is poor. The others are either very good (.6-.7) and excellent (<span class="sc">\&gt;</span>.7) range.</span>
+<span id="cb64-212"><a href="#cb64-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-213"><a href="#cb64-213" aria-hidden="true" tabindex="-1"></a>Look at the model eigenvalues. There should be one eigenvalue per dimension. Eigenvalues a little less than one may be contaminating the model.</span>
+<span id="cb64-214"><a href="#cb64-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-217"><a href="#cb64-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-218"><a href="#cb64-218" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>e.value</span>
+<span id="cb64-219"><a href="#cb64-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-220"><a href="#cb64-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-221"><a href="#cb64-221" aria-hidden="true" tabindex="-1"></a>Look at the factor score correlations. They should all be around 0.6. Much smaller means they are not describing the same latent variable. Much larger means they are describing the same dimension of the latent variable.</span>
+<span id="cb64-222"><a href="#cb64-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-225"><a href="#cb64-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-226"><a href="#cb64-226" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>r.scores</span>
+<span id="cb64-227"><a href="#cb64-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-228"><a href="#cb64-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-229"><a href="#cb64-229" aria-hidden="true" tabindex="-1"></a>If you have a poorly loaded dimension, drop factors one at a time from the scale. <span class="in">`one_of_a_kind`</span> loads across all three factors, but does not load strongly onto any one factor. <span class="in">`one_of_a_kind`</span> is not clearly measuring any dimension of the latent variable. Drop it and try again.</span>
+<span id="cb64-230"><a href="#cb64-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-233"><a href="#cb64-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-234"><a href="#cb64-234" aria-hidden="true" tabindex="-1"></a>brand_rep_efa <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>one_of_a_kind), <span class="at">nfactors =</span> <span class="dv">3</span>)</span>
+<span id="cb64-235"><a href="#cb64-235" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>loadings</span>
+<span id="cb64-236"><a href="#cb64-236" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>e.value</span>
+<span id="cb64-237"><a href="#cb64-237" aria-hidden="true" tabindex="-1"></a>brand_rep_efa<span class="sc">$</span>r.scores</span>
+<span id="cb64-238"><a href="#cb64-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-239"><a href="#cb64-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-240"><a href="#cb64-240" aria-hidden="true" tabindex="-1"></a>This is better. We have three dimensions of brand reputation:</span>
+<span id="cb64-241"><a href="#cb64-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-242"><a href="#cb64-242" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>items <span class="in">`well_made`</span>, <span class="in">`consistent`</span>, and <span class="in">`poor_workman_r`</span> describe *Product Quality*,</span>
+<span id="cb64-243"><a href="#cb64-243" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>items <span class="in">`higher_price`</span>, <span class="in">`lot_more`</span>, and <span class="in">`go_up`</span> describe *Willingness to Pay*, and</span>
+<span id="cb64-244"><a href="#cb64-244" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>items <span class="in">`stands_out`</span> and <span class="in">`unique`</span> describe *Product Differentiation*</span>
+<span id="cb64-245"><a href="#cb64-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-246"><a href="#cb64-246" aria-hidden="true" tabindex="-1"></a>Even if the data and your theory suggest otherwise, explore what happens when you include more or fewer factors in your EFA.</span>
+<span id="cb64-247"><a href="#cb64-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-250"><a href="#cb64-250" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-251"><a href="#cb64-251" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">2</span>)<span class="sc">$</span>loadings</span>
+<span id="cb64-252"><a href="#cb64-252" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">fa</span>(brand_rep, <span class="at">nfactors =</span> <span class="dv">4</span>)<span class="sc">$</span>loadings</span>
+<span id="cb64-253"><a href="#cb64-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-254"><a href="#cb64-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-255"><a href="#cb64-255" aria-hidden="true" tabindex="-1"></a>The two-factor loading worked okay. The 4 factor loading only loaded one variable to the fourth factor. In this example the SME expected a three-factor model and the data did not contradict the theory, so stick with three.</span>
+<span id="cb64-256"><a href="#cb64-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-257"><a href="#cb64-257" aria-hidden="true" tabindex="-1"></a>Whereas the item generation phase tested for item equivalence, the EFA phase tests for internal reliability (*consistency*) of items. Internal reliability means the survey produces consistent results. The more common statistics for assessing internal reliability are Cronbach's Alpha, and split-half.</span>
+<span id="cb64-258"><a href="#cb64-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-259"><a href="#cb64-259" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cronbach's Alpha</span></span>
+<span id="cb64-260"><a href="#cb64-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-261"><a href="#cb64-261" aria-hidden="true" tabindex="-1"></a>In general, an alpha <span class="sc">\&lt;</span>.6 is unacceptable, <span class="sc">\&lt;</span>.65 is undesirable, <span class="sc">\&lt;</span>.7 is minimally acceptable, <span class="sc">\&lt;</span>.8 is respectable, <span class="sc">\&lt;</span>.9 is very good, and <span class="sc">\&gt;</span>=.9 suggests items are *too* alike. A very low alpha means items may not be measuring the same construct, so you should drop items. A very high alpha means items are multicollinear, and you should drop items. Here is Cronbach's alpha for the brand reputation survey, after removing the poorly-loading <span class="in">`one_of_a_kind`</span> variable.</span>
+<span id="cb64-262"><a href="#cb64-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-265"><a href="#cb64-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-266"><a href="#cb64-266" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">alpha</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])<span class="sc">$</span>total<span class="sc">$</span>std.alpha</span>
+<span id="cb64-267"><a href="#cb64-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-268"><a href="#cb64-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-269"><a href="#cb64-269" aria-hidden="true" tabindex="-1"></a>This value is in the "very good" range. Cronbach's alpha is often used to measure the reliability of a single dimension. Here are the values for the 3 dimensions.</span>
+<span id="cb64-270"><a href="#cb64-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-271"><a href="#cb64-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{r collapse=TRUE}</span></span>
+<span id="cb64-272"><a href="#cb64-272" aria-hidden="true" tabindex="-1"></a><span class="in">psych::alpha(brand_rep[, 1:3])$total$std # Product Quality</span></span>
+<span id="cb64-273"><a href="#cb64-273" aria-hidden="true" tabindex="-1"></a><span class="in">psych::alpha(brand_rep[, 4:6])$total$std # Willingness to Pay</span></span>
+<span id="cb64-274"><a href="#cb64-274" aria-hidden="true" tabindex="-1"></a><span class="in">psych::alpha(brand_rep[, 7:8])$total$std # Product Differentiation</span></span>
+<span id="cb64-275"><a href="#cb64-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-276"><a href="#cb64-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-277"><a href="#cb64-277" aria-hidden="true" tabindex="-1"></a>Alpha is <span class="sc">\&gt;</span>0.7 for each dimension. Sometimes the alpha for our survey as a whole is greater than that of the dimensions. This can happen because Cronbach's alpha is sensitive to the number of items. Over-inflation of the alpha statistic can be a concern when working with surveys containing a large number of items.</span>
+<span id="cb64-278"><a href="#cb64-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-279"><a href="#cb64-279" aria-hidden="true" tabindex="-1"></a><span class="fu">### Split-Half</span></span>
+<span id="cb64-280"><a href="#cb64-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-281"><a href="#cb64-281" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`psych::splitHalf()`</span> to split the survey in half and test whether all parts of the survey contribute equally to measurement. *This method is much less popular than Cronbach's alpha.*</span>
+<span id="cb64-282"><a href="#cb64-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-285"><a href="#cb64-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-286"><a href="#cb64-286" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">splitHalf</span>(brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span>
+<span id="cb64-287"><a href="#cb64-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-288"><a href="#cb64-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-289"><a href="#cb64-289" aria-hidden="true" tabindex="-1"></a><span class="fu">## Confirmatory Factor Analysis {#confirmatoryfactoranalysis}</span></span>
+<span id="cb64-290"><a href="#cb64-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-291"><a href="#cb64-291" aria-hidden="true" tabindex="-1"></a>Whereas EFA is used to develop a theory of the number of factors needed to explain the relationships among the survey items, confirmatory factor analysis (CFA) is a formal hypothesis test of the EFA theory. CFA measures construct validity, that is, whether you are really measuring what you claim to measure.</span>
+<span id="cb64-292"><a href="#cb64-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-293"><a href="#cb64-293" aria-hidden="true" tabindex="-1"></a>These notes explain how to use CFA, but do not explain the theory. For that you need to learn about <span class="co">[</span><span class="ot">dimensionality reduction</span><span class="co">](https://www.datacamp.com/courses/dimensionality-reduction-in-r)</span>, and <span class="co">[</span><span class="ot">structural equation modeling</span><span class="co">](https://www.datacamp.com/courses/structural-equation-modeling-with-lavaan-in-r)</span>.</span>
+<span id="cb64-294"><a href="#cb64-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-295"><a href="#cb64-295" aria-hidden="true" tabindex="-1"></a>Use the **lavaan** package (latent variable analysis package), passing in the model definition. Here is the model for the three dimensions in the brand reputation survey. Lavaan's default estimator is maximum likelihood, which assumes normality. You can change it to MLR which uses robust standard errors to mitigate non-normality. The summary prints a ton of output. Concentrate on the <span class="in">`lambda`</span> - the factor loadings.</span>
+<span id="cb64-296"><a href="#cb64-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-299"><a href="#cb64-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-300"><a href="#cb64-300" aria-hidden="true" tabindex="-1"></a>brand_rep_mdl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb64-301"><a href="#cb64-301" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdQl =~ well_made + consistent + poor_workman_r"</span>,</span>
+<span id="cb64-302"><a href="#cb64-302" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WillPay =~ higher_price + lot_more + go_up"</span>,</span>
+<span id="cb64-303"><a href="#cb64-303" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdDff =~ stands_out + unique"</span>, </span>
+<span id="cb64-304"><a href="#cb64-304" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb64-305"><a href="#cb64-305" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-306"><a href="#cb64-306" aria-hidden="true" tabindex="-1"></a>brand_rep_cfa <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> brand_rep_mdl, <span class="at">data =</span> brand_rep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">estimator =</span> <span class="st">"MLR"</span>)</span>
+<span id="cb64-307"><a href="#cb64-307" aria-hidden="true" tabindex="-1"></a><span class="co"># lavaan::summary(brand_rep_cfa, fit.measures = TRUE, standardized = TRUE)</span></span>
+<span id="cb64-308"><a href="#cb64-308" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(brand_rep_cfa, <span class="at">rotation =</span> <span class="dv">4</span>)</span>
+<span id="cb64-309"><a href="#cb64-309" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">inspect</span>(brand_rep_cfa, <span class="st">"std"</span>)<span class="sc">$</span>lambda</span>
+<span id="cb64-310"><a href="#cb64-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-311"><a href="#cb64-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-312"><a href="#cb64-312" aria-hidden="true" tabindex="-1"></a>The CFA hypothesis test is a chi-square test, so is sensitive to normality assumptions and n-size. Other fit measure are reported too: <span class="sc">\*</span> Comparative Fit Index (CFI) (look for value <span class="sc">\&gt;</span>.9) <span class="sc">\*</span> Tucker-Lewis Index (TLI) (look for value <span class="sc">\&gt;</span>.9) <span class="sc">\*</span> Root mean squared Error of Approximation (RMSEA) (look for value <span class="sc">\&lt;</span>.05)</span>
+<span id="cb64-313"><a href="#cb64-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-314"><a href="#cb64-314" aria-hidden="true" tabindex="-1"></a>There are actually <span class="in">`r length(lavaan::fitMeasures(brand_rep_cfa))`</span> fit measures to choose from! Focus on CFI and TLI.</span>
+<span id="cb64-315"><a href="#cb64-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-318"><a href="#cb64-318" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-319"><a href="#cb64-319" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">fitMeasures</span>(brand_rep_cfa, <span class="at">fit.measures =</span> <span class="fu">c</span>(<span class="st">"cfi"</span>, <span class="st">"tli"</span>))</span>
+<span id="cb64-320"><a href="#cb64-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-321"><a href="#cb64-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-322"><a href="#cb64-322" aria-hidden="true" tabindex="-1"></a>This output indicates a good model because both measures are <span class="sc">\&gt;</span>.9. Check the standardized estimates for each item. The standardized factor loadings are the basis of establishing construct validity. While we call these measures 'loadings,' they are better described as correlations of each manifest item with the dimensions. As you calculated, the difference between a perfect correlation and the observed is considered 'error.' This relationship between the so-called 'true' and 'observed' scores is the basis of classical test theory.</span>
+<span id="cb64-323"><a href="#cb64-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-326"><a href="#cb64-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-327"><a href="#cb64-327" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">standardizedSolution</span>(brand_rep_cfa) <span class="sc">%&gt;%</span></span>
+<span id="cb64-328"><a href="#cb64-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-329"><a href="#cb64-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(lhs, rhs, est.std, pvalue)</span>
+<span id="cb64-330"><a href="#cb64-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-331"><a href="#cb64-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-332"><a href="#cb64-332" aria-hidden="true" tabindex="-1"></a>If you have a survey that meets your assumptions, performs well under EFA, but fails under CFA, return to your survey and revisit your scale, examine the CFA modification indices, factor variances, etc.</span>
+<span id="cb64-333"><a href="#cb64-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-334"><a href="#cb64-334" aria-hidden="true" tabindex="-1"></a><span class="fu">## Convergent/Discriminant Validity {#convergentvalidity}</span></span>
+<span id="cb64-335"><a href="#cb64-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-336"><a href="#cb64-336" aria-hidden="true" tabindex="-1"></a>Construct validity means the survey measures what it intends to measure. It is composed of convergent validity and discriminant validity. Convergent validity means factors address the same concept. Discriminant validity means factors address different aspects of the concept.</span>
+<span id="cb64-337"><a href="#cb64-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-338"><a href="#cb64-338" aria-hidden="true" tabindex="-1"></a>Test for construct validity *after* assessing CFA model strength (with CFI, TFI, and RMSEA) -- a poor-fitting model may have greater construct validity than a better-fitting model. Use the <span class="in">`semTools::reliability()`</span> function. The average variance extracted (AVE) measures convergent validity (<span class="in">`avevar`</span>) and should be <span class="sc">\&gt;</span> .5. The composite reliability (CR) measures discriminant validity (<span class="in">`omega`</span>) and should be <span class="sc">\&gt;</span> .7.</span>
+<span id="cb64-339"><a href="#cb64-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-342"><a href="#cb64-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-343"><a href="#cb64-343" aria-hidden="true" tabindex="-1"></a>semTools<span class="sc">::</span><span class="fu">reliability</span>(brand_rep_cfa)</span>
+<span id="cb64-344"><a href="#cb64-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-345"><a href="#cb64-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-346"><a href="#cb64-346" aria-hidden="true" tabindex="-1"></a>These values look good for all three dimensions. As an aside, <span class="in">`alpha`</span> is Cronbach's alpha. Do not be tempted to test reliability and validity in the same step. Start with reliability because it is a necessary but insufficient condition for validity. By checking for internal consistency first, as measured by alpha, then construct validity, as measured by AVE and CR, you establish the necessary reliability of the scale as a whole was met, then took it to the next level by checking for construct validity among the unique dimensions.</span>
+<span id="cb64-347"><a href="#cb64-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-348"><a href="#cb64-348" aria-hidden="true" tabindex="-1"></a>At this point you have established that the latent and manifest variables are related as hypothesized, and that the survey measures what you intended to measure, in this case, brand reputation.</span>
+<span id="cb64-349"><a href="#cb64-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-350"><a href="#cb64-350" aria-hidden="true" tabindex="-1"></a><span class="fu">## Replication {#replication}</span></span>
+<span id="cb64-351"><a href="#cb64-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-352"><a href="#cb64-352" aria-hidden="true" tabindex="-1"></a>The replication phase establishes criterion validity and stability (reliability). Criterion validity is a measure of the relationship between the construct and some external measure of interest. Measure criterion validity with *concurrent validity*, how well items correlate with an external metric measured at the same time, and with *predictive validity*, how well an item predicts an external metric. Stability means the survey produces similar results over repeated *test-retest* administrations.</span>
+<span id="cb64-353"><a href="#cb64-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-354"><a href="#cb64-354" aria-hidden="true" tabindex="-1"></a><span class="fu">### Criterion Validity</span></span>
+<span id="cb64-355"><a href="#cb64-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-356"><a href="#cb64-356" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Concurrent Validity</span></span>
+<span id="cb64-357"><a href="#cb64-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-358"><a href="#cb64-358" aria-hidden="true" tabindex="-1"></a>Concurrent validity is a measure of whether our latent construct is significantly correlated to some outcome measured at the same time.</span>
+<span id="cb64-359"><a href="#cb64-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-360"><a href="#cb64-360" aria-hidden="true" tabindex="-1"></a>Suppose you have an additional data set of consumer spending on the brand. The consumer's perception of the brand should correlate with their spending. Before checking for concurrent validity, standardize the data so that likert and other variable types are on the same scale.</span>
+<span id="cb64-361"><a href="#cb64-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-364"><a href="#cb64-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-365"><a href="#cb64-365" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20201004</span>)</span>
+<span id="cb64-366"><a href="#cb64-366" aria-hidden="true" tabindex="-1"></a>brand_rep <span class="ot">&lt;-</span> brand_rep <span class="sc">%&gt;%</span></span>
+<span id="cb64-367"><a href="#cb64-367" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spend =</span> ((well_made <span class="sc">+</span> consistent <span class="sc">+</span> poor_workman_r)<span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span> <span class="sc">+</span></span>
+<span id="cb64-368"><a href="#cb64-368" aria-hidden="true" tabindex="-1"></a>                  (higher_price <span class="sc">+</span> lot_more <span class="sc">+</span> go_up)<span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> <span class="dv">3</span> <span class="sc">+</span></span>
+<span id="cb64-369"><a href="#cb64-369" aria-hidden="true" tabindex="-1"></a>                  (stands_out <span class="sc">+</span> unique)<span class="sc">/</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="dv">10</span>)</span>
+<span id="cb64-370"><a href="#cb64-370" aria-hidden="true" tabindex="-1"></a>brand_rep<span class="sc">$</span>spend <span class="ot">&lt;-</span> brand_rep<span class="sc">$</span>spend <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">559</span>, <span class="dv">5</span>, <span class="dv">4</span>) <span class="co"># add randomness</span></span>
+<span id="cb64-371"><a href="#cb64-371" aria-hidden="true" tabindex="-1"></a>brand_rep_scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(brand_rep)</span>
+<span id="cb64-372"><a href="#cb64-372" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-373"><a href="#cb64-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-374"><a href="#cb64-374" aria-hidden="true" tabindex="-1"></a>Do respondents with higher scores on our the brand reputation scale also tend to spend more at the store? Build model, and latentize <span class="in">`spend`</span> as <span class="in">`Spndng`</span> and model with the <span class="in">`~~`</span> operator. Fit the model with the <span class="in">`semTools::sem()`</span> function.</span>
+<span id="cb64-375"><a href="#cb64-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-378"><a href="#cb64-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-379"><a href="#cb64-379" aria-hidden="true" tabindex="-1"></a>brand_rep_cv_mdl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb64-380"><a href="#cb64-380" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdQl =~ well_made + consistent + poor_workman_r"</span>,</span>
+<span id="cb64-381"><a href="#cb64-381" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WillPay =~ higher_price + lot_more + go_up"</span>,</span>
+<span id="cb64-382"><a href="#cb64-382" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdDff =~ stands_out + unique"</span>,</span>
+<span id="cb64-383"><a href="#cb64-383" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Spndng =~ spend"</span>,</span>
+<span id="cb64-384"><a href="#cb64-384" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Spndng ~~ PrdQl + WillPay + PrdDff"</span>,</span>
+<span id="cb64-385"><a href="#cb64-385" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb64-386"><a href="#cb64-386" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-387"><a href="#cb64-387" aria-hidden="true" tabindex="-1"></a>brand_rep_cv <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(<span class="at">data =</span> brand_rep_scaled, <span class="at">model =</span> brand_rep_cv_mdl)</span>
+<span id="cb64-388"><a href="#cb64-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-389"><a href="#cb64-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-390"><a href="#cb64-390" aria-hidden="true" tabindex="-1"></a>Here are the standardized covariances. Because the data is standardized, interpret these as correlations. The p-vales are not significant because the spending data was random.</span>
+<span id="cb64-391"><a href="#cb64-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-394"><a href="#cb64-394" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-395"><a href="#cb64-395" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">standardizedSolution</span>(brand_rep_cv) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-396"><a href="#cb64-396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rhs <span class="sc">==</span> <span class="st">"Spndng"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-397"><a href="#cb64-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>op, <span class="sc">-</span>rhs)</span>
+<span id="cb64-398"><a href="#cb64-398" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(brand_rep_cv, <span class="at">whatLabels =</span> <span class="st">"est.std"</span>, <span class="at">edge.label.cex =</span> .<span class="dv">8</span>, <span class="at">rotation =</span> <span class="dv">2</span>)</span>
+<span id="cb64-399"><a href="#cb64-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-400"><a href="#cb64-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-401"><a href="#cb64-401" aria-hidden="true" tabindex="-1"></a>Each dimension of brand reputation is positively correlated to spending history and the relationships are all significant.</span>
+<span id="cb64-402"><a href="#cb64-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-403"><a href="#cb64-403" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Predictive Validity</span></span>
+<span id="cb64-404"><a href="#cb64-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-405"><a href="#cb64-405" aria-hidden="true" tabindex="-1"></a>Predictive validity is established by regressing some future outcome on your established construct. Assess predictive validity just as you would with any linear regression -- regression estimates and p-values (<span class="in">`starndardizedSolution()`</span>), and the r-squared coefficient of determination <span class="in">`inspect()`</span>.</span>
+<span id="cb64-406"><a href="#cb64-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-407"><a href="#cb64-407" aria-hidden="true" tabindex="-1"></a>Build a regression model with the single <span class="in">`~`</span> operator. Then fit the model to the data as before.</span>
+<span id="cb64-408"><a href="#cb64-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-411"><a href="#cb64-411" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-412"><a href="#cb64-412" aria-hidden="true" tabindex="-1"></a>brand_rep_pv_mdl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb64-413"><a href="#cb64-413" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdQl =~ well_made + consistent + poor_workman_r"</span>,</span>
+<span id="cb64-414"><a href="#cb64-414" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WillPay =~ higher_price + lot_more + go_up"</span>,</span>
+<span id="cb64-415"><a href="#cb64-415" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PrdDff =~ stands_out + unique"</span>,</span>
+<span id="cb64-416"><a href="#cb64-416" aria-hidden="true" tabindex="-1"></a>  <span class="st">"spend ~ PrdQl + WillPay + PrdDff"</span>,</span>
+<span id="cb64-417"><a href="#cb64-417" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb64-418"><a href="#cb64-418" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-419"><a href="#cb64-419" aria-hidden="true" tabindex="-1"></a>brand_rep_pv <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">sem</span>(<span class="at">data =</span> brand_rep_scaled, <span class="at">model =</span> brand_rep_pv_mdl)</span>
+<span id="cb64-420"><a href="#cb64-420" aria-hidden="true" tabindex="-1"></a><span class="co">#lavaan::summary(brand_rep_pv, standardized = T, fit.measures = T, rsquare = T)</span></span>
+<span id="cb64-421"><a href="#cb64-421" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(brand_rep_pv, <span class="at">whatLabels =</span> <span class="st">"est.std"</span>, <span class="at">edge.label.cex =</span> .<span class="dv">8</span>, <span class="at">rotation =</span> <span class="dv">2</span>)</span>
+<span id="cb64-422"><a href="#cb64-422" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">standardizedSolution</span>(brand_rep_pv) <span class="sc">%&gt;%</span> </span>
+<span id="cb64-423"><a href="#cb64-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"~"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-424"><a href="#cb64-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb64-425"><a href="#cb64-425" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">inspect</span>(brand_rep_pv, <span class="st">"r2"</span>)</span>
+<span id="cb64-426"><a href="#cb64-426" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-427"><a href="#cb64-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-428"><a href="#cb64-428" aria-hidden="true" tabindex="-1"></a>There is a statistically significant relationship between one dimension of brand quality (Willingness to Pay) and spending. At this point you may want to drop the other two dimensions. However, the R\^2 is not good - only 7% of the variability in Spending can be explained by the three dimension of our construct.</span>
+<span id="cb64-429"><a href="#cb64-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-430"><a href="#cb64-430" aria-hidden="true" tabindex="-1"></a>Factor scores represent individual respondents' standing on a latent factor. While not used for scale validation per se, factor scores can be used for customer segmentation via clustering, network analysis and other statistical techniques.</span>
+<span id="cb64-431"><a href="#cb64-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-432"><a href="#cb64-432" aria-hidden="true" tabindex="-1"></a><span class="in">```{r test385}</span></span>
+<span id="cb64-433"><a href="#cb64-433" aria-hidden="true" tabindex="-1"></a><span class="in">brand_rep_cfa &lt;- lavaan::cfa(brand_rep_pv_mdl, data = brand_rep_scaled)</span></span>
+<span id="cb64-434"><a href="#cb64-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-435"><a href="#cb64-435" aria-hidden="true" tabindex="-1"></a><span class="in">brand_rep_cfa_scores &lt;- lavaan::predict(brand_rep_cfa) %&gt;% as.data.frame()</span></span>
+<span id="cb64-436"><a href="#cb64-436" aria-hidden="true" tabindex="-1"></a><span class="in">psych::describe(brand_rep_cfa_scores)</span></span>
+<span id="cb64-437"><a href="#cb64-437" aria-hidden="true" tabindex="-1"></a><span class="in">psych::multi.hist(brand_rep_cfa_scores)</span></span>
+<span id="cb64-438"><a href="#cb64-438" aria-hidden="true" tabindex="-1"></a><span class="in">map(brand_rep_cfa_scores, shapiro.test)</span></span>
+<span id="cb64-439"><a href="#cb64-439" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-440"><a href="#cb64-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-441"><a href="#cb64-441" aria-hidden="true" tabindex="-1"></a>These scores are not normally distributed, which makes clustering a great choice for modeling factor scores. Clustering does not mean distance-based clustering, such as K-means, in this context. Mixture models consider data as coming from a distribution which itself is a mixture of clusters. To learn more about model-based clustering in the <span class="co">[</span><span class="ot">Hierarchical and Mixed Effects Models</span><span class="co">](https://www.datacamp.com/courses/hierarchical-and-mixed-effects-models)</span> DataCamp course.</span>
+<span id="cb64-442"><a href="#cb64-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-443"><a href="#cb64-443" aria-hidden="true" tabindex="-1"></a>Factor scores can be extracted from a structural equation model and used as inputs in other models. For example, you can use the factor scores from the brand reputation dimensions as regressors for a regrssion on spending.</span>
+<span id="cb64-444"><a href="#cb64-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-445"><a href="#cb64-445" aria-hidden="true" tabindex="-1"></a><span class="in">```{r test397}</span></span>
+<span id="cb64-446"><a href="#cb64-446" aria-hidden="true" tabindex="-1"></a><span class="in">brand_rep_fs_reg_dat &lt;- bind_cols(brand_rep_cfa_scores, spend = brand_rep$spend)</span></span>
+<span id="cb64-447"><a href="#cb64-447" aria-hidden="true" tabindex="-1"></a><span class="in">brand_rep_fs_reg &lt;- lm(spend ~ PrdQl + WillPay + PrdDff, data = brand_rep_fs_reg_dat)</span></span>
+<span id="cb64-448"><a href="#cb64-448" aria-hidden="true" tabindex="-1"></a><span class="in">summary(brand_rep_fs_reg)$coef</span></span>
+<span id="cb64-449"><a href="#cb64-449" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-450"><a href="#cb64-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-451"><a href="#cb64-451" aria-hidden="true" tabindex="-1"></a>The coefficients and r-squared of the lm() and sem() models closely resemble each other, but keeping the regression inside the lavaan framework provides more information (as witnessed in the higher estimates and r-squared). A construct, once validated, can be combined with a wide range of outcomes and models to produce valuable information about consumer behavior and habits.</span>
+<span id="cb64-452"><a href="#cb64-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-453"><a href="#cb64-453" aria-hidden="true" tabindex="-1"></a><span class="fu">### Test-Retest Reliability</span></span>
+<span id="cb64-454"><a href="#cb64-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-455"><a href="#cb64-455" aria-hidden="true" tabindex="-1"></a>Test-retest reliability is the ability to achieve the same result from a respondent at two closely-spaced points in time (repeated measures).</span>
+<span id="cb64-456"><a href="#cb64-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-457"><a href="#cb64-457" aria-hidden="true" tabindex="-1"></a>Suppose you had two surveys, identified by an <span class="in">`id`</span> field.</span>
+<span id="cb64-458"><a href="#cb64-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-459"><a href="#cb64-459" aria-hidden="true" tabindex="-1"></a><span class="in">```{r test411}</span></span>
+<span id="cb64-460"><a href="#cb64-460" aria-hidden="true" tabindex="-1"></a><span class="in"># svy_1 &lt;- brand_rep[sample(1:559, 300),] %&gt;% as.data.frame()</span></span>
+<span id="cb64-461"><a href="#cb64-461" aria-hidden="true" tabindex="-1"></a><span class="in"># svy_2 &lt;- brand_rep[sample(1:559, 300),] %&gt;% as.data.frame()</span></span>
+<span id="cb64-462"><a href="#cb64-462" aria-hidden="true" tabindex="-1"></a><span class="in"># survey_test_retest &lt;- psych::testRetest(t1 = svy_1, t2 = svy_2, id = "id")</span></span>
+<span id="cb64-463"><a href="#cb64-463" aria-hidden="true" tabindex="-1"></a><span class="in"># survey_test_retest$r12</span></span>
+<span id="cb64-464"><a href="#cb64-464" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-465"><a href="#cb64-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-466"><a href="#cb64-466" aria-hidden="true" tabindex="-1"></a>An r\^2 <span class="sc">\&lt;</span>.7 is unacceptable, <span class="sc">\&lt;</span>.9 good, and <span class="sc">\&gt;</span>.9 very good. This one is unacceptable.</span>
+<span id="cb64-467"><a href="#cb64-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-468"><a href="#cb64-468" aria-hidden="true" tabindex="-1"></a>One way to check for replication is by splitting the data in half.</span>
+<span id="cb64-469"><a href="#cb64-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-470"><a href="#cb64-470" aria-hidden="true" tabindex="-1"></a><span class="in">```{r test422}</span></span>
+<span id="cb64-471"><a href="#cb64-471" aria-hidden="true" tabindex="-1"></a><span class="in"># svy &lt;- bind_rows(svy_1, svy_2, .id = "time")</span></span>
+<span id="cb64-472"><a href="#cb64-472" aria-hidden="true" tabindex="-1"></a><span class="in"># </span></span>
+<span id="cb64-473"><a href="#cb64-473" aria-hidden="true" tabindex="-1"></a><span class="in"># psych::describeBy(svy, "time")</span></span>
+<span id="cb64-474"><a href="#cb64-474" aria-hidden="true" tabindex="-1"></a><span class="in"># </span></span>
+<span id="cb64-475"><a href="#cb64-475" aria-hidden="true" tabindex="-1"></a><span class="in"># brand_rep_test_retest &lt;- psych::testRetest(</span></span>
+<span id="cb64-476"><a href="#cb64-476" aria-hidden="true" tabindex="-1"></a><span class="in">#   t1 = filter(svy, time == 1),</span></span>
+<span id="cb64-477"><a href="#cb64-477" aria-hidden="true" tabindex="-1"></a><span class="in">#   t2 = filter(svy, time == 2),</span></span>
+<span id="cb64-478"><a href="#cb64-478" aria-hidden="true" tabindex="-1"></a><span class="in">#   id = "id")</span></span>
+<span id="cb64-479"><a href="#cb64-479" aria-hidden="true" tabindex="-1"></a><span class="in"># </span></span>
+<span id="cb64-480"><a href="#cb64-480" aria-hidden="true" tabindex="-1"></a><span class="in"># brand_rep_test_retest$r12</span></span>
+<span id="cb64-481"><a href="#cb64-481" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb64-482"><a href="#cb64-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-483"><a href="#cb64-483" aria-hidden="true" tabindex="-1"></a>If the correlation of scaled scores across time 1 and time 2 is greater than .9, that indicates very strong test-retest reliability. This measure can be difficult to collect because it requires the same respondents to answer the survey at two points in time. However, it's a good technique to have in your survey development toolkit.</span>
+<span id="cb64-484"><a href="#cb64-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-485"><a href="#cb64-485" aria-hidden="true" tabindex="-1"></a>When validating a scale, it's a good idea to split the survey results into two samples, using one for EFA and one for CFA. This works as a sort of cross-validation such that the overall fit of the model is less likely due to chance of any one sample's makeup.</span>
+<span id="cb64-486"><a href="#cb64-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-489"><a href="#cb64-489" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb64-490"><a href="#cb64-490" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_efa_data &lt;- brand_rep[1:280,]</span></span>
+<span id="cb64-491"><a href="#cb64-491" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_cfa_data &lt;- brand_rep[281:559,]</span></span>
+<span id="cb64-492"><a href="#cb64-492" aria-hidden="true" tabindex="-1"></a><span class="co">#  </span></span>
+<span id="cb64-493"><a href="#cb64-493" aria-hidden="true" tabindex="-1"></a><span class="co"># efa &lt;- psych::fa(brand_rep_efa_data, nfactors = 3)</span></span>
+<span id="cb64-494"><a href="#cb64-494" aria-hidden="true" tabindex="-1"></a><span class="co"># efa$loadings</span></span>
+<span id="cb64-495"><a href="#cb64-495" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb64-496"><a href="#cb64-496" aria-hidden="true" tabindex="-1"></a><span class="co"># brand_rep_cfa &lt;- lavaan::cfa(brand_rep_mdl, data = brand_rep_cfa_data)</span></span>
+<span id="cb64-497"><a href="#cb64-497" aria-hidden="true" tabindex="-1"></a><span class="co"># lavaan::inspect(brand_rep_cfa, what = "call")</span></span>
+<span id="cb64-498"><a href="#cb64-498" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb64-499"><a href="#cb64-499" aria-hidden="true" tabindex="-1"></a><span class="co"># lavaan::fitmeasures(brand_rep_cfa)[c("cfi","tli","rmsea")]</span></span>
+<span id="cb64-500"><a href="#cb64-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-501"><a href="#cb64-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

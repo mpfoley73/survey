@@ -1,0 +1,163 @@
+# Case Study: NHANES
+
+The sample design report outline is from @valliant2013. We'll use the data from the *National Comorbidity Survey Replication (NCS-R)* featured in @Heeringa2017. This was a 2002 study of mental illness. The sample design was an equal probability, multistage sample.
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+library(janitor)
+library(survey)
+library(srvyr)
+library(gtsummary)
+```
+
+## Executive summary
+
+- Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.
+- Describe the purpose of this document.
+- Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). 
+- Discuss the contents of the remaining section of the report.  
+
+## Sample design
+
+**Description of the target population.** 
+
+The target population was adults aged 18 and older residing in the 48 contiguous United States.
+
+**Describe the sampling frame including the date and source database.** 
+
+The sampling frame included households in the 48 contiguous United States. The survey was conducted between February 2001 and April 2003. The source database for the sampling frame was the Inter-university Consortium for Political and Social Research (ICPSR), which provided the necessary geographic and demographic information to ensure a nationally representative sample.
+
+**Describe the type of sample and method of sample selection to be used.** 
+
+The sampling strategy was a multi-stage clustered area probability sample. 
+  - Stage 1 was to select primary sampling units. The entire country (48 contiguous states) was divided into primary sampling units (PSUs), composed of counties or groups of contiguous counties. A random sample of PSUs was selected.
+  - Stage 2 was to select segments. The selected PSUs were subdivided into segments, usually census tracts or block groups. A random sample of segments was selected.
+  - Stage 3 was to select households. A random sample of households was selected.
+  - Stage 4 was to select respondents. A person was randomly selected from the household.
+
+## Sample size and allocation
+
+- Optimization requirements
+  – Optimization details including constraints and budget.  
+  – Detail the minimum domain sizes and mechanics used to determine  the sizes. 
+- Optimization results  
+  – Results: minimum respondent sample size per stratum  
+  – Marginal sample sizes for key reporting domains  
+  – Estimated precision achieved by optimization results  
+- Inflation adjustments to allocation solution  
+  – Nonresponse adjustments  
+  – Adjustments for ineligible sample members  
+- Final sample allocation  
+  – Marginal sample sizes for key reporting domains  
+- Sensitivity analysis  
+  – Results from comparing deviations to allocation after introducing  changes to the optimization system  
+ 
+```{r}
+# Downloaded from book web site
+# https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions
+# https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip
+nhanes <- foreign::read.dta("input/nhanes1112_sub_10jun2016.dta")
+
+nhanes_des <- as_survey_design(
+  nhanes,
+  ids = sdmvpsu,
+  strata = sdmvstra,
+  nest = TRUE
+)
+```
+
+## Descriptive Analysis
+
+### Counts
+
+How many U.S. adults have experience irregular heartbeats in their lifetime?
+
+```{r}
+nhanes_des |>
+  survey_count(.by = irregular, vartype = c("se", "ci", "cv")) |>
+  adorn_totals(, fill = NA,,, n) |>
+  gt::gt() |>
+  gt::fmt_number(n:n_upp, decimals = 0) |>
+  gt::fmt_number(n_cv, decimals = 2) |>
+  gt::cols_label(
+    n = "Estimted Total Lifetime MDE",
+    n_se = "Standard Error",
+    n_low = "95% CI (low)",
+    n_upp = "95% CI (upp)",
+    n_cv = "CV"
+  )
+```
+
+### Sums
+
+What is the total number of participated at 18 or over by educational category? Sum `age18p`.
+
+```{r}
+nhanes_des |>
+  summarize(
+    .by = edcat, 
+    Tot = survey_total(age18p, na.rm = TRUE, vartype = c("se", "ci", "var", "cv"))
+  ) |>
+  adorn_totals(, fill = NA,,, Tot, Tot) |>
+  gt::gt() |>
+  gt::fmt_number(Tot:Tot_var, decimals = 0) |>
+  gt::fmt_number(Tot_cv, decimals = 2)
+```
+
+### Means and Proportions
+
+What was the mean systolic blood pressure by marital status? Calculate mean(`BPXSY1`).
+
+```{r}
+nhanes_des |>
+  summarize(
+    .by = marcat,
+    M = survey_mean(BPXSY1, na.rm = TRUE, vartype = c("se", "ci"))
+  ) |>
+  gt::gt() |>
+  gt::fmt_number(decimals = 0)
+```
+
+What is the probability of holding each marital status? Calculate the proportion of `marcat`.
+
+```{r}
+nhanes_des |>
+  summarize(
+    .by = marcat,
+    M = survey_prop()
+  ) |>
+  adorn_totals(, fill = NA,,, M) |>
+  gt::gt() |>
+  gt::fmt_number(M:M_se, decimals = 3)
+```
+
+### Quantiles
+
+What was the IQR of systolic blood pressure by marital status? Calculate the IQR of `BPXSY1`.
+
+```{r}
+nhanes_des |>
+  summarize(
+    .by = marcat,
+    Q = survey_quantile(BPXSY1, quantiles = c(.25, .5, .75))
+  ) |>
+  gt::gt() |>
+  gt::fmt_number(ends_with("se"), decimals = 2)
+```
+
+### Ratios
+
+Estimate the ratio of high-density total cholesterol.
+
+```{r}
+nhanes_des |> 
+  filter(age >= 18) |>
+  summarize(
+    n = survey_total(),
+    R = survey_ratio(lbdhdd, lbxtc, na.rm = TRUE, vartype = c("se", "ci"))
+  ) |>
+  gt::gt() |>
+  gt::fmt_number(everything(), decimals = 3)
+```
+

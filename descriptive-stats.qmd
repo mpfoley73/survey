@@ -1,0 +1,247 @@
+# Descriptive Statistics {#sec-descriptive-stats}
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+library(janitor)
+library(survey)
+library(srvyr)
+library(gtsummary)
+```
+
+```{r include=FALSE}
+load("input/api.Rdata")
+```
+
+Point estimates such as totals, means, variances, etc. may be the primary objective of the survey, or just an exploratory step prior to a multivariate analysis. @Heeringa2017 explains the math behind sample statistics. @zimmer2024 explains how to calculate them using the *srvyr* package.
+
+## Survey Summary
+
+```{r}
+apisrs_des |>
+  tbl_svysummary(
+    by  = sch.wide, 
+    include = c(api00, target, growth, awards, comp.imp)
+  ) |>
+  modify_spanning_header(all_stat_cols() ~ "Met Growth Target") |>
+  as_gt() |>
+  gt::tab_header(
+    title = "Simple Random Sample Survey Summary"
+  ) |>
+  gt::tab_options(heading.align = "left")
+```
+
+
+## Point Estimates
+
+How many schools met the growth target? `survey_count()` returns a scaled row count. If you are collecting other statistics, use `survey_total(1)` to sum the rows. Use the `vartype` parameter to add cols for interval-related data around the estimate.
+
+::: panel-tabset
+
+### SRS
+
+```{r warning=FALSE}
+apisrs_pe <-
+  apisrs_des |>
+  group_by(sch.wide) |>
+  cascade(
+    Schools = survey_total(1, vartype = NULL),
+    Proportion = survey_mean(proportion = TRUE, vartype = NULL),
+    EnrollSum = survey_total(enroll, vartype = NULL),
+    EnrollMean = survey_mean(enroll, vartype = c("se", "ci")),
+    EnrollIQR = survey_quantile(enroll, quantiles = c(.25, .75), vartype = NULL)
+  )
+```
+
+```{r}
+#| code-fold: true
+apisrs_pe |>
+  gt::gt() |>
+  gt::fmt_number(columns = c(2, 4:10), decimals = 0) |>
+  gt::fmt_percent(columns = 3, decimals = 0) |>
+  gt::tab_spanner("Mean Enrollment", starts_with("EnrollMean")) |>
+  gt::tab_spanner("IQR", starts_with("EnrollIQR")) |>
+  gt::cols_label(
+    sch.wide = "Met Target",
+      EnrollMean = "Mean",
+      EnrollMean_se = "SE",
+      EnrollMean_low = "Low",
+      EnrollMean_upp = "Upp",
+      EnrollIQR_q25 = "Q25",
+      EnrollIQR_q75 = "Q75"
+  )
+```
+
+### Stratified
+
+```{r warning=FALSE}
+apistrat_pe <-
+  apistrat_des |>
+  group_by(sch.wide) |>
+  cascade(
+    Schools = survey_total(1, vartype = NULL),
+    Proportion = survey_mean(proportion = TRUE, vartype = NULL),
+    EnrollSum = survey_total(enroll, vartype = NULL),
+    EnrollMean = survey_mean(enroll, vartype = c("se", "ci")),
+    EnrollIQR = survey_quantile(enroll, quantiles = c(.25, .75), vartype = NULL)
+  )
+```
+
+```{r}
+#| code-fold: true
+apistrat_pe |>
+  gt::gt() |>
+  gt::fmt_number(columns = c(2, 4:10), decimals = 0) |>
+  gt::fmt_percent(columns = 3, decimals = 0) |>
+  gt::tab_spanner("Mean Enrollment", starts_with("EnrollMean")) |>
+  gt::tab_spanner("IQR", starts_with("EnrollIQR")) |>
+  gt::cols_label(
+    sch.wide = "Met Target",
+      EnrollMean = "Mean",
+      EnrollMean_se = "SE",
+      EnrollMean_low = "Low",
+      EnrollMean_upp = "Upp",
+      EnrollIQR_q25 = "Q25",
+      EnrollIQR_q75 = "Q75"
+  )
+```
+
+### Cluster
+
+```{r warning=FALSE}
+apiclus2_pe <-
+  apiclus2_des |>
+  group_by(sch.wide) |>
+  cascade(
+    Schools = survey_total(1, vartype = NULL),
+    Proportion = survey_mean(proportion = TRUE, vartype = NULL),
+    EnrollSum = survey_total(enroll, vartype = NULL),
+    EnrollMean = survey_mean(enroll, vartype = c("se", "ci")),
+    # EnrollIQR = survey_quantile(enroll, quantiles = c(.25, .75), vartype = NULL)
+  )
+```
+
+```{r}
+#| code-fold: true
+apiclus2_pe |>
+  gt::gt() |>
+  gt::fmt_number(columns = c(2, 4:8), decimals = 0) |>
+  gt::fmt_percent(columns = 3, decimals = 0) |>
+  gt::tab_spanner("Mean Enrollment", starts_with("EnrollMean")) |>
+  gt::tab_spanner("IQR", starts_with("EnrollIQR")) |>
+  gt::cols_label(
+    sch.wide = "Met Target",
+    EnrollMean = "Mean",
+    EnrollMean_se = "SE",
+    EnrollMean_low = "Low",
+    EnrollMean_upp = "Upp"
+    # EnrollIQR_q25 = "Q25",
+    # EnrollIQR_q75 = "Q75"
+  )
+```
+
+:::
+
+## Bivariate Relationships
+
+Bivariate statistics include ratios and correlations.
+
+::: panel-tabset
+
+### SRS
+
+```{r warning=FALSE}
+apisrs_bv <-
+  apisrs_des |>
+  group_by(sch.wide) |>
+  cascade(
+    Meals = survey_total(meals, vartype = NULL),
+    Enrollment = survey_total(enroll, vartype = NULL),
+    RatioEst = survey_ratio(meals, enroll),
+    CorrEst = survey_corr(meals, enroll)
+  )
+```
+
+```{r}
+#| code-fold: true
+apisrs_bv |>
+  gt::gt() |>
+  gt::fmt_number(columns = c(2:3), decimals = 0) |>
+  gt::fmt_number(columns = c(4:7), decimals = 4) |>
+  gt::fmt_percent(columns = 3, decimals = 0) |>
+  gt::tab_spanner("Ratio", starts_with("Ratio")) |>
+  gt::tab_spanner("Correlation", starts_with("Corr")) |>
+  gt::cols_label(
+    sch.wide = "Met Target",
+    RatioEst = "Est",
+    RatioEst_se = "SE",
+    CorrEst = "Est",
+    CorrEst_se = "SE"
+  )
+```
+
+### Stratified
+
+```{r warning=FALSE}
+apistrat_bv <-
+  apisrs_des |>
+  group_by(sch.wide) |>
+  cascade(
+    Meals = survey_total(meals, vartype = NULL),
+    Enrollment = survey_total(enroll, vartype = NULL),
+    RatioEst = survey_ratio(meals, enroll),
+    CorrEst = survey_corr(meals, enroll)
+  )
+```
+
+```{r}
+#| code-fold: true
+apistrat_bv |>
+  gt::gt() |>
+  gt::fmt_number(columns = c(2:3), decimals = 0) |>
+  gt::fmt_number(columns = c(4:7), decimals = 4) |>
+  gt::fmt_percent(columns = 3, decimals = 0) |>
+  gt::tab_spanner("Ratio", starts_with("Ratio")) |>
+  gt::tab_spanner("Correlation", starts_with("Corr")) |>
+  gt::cols_label(
+    sch.wide = "Met Target",
+    RatioEst = "Est",
+    RatioEst_se = "SE",
+    CorrEst = "Est",
+    CorrEst_se = "SE"
+  )
+```
+
+### Cluster
+
+```{r warning=FALSE}
+apiclus2_bv <-
+  apisrs_des |>
+  group_by(sch.wide) |>
+  cascade(
+    Meals = survey_total(meals, vartype = NULL),
+    Enrollment = survey_total(enroll, vartype = NULL),
+    RatioEst = survey_ratio(meals, enroll),
+    CorrEst = survey_corr(meals, enroll)
+  )
+```
+
+```{r}
+#| code-fold: true
+apiclus2_bv |>
+  gt::gt() |>
+  gt::fmt_number(columns = c(2:3), decimals = 0) |>
+  gt::fmt_number(columns = c(4:7), decimals = 4) |>
+  gt::fmt_percent(columns = 3, decimals = 0) |>
+  gt::tab_spanner("Ratio", starts_with("Ratio")) |>
+  gt::tab_spanner("Correlation", starts_with("Corr")) |>
+  gt::cols_label(
+    sch.wide = "Met Target",
+    RatioEst = "Est",
+    RatioEst_se = "SE",
+    CorrEst = "Est",
+    CorrEst_se = "SE"
+  )
+```
+
+:::

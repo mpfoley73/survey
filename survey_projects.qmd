@@ -1,0 +1,207 @@
+# Survey Projects {#sec-projects}
+
+Survey analysis starts with a problem/objectives statement, understanding of the sample design, respondent attributes, and underlying constructs. Only then does the data analysis begin. The survey objective may be to describe the characteristics of the target population, or to infer statistical relationship (causal or associative).
+
+## Sources of Error
+
+When planning for a new survey project, be aware of these sources of error [@zimmer2024]:
+
+-   **Coverage Error**: The sampling frame from which participants are selected isn't representative of the target population.
+-   **Sampling Error**: The difference between all potential samples under the same sampling method.
+-   **Nonresponse Error**: Differences between responders and non-responders to the survey (unit nonresponse) or a question (item nonresponse).
+-   **Adjustment Error**: Error introduced during post-survey statistical adjustments.
+-   **Validity**: A question doesn't quite measure the research topic.
+-   **Measurement Error**: An answer doesn't quite appropriate to the question.
+-   **Processing Error**: The researcher makes invalid edits when cleaning and coding the responses.
+
+## Survey Planning Document
+
+A survey project will benefit from clearly thinking through the questions it aims to answer and how the survey will answer them. The sections below are a kind of project planning document template.
+
+#### 1. Overview {.unnumbered}
+
+-   **Project Title**: \[Name of the survey project\].
+
+    > *2024 Market Trends Survey*
+
+-   **Stakeholders**: \[List all primary business groups and stakeholders\].
+
+    > *Marketing, Product Development, and Sales Teams*
+
+-   **Survey Objective**: \[Outline what you aim to learn or measure with this survey\].
+
+    > *To understand consumer interest in emerging product features to inform 2025 product line decisions.*
+
+-   **Intended Use of Survey Results**: \[Describe how the results will be used, e.g., market analysis, customer feedback, product development\]
+
+    > *Insights will shape product feature prioritization and guide marketing messaging for the upcoming year.*
+
+#### 2. Target Audience {.unnumbered}
+
+-   **Demographics**: Age, gender, location, job family, company organization, job tenure, etc.
+
+    > *Ages 25-45, primarily located in urban areas across North America*.
+
+-   **Sample Size and Sampling Method**: Desired number of respondents, sampling method (e.g., random, stratified, etc.). If using a stratified design, consider selection weighting responses in the analysis phase. Selection weights are usually constructed so that the sum of weights equals the population size. Weights also often account for nonresponse rates.
+
+    > *Target sample size of 1,000 respondents, with stratified sampling by age group and location to ensure diverse representation.*
+
+-   **Criteria for Participation**: \[Specific qualifications for respondents, such as existing customers, location, or other demographics\].
+
+    > *Existing customers and those who have interacted with our brand online within the past year.*
+
+-   **Expected Response Rate**: \[Estimate based on previous surveys or research\].
+
+    > *10-15% based on similar previous surveys.*
+
+#### 3. Survey Design {.unnumbered}
+
+-   **Survey Mode**: \[Indicate online, telephone, in-person, etc.\].
+
+    > *Online (distributed via email and social media).*
+
+-   **Question Types**: \[Types of questions, e.g., multiple-choice, Likert scale, open-ended\].
+
+    > *Combination of multiple-choice, Likert scale, and a few open-ended questions for qualitative insights.*
+
+-   **Estimated Time for Completion**: \[Average time it should take respondents to complete the survey\].
+
+    > *Approximately 5-7 minutes*
+
+-   **Question Development**: Provide a list of tentative questions or topics; ensure they align with objectives. It may be helpful to first outline the topics and state why each question or topic is important to the research question(s) [@zimmer2024]. To maximize the validity of the questions, consider piloting questions to a test group. Item selection is discussed more fully in @sec-item-selection.
+
+    > *“How likely are you to purchase a product with \[Feature X\]?” (Scale: Very Unlikely to Very Likely)*
+    >
+    > *“What factors influence your decision to purchase this type of product?” (Check all that apply)*
+    >
+    > *“Please describe any features you feel are missing from our current products.” (Open-ended)*
+
+#### 4. Timeline and Milestones {.unnumbered}
+
+-   **Pre-survey Activities**: \[Date ranges for planning activities, including approvals, survey design, and testing\].
+
+    > *Survey design completion: December 1*
+    >
+    > *Stakeholder approval: December 5*
+    >
+    > *Survey testing: December 6 - 10*
+
+-   **Survey Launch Date**: \[Target launch date\].
+
+    > *December 15*
+
+-   **Data Collection Period**: \[Duration for data collection, including reminders if applicable\].
+
+    > *December 15 - 30 (with reminder emails on December 20 and 27)*
+
+-   **Analysis Period**: \[Estimate of the time required to analyze results\].
+
+    > *January 2 - 10*
+
+-   **Reporting Deadline**: \[Date to deliver insights to stakeholders\].
+
+    > *January 15*
+
+#### 5. Distribution and Communication {.unnumbered}
+
+-   **Survey Platform/Tool**: \[Tool or software for administering the survey, e.g., Qualtrics, Google Forms\].
+
+    > *Qualtrics*
+
+-   **Distribution Channels**: \[Email, SMS, website, in-person, etc.\].
+
+    > *Email (main channel), with follow-up reminders, plus social media targeting for broader reach*
+
+-   **Communications Plan**: \[Plan for notifying respondents about the survey, follow-ups, and thank-yous\].
+
+    > *Initial email to respondents on December 15, personalized with a greeting and clear subject line*
+    >
+    > *Two follow-up reminders to non-responders*
+    >
+    > *Thank-you message and incentive (discount code) for all participants after completion*
+
+#### 6. Data Handling and Privacy {.unnumbered}
+
+-   **Confidentiality Assurance**: \[Details on how respondents’ information will be protected\].
+
+    > *Respondents will remain anonymous, with aggregated data only used for analysis.*
+
+-   **Data Storage Plan**: \[Describe where the data will be stored and for how long\].
+
+    > *Data will be stored on secure internal servers and deleted after 6 months.*
+
+-   **Compliance with Regulations**: \[Outline adherence to GDPR, CCPA, or any internal data handling policies\].
+
+    > *Compliance with GDPR for respondents in the EU, ensuring opt-in consent and secure data handling practices.*
+
+#### 7. Success Criteria and KPIs {.unnumbered}
+
+-   **Response Rate Target**: \[Define an acceptable response rate\].
+
+    > *Aim for a 12% response rate, based on past surveys.*
+
+-   **Data Quality Goals**: \[Define any measures for data quality, such as completeness, reliability, etc.\].
+
+    > *Seek at least 95% question completion rate and minimal drop-offs after question 3.*
+
+-   **Key Performance Indicators (KPIs)**: \[List KPIs for measuring survey success, like completion rate, question abandonment rate\].
+
+    > *Overall response rate Average completion time (target of 5 minutes) Open-ended question completion rate for additional insights*
+
+#### 8. Risk Assessment {.unnumbered}
+
+-   **Potential Challenges**: \[Identify challenges, such as low response rates or survey fatigue\].
+
+    > *Risk of low response rate due to survey timing near holidays*
+    >
+    > *Potential survey fatigue among respondents who have completed previous surveys this year*
+
+-   **Risk Mitigation Strategies**: \[Plan to address potential issues; e.g., incentives for completion, reminder schedule\].
+
+    > *Offer an incentive (discount code)*
+    >
+    > *Limit survey length to under 10 questions to maintain engagement*
+
+#### 9. Budget {.unnumbered}
+
+-   **Estimated Cost Breakdown**: \[Include costs for software, incentives, and distribution\].
+
+    > *Survey tool (Qualtrics): \$300 *
+    >
+    > *Incentives (discount codes): \$1,000*
+    >
+    > *Estimated total: \$1,300*
+
+-   **Approval Status**: \[Is project approved or in proposal stage?\].
+
+    > *Pending approval from Finance by November 30*
+
+#### 10. Post-Survey Plan {.unnumbered}
+
+-   **Data Cleaning and Preparation**: \[What data preparation tasks will be performed.\].
+
+    > *Data will be cleaned for completeness, removing any responses with more than 50% skipped questions.*
+    
+-   **Analysis Strategy**: \[Describe methods used to analyze data.\].
+
+    > *Descriptive statistics for quantitative data (mean, median for Likert scale questions) Thematic analysis for open-ended responses to identify recurring themes*
+    
+-   **Reporting Format:** \[Markdown report, dashboard, other.\].
+
+    > *Results will be presented in a PowerPoint deck, summarizing key findings and insights, with visual charts from Excel.*
+    
+-   **Presentation to Stakeholders**: \[Date of final deilverable.\].
+
+    > *Stakeholders meeting on January 15 to discuss findings and potential next steps.*
+
+## Documentation
+
+Include the following documentation, possibly in the the GitHub README.md file.
+
+-   **Introduction**: Project background, survey purpose, and the main research questions.
+-   **Study design**: How survey is prepared and administered.
+-   **Sample**: Sample frame, any known sampling errors, and limitations of the sample. Instructions for using sampling weights. Population sizes, finite population correction, or replicate weight scaling information.
+-   **Fielding Notes**: Additional notes on fielding, such as response rates.
+
+A **questionnaire** provides information about the questions posed to respondents. A **codebook** explains how the survey data were coded and recorded, including variable names, labels, meanings, codes for missing data, value labels, and value data types.
+
