@@ -11,16 +11,16 @@ book:
     - index.qmd
     - part: Design
       chapters:
-      - survey_projects.qmd
-      - item_selection.qmd
-      - sampling_strategy.qmd
+      - 01-survey_projects.qmd
+      - 02-item_selection.qmd
+      - 03-sampling_strategy.qmd
     - part: "Analysis"
       chapters:
-      - data_preparation.qmd
-      - descriptive-stats.qmd
-      - statistical-tests.qmd
+      - 04-data_preparation.qmd
+      - 05-descriptive-stats.qmd
+      - 06-statistical-tests.qmd
       - 07-modeling.qmd
-    - part: "Case Studies"
+    - part: "Special Topics"
       chapters: 
       - 08-best_worst_scaling.qmd
       - 11-other.qmd

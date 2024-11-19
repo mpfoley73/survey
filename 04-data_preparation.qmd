@@ -16,14 +16,21 @@ This book uses the `api` datasets from the *survey* package for examples. The Ac
 ```{r}
 data(api, package = "survey")
 
-# Make `stype` (School type) an ordered factor variable for ordinal examples.
-fct_stype <- function(x) {factor(x, levels = c("E", "M", "H"), ordered = TRUE)}
+# Add some cols for stat test examples.
+prep_data <- function(df) {
+  df |>
+    mutate(
+      stype = factor(stype, levels = c("E", "M", "H"), ordered = TRUE), 
+      meals_cut = cut(meals, c(0, 12, 25, 100), include.lowest = TRUE),
+      hsg_cut = cut(hsg, c(0, 12, 25, 100), include.lowest = TRUE)
+    )
+}
 
-apisrs <- apisrs |> mutate(stype = fct_stype(stype))
+apisrs <- prep_data(apisrs)
 
-apistrat <- apistrat |> mutate(stype = fct_stype(stype))
+apistrat <- prep_data(apistrat)
 
-apiclus2 <- apiclus2 |> mutate(stype = fct_stype(stype))
+apiclus2 <- prep_data(apiclus2)
 ```
 
 Schools are uniquely identified by column `snum`. Schools roll up to districts, `dnum`. Two other columns contain metadata related to the sampling design.

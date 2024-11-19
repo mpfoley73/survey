@@ -1,1 +1,103 @@
 # Modeling {#sec-modeling}
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+library(janitor)
+library(survey)
+library(srvyr)
+library(gtsummary)
+```
+
+```{r include=FALSE}
+load("input/api.Rdata")
+```
+
+A one-way ANOVA is equivalent to a linear model with a single categorical variable. A two-sample t-test is equivalent to an ANOVA with a two-level categorical predictor.
+
+## ANOVA
+
+ANOVA tests whether the mean outcome is the same across groups. It is equivalent to the linear model. A full explanation of ANOVA is [here](https://mpfoley73.github.io/statistics/onewayanova.html), but with survey analysis, the equal variances assumption does not apply because of the weighting.
+
+::: panel-tabset
+
+### Plot
+
+```{r}
+apistrat |>
+  ggplot(aes(x = hsg_cut, y = api00)) +
+  geom_boxplot()
+```
+
+### Model
+
+```{r}
+svyglm(
+  api00 ~ hsg_cut,
+  design = apistrat_des
+) |>
+  gtsummary::tbl_regression(intercept = TRUE)
+```
+
+:::
+
+## Linear Regression
+
+::: panel-tabset
+
+### Plot
+
+```{r}
+apistrat |>
+  ggplot(aes(x = api99, y = api00)) +
+  geom_point() +
+  facet_wrap(vars(hsg_cut))
+```
+
+### Model
+
+```{r}
+svyglm(
+  api00 ~ api99 + hsg_cut,
+  design = apistrat_des
+) |>
+  gtsummary::tbl_regression(intercept = TRUE)
+```
+
+:::
+
+## Logistic Regression
+
+::: panel-tabset
+
+### Plot
+
+```{r}
+apistrat_des |>
+  summarize(
+    .by = meals_cut,
+    met_pct = survey_mean(
+      sch.wide == "Yes", na.rm = TRUE, proportion = TRUE, vartype = "ci"
+    )
+  ) |>
+  ggplot(aes(x = meals_cut, y = met_pct)) +
+  geom_col(width = .4) +
+  geom_errorbar(aes(ymin = met_pct_low, ymax = met_pct_upp), width = .1)
+```
+
+### Model
+
+```{r}
+#| label: tbl-model-logistic
+
+svyglm(
+  sch.wide ~ api99 + meals_cut,
+  design = apistrat_des,
+  family = quasibinomial
+) |>
+  gtsummary::tbl_regression(intercept = TRUE) |>
+  as_gt() |>
+  gt::tab_caption("Logistic regression of meeting school-wide target by API in 1999.")
+```
+
+:::

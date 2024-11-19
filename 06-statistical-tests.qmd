@@ -1,0 +1,132 @@
+# Statistical Testing {#sec-statistical-testing}
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+library(janitor)
+library(survey)
+library(srvyr)
+library(gtsummary)
+```
+
+```{r include=FALSE}
+load("input/api.Rdata")
+```
+
+## T-Test
+
+Use t-tests to compare two proportions or means. The difference between t-tests with non-survey data and survey data is based on the underlying variance estimation difference. `survey::svyttest()` handles sample weights. 
+
+::: panel-tabset
+
+### Continuous
+
+Test whether `api00` differs from 600.
+
+```{r}
+svyttest(
+  formula = api00 - 600 ~ 0,
+  design = apisrs_des,
+  na.rm = TRUE
+)
+```
+
+### Proportion
+
+Test whether `growth` > 0 on average.
+
+```{r}
+svyttest(
+  formula = (growth > 0) ~ 0,
+  design = apisrs_des,
+  na.rm = TRUE
+)
+```
+
+Test whether `growth` is higher for high school than for others.
+
+```{r}
+svyttest(
+  growth ~ (stype == "H"),
+  design = apisrs_des
+)
+```
+
+:::
+
+## Chi-Squared Test
+
+::: panel-tabset
+
+### Goodness of Fit
+
+Does `meals_cut` distribution match hypothesized population [.25, .25, .5]?
+
+```{r}
+gof <- svygofchisq(
+  formula = ~meals_cut,
+  p = c(.25, .25, .5),
+  design = apistrat_des,
+  na.rm = TRUE
+)
+
+gof
+```
+
+```{r}
+#| code-fold: true
+apistrat_des |> 
+  summarize(
+    .by = hsg_cut,
+    observed = survey_mean(vartype = "ci")
+  ) |>
+  mutate(expected = c(.25, .25, .5)) |>
+  pivot_longer(c(observed, expected), values_to = "Proportion") |>
+  ggplot(aes(x = hsg_cut)) +
+  geom_errorbar(aes(ymin = observed_low, ymax = observed_upp), width = .5) +
+  geom_point(aes(y = Proportion, color = name), size = 2) +
+  theme(legend.position = "top", legend.justification = "left") +
+  labs(color = NULL)
+```
+
+### Test of Independence
+
+Is `meals_cut` distribution related to `hsg_cut`?
+
+```{r}
+svychisq(
+  formula = ~ meals_cut + hsg_cut,
+  design = apistrat_des,
+  statistic = "Wald",
+  na.rm = TRUE
+)
+```
+
+*gtsummary* does not have a cross table function, but you can make your own.
+
+```{r}
+apistrat_des |>
+  drop_na(meals_cut, hsg_cut) |>
+  group_by(meals_cut, hsg_cut) |>
+  summarize(Obs = round(survey_mean(vartype = "ci"), 3), .groups = "drop") |>
+  mutate(prop = glue::glue("{Obs} ({Obs_low}, {Obs_upp})")) |>
+  pivot_wider(id_cols = meals_cut, names_from = hsg_cut, values_from = prop) |>
+  gt::gt(rowname_col = "Meals") |>
+  gt::tab_stubhead("High School Grad")
+```
+
+
+### Test of Homogeneity
+
+Is the distribution of `meals_cut` the same for each level of `hsg_cut`?
+
+```{r}
+svychisq(
+  formula = ~ meals_cut + hsg_cut,
+  design = apistrat_des,
+  statistic = "Chisq",
+  na.rm = TRUE
+)
+```
+
+:::
