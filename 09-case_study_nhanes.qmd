@@ -1,6 +1,6 @@
 # Case Study: NHANES
 
-The sample design report outline is from @valliant2013. We'll use the data from the *National Comorbidity Survey Replication (NCS-R)* featured in @Heeringa2017. This was a 2002 study of mental illness. The sample design was an equal probability, multistage sample.
+This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. It uses the *National Health and Nutrition Examination Survey (NHANES)* to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, nonresponse, and post-stratification.
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -52,22 +52,121 @@ The sampling strategy was a multi-stage clustered area probability sample.
   – Marginal sample sizes for key reporting domains  
 - Sensitivity analysis  
   – Results from comparing deviations to allocation after introducing  changes to the optimization system  
+  
+## Data Preparation
+
+I downloaded [2015SEP2017.zip](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip) from the [book web site](https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions) and unzipped into the input/ directory of this project repo.
  
 ```{r}
-# Downloaded from book web site
-# https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions
-# https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip
-nhanes <- foreign::read.dta("input/nhanes1112_sub_10jun2016.dta")
+nhanes_raw <- foreign::read.dta("input/nhanes1112_sub_10jun2016.dta")
+```
 
+Heeringa identifies a data cleaning step, converting 0s to `NA`.
+
+```{r}
+nhanes <-
+  nhanes_raw |>
+  mutate(
+    bpxdi1_1 = if_else(BPXDI1 == 0, NA_integer_, BPXDI1),
+    RIDRETH1 = factor(RIDRETH1, labels = c(
+      "Mexican-American", "Other Hispanic", "Non-Hispanic White",
+      "Non-Hispanic Black", "Other race")),
+    riagendr = factor(riagendr, labels = c("Male", "Female")),
+    marcat = factor(marcat, labels = c(
+      "Married", "Previously married", "Never married"))
+  )
+```
+
+Define the survey design object.
+
+```{r}
 nhanes_des <- as_survey_design(
   nhanes,
-  ids = sdmvpsu,
-  strata = sdmvstra,
-  nest = TRUE
+  ids = sdmvpsu,  # primary sampling unit (cluster)
+  strata = sdmvstra,  # sampling stratum
+  nest = TRUE,  # strata ids are repeated across clusters
+  weights = WTMEC2YR
 )
+
+summary(nhanes_des)
 ```
 
 ## Descriptive Analysis
+
+Regress the continuous response variable, diastolic blood pressure (`bpxdi1_1`), on predictors of interest.
+
+```{r}
+da_race <-
+  nhanes_des |> 
+  filter(age18p == 1) %>%
+  survey::svyglm(bpxdi1_1 ~ RIDRETH1, design = .)
+
+da_age <-
+  nhanes_des |> 
+  filter(age18p == 1) %>%
+  survey::svyglm(bpxdi1_1 ~ age, design = .)
+
+da_age_c <-
+  nhanes_des |> 
+  filter(age18p == 1) |>
+  mutate(agec = scale(age, scale = FALSE)) %>%
+  survey::svyglm(bpxdi1_1 ~ agec, design = .)
+
+da_gender <-
+  nhanes_des |> 
+  filter(age18p == 1) %>%
+  survey::svyglm(bpxdi1_1 ~ riagendr, design = .)
+
+da_marital <-
+  nhanes_des |> 
+  filter(age18p == 1) %>%
+  survey::svyglm(bpxdi1_1 ~ marcat, design = .)
+
+```
+
+```{r}
+#| code-fold: true
+#| label: tbl-nhanes-da-bivariate
+
+da_race_gt <-
+  da_race |>
+  gtsummary::tbl_regression(
+    label = list(RIDRETH1 ~ "Race/ethnicity"),
+    conf.int = FALSE
+  )
+
+da_age_c_gt <-
+  da_age_c |>
+  gtsummary::tbl_regression(
+    label = list(agec ~ "Age (cent.)"),
+    conf.int = FALSE
+  )
+
+da_gender_gt <-
+  da_gender |>
+  gtsummary::tbl_regression(
+    label = list(riagendr ~ "Gender"),
+    conf.int = FALSE
+  )
+
+da_marital_gt <-
+  da_marital |>
+  gtsummary::tbl_regression(
+    label = list(marcat ~ "Marital status"),
+    conf.int = FALSE
+  )
+
+gtsummary::tbl_stack(
+  tbls = list(da_race_gt, da_age_c_gt, da_gender_gt, da_marital_gt)
+) |>
+  as_gt() |>
+  gt::tab_caption("") |>
+  gt::tab_header(
+    title = "Initial Design-Based Bivariate Regression Analysis Results Assessing Potential  Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"
+  ) |>
+  gt::tab_options(heading.align = "left")
+```
+
 
 ### Counts
 
@@ -160,4 +259,5 @@ nhanes_des |>
   gt::gt() |>
   gt::fmt_number(everything(), decimals = 3)
 ```
+
 

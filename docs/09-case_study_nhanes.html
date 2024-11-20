@@ -295,13 +295,14 @@ div.csl-indent {
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">10.1</span> Executive summary</a></li>
   <li><a href="#sample-design" id="toc-sample-design" class="nav-link" data-scroll-target="#sample-design"><span class="header-section-number">10.2</span> Sample design</a></li>
   <li><a href="#sample-size-and-allocation" id="toc-sample-size-and-allocation" class="nav-link" data-scroll-target="#sample-size-and-allocation"><span class="header-section-number">10.3</span> Sample size and allocation</a></li>
-  <li><a href="#descriptive-analysis" id="toc-descriptive-analysis" class="nav-link" data-scroll-target="#descriptive-analysis"><span class="header-section-number">10.4</span> Descriptive Analysis</a>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">10.4</span> Data Preparation</a></li>
+  <li><a href="#descriptive-analysis" id="toc-descriptive-analysis" class="nav-link" data-scroll-target="#descriptive-analysis"><span class="header-section-number">10.5</span> Descriptive Analysis</a>
   <ul>
-  <li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts"><span class="header-section-number">10.4.1</span> Counts</a></li>
-  <li><a href="#sums" id="toc-sums" class="nav-link" data-scroll-target="#sums"><span class="header-section-number">10.4.2</span> Sums</a></li>
-  <li><a href="#means-and-proportions" id="toc-means-and-proportions" class="nav-link" data-scroll-target="#means-and-proportions"><span class="header-section-number">10.4.3</span> Means and Proportions</a></li>
-  <li><a href="#quantiles" id="toc-quantiles" class="nav-link" data-scroll-target="#quantiles"><span class="header-section-number">10.4.4</span> Quantiles</a></li>
-  <li><a href="#ratios" id="toc-ratios" class="nav-link" data-scroll-target="#ratios"><span class="header-section-number">10.4.5</span> Ratios</a></li>
+  <li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts"><span class="header-section-number">10.5.1</span> Counts</a></li>
+  <li><a href="#sums" id="toc-sums" class="nav-link" data-scroll-target="#sums"><span class="header-section-number">10.5.2</span> Sums</a></li>
+  <li><a href="#means-and-proportions" id="toc-means-and-proportions" class="nav-link" data-scroll-target="#means-and-proportions"><span class="header-section-number">10.5.3</span> Means and Proportions</a></li>
+  <li><a href="#quantiles" id="toc-quantiles" class="nav-link" data-scroll-target="#quantiles"><span class="header-section-number">10.5.4</span> Quantiles</a></li>
+  <li><a href="#ratios" id="toc-ratios" class="nav-link" data-scroll-target="#ratios"><span class="header-section-number">10.5.5</span> Ratios</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -311,7 +312,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-case_study_nhanes.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./09-case_study_nhanes.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Case Study: NHANES</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Case Study: NHANES</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Case Study: NHANES</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -328,7 +329,7 @@ div.csl-indent {
 </header>
 
 
-<p>The sample design report outline is from <span class="citation" data-cites="valliant2013">Valliant (<a href="12-references.html#ref-valliant2013" role="doc-biblioref">2013</a>)</span>. We’ll use the data from the <em>National Comorbidity Survey Replication (NCS-R)</em> featured in <span class="citation" data-cites="Heeringa2017">Heeringa (<a href="12-references.html#ref-Heeringa2017" role="doc-biblioref">2017</a>)</span>. This was a 2002 study of mental illness. The sample design was an equal probability, multistage sample.</p>
+<p>This case study follows the tutorial laid out in section 7.5 of <span class="citation" data-cites="Heeringa2017">Heeringa (<a href="12-references.html#ref-Heeringa2017" role="doc-biblioref">2017</a>)</span>. It uses the <em>National Health and Nutrition Examination Survey (NHANES)</em> to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, nonresponse, and post-stratification.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
@@ -375,57 +376,150 @@ div.csl-indent {
 <li>Sensitivity analysis<br>
 – Results from comparing deviations to allocation after introducing changes to the optimization system</li>
 </ul>
+</section>
+<section id="data-preparation" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="data-preparation"><span class="header-section-number">10.4</span> Data Preparation</h2>
+<p>I downloaded <a href="https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip">2015SEP2017.zip</a> from the <a href="https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions">book web site</a> and unzipped into the input/ directory of this project repo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloaded from book web site</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"input/nhanes1112_sub_10jun2016.dta"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  nhanes,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> sdmvpsu,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">strata =</span> sdmvstra,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nhanes_raw <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"input/nhanes1112_sub_10jun2016.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Heeringa identifies a data cleaning step, converting 0s to <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  nhanes_raw <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bpxdi1_1 =</span> <span class="fu">if_else</span>(BPXDI1 <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA_integer_</span>, BPXDI1),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">RIDRETH1 =</span> <span class="fu">factor</span>(RIDRETH1, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Mexican-American"</span>, <span class="st">"Other Hispanic"</span>, <span class="st">"Non-Hispanic White"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Non-Hispanic Black"</span>, <span class="st">"Other race"</span>)),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">riagendr =</span> <span class="fu">factor</span>(riagendr, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">marcat =</span> <span class="fu">factor</span>(marcat, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Married"</span>, <span class="st">"Previously married"</span>, <span class="st">"Never married"</span>))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Define the survey design object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  nhanes,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> sdmvpsu,  <span class="co"># primary sampling unit (cluster)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">strata =</span> sdmvstra,  <span class="co"># sampling stratum</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span>,  <span class="co"># strata ids are repeated across clusters</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> WTMEC2YR</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhanes_des)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stratified 1 - level Cluster Sampling design (with replacement)
+With (31) clusters.
+Called via srvyr
+Probabilities:
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+4.493e-06 2.874e-05 5.528e-05       Inf 8.949e-05       Inf 
+Stratum Sizes: 
+            90  91  92  93  94  95  96  97  98  99 100 101 102 103
+obs        862 998 875 602 688 722 676 608 708 682 700 715 624 296
+design.PSU   3   3   3   2   2   2   2   2   2   2   2   2   2   2
+actual.PSU   3   3   3   2   2   2   2   2   2   2   2   2   2   2
+Data variables:
+ [1] "seqn"      "ridstatr"  "riagendr"  "RIDRETH1"  "dmdmartl"  "WTINT2YR" 
+ [7] "WTMEC2YR"  "sdmvpsu"   "sdmvstra"  "indfmpir"  "BPXSY1"    "BPXDI1"   
+[13] "BPXSY2"    "BPXDI2"    "BPXSY3"    "BPXDI3"    "BPXSY4"    "BPXDI4"   
+[19] "bmxbmi"    "lbxtc"     "age18p"    "irregular" "edcat"     "age"      
+[25] "marcat"    "pre_hibp"  "bp_cat"    "ag1829"    "ag3044"    "ag4559"   
+[31] "ag60"      "mex"       "othhis"    "white"     "black"     "other"    
+[37] "lbdhdd"    "lbdhddsi"  "lbdtcsi"   "bpxdi1_1" </code></pre>
+</div>
 </div>
 </section>
-<section id="descriptive-analysis" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="descriptive-analysis"><span class="header-section-number">10.4</span> Descriptive Analysis</h2>
-<section id="counts" class="level3" data-number="10.4.1">
-<h3 data-number="10.4.1" class="anchored" data-anchor-id="counts"><span class="header-section-number">10.4.1</span> Counts</h3>
-<p>How many U.S. adults have experience irregular heartbeats in their lifetime?</p>
+<section id="descriptive-analysis" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="descriptive-analysis"><span class="header-section-number">10.5</span> Descriptive Analysis</h2>
+<p>Regress the continuous response variable, diastolic blood pressure (<code>bpxdi1_1</code>), on predictors of interest.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">.by =</span> irregular, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"cv"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, n) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n<span class="sc">:</span>n_upp, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n_cv, <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Estimted Total Lifetime MDE"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_se =</span> <span class="st">"Standard Error"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_low =</span> <span class="st">"95% CI (low)"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_upp =</span> <span class="st">"95% CI (upp)"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_cv =</span> <span class="st">"CV"</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>da_race <span class="ot">&lt;-</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> RIDRETH1, <span class="at">design =</span> .)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>da_age <span class="ot">&lt;-</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> age, <span class="at">design =</span> .)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>da_age_c <span class="ot">&lt;-</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> agec, <span class="at">design =</span> .)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>da_gender <span class="ot">&lt;-</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> riagendr, <span class="at">design =</span> .)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>da_marital <span class="ot">&lt;-</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> marcat, <span class="at">design =</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tbl-nhanes-da-bivariate" class="cell anchored">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>da_race_gt <span class="ot">&lt;-</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  da_race <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(RIDRETH1 <span class="sc">~</span> <span class="st">"Race/ethnicity"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>da_age_c_gt <span class="ot">&lt;-</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  da_age_c <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(agec <span class="sc">~</span> <span class="st">"Age (cent.)"</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>da_gender_gt <span class="ot">&lt;-</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  da_gender <span class="sc">|&gt;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(riagendr <span class="sc">~</span> <span class="st">"Gender"</span>),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>da_marital_gt <span class="ot">&lt;-</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  da_marital <span class="sc">|&gt;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(marcat <span class="sc">~</span> <span class="st">"Marital status"</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_stack</span>(</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">tbls =</span> <span class="fu">list</span>(da_race_gt, da_age_c_gt, da_gender_gt, da_marital_gt)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_caption</span>(<span class="st">""</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Initial Design-Based Bivariate Regression Analysis Results Assessing Potential  Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<div id="otgyakphsm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#otgyakphsm table {
+<div id="pttsuwnask" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pttsuwnask table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#otgyakphsm thead, #otgyakphsm tbody, #otgyakphsm tfoot, #otgyakphsm tr, #otgyakphsm td, #otgyakphsm th {
+#pttsuwnask thead, #pttsuwnask tbody, #pttsuwnask tfoot, #pttsuwnask tr, #pttsuwnask td, #pttsuwnask th {
   border-style: none;
 }
 
-#otgyakphsm p {
+#pttsuwnask p {
   margin: 0;
   padding: 0;
 }
 
-#otgyakphsm .gt_table {
+#pttsuwnask .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -451,12 +545,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_caption {
+#pttsuwnask .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#otgyakphsm .gt_title {
+#pttsuwnask .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -468,7 +562,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#otgyakphsm .gt_subtitle {
+#pttsuwnask .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -480,9 +574,9 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#otgyakphsm .gt_heading {
+#pttsuwnask .gt_heading {
   background-color: #FFFFFF;
-  text-align: center;
+  text-align: left;
   border-bottom-color: #FFFFFF;
   border-left-style: none;
   border-left-width: 1px;
@@ -492,13 +586,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_bottom_border {
+#pttsuwnask .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_col_headings {
+#pttsuwnask .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -513,7 +607,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_col_heading {
+#pttsuwnask .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -533,7 +627,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#otgyakphsm .gt_column_spanner_outer {
+#pttsuwnask .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -545,15 +639,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#otgyakphsm .gt_column_spanner_outer:first-child {
+#pttsuwnask .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#otgyakphsm .gt_column_spanner_outer:last-child {
+#pttsuwnask .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#otgyakphsm .gt_column_spanner {
+#pttsuwnask .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -565,11 +659,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#otgyakphsm .gt_spanner_row {
+#pttsuwnask .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#otgyakphsm .gt_group_heading {
+#pttsuwnask .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -595,7 +689,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#otgyakphsm .gt_empty_group_heading {
+#pttsuwnask .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -610,15 +704,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#otgyakphsm .gt_from_md > :first-child {
+#pttsuwnask .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#otgyakphsm .gt_from_md > :last-child {
+#pttsuwnask .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#otgyakphsm .gt_row {
+#pttsuwnask .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -637,7 +731,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#otgyakphsm .gt_stub {
+#pttsuwnask .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -650,7 +744,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#otgyakphsm .gt_stub_row_group {
+#pttsuwnask .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -664,15 +758,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#otgyakphsm .gt_row_group_first td {
+#pttsuwnask .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#otgyakphsm .gt_row_group_first th {
+#pttsuwnask .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#otgyakphsm .gt_summary_row {
+#pttsuwnask .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -682,16 +776,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#otgyakphsm .gt_first_summary_row {
+#pttsuwnask .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_first_summary_row.thick {
+#pttsuwnask .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#otgyakphsm .gt_last_summary_row {
+#pttsuwnask .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -701,7 +795,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_grand_summary_row {
+#pttsuwnask .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -711,7 +805,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#otgyakphsm .gt_first_grand_summary_row {
+#pttsuwnask .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -721,7 +815,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_last_grand_summary_row_top {
+#pttsuwnask .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -731,11 +825,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_striped {
+#pttsuwnask .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#otgyakphsm .gt_table_body {
+#pttsuwnask .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -744,7 +838,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_footnotes {
+#pttsuwnask .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -758,7 +852,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_footnote {
+#pttsuwnask .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -767,7 +861,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#otgyakphsm .gt_sourcenotes {
+#pttsuwnask .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -781,7 +875,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#otgyakphsm .gt_sourcenote {
+#pttsuwnask .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -789,72 +883,645 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#otgyakphsm .gt_left {
+#pttsuwnask .gt_left {
   text-align: left;
 }
 
-#otgyakphsm .gt_center {
+#pttsuwnask .gt_center {
   text-align: center;
 }
 
-#otgyakphsm .gt_right {
+#pttsuwnask .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#otgyakphsm .gt_font_normal {
+#pttsuwnask .gt_font_normal {
   font-weight: normal;
 }
 
-#otgyakphsm .gt_font_bold {
+#pttsuwnask .gt_font_bold {
   font-weight: bold;
 }
 
-#otgyakphsm .gt_font_italic {
+#pttsuwnask .gt_font_italic {
   font-style: italic;
 }
 
-#otgyakphsm .gt_super {
+#pttsuwnask .gt_super {
   font-size: 65%;
 }
 
-#otgyakphsm .gt_footnote_marks {
+#pttsuwnask .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#otgyakphsm .gt_asterisk {
+#pttsuwnask .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#otgyakphsm .gt_indent_1 {
+#pttsuwnask .gt_indent_1 {
   text-indent: 5px;
 }
 
-#otgyakphsm .gt_indent_2 {
+#pttsuwnask .gt_indent_2 {
   text-indent: 10px;
 }
 
-#otgyakphsm .gt_indent_3 {
+#pttsuwnask .gt_indent_3 {
   text-indent: 15px;
 }
 
-#otgyakphsm .gt_indent_4 {
+#pttsuwnask .gt_indent_4 {
   text-indent: 20px;
 }
 
-#otgyakphsm .gt_indent_5 {
+#pttsuwnask .gt_indent_5 {
   text-indent: 25px;
 }
 
-#otgyakphsm .katex-display {
+#pttsuwnask .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#otgyakphsm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pttsuwnask div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header gt_heading">
+<th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border">Initial Design-Based Bivariate Regression Analysis Results Assessing Potential Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="<div data-qmd-base64=&quot;KipDaGFyYWN0ZXJpc3RpYyoq&quot;><div class='gt_from_md'><p><strong>Characteristic</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Characteristic</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipCZXRhKio=&quot;><div class='gt_from_md'><p><strong>Beta</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>Beta</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipwLXZhbHVlKio=&quot;><div class='gt_from_md'><p><strong>p-value</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>p-value</strong></p></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Race/ethnicity</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mexican-American</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Other Hispanic</td>
+<td class="gt_row gt_center" headers="estimate">-0.15</td>
+<td class="gt_row gt_center" headers="p.value">&gt;0.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Non-Hispanic White</td>
+<td class="gt_row gt_center" headers="estimate">2.2</td>
+<td class="gt_row gt_center" headers="p.value">0.011</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Non-Hispanic Black</td>
+<td class="gt_row gt_center" headers="estimate">2.3</td>
+<td class="gt_row gt_center" headers="p.value">0.006</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Other race</td>
+<td class="gt_row gt_center" headers="estimate">1.3</td>
+<td class="gt_row gt_center" headers="p.value">0.087</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Age (cent.)</td>
+<td class="gt_row gt_center" headers="estimate">0.04</td>
+<td class="gt_row gt_center" headers="p.value">0.053</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Gender</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
+<td class="gt_row gt_center" headers="estimate">-2.2</td>
+<td class="gt_row gt_center" headers="p.value">0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Marital status</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Married</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Previously married</td>
+<td class="gt_row gt_center" headers="estimate">-0.15</td>
+<td class="gt_row gt_center" headers="p.value">0.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Never married</td>
+<td class="gt_row gt_center" headers="estimate">-1.1</td>
+<td class="gt_row gt_center" headers="p.value">0.2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="counts" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="counts"><span class="header-section-number">10.5.1</span> Counts</h3>
+<p>How many U.S. adults have experience irregular heartbeats in their lifetime?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">.by =</span> irregular, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"cv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, n) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n<span class="sc">:</span>n_upp, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n_cv, <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Estimted Total Lifetime MDE"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_se =</span> <span class="st">"Standard Error"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_low =</span> <span class="st">"95% CI (low)"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_upp =</span> <span class="st">"95% CI (upp)"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_cv =</span> <span class="st">"CV"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="hzdljazmex" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hzdljazmex table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hzdljazmex thead, #hzdljazmex tbody, #hzdljazmex tfoot, #hzdljazmex tr, #hzdljazmex td, #hzdljazmex th {
+  border-style: none;
+}
+
+#hzdljazmex p {
+  margin: 0;
+  padding: 0;
+}
+
+#hzdljazmex .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hzdljazmex .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hzdljazmex .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hzdljazmex .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hzdljazmex .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hzdljazmex .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hzdljazmex .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hzdljazmex .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hzdljazmex .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hzdljazmex .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hzdljazmex .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hzdljazmex .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hzdljazmex .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hzdljazmex .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hzdljazmex .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzdljazmex .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hzdljazmex .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hzdljazmex .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hzdljazmex .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzdljazmex .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hzdljazmex .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzdljazmex .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hzdljazmex .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzdljazmex .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hzdljazmex .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzdljazmex .gt_left {
+  text-align: left;
+}
+
+#hzdljazmex .gt_center {
+  text-align: center;
+}
+
+#hzdljazmex .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hzdljazmex .gt_font_normal {
+  font-weight: normal;
+}
+
+#hzdljazmex .gt_font_bold {
+  font-weight: bold;
+}
+
+#hzdljazmex .gt_font_italic {
+  font-style: italic;
+}
+
+#hzdljazmex .gt_super {
+  font-size: 65%;
+}
+
+#hzdljazmex .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hzdljazmex .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hzdljazmex .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hzdljazmex .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hzdljazmex .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hzdljazmex .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hzdljazmex .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hzdljazmex .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hzdljazmex div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -873,31 +1540,31 @@ div.csl-indent {
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers=".by">0</td>
-<td class="gt_row gt_right" headers="n">8,906</td>
-<td class="gt_row gt_right" headers="n_se">185</td>
-<td class="gt_row gt_right" headers="n_low">8,516</td>
-<td class="gt_row gt_right" headers="n_upp">9,296</td>
-<td class="gt_row gt_right" headers="n_cv">0.02</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers=".by">1</td>
-<td class="gt_row gt_right" headers="n">121</td>
-<td class="gt_row gt_right" headers="n_se">11</td>
-<td class="gt_row gt_right" headers="n_low">97</td>
-<td class="gt_row gt_right" headers="n_upp">145</td>
-<td class="gt_row gt_right" headers="n_cv">0.09</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers=".by">NA</td>
-<td class="gt_row gt_right" headers="n">729</td>
-<td class="gt_row gt_right" headers="n_se">45</td>
-<td class="gt_row gt_right" headers="n_low">635</td>
-<td class="gt_row gt_right" headers="n_upp">823</td>
+<td class="gt_row gt_right" headers="n">292,336,649</td>
+<td class="gt_row gt_right" headers="n_se">18,562,605</td>
+<td class="gt_row gt_right" headers="n_low">253,172,974</td>
+<td class="gt_row gt_right" headers="n_upp">331,500,323</td>
 <td class="gt_row gt_right" headers="n_cv">0.06</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers=".by">1</td>
+<td class="gt_row gt_right" headers="n">3,971,887</td>
+<td class="gt_row gt_right" headers="n_se">522,982</td>
+<td class="gt_row gt_right" headers="n_low">2,868,492</td>
+<td class="gt_row gt_right" headers="n_upp">5,075,283</td>
+<td class="gt_row gt_right" headers="n_cv">0.13</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=".by">NA</td>
+<td class="gt_row gt_right" headers="n">10,282,145</td>
+<td class="gt_row gt_right" headers="n_se">1,048,019</td>
+<td class="gt_row gt_right" headers="n_low">8,071,019</td>
+<td class="gt_row gt_right" headers="n_upp">12,493,271</td>
+<td class="gt_row gt_right" headers="n_cv">0.10</td>
+</tr>
+<tr class="even">
 <td class="gt_row gt_left" headers=".by">Total</td>
-<td class="gt_row gt_right" headers="n">9,756</td>
+<td class="gt_row gt_right" headers="n">306,590,681</td>
 <td class="gt_row gt_right" headers="n_se">NA</td>
 <td class="gt_row gt_right" headers="n_low">NA</td>
 <td class="gt_row gt_right" headers="n_upp">NA</td>
@@ -910,37 +1577,37 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="sums" class="level3" data-number="10.4.2">
-<h3 data-number="10.4.2" class="anchored" data-anchor-id="sums"><span class="header-section-number">10.4.2</span> Sums</h3>
+<section id="sums" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="sums"><span class="header-section-number">10.5.2</span> Sums</h3>
 <p>What is the total number of participated at 18 or over by educational category? Sum <code>age18p</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> edcat, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tot =</span> <span class="fu">survey_total</span>(age18p, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, Tot, Tot) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot<span class="sc">:</span>Tot_var, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot_cv, <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> edcat, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tot =</span> <span class="fu">survey_total</span>(age18p, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, Tot, Tot) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot<span class="sc">:</span>Tot_var, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot_cv, <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="sncghxgcth" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sncghxgcth table {
+<div id="mgupcunrfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mgupcunrfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sncghxgcth thead, #sncghxgcth tbody, #sncghxgcth tfoot, #sncghxgcth tr, #sncghxgcth td, #sncghxgcth th {
+#mgupcunrfi thead, #mgupcunrfi tbody, #mgupcunrfi tfoot, #mgupcunrfi tr, #mgupcunrfi td, #mgupcunrfi th {
   border-style: none;
 }
 
-#sncghxgcth p {
+#mgupcunrfi p {
   margin: 0;
   padding: 0;
 }
 
-#sncghxgcth .gt_table {
+#mgupcunrfi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -966,12 +1633,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_caption {
+#mgupcunrfi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sncghxgcth .gt_title {
+#mgupcunrfi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -983,7 +1650,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#sncghxgcth .gt_subtitle {
+#mgupcunrfi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -995,7 +1662,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#sncghxgcth .gt_heading {
+#mgupcunrfi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1007,13 +1674,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_bottom_border {
+#mgupcunrfi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_col_headings {
+#mgupcunrfi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1028,7 +1695,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_col_heading {
+#mgupcunrfi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1048,7 +1715,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#sncghxgcth .gt_column_spanner_outer {
+#mgupcunrfi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1060,15 +1727,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#sncghxgcth .gt_column_spanner_outer:first-child {
+#mgupcunrfi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sncghxgcth .gt_column_spanner_outer:last-child {
+#mgupcunrfi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sncghxgcth .gt_column_spanner {
+#mgupcunrfi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1080,11 +1747,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#sncghxgcth .gt_spanner_row {
+#mgupcunrfi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sncghxgcth .gt_group_heading {
+#mgupcunrfi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1110,7 +1777,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#sncghxgcth .gt_empty_group_heading {
+#mgupcunrfi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1125,15 +1792,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#sncghxgcth .gt_from_md > :first-child {
+#mgupcunrfi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sncghxgcth .gt_from_md > :last-child {
+#mgupcunrfi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sncghxgcth .gt_row {
+#mgupcunrfi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1152,7 +1819,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#sncghxgcth .gt_stub {
+#mgupcunrfi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1165,7 +1832,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#sncghxgcth .gt_stub_row_group {
+#mgupcunrfi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1179,15 +1846,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#sncghxgcth .gt_row_group_first td {
+#mgupcunrfi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sncghxgcth .gt_row_group_first th {
+#mgupcunrfi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sncghxgcth .gt_summary_row {
+#mgupcunrfi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1197,16 +1864,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#sncghxgcth .gt_first_summary_row {
+#mgupcunrfi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_first_summary_row.thick {
+#mgupcunrfi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sncghxgcth .gt_last_summary_row {
+#mgupcunrfi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1216,7 +1883,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_grand_summary_row {
+#mgupcunrfi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1226,7 +1893,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#sncghxgcth .gt_first_grand_summary_row {
+#mgupcunrfi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1236,7 +1903,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_last_grand_summary_row_top {
+#mgupcunrfi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1246,11 +1913,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_striped {
+#mgupcunrfi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sncghxgcth .gt_table_body {
+#mgupcunrfi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1259,7 +1926,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_footnotes {
+#mgupcunrfi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1273,7 +1940,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_footnote {
+#mgupcunrfi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1282,7 +1949,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#sncghxgcth .gt_sourcenotes {
+#mgupcunrfi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1296,7 +1963,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#sncghxgcth .gt_sourcenote {
+#mgupcunrfi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1304,72 +1971,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#sncghxgcth .gt_left {
+#mgupcunrfi .gt_left {
   text-align: left;
 }
 
-#sncghxgcth .gt_center {
+#mgupcunrfi .gt_center {
   text-align: center;
 }
 
-#sncghxgcth .gt_right {
+#mgupcunrfi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sncghxgcth .gt_font_normal {
+#mgupcunrfi .gt_font_normal {
   font-weight: normal;
 }
 
-#sncghxgcth .gt_font_bold {
+#mgupcunrfi .gt_font_bold {
   font-weight: bold;
 }
 
-#sncghxgcth .gt_font_italic {
+#mgupcunrfi .gt_font_italic {
   font-style: italic;
 }
 
-#sncghxgcth .gt_super {
+#mgupcunrfi .gt_super {
   font-size: 65%;
 }
 
-#sncghxgcth .gt_footnote_marks {
+#mgupcunrfi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sncghxgcth .gt_asterisk {
+#mgupcunrfi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sncghxgcth .gt_indent_1 {
+#mgupcunrfi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sncghxgcth .gt_indent_2 {
+#mgupcunrfi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sncghxgcth .gt_indent_3 {
+#mgupcunrfi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sncghxgcth .gt_indent_4 {
+#mgupcunrfi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sncghxgcth .gt_indent_5 {
+#mgupcunrfi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sncghxgcth .katex-display {
+#mgupcunrfi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sncghxgcth div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mgupcunrfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1389,52 +2056,52 @@ div.csl-indent {
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="edcat">1</td>
-<td class="gt_row gt_right" headers="Tot">1,443</td>
-<td class="gt_row gt_right" headers="Tot_se">102</td>
-<td class="gt_row gt_right" headers="Tot_low">1,227</td>
-<td class="gt_row gt_right" headers="Tot_upp">1,659</td>
-<td class="gt_row gt_right" headers="Tot_var">10,485</td>
-<td class="gt_row gt_right" headers="Tot_cv">0.07</td>
+<td class="gt_row gt_right" headers="Tot">39,997,955</td>
+<td class="gt_row gt_right" headers="Tot_se">4,302,817</td>
+<td class="gt_row gt_right" headers="Tot_low">30,919,804</td>
+<td class="gt_row gt_right" headers="Tot_upp">49,076,106</td>
+<td class="gt_row gt_right" headers="Tot_var">18,514,236,916,664</td>
+<td class="gt_row gt_right" headers="Tot_cv">0.11</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="edcat">2</td>
-<td class="gt_row gt_right" headers="Tot">1,258</td>
-<td class="gt_row gt_right" headers="Tot_se">47</td>
-<td class="gt_row gt_right" headers="Tot_low">1,159</td>
-<td class="gt_row gt_right" headers="Tot_upp">1,357</td>
-<td class="gt_row gt_right" headers="Tot_var">2,222</td>
-<td class="gt_row gt_right" headers="Tot_cv">0.04</td>
+<td class="gt_row gt_right" headers="Tot">47,710,015</td>
+<td class="gt_row gt_right" headers="Tot_se">4,540,825</td>
+<td class="gt_row gt_right" headers="Tot_low">38,129,712</td>
+<td class="gt_row gt_right" headers="Tot_upp">57,290,319</td>
+<td class="gt_row gt_right" headers="Tot_var">20,619,091,438,170</td>
+<td class="gt_row gt_right" headers="Tot_cv">0.10</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="edcat">3</td>
-<td class="gt_row gt_right" headers="Tot">1,761</td>
-<td class="gt_row gt_right" headers="Tot_se">99</td>
-<td class="gt_row gt_right" headers="Tot_low">1,553</td>
-<td class="gt_row gt_right" headers="Tot_upp">1,969</td>
-<td class="gt_row gt_right" headers="Tot_var">9,734</td>
-<td class="gt_row gt_right" headers="Tot_cv">0.06</td>
+<td class="gt_row gt_right" headers="Tot">75,020,824</td>
+<td class="gt_row gt_right" headers="Tot_se">5,170,575</td>
+<td class="gt_row gt_right" headers="Tot_low">64,111,865</td>
+<td class="gt_row gt_right" headers="Tot_upp">85,929,783</td>
+<td class="gt_row gt_right" headers="Tot_var">26,734,843,259,857</td>
+<td class="gt_row gt_right" headers="Tot_cv">0.07</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="edcat">4</td>
-<td class="gt_row gt_right" headers="Tot">1,397</td>
-<td class="gt_row gt_right" headers="Tot_se">119</td>
-<td class="gt_row gt_right" headers="Tot_low">1,146</td>
-<td class="gt_row gt_right" headers="Tot_upp">1,648</td>
-<td class="gt_row gt_right" headers="Tot_var">14,180</td>
-<td class="gt_row gt_right" headers="Tot_cv">0.09</td>
+<td class="gt_row gt_right" headers="Tot">69,220,941</td>
+<td class="gt_row gt_right" headers="Tot_se">7,416,613</td>
+<td class="gt_row gt_right" headers="Tot_low">53,573,256</td>
+<td class="gt_row gt_right" headers="Tot_upp">84,868,626</td>
+<td class="gt_row gt_right" headers="Tot_var">55,006,142,653,916</td>
+<td class="gt_row gt_right" headers="Tot_cv">0.11</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="edcat">NA</td>
-<td class="gt_row gt_right" headers="Tot">5</td>
-<td class="gt_row gt_right" headers="Tot_se">2</td>
-<td class="gt_row gt_right" headers="Tot_low">0</td>
-<td class="gt_row gt_right" headers="Tot_upp">10</td>
-<td class="gt_row gt_right" headers="Tot_var">5</td>
-<td class="gt_row gt_right" headers="Tot_cv">0.45</td>
+<td class="gt_row gt_right" headers="Tot">52,804</td>
+<td class="gt_row gt_right" headers="Tot_se">26,802</td>
+<td class="gt_row gt_right" headers="Tot_low">−3,744</td>
+<td class="gt_row gt_right" headers="Tot_upp">109,352</td>
+<td class="gt_row gt_right" headers="Tot_var">718,371,605</td>
+<td class="gt_row gt_right" headers="Tot_cv">0.51</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="edcat">Total</td>
-<td class="gt_row gt_right" headers="Tot">5,864</td>
+<td class="gt_row gt_right" headers="Tot">232,002,539</td>
 <td class="gt_row gt_right" headers="Tot_se">NA</td>
 <td class="gt_row gt_right" headers="Tot_low">NA</td>
 <td class="gt_row gt_right" headers="Tot_upp">NA</td>
@@ -1448,35 +2115,35 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="means-and-proportions" class="level3" data-number="10.4.3">
-<h3 data-number="10.4.3" class="anchored" data-anchor-id="means-and-proportions"><span class="header-section-number">10.4.3</span> Means and Proportions</h3>
+<section id="means-and-proportions" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="means-and-proportions"><span class="header-section-number">10.5.3</span> Means and Proportions</h3>
 <p>What was the mean systolic blood pressure by marital status? Calculate mean(<code>BPXSY1</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_mean</span>(BPXSY1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_mean</span>(BPXSY1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="heuhuaexju" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#heuhuaexju table {
+<div id="finxnrqcso" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#finxnrqcso table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#heuhuaexju thead, #heuhuaexju tbody, #heuhuaexju tfoot, #heuhuaexju tr, #heuhuaexju td, #heuhuaexju th {
+#finxnrqcso thead, #finxnrqcso tbody, #finxnrqcso tfoot, #finxnrqcso tr, #finxnrqcso td, #finxnrqcso th {
   border-style: none;
 }
 
-#heuhuaexju p {
+#finxnrqcso p {
   margin: 0;
   padding: 0;
 }
 
-#heuhuaexju .gt_table {
+#finxnrqcso .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1502,12 +2169,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_caption {
+#finxnrqcso .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#heuhuaexju .gt_title {
+#finxnrqcso .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1519,7 +2186,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#heuhuaexju .gt_subtitle {
+#finxnrqcso .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1531,7 +2198,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#heuhuaexju .gt_heading {
+#finxnrqcso .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1543,13 +2210,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_bottom_border {
+#finxnrqcso .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_col_headings {
+#finxnrqcso .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1564,7 +2231,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_col_heading {
+#finxnrqcso .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1584,7 +2251,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#heuhuaexju .gt_column_spanner_outer {
+#finxnrqcso .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1596,15 +2263,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#heuhuaexju .gt_column_spanner_outer:first-child {
+#finxnrqcso .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#heuhuaexju .gt_column_spanner_outer:last-child {
+#finxnrqcso .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#heuhuaexju .gt_column_spanner {
+#finxnrqcso .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1616,11 +2283,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#heuhuaexju .gt_spanner_row {
+#finxnrqcso .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#heuhuaexju .gt_group_heading {
+#finxnrqcso .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1646,7 +2313,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#heuhuaexju .gt_empty_group_heading {
+#finxnrqcso .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1661,15 +2328,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#heuhuaexju .gt_from_md > :first-child {
+#finxnrqcso .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#heuhuaexju .gt_from_md > :last-child {
+#finxnrqcso .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#heuhuaexju .gt_row {
+#finxnrqcso .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1688,7 +2355,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#heuhuaexju .gt_stub {
+#finxnrqcso .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1701,7 +2368,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#heuhuaexju .gt_stub_row_group {
+#finxnrqcso .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1715,15 +2382,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#heuhuaexju .gt_row_group_first td {
+#finxnrqcso .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#heuhuaexju .gt_row_group_first th {
+#finxnrqcso .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#heuhuaexju .gt_summary_row {
+#finxnrqcso .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1733,16 +2400,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#heuhuaexju .gt_first_summary_row {
+#finxnrqcso .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_first_summary_row.thick {
+#finxnrqcso .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#heuhuaexju .gt_last_summary_row {
+#finxnrqcso .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1752,7 +2419,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_grand_summary_row {
+#finxnrqcso .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1762,7 +2429,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#heuhuaexju .gt_first_grand_summary_row {
+#finxnrqcso .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1772,7 +2439,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_last_grand_summary_row_top {
+#finxnrqcso .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1782,11 +2449,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_striped {
+#finxnrqcso .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#heuhuaexju .gt_table_body {
+#finxnrqcso .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1795,7 +2462,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_footnotes {
+#finxnrqcso .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1809,7 +2476,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_footnote {
+#finxnrqcso .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1818,7 +2485,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#heuhuaexju .gt_sourcenotes {
+#finxnrqcso .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1832,7 +2499,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#heuhuaexju .gt_sourcenote {
+#finxnrqcso .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1840,72 +2507,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#heuhuaexju .gt_left {
+#finxnrqcso .gt_left {
   text-align: left;
 }
 
-#heuhuaexju .gt_center {
+#finxnrqcso .gt_center {
   text-align: center;
 }
 
-#heuhuaexju .gt_right {
+#finxnrqcso .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#heuhuaexju .gt_font_normal {
+#finxnrqcso .gt_font_normal {
   font-weight: normal;
 }
 
-#heuhuaexju .gt_font_bold {
+#finxnrqcso .gt_font_bold {
   font-weight: bold;
 }
 
-#heuhuaexju .gt_font_italic {
+#finxnrqcso .gt_font_italic {
   font-style: italic;
 }
 
-#heuhuaexju .gt_super {
+#finxnrqcso .gt_super {
   font-size: 65%;
 }
 
-#heuhuaexju .gt_footnote_marks {
+#finxnrqcso .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#heuhuaexju .gt_asterisk {
+#finxnrqcso .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#heuhuaexju .gt_indent_1 {
+#finxnrqcso .gt_indent_1 {
   text-indent: 5px;
 }
 
-#heuhuaexju .gt_indent_2 {
+#finxnrqcso .gt_indent_2 {
   text-indent: 10px;
 }
 
-#heuhuaexju .gt_indent_3 {
+#finxnrqcso .gt_indent_3 {
   text-indent: 15px;
 }
 
-#heuhuaexju .gt_indent_4 {
+#finxnrqcso .gt_indent_4 {
   text-indent: 20px;
 }
 
-#heuhuaexju .gt_indent_5 {
+#finxnrqcso .gt_indent_5 {
   text-indent: 25px;
 }
 
-#heuhuaexju .katex-display {
+#finxnrqcso .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#heuhuaexju div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#finxnrqcso div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1913,7 +2580,7 @@ div.csl-indent {
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="marcat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">marcat</th>
+<th id="marcat" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">marcat</th>
 <th id="M" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">M</th>
 <th id="M_se" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">M_se</th>
 <th id="M_low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">M_low</th>
@@ -1922,32 +2589,32 @@ div.csl-indent {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_right" headers="marcat">1</td>
-<td class="gt_row gt_right" headers="M">124</td>
+<td class="gt_row gt_center" headers="marcat">Married</td>
+<td class="gt_row gt_right" headers="M">122</td>
 <td class="gt_row gt_right" headers="M_se">1</td>
-<td class="gt_row gt_right" headers="M_low">122</td>
-<td class="gt_row gt_right" headers="M_upp">125</td>
+<td class="gt_row gt_right" headers="M_low">121</td>
+<td class="gt_row gt_right" headers="M_upp">123</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_right" headers="marcat">2</td>
-<td class="gt_row gt_right" headers="M">130</td>
+<td class="gt_row gt_center" headers="marcat">Previously married</td>
+<td class="gt_row gt_right" headers="M">128</td>
 <td class="gt_row gt_right" headers="M_se">1</td>
-<td class="gt_row gt_right" headers="M_low">128</td>
-<td class="gt_row gt_right" headers="M_upp">133</td>
+<td class="gt_row gt_right" headers="M_low">126</td>
+<td class="gt_row gt_right" headers="M_upp">129</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_right" headers="marcat">3</td>
+<td class="gt_row gt_center" headers="marcat">Never married</td>
 <td class="gt_row gt_right" headers="M">119</td>
 <td class="gt_row gt_right" headers="M_se">1</td>
-<td class="gt_row gt_right" headers="M_low">118</td>
-<td class="gt_row gt_right" headers="M_upp">121</td>
+<td class="gt_row gt_right" headers="M_low">117</td>
+<td class="gt_row gt_right" headers="M_upp">120</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_right" headers="marcat">NA</td>
-<td class="gt_row gt_right" headers="M">106</td>
+<td class="gt_row gt_center" headers="marcat">NA</td>
+<td class="gt_row gt_right" headers="M">107</td>
 <td class="gt_row gt_right" headers="M_se">0</td>
-<td class="gt_row gt_right" headers="M_low">105</td>
-<td class="gt_row gt_right" headers="M_upp">107</td>
+<td class="gt_row gt_right" headers="M_low">106</td>
+<td class="gt_row gt_right" headers="M_upp">108</td>
 </tr>
 </tbody>
 </table>
@@ -1957,32 +2624,32 @@ div.csl-indent {
 </div>
 <p>What is the probability of holding each marital status? Calculate the proportion of <code>marcat</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_prop</span>()</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, M) <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(M<span class="sc">:</span>M_se, <span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_prop</span>()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, M) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(M<span class="sc">:</span>M_se, <span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ktultxzrkm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ktultxzrkm table {
+<div id="cainjdejdt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cainjdejdt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ktultxzrkm thead, #ktultxzrkm tbody, #ktultxzrkm tfoot, #ktultxzrkm tr, #ktultxzrkm td, #ktultxzrkm th {
+#cainjdejdt thead, #cainjdejdt tbody, #cainjdejdt tfoot, #cainjdejdt tr, #cainjdejdt td, #cainjdejdt th {
   border-style: none;
 }
 
-#ktultxzrkm p {
+#cainjdejdt p {
   margin: 0;
   padding: 0;
 }
 
-#ktultxzrkm .gt_table {
+#cainjdejdt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2008,12 +2675,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_caption {
+#cainjdejdt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ktultxzrkm .gt_title {
+#cainjdejdt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2025,7 +2692,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#ktultxzrkm .gt_subtitle {
+#cainjdejdt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2037,7 +2704,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#ktultxzrkm .gt_heading {
+#cainjdejdt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2049,13 +2716,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_bottom_border {
+#cainjdejdt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_col_headings {
+#cainjdejdt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2070,7 +2737,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_col_heading {
+#cainjdejdt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2090,7 +2757,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ktultxzrkm .gt_column_spanner_outer {
+#cainjdejdt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2102,15 +2769,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#ktultxzrkm .gt_column_spanner_outer:first-child {
+#cainjdejdt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ktultxzrkm .gt_column_spanner_outer:last-child {
+#cainjdejdt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ktultxzrkm .gt_column_spanner {
+#cainjdejdt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2122,11 +2789,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#ktultxzrkm .gt_spanner_row {
+#cainjdejdt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ktultxzrkm .gt_group_heading {
+#cainjdejdt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2152,7 +2819,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#ktultxzrkm .gt_empty_group_heading {
+#cainjdejdt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2167,15 +2834,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#ktultxzrkm .gt_from_md > :first-child {
+#cainjdejdt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ktultxzrkm .gt_from_md > :last-child {
+#cainjdejdt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ktultxzrkm .gt_row {
+#cainjdejdt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2194,7 +2861,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ktultxzrkm .gt_stub {
+#cainjdejdt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2207,7 +2874,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ktultxzrkm .gt_stub_row_group {
+#cainjdejdt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2221,15 +2888,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#ktultxzrkm .gt_row_group_first td {
+#cainjdejdt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ktultxzrkm .gt_row_group_first th {
+#cainjdejdt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ktultxzrkm .gt_summary_row {
+#cainjdejdt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2239,16 +2906,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ktultxzrkm .gt_first_summary_row {
+#cainjdejdt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_first_summary_row.thick {
+#cainjdejdt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ktultxzrkm .gt_last_summary_row {
+#cainjdejdt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2258,7 +2925,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_grand_summary_row {
+#cainjdejdt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2268,7 +2935,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ktultxzrkm .gt_first_grand_summary_row {
+#cainjdejdt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2278,7 +2945,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_last_grand_summary_row_top {
+#cainjdejdt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2288,11 +2955,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_striped {
+#cainjdejdt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ktultxzrkm .gt_table_body {
+#cainjdejdt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2301,7 +2968,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_footnotes {
+#cainjdejdt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2315,7 +2982,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_footnote {
+#cainjdejdt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2324,7 +2991,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ktultxzrkm .gt_sourcenotes {
+#cainjdejdt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2338,7 +3005,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ktultxzrkm .gt_sourcenote {
+#cainjdejdt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2346,72 +3013,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ktultxzrkm .gt_left {
+#cainjdejdt .gt_left {
   text-align: left;
 }
 
-#ktultxzrkm .gt_center {
+#cainjdejdt .gt_center {
   text-align: center;
 }
 
-#ktultxzrkm .gt_right {
+#cainjdejdt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ktultxzrkm .gt_font_normal {
+#cainjdejdt .gt_font_normal {
   font-weight: normal;
 }
 
-#ktultxzrkm .gt_font_bold {
+#cainjdejdt .gt_font_bold {
   font-weight: bold;
 }
 
-#ktultxzrkm .gt_font_italic {
+#cainjdejdt .gt_font_italic {
   font-style: italic;
 }
 
-#ktultxzrkm .gt_super {
+#cainjdejdt .gt_super {
   font-size: 65%;
 }
 
-#ktultxzrkm .gt_footnote_marks {
+#cainjdejdt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ktultxzrkm .gt_asterisk {
+#cainjdejdt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ktultxzrkm .gt_indent_1 {
+#cainjdejdt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ktultxzrkm .gt_indent_2 {
+#cainjdejdt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ktultxzrkm .gt_indent_3 {
+#cainjdejdt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ktultxzrkm .gt_indent_4 {
+#cainjdejdt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ktultxzrkm .gt_indent_5 {
+#cainjdejdt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ktultxzrkm .katex-display {
+#cainjdejdt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ktultxzrkm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cainjdejdt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2419,34 +3086,34 @@ div.csl-indent {
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="marcat" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">marcat</th>
+<th id="marcat" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">marcat</th>
 <th id="M" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">M</th>
 <th id="M_se" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">M_se</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="marcat">1</td>
-<td class="gt_row gt_right" headers="M">0.320</td>
-<td class="gt_row gt_right" headers="M_se">0.013</td>
+<td class="gt_row gt_center" headers="marcat">Married</td>
+<td class="gt_row gt_right" headers="M">0.448</td>
+<td class="gt_row gt_right" headers="M_se">0.015</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="marcat">2</td>
-<td class="gt_row gt_right" headers="M">0.127</td>
-<td class="gt_row gt_right" headers="M_se">0.005</td>
+<td class="gt_row gt_center" headers="marcat">Previously married</td>
+<td class="gt_row gt_right" headers="M">0.137</td>
+<td class="gt_row gt_right" headers="M_se">0.006</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="marcat">3</td>
-<td class="gt_row gt_right" headers="M">0.122</td>
-<td class="gt_row gt_right" headers="M_se">0.013</td>
+<td class="gt_row gt_center" headers="marcat">Never married</td>
+<td class="gt_row gt_right" headers="M">0.145</td>
+<td class="gt_row gt_right" headers="M_se">0.017</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="marcat">NA</td>
-<td class="gt_row gt_right" headers="M">0.431</td>
-<td class="gt_row gt_right" headers="M_se">0.010</td>
+<td class="gt_row gt_center" headers="marcat">NA</td>
+<td class="gt_row gt_right" headers="M">0.270</td>
+<td class="gt_row gt_right" headers="M_se">0.008</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="marcat">Total</td>
+<td class="gt_row gt_center" headers="marcat">Total</td>
 <td class="gt_row gt_right" headers="M">1.000</td>
 <td class="gt_row gt_right" headers="M_se">NA</td>
 </tr>
@@ -2457,35 +3124,35 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="quantiles" class="level3" data-number="10.4.4">
-<h3 data-number="10.4.4" class="anchored" data-anchor-id="quantiles"><span class="header-section-number">10.4.4</span> Quantiles</h3>
+<section id="quantiles" class="level3" data-number="10.5.4">
+<h3 data-number="10.5.4" class="anchored" data-anchor-id="quantiles"><span class="header-section-number">10.5.4</span> Quantiles</h3>
 <p>What was the IQR of systolic blood pressure by marital status? Calculate the IQR of <code>BPXSY1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q =</span> <span class="fu">survey_quantile</span>(BPXSY1, <span class="at">quantiles =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">5</span>, .<span class="dv">75</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">ends_with</span>(<span class="st">"se"</span>), <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q =</span> <span class="fu">survey_quantile</span>(BPXSY1, <span class="at">quantiles =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">5</span>, .<span class="dv">75</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">ends_with</span>(<span class="st">"se"</span>), <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="tgxbmhswxs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tgxbmhswxs table {
+<div id="erlybsvkwl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#erlybsvkwl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tgxbmhswxs thead, #tgxbmhswxs tbody, #tgxbmhswxs tfoot, #tgxbmhswxs tr, #tgxbmhswxs td, #tgxbmhswxs th {
+#erlybsvkwl thead, #erlybsvkwl tbody, #erlybsvkwl tfoot, #erlybsvkwl tr, #erlybsvkwl td, #erlybsvkwl th {
   border-style: none;
 }
 
-#tgxbmhswxs p {
+#erlybsvkwl p {
   margin: 0;
   padding: 0;
 }
 
-#tgxbmhswxs .gt_table {
+#erlybsvkwl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2511,12 +3178,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_caption {
+#erlybsvkwl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tgxbmhswxs .gt_title {
+#erlybsvkwl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2528,7 +3195,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#tgxbmhswxs .gt_subtitle {
+#erlybsvkwl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2540,7 +3207,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#tgxbmhswxs .gt_heading {
+#erlybsvkwl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2552,13 +3219,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_bottom_border {
+#erlybsvkwl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_col_headings {
+#erlybsvkwl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2573,7 +3240,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_col_heading {
+#erlybsvkwl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2593,7 +3260,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#tgxbmhswxs .gt_column_spanner_outer {
+#erlybsvkwl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2605,15 +3272,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#tgxbmhswxs .gt_column_spanner_outer:first-child {
+#erlybsvkwl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tgxbmhswxs .gt_column_spanner_outer:last-child {
+#erlybsvkwl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tgxbmhswxs .gt_column_spanner {
+#erlybsvkwl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2625,11 +3292,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#tgxbmhswxs .gt_spanner_row {
+#erlybsvkwl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tgxbmhswxs .gt_group_heading {
+#erlybsvkwl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2655,7 +3322,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#tgxbmhswxs .gt_empty_group_heading {
+#erlybsvkwl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2670,15 +3337,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#tgxbmhswxs .gt_from_md > :first-child {
+#erlybsvkwl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tgxbmhswxs .gt_from_md > :last-child {
+#erlybsvkwl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tgxbmhswxs .gt_row {
+#erlybsvkwl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2697,7 +3364,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#tgxbmhswxs .gt_stub {
+#erlybsvkwl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2710,7 +3377,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tgxbmhswxs .gt_stub_row_group {
+#erlybsvkwl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2724,15 +3391,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#tgxbmhswxs .gt_row_group_first td {
+#erlybsvkwl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tgxbmhswxs .gt_row_group_first th {
+#erlybsvkwl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tgxbmhswxs .gt_summary_row {
+#erlybsvkwl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2742,16 +3409,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tgxbmhswxs .gt_first_summary_row {
+#erlybsvkwl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_first_summary_row.thick {
+#erlybsvkwl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tgxbmhswxs .gt_last_summary_row {
+#erlybsvkwl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2761,7 +3428,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_grand_summary_row {
+#erlybsvkwl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2771,7 +3438,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tgxbmhswxs .gt_first_grand_summary_row {
+#erlybsvkwl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2781,7 +3448,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_last_grand_summary_row_top {
+#erlybsvkwl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2791,11 +3458,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_striped {
+#erlybsvkwl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tgxbmhswxs .gt_table_body {
+#erlybsvkwl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2804,7 +3471,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_footnotes {
+#erlybsvkwl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2818,7 +3485,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_footnote {
+#erlybsvkwl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2827,7 +3494,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tgxbmhswxs .gt_sourcenotes {
+#erlybsvkwl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2841,7 +3508,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#tgxbmhswxs .gt_sourcenote {
+#erlybsvkwl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2849,72 +3516,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#tgxbmhswxs .gt_left {
+#erlybsvkwl .gt_left {
   text-align: left;
 }
 
-#tgxbmhswxs .gt_center {
+#erlybsvkwl .gt_center {
   text-align: center;
 }
 
-#tgxbmhswxs .gt_right {
+#erlybsvkwl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tgxbmhswxs .gt_font_normal {
+#erlybsvkwl .gt_font_normal {
   font-weight: normal;
 }
 
-#tgxbmhswxs .gt_font_bold {
+#erlybsvkwl .gt_font_bold {
   font-weight: bold;
 }
 
-#tgxbmhswxs .gt_font_italic {
+#erlybsvkwl .gt_font_italic {
   font-style: italic;
 }
 
-#tgxbmhswxs .gt_super {
+#erlybsvkwl .gt_super {
   font-size: 65%;
 }
 
-#tgxbmhswxs .gt_footnote_marks {
+#erlybsvkwl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tgxbmhswxs .gt_asterisk {
+#erlybsvkwl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tgxbmhswxs .gt_indent_1 {
+#erlybsvkwl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tgxbmhswxs .gt_indent_2 {
+#erlybsvkwl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tgxbmhswxs .gt_indent_3 {
+#erlybsvkwl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tgxbmhswxs .gt_indent_4 {
+#erlybsvkwl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tgxbmhswxs .gt_indent_5 {
+#erlybsvkwl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tgxbmhswxs .katex-display {
+#erlybsvkwl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tgxbmhswxs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#erlybsvkwl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2922,7 +3589,7 @@ div.csl-indent {
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
-<th id="marcat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">marcat</th>
+<th id="marcat" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">marcat</th>
 <th id="Q_q25" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Q_q25</th>
 <th id="Q_q50" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Q_q50</th>
 <th id="Q_q75" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Q_q75</th>
@@ -2933,36 +3600,36 @@ div.csl-indent {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_right" headers="marcat">1</td>
-<td class="gt_row gt_right" headers="Q_q25">114</td>
-<td class="gt_row gt_right" headers="Q_q50">124</td>
-<td class="gt_row gt_right" headers="Q_q75">142</td>
-<td class="gt_row gt_right" headers="Q_q25_se">NaN</td>
-<td class="gt_row gt_right" headers="Q_q50_se">NaN</td>
-<td class="gt_row gt_right" headers="Q_q75_se">NaN</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="marcat">2</td>
-<td class="gt_row gt_right" headers="Q_q25">116</td>
-<td class="gt_row gt_right" headers="Q_q50">132</td>
-<td class="gt_row gt_right" headers="Q_q75">154</td>
-<td class="gt_row gt_right" headers="Q_q25_se">NaN</td>
-<td class="gt_row gt_right" headers="Q_q50_se">NaN</td>
-<td class="gt_row gt_right" headers="Q_q75_se">NaN</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="marcat">3</td>
-<td class="gt_row gt_right" headers="Q_q25">110</td>
-<td class="gt_row gt_right" headers="Q_q50">120</td>
+<td class="gt_row gt_center" headers="marcat">Married</td>
+<td class="gt_row gt_right" headers="Q_q25">112</td>
+<td class="gt_row gt_right" headers="Q_q50">122</td>
 <td class="gt_row gt_right" headers="Q_q75">134</td>
 <td class="gt_row gt_right" headers="Q_q25_se">NaN</td>
 <td class="gt_row gt_right" headers="Q_q50_se">NaN</td>
 <td class="gt_row gt_right" headers="Q_q75_se">NaN</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_right" headers="marcat">NA</td>
-<td class="gt_row gt_right" headers="Q_q25">108</td>
-<td class="gt_row gt_right" headers="Q_q50">NA</td>
+<td class="gt_row gt_center" headers="marcat">Previously married</td>
+<td class="gt_row gt_right" headers="Q_q25">114</td>
+<td class="gt_row gt_right" headers="Q_q50">126</td>
+<td class="gt_row gt_right" headers="Q_q75">144</td>
+<td class="gt_row gt_right" headers="Q_q25_se">NaN</td>
+<td class="gt_row gt_right" headers="Q_q50_se">NaN</td>
+<td class="gt_row gt_right" headers="Q_q75_se">NaN</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="marcat">Never married</td>
+<td class="gt_row gt_right" headers="Q_q25">110</td>
+<td class="gt_row gt_right" headers="Q_q50">118</td>
+<td class="gt_row gt_right" headers="Q_q75">130</td>
+<td class="gt_row gt_right" headers="Q_q25_se">NaN</td>
+<td class="gt_row gt_right" headers="Q_q50_se">NaN</td>
+<td class="gt_row gt_right" headers="Q_q75_se">NaN</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="marcat">NA</td>
+<td class="gt_row gt_right" headers="Q_q25">106</td>
+<td class="gt_row gt_right" headers="Q_q50">120</td>
 <td class="gt_row gt_right" headers="Q_q75">NA</td>
 <td class="gt_row gt_right" headers="Q_q25_se">NaN</td>
 <td class="gt_row gt_right" headers="Q_q50_se">NaN</td>
@@ -2975,36 +3642,36 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="ratios" class="level3" data-number="10.4.5">
-<h3 data-number="10.4.5" class="anchored" data-anchor-id="ratios"><span class="header-section-number">10.4.5</span> Ratios</h3>
+<section id="ratios" class="level3" data-number="10.5.5">
+<h3 data-number="10.5.5" class="anchored" data-anchor-id="ratios"><span class="header-section-number">10.5.5</span> Ratios</h3>
 <p>Estimate the ratio of high-density total cholesterol.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">survey_total</span>(),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">R =</span> <span class="fu">survey_ratio</span>(lbdhdd, lbxtc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">survey_total</span>(),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">R =</span> <span class="fu">survey_ratio</span>(lbdhdd, lbxtc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="pgkfhwxvow" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pgkfhwxvow table {
+<div id="gxklkapzcw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gxklkapzcw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pgkfhwxvow thead, #pgkfhwxvow tbody, #pgkfhwxvow tfoot, #pgkfhwxvow tr, #pgkfhwxvow td, #pgkfhwxvow th {
+#gxklkapzcw thead, #gxklkapzcw tbody, #gxklkapzcw tfoot, #gxklkapzcw tr, #gxklkapzcw td, #gxklkapzcw th {
   border-style: none;
 }
 
-#pgkfhwxvow p {
+#gxklkapzcw p {
   margin: 0;
   padding: 0;
 }
 
-#pgkfhwxvow .gt_table {
+#gxklkapzcw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3030,12 +3697,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_caption {
+#gxklkapzcw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pgkfhwxvow .gt_title {
+#gxklkapzcw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3047,7 +3714,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#pgkfhwxvow .gt_subtitle {
+#gxklkapzcw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3059,7 +3726,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#pgkfhwxvow .gt_heading {
+#gxklkapzcw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3071,13 +3738,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_bottom_border {
+#gxklkapzcw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_col_headings {
+#gxklkapzcw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3092,7 +3759,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_col_heading {
+#gxklkapzcw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3112,7 +3779,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#pgkfhwxvow .gt_column_spanner_outer {
+#gxklkapzcw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3124,15 +3791,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#pgkfhwxvow .gt_column_spanner_outer:first-child {
+#gxklkapzcw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pgkfhwxvow .gt_column_spanner_outer:last-child {
+#gxklkapzcw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pgkfhwxvow .gt_column_spanner {
+#gxklkapzcw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3144,11 +3811,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#pgkfhwxvow .gt_spanner_row {
+#gxklkapzcw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pgkfhwxvow .gt_group_heading {
+#gxklkapzcw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3174,7 +3841,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#pgkfhwxvow .gt_empty_group_heading {
+#gxklkapzcw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3189,15 +3856,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#pgkfhwxvow .gt_from_md > :first-child {
+#gxklkapzcw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pgkfhwxvow .gt_from_md > :last-child {
+#gxklkapzcw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pgkfhwxvow .gt_row {
+#gxklkapzcw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3216,7 +3883,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#pgkfhwxvow .gt_stub {
+#gxklkapzcw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3229,7 +3896,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pgkfhwxvow .gt_stub_row_group {
+#gxklkapzcw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3243,15 +3910,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#pgkfhwxvow .gt_row_group_first td {
+#gxklkapzcw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pgkfhwxvow .gt_row_group_first th {
+#gxklkapzcw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pgkfhwxvow .gt_summary_row {
+#gxklkapzcw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3261,16 +3928,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pgkfhwxvow .gt_first_summary_row {
+#gxklkapzcw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_first_summary_row.thick {
+#gxklkapzcw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pgkfhwxvow .gt_last_summary_row {
+#gxklkapzcw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3280,7 +3947,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_grand_summary_row {
+#gxklkapzcw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3290,7 +3957,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pgkfhwxvow .gt_first_grand_summary_row {
+#gxklkapzcw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3300,7 +3967,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_last_grand_summary_row_top {
+#gxklkapzcw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3310,11 +3977,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_striped {
+#gxklkapzcw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pgkfhwxvow .gt_table_body {
+#gxklkapzcw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3323,7 +3990,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_footnotes {
+#gxklkapzcw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3337,7 +4004,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_footnote {
+#gxklkapzcw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3346,7 +4013,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pgkfhwxvow .gt_sourcenotes {
+#gxklkapzcw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3360,7 +4027,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pgkfhwxvow .gt_sourcenote {
+#gxklkapzcw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3368,72 +4035,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pgkfhwxvow .gt_left {
+#gxklkapzcw .gt_left {
   text-align: left;
 }
 
-#pgkfhwxvow .gt_center {
+#gxklkapzcw .gt_center {
   text-align: center;
 }
 
-#pgkfhwxvow .gt_right {
+#gxklkapzcw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pgkfhwxvow .gt_font_normal {
+#gxklkapzcw .gt_font_normal {
   font-weight: normal;
 }
 
-#pgkfhwxvow .gt_font_bold {
+#gxklkapzcw .gt_font_bold {
   font-weight: bold;
 }
 
-#pgkfhwxvow .gt_font_italic {
+#gxklkapzcw .gt_font_italic {
   font-style: italic;
 }
 
-#pgkfhwxvow .gt_super {
+#gxklkapzcw .gt_super {
   font-size: 65%;
 }
 
-#pgkfhwxvow .gt_footnote_marks {
+#gxklkapzcw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pgkfhwxvow .gt_asterisk {
+#gxklkapzcw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pgkfhwxvow .gt_indent_1 {
+#gxklkapzcw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pgkfhwxvow .gt_indent_2 {
+#gxklkapzcw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pgkfhwxvow .gt_indent_3 {
+#gxklkapzcw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pgkfhwxvow .gt_indent_4 {
+#gxklkapzcw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pgkfhwxvow .gt_indent_5 {
+#gxklkapzcw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pgkfhwxvow .katex-display {
+#gxklkapzcw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pgkfhwxvow div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gxklkapzcw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3451,12 +4118,12 @@ div.csl-indent {
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_right" headers="n">5,864.000</td>
-<td class="gt_row gt_right" headers="n_se">125.028</td>
-<td class="gt_row gt_right" headers="R">0.273</td>
+<td class="gt_row gt_right" headers="n">232,002,539.045</td>
+<td class="gt_row gt_right" headers="n_se">14,006,079.200</td>
+<td class="gt_row gt_right" headers="R">0.272</td>
 <td class="gt_row gt_right" headers="R_se">0.003</td>
-<td class="gt_row gt_right" headers="R_low">0.267</td>
-<td class="gt_row gt_right" headers="R_upp">0.280</td>
+<td class="gt_row gt_right" headers="R_low">0.266</td>
+<td class="gt_row gt_right" headers="R_upp">0.278</td>
 </tr>
 </tbody>
 </table>
@@ -3471,9 +4138,6 @@ div.csl-indent {
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Heeringa2017" class="csl-entry" role="listitem">
 Heeringa, West, S. G. 2017. <em>Applied Survey Data Analysis (2nd Ed.)</em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781315153278">https://doi.org/10.1201/9781315153278</a>.
-</div>
-<div id="ref-valliant2013" class="csl-entry" role="listitem">
-Valliant, Jill A.; Kreuter, Richard; Dever. 2013. <em>Practical Tools for Designing and Weighting Survey Samples</em>. Springer. <a href="https://doi.org/10.1007/978-3-319-93632-1">https://doi.org/10.1007/978-3-319-93632-1</a>.
 </div>
 </div>
 </section>
@@ -3963,168 +4627,268 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Case Study: NHANES</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>The sample design report outline is from @valliant2013. We'll use the data from the *National Comorbidity Survey Replication (NCS-R)* featured in @Heeringa2017. This was a 2002 study of mental illness. The sample design was an equal probability, multistage sample.</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, message=FALSE, warning=FALSE}</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(scales)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(janitor)</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(survey)</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(srvyr)</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(gtsummary)</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Executive summary</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the purpose of this document.</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss the contents of the remaining section of the report.  </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample design</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>**Description of the target population.** </span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>The target population was adults aged 18 and older residing in the 48 contiguous United States.</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>**Describe the sampling frame including the date and source database.** </span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>The sampling frame included households in the 48 contiguous United States. The survey was conducted between February 2001 and April 2003. The source database for the sampling frame was the Inter-university Consortium for Political and Social Research (ICPSR), which provided the necessary geographic and demographic information to ensure a nationally representative sample.</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>**Describe the type of sample and method of sample selection to be used.** </span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>The sampling strategy was a multi-stage clustered area probability sample. </span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 1 was to select primary sampling units. The entire country (48 contiguous states) was divided into primary sampling units (PSUs), composed of counties or groups of contiguous counties. A random sample of PSUs was selected.</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 2 was to select segments. The selected PSUs were subdivided into segments, usually census tracts or block groups. A random sample of segments was selected.</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 3 was to select households. A random sample of households was selected.</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 4 was to select respondents. A person was randomly selected from the household.</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample size and allocation</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization requirements</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  – Optimization details including constraints and budget.  </span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  – Detail the minimum domain sizes and mechanics used to determine  the sizes. </span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization results  </span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  – Results: minimum respondent sample size per stratum  </span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  – Estimated precision achieved by optimization results  </span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inflation adjustments to allocation solution  </span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  – Nonresponse adjustments  </span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  – Adjustments for ineligible sample members  </span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final sample allocation  </span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sensitivity analysis  </span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>  – Results from comparing deviations to allocation after introducing  changes to the optimization system  </span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloaded from book web site</span></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="co"># https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions</span></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip</span></span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"input/nhanes1112_sub_10jun2016.dta"</span>)</span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(</span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  nhanes,</span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> sdmvpsu,</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">strata =</span> sdmvstra,</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span></span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Analysis</span></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### Counts</span></span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>How many U.S. adults have experience irregular heartbeats in their lifetime?</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">.by =</span> irregular, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"cv"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, n) <span class="sc">|&gt;</span></span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n<span class="sc">:</span>n_upp, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n_cv, <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Estimted Total Lifetime MDE"</span>,</span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_se =</span> <span class="st">"Standard Error"</span>,</span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_low =</span> <span class="st">"95% CI (low)"</span>,</span>
-<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_upp =</span> <span class="st">"95% CI (upp)"</span>,</span>
-<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_cv =</span> <span class="st">"CV"</span></span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sums</span></span>
-<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>What is the total number of participated at 18 or over by educational category? Sum <span class="in">`age18p`</span>.</span>
-<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> edcat, </span>
-<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tot =</span> <span class="fu">survey_total</span>(age18p, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>))</span>
-<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, Tot, Tot) <span class="sc">|&gt;</span></span>
-<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot<span class="sc">:</span>Tot_var, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot_cv, <span class="at">decimals =</span> <span class="dv">2</span>)</span>
-<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### Means and Proportions</span></span>
-<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>What was the mean systolic blood pressure by marital status? Calculate mean(<span class="in">`BPXSY1`</span>).</span>
-<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
-<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_mean</span>(BPXSY1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
-<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">0</span>)</span>
-<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>What is the probability of holding each marital status? Calculate the proportion of <span class="in">`marcat`</span>.</span>
-<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
-<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_prop</span>()</span>
-<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, M) <span class="sc">|&gt;</span></span>
-<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(M<span class="sc">:</span>M_se, <span class="at">decimals =</span> <span class="dv">3</span>)</span>
-<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quantiles</span></span>
-<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>What was the IQR of systolic blood pressure by marital status? Calculate the IQR of <span class="in">`BPXSY1`</span>.</span>
-<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
-<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q =</span> <span class="fu">survey_quantile</span>(BPXSY1, <span class="at">quantiles =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">5</span>, .<span class="dv">75</span>))</span>
-<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">ends_with</span>(<span class="st">"se"</span>), <span class="at">decimals =</span> <span class="dv">2</span>)</span>
-<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ratios</span></span>
-<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>Estimate the ratio of high-density total cholesterol.</span>
-<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span> </span>
-<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">survey_total</span>(),</span>
-<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">R =</span> <span class="fu">survey_ratio</span>(lbdhdd, lbxtc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
-<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">3</span>)</span>
-<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Case Study: NHANES</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. It uses the *National Health and Nutrition Examination Survey (NHANES)* to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, nonresponse, and post-stratification.</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, message=FALSE, warning=FALSE}</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(scales)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(janitor)</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(survey)</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(srvyr)</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(gtsummary)</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Executive summary</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the purpose of this document.</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss the contents of the remaining section of the report.  </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample design</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>**Description of the target population.** </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>The target population was adults aged 18 and older residing in the 48 contiguous United States.</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>**Describe the sampling frame including the date and source database.** </span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>The sampling frame included households in the 48 contiguous United States. The survey was conducted between February 2001 and April 2003. The source database for the sampling frame was the Inter-university Consortium for Political and Social Research (ICPSR), which provided the necessary geographic and demographic information to ensure a nationally representative sample.</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>**Describe the type of sample and method of sample selection to be used.** </span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>The sampling strategy was a multi-stage clustered area probability sample. </span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 1 was to select primary sampling units. The entire country (48 contiguous states) was divided into primary sampling units (PSUs), composed of counties or groups of contiguous counties. A random sample of PSUs was selected.</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 2 was to select segments. The selected PSUs were subdivided into segments, usually census tracts or block groups. A random sample of segments was selected.</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 3 was to select households. A random sample of households was selected.</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 4 was to select respondents. A person was randomly selected from the household.</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample size and allocation</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization requirements</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>  – Optimization details including constraints and budget.  </span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  – Detail the minimum domain sizes and mechanics used to determine  the sizes. </span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization results  </span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>  – Results: minimum respondent sample size per stratum  </span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>  – Estimated precision achieved by optimization results  </span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inflation adjustments to allocation solution  </span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>  – Nonresponse adjustments  </span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>  – Adjustments for ineligible sample members  </span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final sample allocation  </span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sensitivity analysis  </span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>  – Results from comparing deviations to allocation after introducing  changes to the optimization system  </span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Preparation</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>I downloaded <span class="co">[</span><span class="ot">2015SEP2017.zip</span><span class="co">](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip)</span> from the <span class="co">[</span><span class="ot">book web site</span><span class="co">](https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions)</span> and unzipped into the input/ directory of this project repo.</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>nhanes_raw <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"input/nhanes1112_sub_10jun2016.dta"</span>)</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>Heeringa identifies a data cleaning step, converting 0s to <span class="in">`NA`</span>.</span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>  nhanes_raw <span class="sc">|&gt;</span></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">bpxdi1_1 =</span> <span class="fu">if_else</span>(BPXDI1 <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA_integer_</span>, BPXDI1),</span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">RIDRETH1 =</span> <span class="fu">factor</span>(RIDRETH1, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Mexican-American"</span>, <span class="st">"Other Hispanic"</span>, <span class="st">"Non-Hispanic White"</span>,</span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Non-Hispanic Black"</span>, <span class="st">"Other race"</span>)),</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">riagendr =</span> <span class="fu">factor</span>(riagendr, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)),</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">marcat =</span> <span class="fu">factor</span>(marcat, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Married"</span>, <span class="st">"Previously married"</span>, <span class="st">"Never married"</span>))</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>Define the survey design object.</span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(</span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>  nhanes,</span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> sdmvpsu,  <span class="co"># primary sampling unit (cluster)</span></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">strata =</span> sdmvstra,  <span class="co"># sampling stratum</span></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span>,  <span class="co"># strata ids are repeated across clusters</span></span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> WTMEC2YR</span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhanes_des)</span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Analysis</span></span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>Regress the continuous response variable, diastolic blood pressure (<span class="in">`bpxdi1_1`</span>), on predictors of interest.</span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>da_race <span class="ot">&lt;-</span></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> RIDRETH1, <span class="at">design =</span> .)</span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>da_age <span class="ot">&lt;-</span></span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> age, <span class="at">design =</span> .)</span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>da_age_c <span class="ot">&lt;-</span></span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> agec, <span class="at">design =</span> .)</span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>da_gender <span class="ot">&lt;-</span></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> riagendr, <span class="at">design =</span> .)</span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a>da_marital <span class="ot">&lt;-</span></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyglm</span>(bpxdi1_1 <span class="sc">~</span> marcat, <span class="at">design =</span> .)</span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-nhanes-da-bivariate</span></span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a>da_race_gt <span class="ot">&lt;-</span></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>  da_race <span class="sc">|&gt;</span></span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(RIDRETH1 <span class="sc">~</span> <span class="st">"Race/ethnicity"</span>),</span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a>da_age_c_gt <span class="ot">&lt;-</span></span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>  da_age_c <span class="sc">|&gt;</span></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(agec <span class="sc">~</span> <span class="st">"Age (cent.)"</span>),</span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>da_gender_gt <span class="ot">&lt;-</span></span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a>  da_gender <span class="sc">|&gt;</span></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(riagendr <span class="sc">~</span> <span class="st">"Gender"</span>),</span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>da_marital_gt <span class="ot">&lt;-</span></span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a>  da_marital <span class="sc">|&gt;</span></span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(marcat <span class="sc">~</span> <span class="st">"Marital status"</span>),</span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.int =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_stack</span>(</span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a>  <span class="at">tbls =</span> <span class="fu">list</span>(da_race_gt, da_age_c_gt, da_gender_gt, da_marital_gt)</span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_caption</span>(<span class="st">""</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Initial Design-Based Bivariate Regression Analysis Results Assessing Potential  Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"</span></span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Counts</span></span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a>How many U.S. adults have experience irregular heartbeats in their lifetime?</span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">survey_count</span>(<span class="at">.by =</span> irregular, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"cv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, n) <span class="sc">|&gt;</span></span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n<span class="sc">:</span>n_upp, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(n_cv, <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Estimted Total Lifetime MDE"</span>,</span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_se =</span> <span class="st">"Standard Error"</span>,</span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_low =</span> <span class="st">"95% CI (low)"</span>,</span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_upp =</span> <span class="st">"95% CI (upp)"</span>,</span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_cv =</span> <span class="st">"CV"</span></span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sums</span></span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>What is the total number of participated at 18 or over by educational category? Sum <span class="in">`age18p`</span>.</span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> edcat, </span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tot =</span> <span class="fu">survey_total</span>(age18p, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>, <span class="st">"var"</span>, <span class="st">"cv"</span>))</span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, Tot, Tot) <span class="sc">|&gt;</span></span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot<span class="sc">:</span>Tot_var, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(Tot_cv, <span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Means and Proportions</span></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a>What was the mean systolic blood pressure by marital status? Calculate mean(<span class="in">`BPXSY1`</span>).</span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_mean</span>(BPXSY1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">0</span>)</span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a>What is the probability of holding each marital status? Calculate the proportion of <span class="in">`marcat`</span>.</span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">survey_prop</span>()</span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(, <span class="at">fill =</span> <span class="cn">NA</span>,,, M) <span class="sc">|&gt;</span></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(M<span class="sc">:</span>M_se, <span class="at">decimals =</span> <span class="dv">3</span>)</span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quantiles</span></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a>What was the IQR of systolic blood pressure by marital status? Calculate the IQR of <span class="in">`BPXSY1`</span>.</span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> marcat,</span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q =</span> <span class="fu">survey_quantile</span>(BPXSY1, <span class="at">quantiles =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">5</span>, .<span class="dv">75</span>))</span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">ends_with</span>(<span class="st">"se"</span>), <span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ratios</span></span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a>Estimate the ratio of high-density total cholesterol.</span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span> </span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">survey_total</span>(),</span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a>    <span class="at">R =</span> <span class="fu">survey_ratio</span>(lbdhdd, lbxtc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">vartype =</span> <span class="fu">c</span>(<span class="st">"se"</span>, <span class="st">"ci"</span>))</span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-282"><a href="#cb14-282" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">3</span>)</span>
+<span id="cb14-283"><a href="#cb14-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
