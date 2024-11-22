@@ -1,6 +1,6 @@
 # Case Study: NHANES
 
-This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. It uses the *National Health and Nutrition Examination Survey (NHANES)* to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, nonresponse, and post-stratification.
+This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. It uses the *National Health and Nutrition Examination Survey (NHANES)* to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, non-response, and post-stratification.
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -55,13 +55,13 @@ The sampling strategy was a multi-stage clustered area probability sample.
   
 ## Data Preparation
 
-I downloaded [2015SEP2017.zip](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip) from the [book web site](https://websites.umich.edu/~surveymethod/asda/#Links%20to%20Data%20Sets%20for%20First%20and%20Second%20Editions) and unzipped into the input/ directory of this project repo.
+Download [2015SEP2017.zip](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip) from the *Applied Survey Data Analysis* book [web site](https://websites.umich.edu/~surveymethod/asda/) and unzip into the input/ directory of this project repo.
  
 ```{r}
 nhanes_raw <- foreign::read.dta("input/nhanes1112_sub_10jun2016.dta")
 ```
 
-Heeringa identifies a data cleaning step, converting 0s to `NA`.
+Create labels for factor vars. Heeringa also identifies a data cleaning step, converting 0s to `NA`.
 
 ```{r}
 nhanes <-
@@ -77,7 +77,7 @@ nhanes <-
   )
 ```
 
-Define the survey design object.
+Create a survey design object for analysis.
 
 ```{r}
 nhanes_des <- as_survey_design(
@@ -93,129 +93,71 @@ summary(nhanes_des)
 
 ## Descriptive Analysis
 
-Regress the continuous response variable, diastolic blood pressure (`bpxdi1_1`), on predictors of interest.
+Regress the continuous response variable, diastolic blood pressure (`bpxdi1_1`), on five predictors of interest: race/ethnicity (`RIDRETH1`), age (`agec`), gender (`riagendr`), and marriage status (`marcat`).
 
 ```{r}
-da_race <-
-  nhanes_des |> 
-  filter(age18p == 1) %>%
-  survey::svyglm(bpxdi1_1 ~ RIDRETH1, design = .)
-
-da_age <-
-  nhanes_des |> 
-  filter(age18p == 1) %>%
-  survey::svyglm(bpxdi1_1 ~ age, design = .)
-
-da_age_c <-
-  nhanes_des |> 
+nhanes_des |>
   filter(age18p == 1) |>
-  mutate(agec = scale(age, scale = FALSE)) %>%
-  survey::svyglm(bpxdi1_1 ~ agec, design = .)
-
-da_gender <-
-  nhanes_des |> 
-  filter(age18p == 1) %>%
-  survey::svyglm(bpxdi1_1 ~ riagendr, design = .)
-
-da_marital <-
-  nhanes_des |> 
-  filter(age18p == 1) %>%
-  survey::svyglm(bpxdi1_1 ~ marcat, design = .)
-
-```
-
-```{r}
-#| code-fold: true
-#| label: tbl-nhanes-da-bivariate
-
-da_race_gt <-
-  da_race |>
-  gtsummary::tbl_regression(
-    label = list(RIDRETH1 ~ "Race/ethnicity"),
-    conf.int = FALSE
-  )
-
-da_age_c_gt <-
-  da_age_c |>
-  gtsummary::tbl_regression(
-    label = list(agec ~ "Age (cent.)"),
-    conf.int = FALSE
-  )
-
-da_gender_gt <-
-  da_gender |>
-  gtsummary::tbl_regression(
-    label = list(riagendr ~ "Gender"),
-    conf.int = FALSE
-  )
-
-da_marital_gt <-
-  da_marital |>
-  gtsummary::tbl_regression(
-    label = list(marcat ~ "Marital status"),
-    conf.int = FALSE
-  )
-
-gtsummary::tbl_stack(
-  tbls = list(da_race_gt, da_age_c_gt, da_gender_gt, da_marital_gt)
-) |>
+  mutate(agec = scale(age, scale = FALSE)) |>
+  select(bpxdi1_1, RIDRETH1, agec, riagendr, marcat) |>
+  tbl_uvregression(
+    y = bpxdi1_1,
+    method = survey::svyglm,
+    label = list(
+      RIDRETH1 ~ "Race/ethnicity", 
+      agec ~ "Age (cent.)", 
+      riagendr ~ "Gender",
+      marcat ~ "Marital status"
+    )
+  ) |>
   as_gt() |>
-  gt::tab_caption("") |>
+  gt::tab_caption(".") |>
   gt::tab_header(
-    title = "Initial Design-Based Bivariate Regression Analysis Results Assessing Potential  Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"
+    title = "Initial Design-Based Bivariate Regression Analysis Results ",
+    subtitle = "Assessing Potential Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"
   ) |>
   gt::tab_options(heading.align = "left")
 ```
 
+The design-based t-tests suggest that race/ethnicity, age, and gender have  potentially significant relationships with DBP, while marital status  does not appear to be related. Non-Hispanic whites, non-Hispanic blacks, older adults, and males appear to have the highest DBPs at first glance. Include the first three predictors in an initial model. 
 
-### Counts
+## Analysis
 
-How many U.S. adults have experience irregular heartbeats in their lifetime?
+Fit a regression model with the variables of interest.
 
 ```{r}
-nhanes_des |>
-  survey_count(.by = irregular, vartype = c("se", "ci", "cv")) |>
-  adorn_totals(, fill = NA,,, n) |>
-  gt::gt() |>
-  gt::fmt_number(n:n_upp, decimals = 0) |>
-  gt::fmt_number(n_cv, decimals = 2) |>
-  gt::cols_label(
-    n = "Estimted Total Lifetime MDE",
-    n_se = "Standard Error",
-    n_low = "95% CI (low)",
-    n_upp = "95% CI (upp)",
-    n_cv = "CV"
+nhanes_fit <- 
+  nhanes_des |>
+  filter(age18p == 1) |>
+  mutate(agec = scale(age, scale = FALSE)) %>%
+  svyglm(
+    bpxdi1_1 ~ RIDRETH1 + agec + riagendr,
+    design = .
   )
+
+nhanes_fit |>
+  gtsummary::tbl_regression(
+    label = list(
+      RIDRETH1 ~ "Race/ethnicity", 
+      agec ~ "Age (cent.)", 
+      riagendr ~ "Gender"
+    )
+  ) |>
+  gtsummary::add_glance_source_note() |>
+  as_gt() |>
+  gt::tab_caption(".") |>
+  gt::tab_header(
+    title = "Design-Based Estimates of the Regression Parameters in the Initial “Main”  Model for Diastolic Blood Pressure",
+    subtitle = "Linearized Standard Errors for the Estimates, Design-Adjusted Test Statistics and Confidence Intervals for the Parameters, and Design Effects for the Parameter Estimates."
+  ) |>
+  gt::tab_options(heading.align = "left")
 ```
 
-### Sums
-
-What is the total number of participated at 18 or over by educational category? Sum `age18p`.
+The degrees of freedom for the t-statistics are the number of ultimate clusters (31) minus the number of strata (14).
 
 ```{r}
-nhanes_des |>
-  summarize(
-    .by = edcat, 
-    Tot = survey_total(age18p, na.rm = TRUE, vartype = c("se", "ci", "var", "cv"))
-  ) |>
-  adorn_totals(, fill = NA,,, Tot, Tot) |>
-  gt::gt() |>
-  gt::fmt_number(Tot:Tot_var, decimals = 0) |>
-  gt::fmt_number(Tot_cv, decimals = 2)
-```
-
-### Means and Proportions
-
-What was the mean systolic blood pressure by marital status? Calculate mean(`BPXSY1`).
-
-```{r}
-nhanes_des |>
-  summarize(
-    .by = marcat,
-    M = survey_mean(BPXSY1, na.rm = TRUE, vartype = c("se", "ci"))
-  ) |>
-  gt::gt() |>
-  gt::fmt_number(decimals = 0)
+par(mfrow = c(2, 2))
+plot(nhanes_fit, labels.id = NULL)
 ```
 
 What is the probability of holding each marital status? Calculate the proportion of `marcat`.
