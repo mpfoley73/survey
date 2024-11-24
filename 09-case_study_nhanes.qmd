@@ -9,6 +9,8 @@ library(janitor)
 library(survey)
 library(srvyr)
 library(gtsummary)
+library(broom)
+library(ggeffects)
 ```
 
 ## Executive summary
@@ -123,10 +125,10 @@ The design-based t-tests suggest that race/ethnicity, age, and gender have  pote
 
 ## Analysis
 
-Fit a regression model with the variables of interest.
+Fit an initial regression model with the variables of interest.
 
 ```{r}
-nhanes_fit <- 
+fit_1 <- 
   nhanes_des |>
   filter(age18p == 1) |>
   mutate(agec = scale(age, scale = FALSE)) %>%
@@ -135,71 +137,132 @@ nhanes_fit <-
     design = .
   )
 
-nhanes_fit |>
+fit_1 |>
   gtsummary::tbl_regression(
     label = list(
       RIDRETH1 ~ "Race/ethnicity", 
       agec ~ "Age (cent.)", 
       riagendr ~ "Gender"
-    )
+    ),
+    intercept = TRUE
   ) |>
   gtsummary::add_glance_source_note() |>
+  gtsummary::add_n() |>
+  gtsummary::bold_p() |>
   as_gt() |>
   gt::tab_caption(".") |>
   gt::tab_header(
-    title = "Design-Based Estimates of the Regression Parameters in the Initial “Main”  Model for Diastolic Blood Pressure",
-    subtitle = "Linearized Standard Errors for the Estimates, Design-Adjusted Test Statistics and Confidence Intervals for the Parameters, and Design Effects for the Parameter Estimates."
+    title = "Initial Model for Diastolic Blood Pressure",
+    subtitle = "Design-Adjusted Test Statistics and Confidence Intervals for the Parameters, and Design Effects for the Parameter Estimates."
   ) |>
   gt::tab_options(heading.align = "left")
 ```
 
 The degrees of freedom for the t-statistics are the number of ultimate clusters (31) minus the number of strata (14).
 
+Plot residuals against the predictor variables. The `augment()` function has not been specifically written for `svyglm` objects, so you need to make a couple adjustments.
+
+```{r}
+preds_1 <-
+  augment(fit_1) |>
+  mutate(
+    .se.fit = sqrt(attr(.fitted, "var")),
+    .fitted = as.numeric(.fitted)
+  )
+```
+
+Start with the centered age, `agec`. This plot has a curvilinear pattern suggesting a quadratic relationship. Add a squared term and re-plot the residuals.
+
+```{r}
+fit_2 <- 
+  nhanes_des |>
+  filter(age18p == 1) |>
+  mutate(agec = scale(age, scale = FALSE)) %>%
+  svyglm(
+    bpxdi1_1 ~ RIDRETH1 + agec + I(agec^2) + riagendr,
+    design = .
+  )
+
+preds_2 <- 
+  augment(fit_2) |>
+  mutate(
+    .se.fit = sqrt(attr(.fitted, "var")),
+    .fitted = as.numeric(.fitted)
+  )
+
+bind_rows(
+  Original = preds_1,
+  `With squared term` = preds_2,
+  .id = "mdl"
+) |>
+  ggplot(aes(y = .resid, x = agec)) +
+  geom_point() +
+  facet_wrap(vars(mdl)) +
+  labs(title = "Residuals vs centered age before and after addition of squared age variable.")
+```
+
+It _does_ appear better. The AIC and BIC decreased, meaning the second model is more efficient.
+
+```{r}
+bind_rows(
+  fit_1 = glance(fit_1),
+  fit_2 = glance(fit_2),
+  .id = "Model Fit"
+) |>
+  gt::gt()
+```
+
+Consider interactions with each of the demographic factor variables, one at a time - is the relationship between age and DBP moderated by these variables? Add the interaction with ethnicity to the model, then perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.
+
+```{r}
+fit_3 <- 
+  nhanes_des |>
+  filter(age18p == 1) |>
+  mutate(agec = scale(age, scale = FALSE)) %>%
+  svyglm(
+    bpxdi1_1 ~ RIDRETH1*agec + RIDRETH1*I(agec^2) + riagendr,
+    design = .
+  )
+
+fit_3 |> broom::tidy()
+
+regTermTest(fit_3, ~ RIDRETH1:agec + RIDRETH1:I(agec^2))
+```
+
+None of the interaction estimators have a *p*-value < .05, and the Wald test fails to reject the null hypothesis. How about interacting with gender? This time the interactions are significant and the Wald test rejects the null hypothesis.
+
+```{r}
+fit_4 <- 
+  nhanes_des |>
+  filter(age18p == 1) |>
+  mutate(agec = scale(age, scale = FALSE)) %>%
+  svyglm(
+    bpxdi1_1 ~ RIDRETH1 + riagendr*agec + riagendr*I(agec^2),
+    design = .
+  )
+
+fit_4 |> broom::tidy()
+
+regTermTest(fit_4, ~ riagendr:agec + riagendr:I(agec^2))
+```
+
+Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender.
+
+```{r}
+fit_4 |>
+  ggpredict(terms = "RIDRETH1") |>
+  ggplot(aes(x = x, y = predicted)) +
+  geom_point()
+
+# library(emmeans)
+# emmeans(fit_4, ~ RIDRETH1)
+```
+
+
+
 ```{r}
 par(mfrow = c(2, 2))
-plot(nhanes_fit, labels.id = NULL)
+plot(fit_2, labels.id = NULL)
+
 ```
-
-What is the probability of holding each marital status? Calculate the proportion of `marcat`.
-
-```{r}
-nhanes_des |>
-  summarize(
-    .by = marcat,
-    M = survey_prop()
-  ) |>
-  adorn_totals(, fill = NA,,, M) |>
-  gt::gt() |>
-  gt::fmt_number(M:M_se, decimals = 3)
-```
-
-### Quantiles
-
-What was the IQR of systolic blood pressure by marital status? Calculate the IQR of `BPXSY1`.
-
-```{r}
-nhanes_des |>
-  summarize(
-    .by = marcat,
-    Q = survey_quantile(BPXSY1, quantiles = c(.25, .5, .75))
-  ) |>
-  gt::gt() |>
-  gt::fmt_number(ends_with("se"), decimals = 2)
-```
-
-### Ratios
-
-Estimate the ratio of high-density total cholesterol.
-
-```{r}
-nhanes_des |> 
-  filter(age >= 18) |>
-  summarize(
-    n = survey_total(),
-    R = survey_ratio(lbdhdd, lbxtc, na.rm = TRUE, vartype = c("se", "ci"))
-  ) |>
-  gt::gt() |>
-  gt::fmt_number(everything(), decimals = 3)
-```
-
 
