@@ -297,7 +297,10 @@ div.csl-indent {
   <li><a href="#sample-size-and-allocation" id="toc-sample-size-and-allocation" class="nav-link" data-scroll-target="#sample-size-and-allocation"><span class="header-section-number">10.3</span> Sample size and allocation</a></li>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">10.4</span> Data Preparation</a></li>
   <li><a href="#descriptive-analysis" id="toc-descriptive-analysis" class="nav-link" data-scroll-target="#descriptive-analysis"><span class="header-section-number">10.5</span> Descriptive Analysis</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">10.6</span> Analysis</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">10.6</span> Analysis</a>
+  <ul>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting"><span class="header-section-number">10.6.1</span> Model Fitting</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -453,23 +456,23 @@ Data variables:
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="btgykcnvwa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#btgykcnvwa table {
+<div id="nqcopmnbhj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nqcopmnbhj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#btgykcnvwa thead, #btgykcnvwa tbody, #btgykcnvwa tfoot, #btgykcnvwa tr, #btgykcnvwa td, #btgykcnvwa th {
+#nqcopmnbhj thead, #nqcopmnbhj tbody, #nqcopmnbhj tfoot, #nqcopmnbhj tr, #nqcopmnbhj td, #nqcopmnbhj th {
   border-style: none;
 }
 
-#btgykcnvwa p {
+#nqcopmnbhj p {
   margin: 0;
   padding: 0;
 }
 
-#btgykcnvwa .gt_table {
+#nqcopmnbhj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -495,12 +498,12 @@ Data variables:
   border-left-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_caption {
+#nqcopmnbhj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#btgykcnvwa .gt_title {
+#nqcopmnbhj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -512,7 +515,7 @@ Data variables:
   border-bottom-width: 0;
 }
 
-#btgykcnvwa .gt_subtitle {
+#nqcopmnbhj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -524,7 +527,7 @@ Data variables:
   border-top-width: 0;
 }
 
-#btgykcnvwa .gt_heading {
+#nqcopmnbhj .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -536,13 +539,13 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_bottom_border {
+#nqcopmnbhj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_col_headings {
+#nqcopmnbhj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -557,7 +560,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_col_heading {
+#nqcopmnbhj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -577,7 +580,7 @@ Data variables:
   overflow-x: hidden;
 }
 
-#btgykcnvwa .gt_column_spanner_outer {
+#nqcopmnbhj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -589,15 +592,15 @@ Data variables:
   padding-right: 4px;
 }
 
-#btgykcnvwa .gt_column_spanner_outer:first-child {
+#nqcopmnbhj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#btgykcnvwa .gt_column_spanner_outer:last-child {
+#nqcopmnbhj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#btgykcnvwa .gt_column_spanner {
+#nqcopmnbhj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -609,11 +612,11 @@ Data variables:
   width: 100%;
 }
 
-#btgykcnvwa .gt_spanner_row {
+#nqcopmnbhj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#btgykcnvwa .gt_group_heading {
+#nqcopmnbhj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +642,7 @@ Data variables:
   text-align: left;
 }
 
-#btgykcnvwa .gt_empty_group_heading {
+#nqcopmnbhj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -654,15 +657,15 @@ Data variables:
   vertical-align: middle;
 }
 
-#btgykcnvwa .gt_from_md > :first-child {
+#nqcopmnbhj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#btgykcnvwa .gt_from_md > :last-child {
+#nqcopmnbhj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#btgykcnvwa .gt_row {
+#nqcopmnbhj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -681,7 +684,7 @@ Data variables:
   overflow-x: hidden;
 }
 
-#btgykcnvwa .gt_stub {
+#nqcopmnbhj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -694,7 +697,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#btgykcnvwa .gt_stub_row_group {
+#nqcopmnbhj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -708,15 +711,15 @@ Data variables:
   vertical-align: top;
 }
 
-#btgykcnvwa .gt_row_group_first td {
+#nqcopmnbhj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#btgykcnvwa .gt_row_group_first th {
+#nqcopmnbhj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#btgykcnvwa .gt_summary_row {
+#nqcopmnbhj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -726,16 +729,16 @@ Data variables:
   padding-right: 5px;
 }
 
-#btgykcnvwa .gt_first_summary_row {
+#nqcopmnbhj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_first_summary_row.thick {
+#nqcopmnbhj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#btgykcnvwa .gt_last_summary_row {
+#nqcopmnbhj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,7 +748,7 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_grand_summary_row {
+#nqcopmnbhj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -755,7 +758,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#btgykcnvwa .gt_first_grand_summary_row {
+#nqcopmnbhj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -765,7 +768,7 @@ Data variables:
   border-top-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_last_grand_summary_row_top {
+#nqcopmnbhj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -775,11 +778,11 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_striped {
+#nqcopmnbhj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#btgykcnvwa .gt_table_body {
+#nqcopmnbhj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -788,7 +791,7 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_footnotes {
+#nqcopmnbhj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -802,7 +805,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_footnote {
+#nqcopmnbhj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -811,7 +814,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#btgykcnvwa .gt_sourcenotes {
+#nqcopmnbhj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -825,7 +828,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#btgykcnvwa .gt_sourcenote {
+#nqcopmnbhj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -833,72 +836,72 @@ Data variables:
   padding-right: 5px;
 }
 
-#btgykcnvwa .gt_left {
+#nqcopmnbhj .gt_left {
   text-align: left;
 }
 
-#btgykcnvwa .gt_center {
+#nqcopmnbhj .gt_center {
   text-align: center;
 }
 
-#btgykcnvwa .gt_right {
+#nqcopmnbhj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#btgykcnvwa .gt_font_normal {
+#nqcopmnbhj .gt_font_normal {
   font-weight: normal;
 }
 
-#btgykcnvwa .gt_font_bold {
+#nqcopmnbhj .gt_font_bold {
   font-weight: bold;
 }
 
-#btgykcnvwa .gt_font_italic {
+#nqcopmnbhj .gt_font_italic {
   font-style: italic;
 }
 
-#btgykcnvwa .gt_super {
+#nqcopmnbhj .gt_super {
   font-size: 65%;
 }
 
-#btgykcnvwa .gt_footnote_marks {
+#nqcopmnbhj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#btgykcnvwa .gt_asterisk {
+#nqcopmnbhj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#btgykcnvwa .gt_indent_1 {
+#nqcopmnbhj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#btgykcnvwa .gt_indent_2 {
+#nqcopmnbhj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#btgykcnvwa .gt_indent_3 {
+#nqcopmnbhj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#btgykcnvwa .gt_indent_4 {
+#nqcopmnbhj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#btgykcnvwa .gt_indent_5 {
+#nqcopmnbhj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#btgykcnvwa .katex-display {
+#nqcopmnbhj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#btgykcnvwa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nqcopmnbhj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1070,6 +1073,8 @@ Data variables:
 </section>
 <section id="analysis" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="analysis"><span class="header-section-number">10.6</span> Analysis</h2>
+<section id="model-fitting" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="model-fitting"><span class="header-section-number">10.6.1</span> Model Fitting</h3>
 <p>Fit an initial regression model with the variables of interest.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> </span>
@@ -1101,23 +1106,23 @@ Data variables:
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ldbabrgvdf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ldbabrgvdf table {
+<div id="llskiqwdfl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#llskiqwdfl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ldbabrgvdf thead, #ldbabrgvdf tbody, #ldbabrgvdf tfoot, #ldbabrgvdf tr, #ldbabrgvdf td, #ldbabrgvdf th {
+#llskiqwdfl thead, #llskiqwdfl tbody, #llskiqwdfl tfoot, #llskiqwdfl tr, #llskiqwdfl td, #llskiqwdfl th {
   border-style: none;
 }
 
-#ldbabrgvdf p {
+#llskiqwdfl p {
   margin: 0;
   padding: 0;
 }
 
-#ldbabrgvdf .gt_table {
+#llskiqwdfl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1143,12 +1148,12 @@ Data variables:
   border-left-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_caption {
+#llskiqwdfl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ldbabrgvdf .gt_title {
+#llskiqwdfl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1160,7 +1165,7 @@ Data variables:
   border-bottom-width: 0;
 }
 
-#ldbabrgvdf .gt_subtitle {
+#llskiqwdfl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1172,7 +1177,7 @@ Data variables:
   border-top-width: 0;
 }
 
-#ldbabrgvdf .gt_heading {
+#llskiqwdfl .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1184,13 +1189,13 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_bottom_border {
+#llskiqwdfl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_col_headings {
+#llskiqwdfl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1205,7 +1210,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_col_heading {
+#llskiqwdfl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1225,7 +1230,7 @@ Data variables:
   overflow-x: hidden;
 }
 
-#ldbabrgvdf .gt_column_spanner_outer {
+#llskiqwdfl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1237,15 +1242,15 @@ Data variables:
   padding-right: 4px;
 }
 
-#ldbabrgvdf .gt_column_spanner_outer:first-child {
+#llskiqwdfl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ldbabrgvdf .gt_column_spanner_outer:last-child {
+#llskiqwdfl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ldbabrgvdf .gt_column_spanner {
+#llskiqwdfl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1257,11 +1262,11 @@ Data variables:
   width: 100%;
 }
 
-#ldbabrgvdf .gt_spanner_row {
+#llskiqwdfl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ldbabrgvdf .gt_group_heading {
+#llskiqwdfl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1287,7 +1292,7 @@ Data variables:
   text-align: left;
 }
 
-#ldbabrgvdf .gt_empty_group_heading {
+#llskiqwdfl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1302,15 +1307,15 @@ Data variables:
   vertical-align: middle;
 }
 
-#ldbabrgvdf .gt_from_md > :first-child {
+#llskiqwdfl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ldbabrgvdf .gt_from_md > :last-child {
+#llskiqwdfl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ldbabrgvdf .gt_row {
+#llskiqwdfl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1329,7 +1334,7 @@ Data variables:
   overflow-x: hidden;
 }
 
-#ldbabrgvdf .gt_stub {
+#llskiqwdfl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1342,7 +1347,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#ldbabrgvdf .gt_stub_row_group {
+#llskiqwdfl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1356,15 +1361,15 @@ Data variables:
   vertical-align: top;
 }
 
-#ldbabrgvdf .gt_row_group_first td {
+#llskiqwdfl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ldbabrgvdf .gt_row_group_first th {
+#llskiqwdfl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ldbabrgvdf .gt_summary_row {
+#llskiqwdfl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1374,16 +1379,16 @@ Data variables:
   padding-right: 5px;
 }
 
-#ldbabrgvdf .gt_first_summary_row {
+#llskiqwdfl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_first_summary_row.thick {
+#llskiqwdfl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ldbabrgvdf .gt_last_summary_row {
+#llskiqwdfl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1393,7 +1398,7 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_grand_summary_row {
+#llskiqwdfl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1403,7 +1408,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#ldbabrgvdf .gt_first_grand_summary_row {
+#llskiqwdfl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1413,7 +1418,7 @@ Data variables:
   border-top-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_last_grand_summary_row_top {
+#llskiqwdfl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1423,11 +1428,11 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_striped {
+#llskiqwdfl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ldbabrgvdf .gt_table_body {
+#llskiqwdfl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1436,7 +1441,7 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_footnotes {
+#llskiqwdfl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1450,7 +1455,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_footnote {
+#llskiqwdfl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1459,7 +1464,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#ldbabrgvdf .gt_sourcenotes {
+#llskiqwdfl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1473,7 +1478,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#ldbabrgvdf .gt_sourcenote {
+#llskiqwdfl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1481,72 +1486,72 @@ Data variables:
   padding-right: 5px;
 }
 
-#ldbabrgvdf .gt_left {
+#llskiqwdfl .gt_left {
   text-align: left;
 }
 
-#ldbabrgvdf .gt_center {
+#llskiqwdfl .gt_center {
   text-align: center;
 }
 
-#ldbabrgvdf .gt_right {
+#llskiqwdfl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ldbabrgvdf .gt_font_normal {
+#llskiqwdfl .gt_font_normal {
   font-weight: normal;
 }
 
-#ldbabrgvdf .gt_font_bold {
+#llskiqwdfl .gt_font_bold {
   font-weight: bold;
 }
 
-#ldbabrgvdf .gt_font_italic {
+#llskiqwdfl .gt_font_italic {
   font-style: italic;
 }
 
-#ldbabrgvdf .gt_super {
+#llskiqwdfl .gt_super {
   font-size: 65%;
 }
 
-#ldbabrgvdf .gt_footnote_marks {
+#llskiqwdfl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ldbabrgvdf .gt_asterisk {
+#llskiqwdfl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ldbabrgvdf .gt_indent_1 {
+#llskiqwdfl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ldbabrgvdf .gt_indent_2 {
+#llskiqwdfl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ldbabrgvdf .gt_indent_3 {
+#llskiqwdfl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ldbabrgvdf .gt_indent_4 {
+#llskiqwdfl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ldbabrgvdf .gt_indent_5 {
+#llskiqwdfl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ldbabrgvdf .katex-display {
+#llskiqwdfl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ldbabrgvdf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#llskiqwdfl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1704,23 +1709,23 @@ Data variables:
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="rxyjilzccz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rxyjilzccz table {
+<div id="fyxruijuuf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fyxruijuuf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rxyjilzccz thead, #rxyjilzccz tbody, #rxyjilzccz tfoot, #rxyjilzccz tr, #rxyjilzccz td, #rxyjilzccz th {
+#fyxruijuuf thead, #fyxruijuuf tbody, #fyxruijuuf tfoot, #fyxruijuuf tr, #fyxruijuuf td, #fyxruijuuf th {
   border-style: none;
 }
 
-#rxyjilzccz p {
+#fyxruijuuf p {
   margin: 0;
   padding: 0;
 }
 
-#rxyjilzccz .gt_table {
+#fyxruijuuf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1746,12 +1751,12 @@ Data variables:
   border-left-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_caption {
+#fyxruijuuf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rxyjilzccz .gt_title {
+#fyxruijuuf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1763,7 +1768,7 @@ Data variables:
   border-bottom-width: 0;
 }
 
-#rxyjilzccz .gt_subtitle {
+#fyxruijuuf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1775,7 +1780,7 @@ Data variables:
   border-top-width: 0;
 }
 
-#rxyjilzccz .gt_heading {
+#fyxruijuuf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1787,13 +1792,13 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_bottom_border {
+#fyxruijuuf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_col_headings {
+#fyxruijuuf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1808,7 +1813,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_col_heading {
+#fyxruijuuf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1828,7 +1833,7 @@ Data variables:
   overflow-x: hidden;
 }
 
-#rxyjilzccz .gt_column_spanner_outer {
+#fyxruijuuf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1840,15 +1845,15 @@ Data variables:
   padding-right: 4px;
 }
 
-#rxyjilzccz .gt_column_spanner_outer:first-child {
+#fyxruijuuf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rxyjilzccz .gt_column_spanner_outer:last-child {
+#fyxruijuuf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rxyjilzccz .gt_column_spanner {
+#fyxruijuuf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1860,11 +1865,11 @@ Data variables:
   width: 100%;
 }
 
-#rxyjilzccz .gt_spanner_row {
+#fyxruijuuf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rxyjilzccz .gt_group_heading {
+#fyxruijuuf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1890,7 +1895,7 @@ Data variables:
   text-align: left;
 }
 
-#rxyjilzccz .gt_empty_group_heading {
+#fyxruijuuf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1905,15 +1910,15 @@ Data variables:
   vertical-align: middle;
 }
 
-#rxyjilzccz .gt_from_md > :first-child {
+#fyxruijuuf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rxyjilzccz .gt_from_md > :last-child {
+#fyxruijuuf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rxyjilzccz .gt_row {
+#fyxruijuuf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1932,7 +1937,7 @@ Data variables:
   overflow-x: hidden;
 }
 
-#rxyjilzccz .gt_stub {
+#fyxruijuuf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1945,7 +1950,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#rxyjilzccz .gt_stub_row_group {
+#fyxruijuuf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1959,15 +1964,15 @@ Data variables:
   vertical-align: top;
 }
 
-#rxyjilzccz .gt_row_group_first td {
+#fyxruijuuf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rxyjilzccz .gt_row_group_first th {
+#fyxruijuuf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rxyjilzccz .gt_summary_row {
+#fyxruijuuf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1977,16 +1982,16 @@ Data variables:
   padding-right: 5px;
 }
 
-#rxyjilzccz .gt_first_summary_row {
+#fyxruijuuf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_first_summary_row.thick {
+#fyxruijuuf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rxyjilzccz .gt_last_summary_row {
+#fyxruijuuf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1996,7 +2001,7 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_grand_summary_row {
+#fyxruijuuf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2006,7 +2011,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#rxyjilzccz .gt_first_grand_summary_row {
+#fyxruijuuf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2016,7 +2021,7 @@ Data variables:
   border-top-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_last_grand_summary_row_top {
+#fyxruijuuf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2026,11 +2031,11 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_striped {
+#fyxruijuuf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rxyjilzccz .gt_table_body {
+#fyxruijuuf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2039,7 +2044,7 @@ Data variables:
   border-bottom-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_footnotes {
+#fyxruijuuf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2053,7 +2058,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_footnote {
+#fyxruijuuf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2062,7 +2067,7 @@ Data variables:
   padding-right: 5px;
 }
 
-#rxyjilzccz .gt_sourcenotes {
+#fyxruijuuf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2076,7 +2081,7 @@ Data variables:
   border-right-color: #D3D3D3;
 }
 
-#rxyjilzccz .gt_sourcenote {
+#fyxruijuuf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2084,72 +2089,72 @@ Data variables:
   padding-right: 5px;
 }
 
-#rxyjilzccz .gt_left {
+#fyxruijuuf .gt_left {
   text-align: left;
 }
 
-#rxyjilzccz .gt_center {
+#fyxruijuuf .gt_center {
   text-align: center;
 }
 
-#rxyjilzccz .gt_right {
+#fyxruijuuf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rxyjilzccz .gt_font_normal {
+#fyxruijuuf .gt_font_normal {
   font-weight: normal;
 }
 
-#rxyjilzccz .gt_font_bold {
+#fyxruijuuf .gt_font_bold {
   font-weight: bold;
 }
 
-#rxyjilzccz .gt_font_italic {
+#fyxruijuuf .gt_font_italic {
   font-style: italic;
 }
 
-#rxyjilzccz .gt_super {
+#fyxruijuuf .gt_super {
   font-size: 65%;
 }
 
-#rxyjilzccz .gt_footnote_marks {
+#fyxruijuuf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rxyjilzccz .gt_asterisk {
+#fyxruijuuf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rxyjilzccz .gt_indent_1 {
+#fyxruijuuf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rxyjilzccz .gt_indent_2 {
+#fyxruijuuf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rxyjilzccz .gt_indent_3 {
+#fyxruijuuf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rxyjilzccz .gt_indent_4 {
+#fyxruijuuf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rxyjilzccz .gt_indent_5 {
+#fyxruijuuf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rxyjilzccz .katex-display {
+#fyxruijuuf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rxyjilzccz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fyxruijuuf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2205,29 +2210,7 @@ Data variables:
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 5
-   term                                 estimate std.error statistic  p.value
-   &lt;chr&gt;                                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 (Intercept)                          74.9       0.755     99.1    0.000102
- 2 RIDRETH1Other Hispanic                0.282     0.958      0.294  0.797   
- 3 RIDRETH1Non-Hispanic White            1.40      0.883      1.59   0.253   
- 4 RIDRETH1Non-Hispanic Black            3.38      0.956      3.53   0.0716  
- 5 RIDRETH1Other race                    1.11      0.898      1.23   0.343   
- 6 agec                                  0.0338    0.0355     0.951  0.442   
- 7 I(agec^2)                            -0.0136    0.00182   -7.48   0.0174  
- 8 riagendrFemale                       -2.17      0.490     -4.43   0.0474  
- 9 RIDRETH1Other Hispanic:agec           0.0583    0.0513     1.14   0.374   
-10 RIDRETH1Non-Hispanic White:agec       0.00484   0.0512     0.0944 0.933   
-11 RIDRETH1Non-Hispanic Black:agec       0.0361    0.0381     0.947  0.443   
-12 RIDRETH1Other race:agec               0.0225    0.0498     0.452  0.695   
-13 RIDRETH1Other Hispanic:I(agec^2)      0.00121   0.00321    0.376  0.743   
-14 RIDRETH1Non-Hispanic White:I(agec^2)  0.00296   0.00157    1.89   0.199   
-15 RIDRETH1Non-Hispanic Black:I(agec^2) -0.00195   0.00180   -1.08   0.393   
-16 RIDRETH1Other race:I(agec^2)          0.00173   0.00271    0.637  0.589   </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_3, <span class="sc">~</span> RIDRETH1<span class="sc">:</span>agec <span class="sc">+</span> RIDRETH1<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_3, <span class="sc">~</span> RIDRETH1<span class="sc">:</span>agec <span class="sc">+</span> RIDRETH1<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wald test for RIDRETH1:agec RIDRETH1:I(agec^2)
  in svyglm(formula = bpxdi1_1 ~ RIDRETH1 * agec + RIDRETH1 * I(agec^2) + 
@@ -2237,32 +2220,16 @@ F =  11.8955  on  8  and  2  df: p= 0.079828 </code></pre>
 </div>
 <p>None of the interaction estimators have a <em>p</em>-value &lt; .05, and the Wald test fails to reject the null hypothesis. How about interacting with gender? This time the interactions are significant and the Wald test rejects the null hypothesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="ot">&lt;-</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> riagendr<span class="sc">*</span>agec <span class="sc">+</span> riagendr<span class="sc">*</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 5
-   term                       estimate std.error statistic  p.value
-   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 (Intercept)                75.0      0.649      116.    3.50e-14
- 2 RIDRETH1Other Hispanic      0.206    1.21         0.170 8.69e- 1
- 3 RIDRETH1Non-Hispanic White  2.10     0.845        2.48  3.79e- 2
- 4 RIDRETH1Non-Hispanic Black  2.54     0.733        3.47  8.49e- 3
- 5 RIDRETH1Other race          1.43     0.692        2.06  7.30e- 2
- 6 riagendrFemale             -3.12     0.764       -4.08  3.53e- 3
- 7 agec                        0.0208   0.0160       1.30  2.29e- 1
- 8 I(agec^2)                  -0.0136   0.000839   -16.2   2.15e- 7
- 9 riagendrFemale:agec         0.0542   0.0225       2.41  4.24e- 2
-10 riagendrFemale:I(agec^2)    0.00330  0.00162      2.03  7.63e- 2</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_4, <span class="sc">~</span> riagendr<span class="sc">:</span>agec <span class="sc">+</span> riagendr<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="ot">&lt;-</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> riagendr<span class="sc">*</span>agec <span class="sc">+</span> riagendr<span class="sc">*</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_4, <span class="sc">~</span> riagendr<span class="sc">:</span>agec <span class="sc">+</span> riagendr<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wald test for riagendr:agec riagendr:I(agec^2)
  in svyglm(formula = bpxdi1_1 ~ RIDRETH1 + riagendr * agec + riagendr * 
@@ -2272,10 +2239,30 @@ F =  5.356873  on  2  and  8  df: p= 0.033398 </code></pre>
 </div>
 <p>Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpredict</span>(<span class="at">terms =</span> <span class="st">"RIDRETH1"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Race/Ethnicity</span><span class="st">`</span> <span class="ot">=</span> fit_4 <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict_response</span>(<span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"agec [-30:30 by=5]"</span>, <span class="st">"RIDRETH1"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> fit_4 <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict_response</span>(<span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"agec [-30:30 by=5]"</span>, <span class="st">"riagendr"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.id =</span> <span class="st">"Covar"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Covar =</span> <span class="fu">fct_relevel</span>(Covar, <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>), <span class="at">after =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_4 |&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   predict_response(terms = c("agec [-30:30 by=5]", "RIDRETH1")) |&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   as_tibble() |&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted, <span class="at">color =</span> group)) <span class="sc">+</span> </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Centered Age"</span>, <span class="at">y =</span> <span class="st">"Marginal predicted DBP"</span>, <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Marginal predicted values from regression model."</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Interaction of age and race/ethnicity"</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Covar)) <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">legend.justification =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2283,12 +2270,12 @@ F =  5.356873  on  2  and  8  df: p= 0.033398 </code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(emmeans)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># emmeans(fit_4, ~ RIDRETH1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_2, <span class="at">labels.id =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpredict</span>(<span class="at">terms =</span> <span class="st">"RIDRETH1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -2296,6 +2283,8 @@ F =  5.356873  on  2  and  8  df: p= 0.033398 </code></pre>
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(emmeans)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># emmeans(fit_4, ~ RIDRETH1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -2306,6 +2295,7 @@ F =  5.356873  on  2  and  8  df: p= 0.033398 </code></pre>
 Heeringa, West, S. G. 2017. <em>Applied Survey Data Analysis (2nd Ed.)</em>. Chapman; Hall/CRC. <a href="https://doi.org/10.1201/9781315153278">https://doi.org/10.1201/9781315153278</a>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -2792,273 +2782,293 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Case Study: NHANES</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. It uses the *National Health and Nutrition Examination Survey (NHANES)* to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, non-response, and post-stratification.</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, message=FALSE, warning=FALSE}</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(scales)</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(janitor)</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(survey)</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(srvyr)</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(gtsummary)</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(broom)</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggeffects)</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Executive summary</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the purpose of this document.</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). </span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss the contents of the remaining section of the report.  </span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample design</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>**Description of the target population.** </span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>The target population was adults aged 18 and older residing in the 48 contiguous United States.</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>**Describe the sampling frame including the date and source database.** </span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>The sampling frame included households in the 48 contiguous United States. The survey was conducted between February 2001 and April 2003. The source database for the sampling frame was the Inter-university Consortium for Political and Social Research (ICPSR), which provided the necessary geographic and demographic information to ensure a nationally representative sample.</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>**Describe the type of sample and method of sample selection to be used.** </span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>The sampling strategy was a multi-stage clustered area probability sample. </span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 1 was to select primary sampling units. The entire country (48 contiguous states) was divided into primary sampling units (PSUs), composed of counties or groups of contiguous counties. A random sample of PSUs was selected.</span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 2 was to select segments. The selected PSUs were subdivided into segments, usually census tracts or block groups. A random sample of segments was selected.</span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 3 was to select households. A random sample of households was selected.</span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 4 was to select respondents. A person was randomly selected from the household.</span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample size and allocation</span></span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization requirements</span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>  – Optimization details including constraints and budget.  </span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>  – Detail the minimum domain sizes and mechanics used to determine  the sizes. </span>
-<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization results  </span>
-<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>  – Results: minimum respondent sample size per stratum  </span>
-<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
-<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>  – Estimated precision achieved by optimization results  </span>
-<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inflation adjustments to allocation solution  </span>
-<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>  – Nonresponse adjustments  </span>
-<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>  – Adjustments for ineligible sample members  </span>
-<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final sample allocation  </span>
-<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
-<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sensitivity analysis  </span>
-<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a>  – Results from comparing deviations to allocation after introducing  changes to the optimization system  </span>
-<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Preparation</span></span>
-<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a>Download <span class="co">[</span><span class="ot">2015SEP2017.zip</span><span class="co">](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip)</span> from the *Applied Survey Data Analysis* book <span class="co">[</span><span class="ot">web site</span><span class="co">](https://websites.umich.edu/~surveymethod/asda/)</span> and unzip into the input/ directory of this project repo.</span>
-<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>nhanes_raw <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"input/nhanes1112_sub_10jun2016.dta"</span>)</span>
-<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a>Create labels for factor vars. Heeringa also identifies a data cleaning step, converting 0s to <span class="in">`NA`</span>.</span>
-<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span></span>
-<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a>  nhanes_raw <span class="sc">|&gt;</span></span>
-<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">bpxdi1_1 =</span> <span class="fu">if_else</span>(BPXDI1 <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA_integer_</span>, BPXDI1),</span>
-<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">RIDRETH1 =</span> <span class="fu">factor</span>(RIDRETH1, <span class="at">labels =</span> <span class="fu">c</span>(</span>
-<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Mexican-American"</span>, <span class="st">"Other Hispanic"</span>, <span class="st">"Non-Hispanic White"</span>,</span>
-<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Non-Hispanic Black"</span>, <span class="st">"Other race"</span>)),</span>
-<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">riagendr =</span> <span class="fu">factor</span>(riagendr, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)),</span>
-<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">marcat =</span> <span class="fu">factor</span>(marcat, <span class="at">labels =</span> <span class="fu">c</span>(</span>
-<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Married"</span>, <span class="st">"Previously married"</span>, <span class="st">"Never married"</span>))</span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a>Create a survey design object for analysis.</span>
-<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(</span>
-<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a>  nhanes,</span>
-<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> sdmvpsu,  <span class="co"># primary sampling unit (cluster)</span></span>
-<span id="cb22-94"><a href="#cb22-94" aria-hidden="true" tabindex="-1"></a>  <span class="at">strata =</span> sdmvstra,  <span class="co"># sampling stratum</span></span>
-<span id="cb22-95"><a href="#cb22-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span>,  <span class="co"># strata ids are repeated across clusters</span></span>
-<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> WTMEC2YR</span>
-<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-98"><a href="#cb22-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-99"><a href="#cb22-99" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhanes_des)</span>
-<span id="cb22-100"><a href="#cb22-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-101"><a href="#cb22-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-102"><a href="#cb22-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Analysis</span></span>
-<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a>Regress the continuous response variable, diastolic blood pressure (<span class="in">`bpxdi1_1`</span>), on five predictors of interest: race/ethnicity (<span class="in">`RIDRETH1`</span>), age (<span class="in">`agec`</span>), gender (<span class="in">`riagendr`</span>), and marriage status (<span class="in">`marcat`</span>).</span>
-<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-109"><a href="#cb22-109" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb22-110"><a href="#cb22-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-111"><a href="#cb22-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb22-112"><a href="#cb22-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(bpxdi1_1, RIDRETH1, agec, riagendr, marcat) <span class="sc">|&gt;</span></span>
-<span id="cb22-113"><a href="#cb22-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_uvregression</span>(</span>
-<span id="cb22-114"><a href="#cb22-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bpxdi1_1,</span>
-<span id="cb22-115"><a href="#cb22-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> survey<span class="sc">::</span>svyglm,</span>
-<span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
-<span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a>      RIDRETH1 <span class="sc">~</span> <span class="st">"Race/ethnicity"</span>, </span>
-<span id="cb22-118"><a href="#cb22-118" aria-hidden="true" tabindex="-1"></a>      agec <span class="sc">~</span> <span class="st">"Age (cent.)"</span>, </span>
-<span id="cb22-119"><a href="#cb22-119" aria-hidden="true" tabindex="-1"></a>      riagendr <span class="sc">~</span> <span class="st">"Gender"</span>,</span>
-<span id="cb22-120"><a href="#cb22-120" aria-hidden="true" tabindex="-1"></a>      marcat <span class="sc">~</span> <span class="st">"Marital status"</span></span>
-<span id="cb22-121"><a href="#cb22-121" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-122"><a href="#cb22-122" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-123"><a href="#cb22-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-124"><a href="#cb22-124" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_caption</span>(<span class="st">"."</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-125"><a href="#cb22-125" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
-<span id="cb22-126"><a href="#cb22-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Initial Design-Based Bivariate Regression Analysis Results "</span>,</span>
-<span id="cb22-127"><a href="#cb22-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Assessing Potential Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"</span></span>
-<span id="cb22-128"><a href="#cb22-128" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-129"><a href="#cb22-129" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span>
-<span id="cb22-130"><a href="#cb22-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-131"><a href="#cb22-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-132"><a href="#cb22-132" aria-hidden="true" tabindex="-1"></a>The design-based t-tests suggest that race/ethnicity, age, and gender have  potentially significant relationships with DBP, while marital status  does not appear to be related. Non-Hispanic whites, non-Hispanic blacks, older adults, and males appear to have the highest DBPs at first glance. Include the first three predictors in an initial model. </span>
-<span id="cb22-133"><a href="#cb22-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-134"><a href="#cb22-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
-<span id="cb22-135"><a href="#cb22-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-136"><a href="#cb22-136" aria-hidden="true" tabindex="-1"></a>Fit an initial regression model with the variables of interest.</span>
-<span id="cb22-137"><a href="#cb22-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-140"><a href="#cb22-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-141"><a href="#cb22-141" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> </span>
-<span id="cb22-142"><a href="#cb22-142" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb22-143"><a href="#cb22-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-144"><a href="#cb22-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-145"><a href="#cb22-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
-<span id="cb22-146"><a href="#cb22-146" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> agec <span class="sc">+</span> riagendr,</span>
-<span id="cb22-147"><a href="#cb22-147" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
-<span id="cb22-148"><a href="#cb22-148" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-149"><a href="#cb22-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-150"><a href="#cb22-150" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="sc">|&gt;</span></span>
-<span id="cb22-151"><a href="#cb22-151" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
-<span id="cb22-152"><a href="#cb22-152" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
-<span id="cb22-153"><a href="#cb22-153" aria-hidden="true" tabindex="-1"></a>      RIDRETH1 <span class="sc">~</span> <span class="st">"Race/ethnicity"</span>, </span>
-<span id="cb22-154"><a href="#cb22-154" aria-hidden="true" tabindex="-1"></a>      agec <span class="sc">~</span> <span class="st">"Age (cent.)"</span>, </span>
-<span id="cb22-155"><a href="#cb22-155" aria-hidden="true" tabindex="-1"></a>      riagendr <span class="sc">~</span> <span class="st">"Gender"</span></span>
-<span id="cb22-156"><a href="#cb22-156" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb22-157"><a href="#cb22-157" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="cn">TRUE</span></span>
-<span id="cb22-158"><a href="#cb22-158" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-159"><a href="#cb22-159" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_glance_source_note</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-160"><a href="#cb22-160" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_n</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-161"><a href="#cb22-161" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">bold_p</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-162"><a href="#cb22-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-163"><a href="#cb22-163" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_caption</span>(<span class="st">"."</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-164"><a href="#cb22-164" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
-<span id="cb22-165"><a href="#cb22-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Initial Model for Diastolic Blood Pressure"</span>,</span>
-<span id="cb22-166"><a href="#cb22-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Design-Adjusted Test Statistics and Confidence Intervals for the Parameters, and Design Effects for the Parameter Estimates."</span></span>
-<span id="cb22-167"><a href="#cb22-167" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb22-168"><a href="#cb22-168" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span>
-<span id="cb22-169"><a href="#cb22-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-170"><a href="#cb22-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-171"><a href="#cb22-171" aria-hidden="true" tabindex="-1"></a>The degrees of freedom for the t-statistics are the number of ultimate clusters (31) minus the number of strata (14).</span>
-<span id="cb22-172"><a href="#cb22-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-173"><a href="#cb22-173" aria-hidden="true" tabindex="-1"></a>Plot residuals against the predictor variables. The <span class="in">`augment()`</span> function has not been specifically written for <span class="in">`svyglm`</span> objects, so you need to make a couple adjustments.</span>
-<span id="cb22-174"><a href="#cb22-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-177"><a href="#cb22-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-178"><a href="#cb22-178" aria-hidden="true" tabindex="-1"></a>preds_1 <span class="ot">&lt;-</span></span>
-<span id="cb22-179"><a href="#cb22-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(fit_1) <span class="sc">|&gt;</span></span>
-<span id="cb22-180"><a href="#cb22-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-181"><a href="#cb22-181" aria-hidden="true" tabindex="-1"></a>    <span class="at">.se.fit =</span> <span class="fu">sqrt</span>(<span class="fu">attr</span>(.fitted, <span class="st">"var"</span>)),</span>
-<span id="cb22-182"><a href="#cb22-182" aria-hidden="true" tabindex="-1"></a>    <span class="at">.fitted =</span> <span class="fu">as.numeric</span>(.fitted)</span>
-<span id="cb22-183"><a href="#cb22-183" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a>Start with the centered age, <span class="in">`agec`</span>. This plot has a curvilinear pattern suggesting a quadratic relationship. Add a squared term and re-plot the residuals.</span>
-<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-190"><a href="#cb22-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-191"><a href="#cb22-191" aria-hidden="true" tabindex="-1"></a>fit_2 <span class="ot">&lt;-</span> </span>
-<span id="cb22-192"><a href="#cb22-192" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb22-193"><a href="#cb22-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-194"><a href="#cb22-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-195"><a href="#cb22-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
-<span id="cb22-196"><a href="#cb22-196" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> agec <span class="sc">+</span> <span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> riagendr,</span>
-<span id="cb22-197"><a href="#cb22-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
-<span id="cb22-198"><a href="#cb22-198" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-200"><a href="#cb22-200" aria-hidden="true" tabindex="-1"></a>preds_2 <span class="ot">&lt;-</span> </span>
-<span id="cb22-201"><a href="#cb22-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(fit_2) <span class="sc">|&gt;</span></span>
-<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">.se.fit =</span> <span class="fu">sqrt</span>(<span class="fu">attr</span>(.fitted, <span class="st">"var"</span>)),</span>
-<span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">.fitted =</span> <span class="fu">as.numeric</span>(.fitted)</span>
-<span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-206"><a href="#cb22-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-207"><a href="#cb22-207" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
-<span id="cb22-208"><a href="#cb22-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">Original =</span> preds_1,</span>
-<span id="cb22-209"><a href="#cb22-209" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">With squared term</span><span class="st">`</span> <span class="ot">=</span> preds_2,</span>
-<span id="cb22-210"><a href="#cb22-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">.id =</span> <span class="st">"mdl"</span></span>
-<span id="cb22-211"><a href="#cb22-211" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb22-212"><a href="#cb22-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> .resid, <span class="at">x =</span> agec)) <span class="sc">+</span></span>
-<span id="cb22-213"><a href="#cb22-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-214"><a href="#cb22-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(mdl)) <span class="sc">+</span></span>
-<span id="cb22-215"><a href="#cb22-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residuals vs centered age before and after addition of squared age variable."</span>)</span>
-<span id="cb22-216"><a href="#cb22-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-217"><a href="#cb22-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-218"><a href="#cb22-218" aria-hidden="true" tabindex="-1"></a>It _does_ appear better. The AIC and BIC decreased, meaning the second model is more efficient.</span>
-<span id="cb22-219"><a href="#cb22-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-222"><a href="#cb22-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-223"><a href="#cb22-223" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
-<span id="cb22-224"><a href="#cb22-224" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_1 =</span> <span class="fu">glance</span>(fit_1),</span>
-<span id="cb22-225"><a href="#cb22-225" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_2 =</span> <span class="fu">glance</span>(fit_2),</span>
-<span id="cb22-226"><a href="#cb22-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">.id =</span> <span class="st">"Model Fit"</span></span>
-<span id="cb22-227"><a href="#cb22-227" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb22-228"><a href="#cb22-228" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span>
-<span id="cb22-229"><a href="#cb22-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-230"><a href="#cb22-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-231"><a href="#cb22-231" aria-hidden="true" tabindex="-1"></a>Consider interactions with each of the demographic factor variables, one at a time - is the relationship between age and DBP moderated by these variables? Add the interaction with ethnicity to the model, then perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.</span>
-<span id="cb22-232"><a href="#cb22-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-235"><a href="#cb22-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-236"><a href="#cb22-236" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> </span>
-<span id="cb22-237"><a href="#cb22-237" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb22-238"><a href="#cb22-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-239"><a href="#cb22-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-240"><a href="#cb22-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
-<span id="cb22-241"><a href="#cb22-241" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1<span class="sc">*</span>agec <span class="sc">+</span> RIDRETH1<span class="sc">*</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> riagendr,</span>
-<span id="cb22-242"><a href="#cb22-242" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
-<span id="cb22-243"><a href="#cb22-243" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-244"><a href="#cb22-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-245"><a href="#cb22-245" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
-<span id="cb22-246"><a href="#cb22-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-247"><a href="#cb22-247" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_3, <span class="sc">~</span> RIDRETH1<span class="sc">:</span>agec <span class="sc">+</span> RIDRETH1<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb22-248"><a href="#cb22-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-249"><a href="#cb22-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-250"><a href="#cb22-250" aria-hidden="true" tabindex="-1"></a>None of the interaction estimators have a *p*-value &lt; .05, and the Wald test fails to reject the null hypothesis. How about interacting with gender? This time the interactions are significant and the Wald test rejects the null hypothesis.</span>
-<span id="cb22-251"><a href="#cb22-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-254"><a href="#cb22-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-255"><a href="#cb22-255" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="ot">&lt;-</span> </span>
-<span id="cb22-256"><a href="#cb22-256" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
-<span id="cb22-257"><a href="#cb22-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-258"><a href="#cb22-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-259"><a href="#cb22-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
-<span id="cb22-260"><a href="#cb22-260" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> riagendr<span class="sc">*</span>agec <span class="sc">+</span> riagendr<span class="sc">*</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb22-261"><a href="#cb22-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
-<span id="cb22-262"><a href="#cb22-262" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-263"><a href="#cb22-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-264"><a href="#cb22-264" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
-<span id="cb22-265"><a href="#cb22-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-266"><a href="#cb22-266" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_4, <span class="sc">~</span> riagendr<span class="sc">:</span>agec <span class="sc">+</span> riagendr<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb22-267"><a href="#cb22-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-268"><a href="#cb22-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-269"><a href="#cb22-269" aria-hidden="true" tabindex="-1"></a>Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender.</span>
-<span id="cb22-270"><a href="#cb22-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-273"><a href="#cb22-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-274"><a href="#cb22-274" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="sc">|&gt;</span></span>
-<span id="cb22-275"><a href="#cb22-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpredict</span>(<span class="at">terms =</span> <span class="st">"RIDRETH1"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-276"><a href="#cb22-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
-<span id="cb22-277"><a href="#cb22-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb22-278"><a href="#cb22-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-279"><a href="#cb22-279" aria-hidden="true" tabindex="-1"></a><span class="co"># library(emmeans)</span></span>
-<span id="cb22-280"><a href="#cb22-280" aria-hidden="true" tabindex="-1"></a><span class="co"># emmeans(fit_4, ~ RIDRETH1)</span></span>
-<span id="cb22-281"><a href="#cb22-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-282"><a href="#cb22-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-284"><a href="#cb22-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-287"><a href="#cb22-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-288"><a href="#cb22-288" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb22-289"><a href="#cb22-289" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_2, <span class="at">labels.id =</span> <span class="cn">NULL</span>)</span>
-<span id="cb22-290"><a href="#cb22-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-291"><a href="#cb22-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Case Study: NHANES</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. It uses the *National Health and Nutrition Examination Survey (NHANES)* to build a predictive model of diastolic blood pressure (DBP). The NHANES sample is a stratified cluster sample, weighted for unequal probabilities of selection, non-response, and post-stratification.</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, message=FALSE, warning=FALSE}</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(scales)</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="in">library(janitor)</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(survey)</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="in">library(srvyr)</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="in">library(gtsummary)</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="in">library(broom)</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggeffects)</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Executive summary</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Describe the purpose of this document.</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). </span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discuss the contents of the remaining section of the report.  </span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample design</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>**Description of the target population.** </span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>The target population was adults aged 18 and older residing in the 48 contiguous United States.</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>**Describe the sampling frame including the date and source database.** </span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>The sampling frame included households in the 48 contiguous United States. The survey was conducted between February 2001 and April 2003. The source database for the sampling frame was the Inter-university Consortium for Political and Social Research (ICPSR), which provided the necessary geographic and demographic information to ensure a nationally representative sample.</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>**Describe the type of sample and method of sample selection to be used.** </span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>The sampling strategy was a multi-stage clustered area probability sample. </span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 1 was to select primary sampling units. The entire country (48 contiguous states) was divided into primary sampling units (PSUs), composed of counties or groups of contiguous counties. A random sample of PSUs was selected.</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 2 was to select segments. The selected PSUs were subdivided into segments, usually census tracts or block groups. A random sample of segments was selected.</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 3 was to select households. A random sample of households was selected.</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stage 4 was to select respondents. A person was randomly selected from the household.</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sample size and allocation</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization requirements</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>  – Optimization details including constraints and budget.  </span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>  – Detail the minimum domain sizes and mechanics used to determine  the sizes. </span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimization results  </span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>  – Results: minimum respondent sample size per stratum  </span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>  – Estimated precision achieved by optimization results  </span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inflation adjustments to allocation solution  </span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>  – Nonresponse adjustments  </span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>  – Adjustments for ineligible sample members  </span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final sample allocation  </span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>  – Marginal sample sizes for key reporting domains  </span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sensitivity analysis  </span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>  – Results from comparing deviations to allocation after introducing  changes to the optimization system  </span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Preparation</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>Download <span class="co">[</span><span class="ot">2015SEP2017.zip</span><span class="co">](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip)</span> from the *Applied Survey Data Analysis* book <span class="co">[</span><span class="ot">web site</span><span class="co">](https://websites.umich.edu/~surveymethod/asda/)</span> and unzip into the input/ directory of this project repo.</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>nhanes_raw <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"input/nhanes1112_sub_10jun2016.dta"</span>)</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>Create labels for factor vars. Heeringa also identifies a data cleaning step, converting 0s to <span class="in">`NA`</span>.</span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>nhanes <span class="ot">&lt;-</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>  nhanes_raw <span class="sc">|&gt;</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">bpxdi1_1 =</span> <span class="fu">if_else</span>(BPXDI1 <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA_integer_</span>, BPXDI1),</span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">RIDRETH1 =</span> <span class="fu">factor</span>(RIDRETH1, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Mexican-American"</span>, <span class="st">"Other Hispanic"</span>, <span class="st">"Non-Hispanic White"</span>,</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Non-Hispanic Black"</span>, <span class="st">"Other race"</span>)),</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">riagendr =</span> <span class="fu">factor</span>(riagendr, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>)),</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">marcat =</span> <span class="fu">factor</span>(marcat, <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Married"</span>, <span class="st">"Previously married"</span>, <span class="st">"Never married"</span>))</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>Create a survey design object for analysis.</span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="ot">&lt;-</span> <span class="fu">as_survey_design</span>(</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>  nhanes,</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> sdmvpsu,  <span class="co"># primary sampling unit (cluster)</span></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a>  <span class="at">strata =</span> sdmvstra,  <span class="co"># sampling stratum</span></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">nest =</span> <span class="cn">TRUE</span>,  <span class="co"># strata ids are repeated across clusters</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> WTMEC2YR</span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhanes_des)</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Analysis</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>Regress the continuous response variable, diastolic blood pressure (<span class="in">`bpxdi1_1`</span>), on five predictors of interest: race/ethnicity (<span class="in">`RIDRETH1`</span>), age (<span class="in">`agec`</span>), gender (<span class="in">`riagendr`</span>), and marriage status (<span class="in">`marcat`</span>).</span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(bpxdi1_1, RIDRETH1, agec, riagendr, marcat) <span class="sc">|&gt;</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_uvregression</span>(</span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> bpxdi1_1,</span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> survey<span class="sc">::</span>svyglm,</span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>      RIDRETH1 <span class="sc">~</span> <span class="st">"Race/ethnicity"</span>, </span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>      agec <span class="sc">~</span> <span class="st">"Age (cent.)"</span>, </span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>      riagendr <span class="sc">~</span> <span class="st">"Gender"</span>,</span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>      marcat <span class="sc">~</span> <span class="st">"Marital status"</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_caption</span>(<span class="st">"."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Initial Design-Based Bivariate Regression Analysis Results "</span>,</span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Assessing Potential Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"</span></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a>The design-based t-tests suggest that race/ethnicity, age, and gender have  potentially significant relationships with DBP, while marital status  does not appear to be related. Non-Hispanic whites, non-Hispanic blacks, older adults, and males appear to have the highest DBPs at first glance. Include the first three predictors in an initial model. </span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model Fitting</span></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>Fit an initial regression model with the variables of interest.</span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> </span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> agec <span class="sc">+</span> riagendr,</span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="sc">|&gt;</span></span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>      RIDRETH1 <span class="sc">~</span> <span class="st">"Race/ethnicity"</span>, </span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>      agec <span class="sc">~</span> <span class="st">"Age (cent.)"</span>, </span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a>      riagendr <span class="sc">~</span> <span class="st">"Gender"</span></span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="cn">TRUE</span></span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_glance_source_note</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_n</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">bold_p</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_caption</span>(<span class="st">"."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(</span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Initial Model for Diastolic Blood Pressure"</span>,</span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Design-Adjusted Test Statistics and Confidence Intervals for the Parameters, and Design Effects for the Parameter Estimates."</span></span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">heading.align =</span> <span class="st">"left"</span>)</span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a>The degrees of freedom for the t-statistics are the number of ultimate clusters (31) minus the number of strata (14).</span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>Plot residuals against the predictor variables. The <span class="in">`augment()`</span> function has not been specifically written for <span class="in">`svyglm`</span> objects, so you need to make a couple adjustments.</span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a>preds_1 <span class="ot">&lt;-</span></span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(fit_1) <span class="sc">|&gt;</span></span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a>    <span class="at">.se.fit =</span> <span class="fu">sqrt</span>(<span class="fu">attr</span>(.fitted, <span class="st">"var"</span>)),</span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a>    <span class="at">.fitted =</span> <span class="fu">as.numeric</span>(.fitted)</span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>Start with the centered age, <span class="in">`agec`</span>. This plot has a curvilinear pattern suggesting a quadratic relationship. Add a squared term and re-plot the residuals.</span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a>fit_2 <span class="ot">&lt;-</span> </span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
+<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> agec <span class="sc">+</span> <span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> riagendr,</span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>preds_2 <span class="ot">&lt;-</span> </span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(fit_2) <span class="sc">|&gt;</span></span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">.se.fit =</span> <span class="fu">sqrt</span>(<span class="fu">attr</span>(.fitted, <span class="st">"var"</span>)),</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">.fitted =</span> <span class="fu">as.numeric</span>(.fitted)</span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">Original =</span> preds_1,</span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">With squared term</span><span class="st">`</span> <span class="ot">=</span> preds_2,</span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a>  <span class="at">.id =</span> <span class="st">"mdl"</span></span>
+<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> .resid, <span class="at">x =</span> agec)) <span class="sc">+</span></span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(mdl)) <span class="sc">+</span></span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residuals vs centered age before and after addition of squared age variable."</span>)</span>
+<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a>It _does_ appear better. The AIC and BIC decreased, meaning the second model is more efficient.</span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_1 =</span> <span class="fu">glance</span>(fit_1),</span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_2 =</span> <span class="fu">glance</span>(fit_2),</span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>  <span class="at">.id =</span> <span class="st">"Model Fit"</span></span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a>Consider interactions with each of the demographic factor variables, one at a time - is the relationship between age and DBP moderated by these variables? Add the interaction with ethnicity to the model, then perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.</span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> </span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1<span class="sc">*</span>agec <span class="sc">+</span> RIDRETH1<span class="sc">*</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> riagendr,</span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_3, <span class="sc">~</span> RIDRETH1<span class="sc">:</span>agec <span class="sc">+</span> RIDRETH1<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>None of the interaction estimators have a *p*-value &lt; .05, and the Wald test fails to reject the null hypothesis. How about interacting with gender? This time the interactions are significant and the Wald test rejects the null hypothesis.</span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="ot">&lt;-</span> </span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>  nhanes_des <span class="sc">|&gt;</span></span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age18p <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agec =</span> <span class="fu">scale</span>(age, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svyglm</span>(</span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>    bpxdi1_1 <span class="sc">~</span> RIDRETH1 <span class="sc">+</span> riagendr<span class="sc">*</span>agec <span class="sc">+</span> riagendr<span class="sc">*</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> .</span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a><span class="fu">regTermTest</span>(fit_4, <span class="sc">~</span> riagendr<span class="sc">:</span>agec <span class="sc">+</span> riagendr<span class="sc">:</span><span class="fu">I</span>(agec<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a>Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender.</span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Race/Ethnicity</span><span class="st">`</span> <span class="ot">=</span> fit_4 <span class="sc">|&gt;</span></span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict_response</span>(<span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"agec [-30:30 by=5]"</span>, <span class="st">"RIDRETH1"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(),</span>
+<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> fit_4 <span class="sc">|&gt;</span></span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a>    <span class="fu">predict_response</span>(<span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"agec [-30:30 by=5]"</span>, <span class="st">"riagendr"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(),</span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a>  <span class="at">.id =</span> <span class="st">"Covar"</span></span>
+<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Covar =</span> <span class="fu">fct_relevel</span>(Covar, <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>), <span class="at">after =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_4 |&gt;</span></span>
+<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a><span class="co">#   predict_response(terms = c("agec [-30:30 by=5]", "RIDRETH1")) |&gt;</span></span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="co">#   as_tibble() |&gt;</span></span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted, <span class="at">color =</span> group)) <span class="sc">+</span> </span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Centered Age"</span>, <span class="at">y =</span> <span class="st">"Marginal predicted DBP"</span>, <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Marginal predicted values from regression model."</span>,</span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Interaction of age and race/ethnicity"</span></span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Covar)) <span class="sc">+</span></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">legend.justification =</span> <span class="st">"left"</span>)</span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="sc">|&gt;</span></span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpredict</span>(<span class="at">terms =</span> <span class="st">"RIDRETH1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
+<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a><span class="co"># library(emmeans)</span></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a><span class="co"># emmeans(fit_4, ~ RIDRETH1)</span></span>
+<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

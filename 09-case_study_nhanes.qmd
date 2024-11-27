@@ -6,55 +6,15 @@ This case study follows the tutorial laid out in section 7.5 of @Heeringa2017. I
 library(tidyverse)
 library(scales)
 library(janitor)
+library(glue)
 library(survey)
 library(srvyr)
 library(gtsummary)
 library(broom)
 library(ggeffects)
+library(svydiags)
 ```
 
-## Executive summary
-
-- Provide a brief overview of the survey including information related  to general study goals and year when annual survey was first implemented.
-- Describe the purpose of this document.
-- Provide a table of the sample size to be selected per business unit (i.e.,  respondent sample size inflated for ineligibility and nonresponse). 
-- Discuss the contents of the remaining section of the report.  
-
-## Sample design
-
-**Description of the target population.** 
-
-The target population was adults aged 18 and older residing in the 48 contiguous United States.
-
-**Describe the sampling frame including the date and source database.** 
-
-The sampling frame included households in the 48 contiguous United States. The survey was conducted between February 2001 and April 2003. The source database for the sampling frame was the Inter-university Consortium for Political and Social Research (ICPSR), which provided the necessary geographic and demographic information to ensure a nationally representative sample.
-
-**Describe the type of sample and method of sample selection to be used.** 
-
-The sampling strategy was a multi-stage clustered area probability sample. 
-  - Stage 1 was to select primary sampling units. The entire country (48 contiguous states) was divided into primary sampling units (PSUs), composed of counties or groups of contiguous counties. A random sample of PSUs was selected.
-  - Stage 2 was to select segments. The selected PSUs were subdivided into segments, usually census tracts or block groups. A random sample of segments was selected.
-  - Stage 3 was to select households. A random sample of households was selected.
-  - Stage 4 was to select respondents. A person was randomly selected from the household.
-
-## Sample size and allocation
-
-- Optimization requirements
-  – Optimization details including constraints and budget.  
-  – Detail the minimum domain sizes and mechanics used to determine  the sizes. 
-- Optimization results  
-  – Results: minimum respondent sample size per stratum  
-  – Marginal sample sizes for key reporting domains  
-  – Estimated precision achieved by optimization results  
-- Inflation adjustments to allocation solution  
-  – Nonresponse adjustments  
-  – Adjustments for ineligible sample members  
-- Final sample allocation  
-  – Marginal sample sizes for key reporting domains  
-- Sensitivity analysis  
-  – Results from comparing deviations to allocation after introducing  changes to the optimization system  
-  
 ## Data Preparation
 
 Download [2015SEP2017.zip](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip) from the *Applied Survey Data Analysis* book [web site](https://websites.umich.edu/~surveymethod/asda/) and unzip into the input/ directory of this project repo.
@@ -79,10 +39,10 @@ nhanes <-
   )
 ```
 
-Create a survey design object for analysis.
+Create a survey design object for analysis. Use it to create a new variable, centered age, `agec`.
 
 ```{r}
-nhanes_des <- as_survey_design(
+nhanes_des_0 <- as_survey_design(
   nhanes,
   ids = sdmvpsu,  # primary sampling unit (cluster)
   strata = sdmvstra,  # sampling stratum
@@ -90,21 +50,31 @@ nhanes_des <- as_survey_design(
   weights = WTMEC2YR
 )
 
+weighted_mean_age <-
+  nhanes_des_0 |>
+  filter(age >= 18) |>
+  summarize(M = survey_mean(age)) |>
+  pull(M)
+
+nhanes_des <- nhanes_des_0 |> mutate(agec = age - weighted_mean_age)
+
 summary(nhanes_des)
 ```
 
 ## Descriptive Analysis
 
-Regress the continuous response variable, diastolic blood pressure (`bpxdi1_1`), on five predictors of interest: race/ethnicity (`RIDRETH1`), age (`agec`), gender (`riagendr`), and marriage status (`marcat`).
+Regress the continuous response variable, diastolic blood pressure (`bpxdi1_1`), on five predictors of interest: race/ethnicity (`RIDRETH1`), centered-age (`agec`), gender (`riagendr`), and marriage status (`marcat`).
 
 ```{r}
+#| code-fold: true
+
 nhanes_des |>
-  filter(age18p == 1) |>
-  mutate(agec = scale(age, scale = FALSE)) |>
-  select(bpxdi1_1, RIDRETH1, agec, riagendr, marcat) |>
   tbl_uvregression(
     y = bpxdi1_1,
     method = survey::svyglm,
+    method.args = list(subset = (age18p == 1)),
+    include = c(RIDRETH1, agec, riagendr, marcat),
+    pvalue_fun = label_style_pvalue(digits = 2),
     label = list(
       RIDRETH1 ~ "Race/ethnicity", 
       agec ~ "Age (cent.)", 
@@ -112,31 +82,38 @@ nhanes_des |>
       marcat ~ "Marital status"
     )
   ) |>
+  # add_global_p(anova_fun = tidy_wald_test) |>
   as_gt() |>
   gt::tab_caption(".") |>
   gt::tab_header(
     title = "Initial Design-Based Bivariate Regression Analysis Results ",
-    subtitle = "Assessing Potential Predictors of Diastolic Blood Pressure for the 2011–2012 NHANES Adult Sample"
+    subtitle = glue("Assessing Potential Predictors of Diastolic Blood Pressure ",
+                    "for the 2011–2012 NHANES Adult Sample")
   ) |>
-  gt::tab_options(heading.align = "left")
+  gt::tab_options(heading.align = "left") 
 ```
 
 The design-based t-tests suggest that race/ethnicity, age, and gender have  potentially significant relationships with DBP, while marital status  does not appear to be related. Non-Hispanic whites, non-Hispanic blacks, older adults, and males appear to have the highest DBPs at first glance. Include the first three predictors in an initial model. 
 
 ## Analysis
 
-Fit an initial regression model with the variables of interest.
+### Model Fitting
+
+Fit an initial regression model with the variables of interest. Notice how the dataset is filtered _inside_ the model with `subset`.
 
 ```{r}
 fit_1 <- 
   nhanes_des |>
-  filter(age18p == 1) |>
   mutate(agec = scale(age, scale = FALSE)) %>%
   svyglm(
     bpxdi1_1 ~ RIDRETH1 + agec + riagendr,
-    design = .
+    design = .,
+    subset = (age18p == 1)
   )
+```
 
+```{r}
+#| code-fold: true
 fit_1 |>
   gtsummary::tbl_regression(
     label = list(
@@ -147,18 +124,20 @@ fit_1 |>
     intercept = TRUE
   ) |>
   gtsummary::add_glance_source_note() |>
-  gtsummary::add_n() |>
+  gtsummary::add_n(location = "level") |>
   gtsummary::bold_p() |>
   as_gt() |>
   gt::tab_caption(".") |>
   gt::tab_header(
     title = "Initial Model for Diastolic Blood Pressure",
-    subtitle = "Design-Adjusted Test Statistics and Confidence Intervals for the Parameters, and Design Effects for the Parameter Estimates."
+    subtitle = glue("Design-Adjusted Test Statistics and Confidence Intervals ",
+                    "for the Parameters, and Design Effects for the Parameter ",
+                    "Estimates.")
   ) |>
   gt::tab_options(heading.align = "left")
 ```
 
-The degrees of freedom for the t-statistics are the number of ultimate clusters (31) minus the number of strata (14).
+The *t* statistics degrees of freedom equal the number of ultimate clusters (31) minus the number of strata (14).
 
 Plot residuals against the predictor variables. The `augment()` function has not been specifically written for `svyglm` objects, so you need to make a couple adjustments.
 
@@ -174,14 +153,11 @@ preds_1 <-
 Start with the centered age, `agec`. This plot has a curvilinear pattern suggesting a quadratic relationship. Add a squared term and re-plot the residuals.
 
 ```{r}
-fit_2 <- 
-  nhanes_des |>
-  filter(age18p == 1) |>
-  mutate(agec = scale(age, scale = FALSE)) %>%
-  svyglm(
-    bpxdi1_1 ~ RIDRETH1 + agec + I(agec^2) + riagendr,
-    design = .
-  )
+fit_2 <- svyglm(
+  bpxdi1_1 ~ RIDRETH1 + agec + I(agec^2) + riagendr,
+  design = nhanes_des,
+  subset = (age18p == 1)
+)
 
 preds_2 <- 
   augment(fit_2) |>
@@ -189,6 +165,10 @@ preds_2 <-
     .se.fit = sqrt(attr(.fitted, "var")),
     .fitted = as.numeric(.fitted)
   )
+```
+
+```{r}
+#| code-fold: true
 
 bind_rows(
   Original = preds_1,
@@ -198,12 +178,15 @@ bind_rows(
   ggplot(aes(y = .resid, x = agec)) +
   geom_point() +
   facet_wrap(vars(mdl)) +
-  labs(title = "Residuals vs centered age before and after addition of squared age variable.")
+  labs(title = glue("Residuals vs centered age before and after addition of ",
+                    "squared age variable."))
 ```
 
-It _does_ appear better. The AIC and BIC decreased, meaning the second model is more efficient.
+It _does_ appear better. The AIC and BIC also decreased, meaning the second model is more efficient.
 
 ```{r}
+#| code-fold: true
+
 bind_rows(
   fit_1 = glance(fit_1),
   fit_2 = glance(fit_2),
@@ -212,19 +195,14 @@ bind_rows(
   gt::gt()
 ```
 
-Consider interactions with each of the demographic factor variables, one at a time - is the relationship between age and DBP moderated by these variables? Add the interaction with ethnicity to the model, then perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.
+Add interactions between `agec` and each of the demographic factor variables, one at a time, to test whether they moderate the relationship between age and DBP. Start with race/ethnicity, and perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.
 
 ```{r}
-fit_3 <- 
-  nhanes_des |>
-  filter(age18p == 1) |>
-  mutate(agec = scale(age, scale = FALSE)) %>%
-  svyglm(
-    bpxdi1_1 ~ RIDRETH1*agec + RIDRETH1*I(agec^2) + riagendr,
-    design = .
-  )
-
-fit_3 |> broom::tidy()
+fit_3 <- svyglm(
+  bpxdi1_1 ~ RIDRETH1*agec + RIDRETH1*I(agec^2) + riagendr,
+  design = nhanes_des,
+  subset = (age18p == 1)
+)
 
 regTermTest(fit_3, ~ RIDRETH1:agec + RIDRETH1:I(agec^2))
 ```
@@ -232,37 +210,53 @@ regTermTest(fit_3, ~ RIDRETH1:agec + RIDRETH1:I(agec^2))
 None of the interaction estimators have a *p*-value < .05, and the Wald test fails to reject the null hypothesis. How about interacting with gender? This time the interactions are significant and the Wald test rejects the null hypothesis.
 
 ```{r}
-fit_4 <- 
-  nhanes_des |>
-  filter(age18p == 1) |>
-  mutate(agec = scale(age, scale = FALSE)) %>%
-  svyglm(
-    bpxdi1_1 ~ RIDRETH1 + riagendr*agec + riagendr*I(agec^2),
-    design = .
-  )
-
-fit_4 |> broom::tidy()
+fit_4 <- svyglm(
+  bpxdi1_1 ~ RIDRETH1 + riagendr*agec + riagendr*I(agec^2),
+  design = nhanes_des,
+  subset = (age18p == 1)
+)
 
 regTermTest(fit_4, ~ riagendr:agec + riagendr:I(agec^2))
 ```
 
-Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender.
+Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender. African Americans have a higher acceleration in DBP until middle age, then the gap decreases. 
 
 ```{r}
-fit_4 |>
-  ggpredict(terms = "RIDRETH1") |>
-  ggplot(aes(x = x, y = predicted)) +
-  geom_point()
-
-# library(emmeans)
-# emmeans(fit_4, ~ RIDRETH1)
+#| code-fold: true
+bind_rows(
+  `Race/Ethnicity` = fit_4 |>
+    predict_response(terms = c("agec [-30:30 by=5]", "RIDRETH1")) |>
+    as_tibble(),
+  Gender = fit_4 |>
+    predict_response(terms = c("agec [-30:30 by=5]", "riagendr")) |>
+    as_tibble(),
+  .id = "Covar"
+) |>
+  mutate(group = fct_relevel(group, c("Female", "Male"), after = 0)) |>
+  ggplot(aes(x = x, y = predicted, color = group)) + 
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.8) +
+  geom_point() +
+  geom_line() +
+  labs(
+    x = "Centered Age", y = "Marginal predicted DBP", color = NULL,
+    title = "Marginal predicted values from regression model.",
+    subtitle = "Interaction of age and race/ethnicity"
+  ) +
+  facet_wrap(vars(Covar)) +
+  theme(legend.position = "top", legend.justification = "left")
 ```
 
+### Model Diagnostics
 
+The diagnostic plots
 
 ```{r}
 par(mfrow = c(2, 2))
-plot(fit_2, labels.id = NULL)
-
+plot(fit_4, labels.id = NULL)
 ```
+
+```{r}
+cooks_d4 <- svyCooksD(fit_4, stvar = "sdmvstra", clvar = "sdmvpsu", doplot = TRUE)
+```
+
 
