@@ -13,73 +13,75 @@ library(gtsummary)
 library(broom)
 library(ggeffects)
 library(svydiags)
+library(NHANES)
 ```
 
 ## Data Preparation
 
-Download [2015SEP2017.zip](https://www.umich.edu/~surveymethod/asda/Chapter%20Exercises%20Data%20Sets%20Stata%2015SEP2017.zip) from the *Applied Survey Data Analysis* book [web site](https://websites.umich.edu/~surveymethod/asda/) and unzip into the input/ directory of this project repo.
- 
 ```{r}
-nhanes_raw <- foreign::read.dta("input/nhanes1112_sub_10jun2016.dta")
+data(NHANESraw)
 ```
 
-Create labels for factor vars. Heeringa also identifies a data cleaning step, converting 0s to `NA`.
+Heeringa identifies a data cleaning step, converting 0s to `NA`.
 
 ```{r}
 nhanes <-
-  nhanes_raw |>
+  NHANESraw |> 
+  filter(SurveyYr == "2011_12") |> 
   mutate(
-    bpxdi1_1 = if_else(BPXDI1 == 0, NA_integer_, BPXDI1),
-    RIDRETH1 = factor(RIDRETH1, labels = c(
-      "Mexican-American", "Other Hispanic", "Non-Hispanic White",
-      "Non-Hispanic Black", "Other race")),
-    riagendr = factor(riagendr, labels = c("Male", "Female")),
-    marcat = factor(marcat, labels = c(
-      "Married", "Previously married", "Never married"))
+    BPDia1 = if_else(BPDia1 == 0, NA_integer_, BPDia1),
+    Race1 = fct_relevel(Race1, "Mexican", after = 0),
+    Gender = fct_relevel(Gender, "male", after = 0)
   )
 ```
 
-Create a survey design object for analysis. Use it to create a new variable, centered age, `agec`.
+Create a survey design object for analysis. Use it to create a new variable, centered age, `Age`.
 
 ```{r}
-nhanes_des_0 <- as_survey_design(
+nhanes_des <- as_survey_design(
   nhanes,
-  ids = sdmvpsu,  # primary sampling unit (cluster)
-  strata = sdmvstra,  # sampling stratum
+  ids = SDMVPSU,  # primary sampling unit (cluster)
+  strata = SDMVSTRA,  # sampling stratum
   nest = TRUE,  # strata ids are repeated across clusters
   weights = WTMEC2YR
 )
 
 weighted_mean_age <-
-  nhanes_des_0 |>
-  filter(age >= 18) |>
-  summarize(M = survey_mean(age)) |>
+  nhanes_des |>
+  filter(Age >= 18) |>
+  summarize(M = survey_mean(Age)) |>
   pull(M)
 
-nhanes_des <- nhanes_des_0 |> mutate(agec = age - weighted_mean_age)
+nhanes_des <- 
+  nhanes_des |> 
+  mutate(
+    Age18p = Age >= 18,
+    Age = Age - weighted_mean_age
+  )
 
 summary(nhanes_des)
 ```
 
 ## Descriptive Analysis
 
-Regress the continuous response variable, diastolic blood pressure (`bpxdi1_1`), on five predictors of interest: race/ethnicity (`RIDRETH1`), centered-age (`agec`), gender (`riagendr`), and marriage status (`marcat`).
+Regress the continuous response variable, diastolic blood pressure (`BPDia1`), on four predictors of interest: race/ethnicity (`Race1`), centered-age (`Age`), gender (`Gender`), and sexual orientation (`SexOrientation`).
 
 ```{r}
 #| code-fold: true
 
 nhanes_des |>
   tbl_uvregression(
-    y = bpxdi1_1,
+    y = BPDia1,
     method = survey::svyglm,
-    method.args = list(subset = (age18p == 1)),
-    include = c(RIDRETH1, agec, riagendr, marcat),
+    method.args = list(subset = (Age18p == 1)),
+    include = c(Race1, Age, Gender, SexOrientation),
+    estimate_fun = label_style_number(digits = 2),
     pvalue_fun = label_style_pvalue(digits = 2),
     label = list(
-      RIDRETH1 ~ "Race/ethnicity", 
-      agec ~ "Age (cent.)", 
-      riagendr ~ "Gender",
-      marcat ~ "Marital status"
+      Race1 ~ "Race/ethnicity", 
+      Age ~ "Age (cent.)", 
+      Gender ~ "Gender"
+      # MaritalStatus ~ "Marital status"
     )
   ) |>
   # add_global_p(anova_fun = tidy_wald_test) |>
@@ -93,7 +95,7 @@ nhanes_des |>
   gt::tab_options(heading.align = "left") 
 ```
 
-The design-based t-tests suggest that race/ethnicity, age, and gender have  potentially significant relationships with DBP, while marital status  does not appear to be related. Non-Hispanic whites, non-Hispanic blacks, older adults, and males appear to have the highest DBPs at first glance. Include the first three predictors in an initial model. 
+The design-based t-tests suggest that race/ethnicity, age, and gender have  potentially significant relationships with DBP, while sexual orientation does not appear to be related. Non-Hispanic whites, non-Hispanic blacks, older adults, and males appear to have the highest DBPs at first glance. Include the first three predictors in an initial model. 
 
 ## Analysis
 
@@ -102,14 +104,11 @@ The design-based t-tests suggest that race/ethnicity, age, and gender have  pote
 Fit an initial regression model with the variables of interest. Notice how the dataset is filtered _inside_ the model with `subset`.
 
 ```{r}
-fit_1 <- 
-  nhanes_des |>
-  mutate(agec = scale(age, scale = FALSE)) %>%
-  svyglm(
-    bpxdi1_1 ~ RIDRETH1 + agec + riagendr,
-    design = .,
-    subset = (age18p == 1)
-  )
+fit_1 <- svyglm(
+  BPDia1 ~ Race1 + Age + Gender,
+  design = nhanes_des,
+  subset = (Age18p == 1)
+)
 ```
 
 ```{r}
@@ -117,11 +116,12 @@ fit_1 <-
 fit_1 |>
   gtsummary::tbl_regression(
     label = list(
-      RIDRETH1 ~ "Race/ethnicity", 
-      agec ~ "Age (cent.)", 
-      riagendr ~ "Gender"
+      Race1 ~ "Race/ethnicity", 
+      Age ~ "Age (cent.)", 
+      Gender ~ "Gender"
     ),
-    intercept = TRUE
+    intercept = TRUE,
+    estimate_fun = label_style_number(digits = 3)
   ) |>
   gtsummary::add_glance_source_note() |>
   gtsummary::add_n(location = "level") |>
@@ -139,7 +139,7 @@ fit_1 |>
 
 The *t* statistics degrees of freedom equal the number of ultimate clusters (31) minus the number of strata (14).
 
-Plot residuals against the predictor variables. The `augment()` function has not been specifically written for `svyglm` objects, so you need to make a couple adjustments.
+Plot residuals against the predictor variables. The `augment()` function has not been specifically written for `svyglm` objects, so you need to make a couple adjustments. Start with the centered age, `Age`. The plot has a curvilinear pattern suggesting a quadratic relationship. Add a squared term and re-plot the residuals.
 
 ```{r}
 preds_1 <-
@@ -148,15 +148,11 @@ preds_1 <-
     .se.fit = sqrt(attr(.fitted, "var")),
     .fitted = as.numeric(.fitted)
   )
-```
 
-Start with the centered age, `agec`. This plot has a curvilinear pattern suggesting a quadratic relationship. Add a squared term and re-plot the residuals.
-
-```{r}
 fit_2 <- svyglm(
-  bpxdi1_1 ~ RIDRETH1 + agec + I(agec^2) + riagendr,
+  BPDia1 ~ Race1 + Age + I(Age^2) + Gender,
   design = nhanes_des,
-  subset = (age18p == 1)
+  subset = (Age18p == 1)
 )
 
 preds_2 <- 
@@ -175,11 +171,14 @@ bind_rows(
   `With squared term` = preds_2,
   .id = "mdl"
 ) |>
-  ggplot(aes(y = .resid, x = agec)) +
-  geom_point() +
+  ggplot(aes(y = .resid, x = Age)) +
+  geom_point(color = "goldenrod", alpha = .2) +
   facet_wrap(vars(mdl)) +
-  labs(title = glue("Residuals vs centered age before and after addition of ",
-                    "squared age variable."))
+  labs(
+    x = "Centered Age",
+    title = glue("Residuals vs centered age before and after addition of ",
+                    "squared age variable.")
+  )
 ```
 
 It _does_ appear better. The AIC and BIC also decreased, meaning the second model is more efficient.
@@ -195,28 +194,29 @@ bind_rows(
   gt::gt()
 ```
 
-Add interactions between `agec` and each of the demographic factor variables, one at a time, to test whether they moderate the relationship between age and DBP. Start with race/ethnicity, and perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.
+Add interactions between `Age` and each of the demographic factor variables, one at a time, to test whether they moderate the relationship between age and DBP. Start with race/ethnicity, and perform a Wald test of the null hypothesis that all eight parameters are simultaneously equal to zero.
 
 ```{r}
 fit_3 <- svyglm(
-  bpxdi1_1 ~ RIDRETH1*agec + RIDRETH1*I(agec^2) + riagendr,
+  BPDia1 ~ Race1*Age + Race1*I(Age^2) + Gender,
   design = nhanes_des,
-  subset = (age18p == 1)
+  subset = (Age18p == 1)
 )
 
-regTermTest(fit_3, ~ RIDRETH1:agec + RIDRETH1:I(agec^2))
+regTermTest(fit_3, ~ Race1:Age + Race1:I(Age^2))
 ```
 
 None of the interaction estimators have a *p*-value < .05, and the Wald test fails to reject the null hypothesis. How about interacting with gender? This time the interactions are significant and the Wald test rejects the null hypothesis.
 
 ```{r}
 fit_4 <- svyglm(
-  bpxdi1_1 ~ RIDRETH1 + riagendr*agec + riagendr*I(agec^2),
+  BPDia1 ~ Race1 + Gender*Age + Gender*I(Age^2),
   design = nhanes_des,
-  subset = (age18p == 1)
+  subset = (Age18p == 1)
 )
 
-regTermTest(fit_4, ~ riagendr:agec + riagendr:I(agec^2))
+summary(fit_4, df.resid = degf(nhanes_des))
+regTermTest(fit_4, ~ Gender:Age + Gender:I(Age^2))
 ```
 
 Plot marginal predicted values from DBP to assess variability in the relationship between age and DBP depending on race/ethnicity and gender. African Americans have a higher acceleration in DBP until middle age, then the gap decreases. 
@@ -225,14 +225,14 @@ Plot marginal predicted values from DBP to assess variability in the relationshi
 #| code-fold: true
 bind_rows(
   `Race/Ethnicity` = fit_4 |>
-    predict_response(terms = c("agec [-30:30 by=5]", "RIDRETH1")) |>
+    predict_response(terms = c("Age [-30:30 by=5]", "Race1")) |>
     as_tibble(),
   Gender = fit_4 |>
-    predict_response(terms = c("agec [-30:30 by=5]", "riagendr")) |>
+    predict_response(terms = c("Age [-30:30 by=5]", "Gender")) |>
     as_tibble(),
   .id = "Covar"
 ) |>
-  mutate(group = fct_relevel(group, c("Female", "Male"), after = 0)) |>
+  mutate(group = fct_relevel(group, c("female", "male"), after = 0)) |>
   ggplot(aes(x = x, y = predicted, color = group)) + 
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.8) +
   geom_point() +
@@ -248,15 +248,16 @@ bind_rows(
 
 ### Model Diagnostics
 
-The diagnostic plots
+The residuals vs fitted plot varies equally around 0 in a straight horizontal line (linearity and homoscedasticity). The Q-Q residuals plot is bowed at the high end, so prediction intervals maybe be inaccurate. The equal spread along the horizontal of the scale-location plot supports homoscedasticity. The residuals vs leverage plot identifies a few influential observations.
 
 ```{r}
 par(mfrow = c(2, 2))
 plot(fit_4, labels.id = NULL)
 ```
 
+Check for influential points and outliers.
+
 ```{r}
-cooks_d4 <- svyCooksD(fit_4, stvar = "sdmvstra", clvar = "sdmvpsu", doplot = TRUE)
+library(MASS)
+cooks_d4 <- svyCooksD(fit_4, doplot = TRUE)
 ```
-
-
