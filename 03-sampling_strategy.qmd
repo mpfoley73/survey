@@ -5,61 +5,62 @@ library(tidyverse)
 library(scales)
 ```
 
-The survey design (sampling strategy) depends on how study objectives are translated into survey questions, the units of analysis from the target population, the variables and covariates, and the available sampling frames for data collection [@valliant2013]. Exploratory surveys often sample individuals with qualifying characteristics by convenience, snowball (referrals), quota, or purposeful sampling. In contrast to these *non-probability sampling* strategies, descriptive and explanatory surveys use *probability sampling*, including simple random sampling (SRS) and stratified sampling.[^03-1] 
+The survey design (sampling strategy) depends on they question types, units of analysis from the target population and their available sampling frames, and the variables and covariates [@valliant2013]. Exploratory surveys often use non-probability sampling strategies like convenience and quota, but descriptive and explanatory surveys use *probability sampling*, including simple random sampling (SRS) and stratified sampling.[^03-1] 
 
 [^03-1]: Cluster sampling, systematic sampling and Poisson sampling are other sampling methods to at least be aware of. I'm not ready to deal with these yet.
 
-Survey designs are fundamentally composed of combinations of four attributes: is the sample selected in a single stage or multiple **stages**; is there **clustering** in one or more stages; is there **stratification** in one ore mores stages; are elements selected with equal **probabilities**? That's 16 combinations, but in practice, most in-person surveys are multistage stratified cluster sampling with unequal probabilities.
+Survey designs are fundamentally composed of combinations of four attributes: is the sample selected in a single stage or multiple **stages**; is there **clustering** in one or more stages; is there **stratification** in one or mores stages; are elements selected with equal **probabilities**? That's 16 combinations, but in practice, most in-person surveys are multistage stratified cluster sampling with unequal probabilities.
 
-Regardless of the survey design, sample size is set using one of two target values: i) coefficient of variation, $CV_0(\theta) = SE / \theta$, and ii) margin of error (aka, *tolerance*), $MOE = \pm z_{1-\alpha} \cdot SE$.
+Regardless of the survey design, sample size is set using one of two target values: 
+
+i) coefficient of variation, $CV_0(\theta) = \frac{SE}{\theta}$ where $\theta$ is the expected mean or proportion, and 
+ii) margin of error (aka, *tolerance*), $MOE = \pm z_{1-\alpha/2} \cdot SE$.
 
 ## Simple Random Sampling {#sec-sd-srs}
 
-Simple Random Sampling (SRS) designs are almost never used because they 
+Simple Random Sampling (SRS) designs are almost never used because populations are heterogeneous and sub-populations may not return sufficient participation. Nevertheless, they are a good starting point for learning sampling concepts.
 
-### For Continuous Values
+### Continuous Values
 
-Suppose a survey variable estimate a population (universal) mean, $\bar{Y}$, from the mean of a simple random sample, $\bar{y}$. Under repeated sampling, the sample means would have a variance related to the population variance, $S^2$.
+Suppose a survey variable estimates the population (universal) mean, $\bar{Y}$, from the simple random sample mean, $\bar{y}$. Under repeated sampling, the variance of the sample means is related to the population variance, $S^2$, as a function of the sample size, $n$.
 
 $$
 V(\bar{y}) = \left(1 - \frac{n}{N} \right) \frac{S^2}{n}
 $$ {#eq-ybar-var}
 
-@eq-ybar-var is the square of the standard error with a *finite population correction* factor (FPC), $1 - n / N$. The FPC reduces the expected variance for small populations. In practice, the FPC is only important when $n/N < .05$. $S$ is an unknown population parameter estimated from the sample, $s$, or by a rule of thumb.
+@eq-ybar-var is the squared standard error multiplied by the *finite population correction* factor (FPC). The FPC reduces the expected variance for small populations. In practice, the FPC is only important when $n/N < .05$.
 
-The ratio $V(\bar{y}) / \bar{Y}^2$ is the square of the targeted *coefficient of variation*, $CV_0$.
+The ratio of the estimate variance and the square of the estimate is the squared *coefficient of variation*.
 
 $$
-CV_0^2(\bar{Y}) = \left(1 - \frac{n}{N} \right) \cdot \frac{1}{n} \cdot \frac{S^2}{\bar{Y}^2}
+CV_0^2(\bar{Y}) = \left(1 - \frac{n}{N} \right) \cdot \frac{S^2}{n \cdot \bar{Y}^2}
 $$ {#eq-cv2}
 
-Solve @eq-cv2 for the required sample size to achieve $CV_0(\bar{Y})$.
+Solve @eq-cv2 for the required sample size to achieve a targeted $CV_0(\bar{Y})$.
 
 $$
 n = \frac{S^2 / \bar{Y}^2}{CV_0^2 + S^2 / (N \cdot \bar{Y}^2)}
 $$ {#eq-cv-n}
 
-The numerator in @eq-cv-n is the population CV (a.k.a., unit CV).
-
-Use `PracTools::nCont()` to calculate $n$. Setting the unit CV is somewhat of a chicken-and-egg problem since $S^2$ and $\bar{Y}^2$ are the population parameters you are estimating. Either rely on prior research or a best guess. The [range rule of thumb](https://www.statology.org/range-rule-of-thumb/) is $S = \mathrm{range} / 4$. The targeted CV is usually set to 5% or 10%, or something better than prior research.
+The numerator in @eq-cv-n is the population CV (a.k.a., unit CV). Setting the unit CV is somewhat of a chicken-and-egg problem since $S^2$ and $\bar{Y}^2$ are the population parameters you are estimating in the first place. Either rely on prior research or a best guess. The [range rule of thumb](https://www.statology.org/range-rule-of-thumb/) is $S = \mathrm{range} / 4$. The targeted CV is usually set to 5% or 10%, or something better than prior research. Use `PracTools::nCont()` to calculate $n$.
 
 **Example**. Prior experience suggests the unit CV is approximately $2$. Your survey targets $CV_0(\bar{y}_s) = 0.05$.
 
-`N` defaults to `Inf`, fine for "large" populations.
+`N` defaults to `Inf`, which is fine for large populations.
 
 ```{r}
 #| code-fold: false
 PracTools::nCont(CV0 = .05, CVpop = 2)
 ```
 
-For a company survey, include `N`. for 10,000 employees you can survey a few less.
+Specify `N` for smaller populations like a company survey. A company of 10,000 employees requires a smaller sample.
 
 ```{r}
 #| code-fold: false
 PracTools::nCont(CV0 = .05, CVpop = 2, N = 10000)
 ```
 
-Even for a small population, you can still survey about half.
+For a small population, say *N* = 1,000, sample about half.
 
 ```{r}
 #| code-fold: false
@@ -76,6 +77,7 @@ PracTools::nCont(CV0 = .10, S2 = (abs(0 - 800) / 4)^2, ybarU = 100)
 When does N become important? It depends on CV0, but N=20,000 seems to be upper limit.
 
 ```{r echo=FALSE, fig.height=3.5}
+#| label: fig-03-n-vs-N
 #| fig.cap: "Required sample size given population and CV requirements."
 expand.grid(
   CV0 = c(.05, .10),
@@ -83,15 +85,16 @@ expand.grid(
 ) |>
   mutate(n = map2_dbl(CV0, N, ~PracTools::nCont(CV0 = .x, CVpop = 2, N = .y))) |>
   ggplot(aes(x = N, y = n, color = as.factor(CV0))) + 
-  geom_line() + 
+  geom_line(linewidth = 1) + 
+  scale_color_manual(values = my_palette$warm) +
   annotate("segment", x = 5000, xend = 5000, y = 0, yend = 400, 
-           linetype = 3, color = "#00BFC4", linewidth = 1) +
+           linetype = 3, color = my_palette$warm[2], linewidth = 1) +
   annotate("segment", x = 0, xend = 5000, y = 400, yend = 400,
-           linetype = 3, color = "#00BFC4", linewidth = 1) +
+           linetype = 3, color = my_palette$warm[2], linewidth = 1) +
   annotate("segment", x = 0, xend = 20000, y = 1500, yend = 1500,
-           linetype = 3, color = "#F8766D", linewidth = 1) +
+           linetype = 3, color = my_palette$warm[1], linewidth = 1) +
   annotate("segment", x = 20000, xend = 20000, y = 0, yend = 1500,
-           linetype = 3, color = "#F8766D", linewidth = 1) +
+           linetype = 3, color = my_palette$warm[1], linewidth = 1) +
   labs(color = "CV0")
 ```
 
