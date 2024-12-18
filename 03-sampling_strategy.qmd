@@ -71,7 +71,7 @@ If you don't know `CVpop` or `ybarU` and `S2`, but have an expectation about `yb
 
 ```{r}
 #| code-fold: false
-PracTools::nCont(CV0 = .10, S2 = (abs(0 - 800) / 4)^2, ybarU = 100)
+PracTools::nCont(CV0 = .10, S2 = ((0 - 800) / 4)^2, ybarU = 100)
 ```
 
 When does N become important? It depends on CV0, but N=20,000 seems to be upper limit.
@@ -101,14 +101,32 @@ expand.grid(
 Alternatively, you can target a margin of error.
 
 $$
-MOE = t_{(1-\alpha), (n-1)} SE(\bar{y}) 
-$$ {#eq-moe}
+\begin{align}
+MOE &= t_{(1-\alpha/2), (n-1)} \cdot SE(\bar{y}) \\
+    &= t_{(1-\alpha/2), (n-1)} \cdot \sqrt{\left(1 - \frac{n}{N} \right) \frac{S^2}{n}}
+\end{align}
+$$ {#eq-moe-cont}
 
-**Example**. You want a margin of error of 20. You estimate an overall range of 800.
+Solve @eq-moe-cont for the required sample size to achieve the targeted $MOE$.
+
+$$
+n = N \cdot \left(\frac{MOE^2 \cdot N}{t_{(1-\alpha/2), (n-1)}^2 S^2} + 1\right)^{-1}
+$$ {#eq-moe-cont-n}
+
+Use `PracTools::nContMoe()` to calculate $n$.
+
+**Example**. Your survey targets a margin of error of 10. You use the range rule of thumb for $S^2$.
 
 ```{r}
 #| code-fold: false
-PracTools::nContMoe(moe.sw = 1, e = 20, S2 = (abs(0 - 800) / 4)^2) |> ceiling()
+PracTools::nContMoe(moe.sw = 1, e = 10, S2 = ((0 - 800) / 4)^2)
+```
+
+For a finite population, specify `N`.
+
+```{r}
+#| code-fold: false
+PracTools::nContMoe(moe.sw = 1, e = 10, S2 = ((0 - 800) / 4)^2, N = 1000)
 ```
 
 ### For Proportions
@@ -119,28 +137,49 @@ $$
 CV^2(p_s) = \left(1 - \frac{n}{N} \right) \cdot \frac{1}{n} \cdot \frac{N}{N-1} \cdot \frac{1 - p_U}{p_U}
 $$ {#eq-unit-cv-pop}
 
-where $\frac{N}{N-1} \cdot \frac{1 - p_U}{p_U}$ is the square of the unit CV. When $N$ is large, @eq-unit-cv-pop reduces to $CV^2(p_s) \approx \frac{1}{n} \cdot \frac{1 - p_U}{P_U}$. From here you can see that $n$ varies inversely with $p_U$. `PracTools::nProp()` calculates $n$ for proportions.
+where $\frac{N}{N-1} \cdot \frac{1 - p_U}{p_U}$ is the square of the unit CV. When $N$ is large, @eq-unit-cv-pop reduces to $CV^2(p_s) \approx \frac{1}{n} \cdot \frac{1 - p_U}{P_U}$. From here you can see that $n$ varies inversely with $p_U$. Solve @eq-unit-cv-pop for $n$.
 
-**Example**. From prior experience you think $p_U = .01$ and $N$ is large. You set a targeted CV of $CV_0^2(p_s) = 0.05$.
+$$
+n = \frac{\frac{N}{N-1}\frac{1-p_U}{p_U}}{CV_0^2 + \frac{1}{N-1}\frac{1-p_U}{p_U}}
+$$ {#eq-unit-cv-pop-n}
+
+`PracTools::nProp()` calculates $n$ for proportions.
+
+**Example**. From prior experience you think $p_U = 10\%$ and $N$ is large. You set a targeted CV of $CV_0^2(p_s) = 0.05$.
 
 ```{r}
 #| code-fold: false
-PracTools::nProp(CV0 = .05, pU = .01)
+PracTools::nProp(CV0 = .05, pU = .10)
 ```
 
-Whoa, $n$ is huge! 
+By experimenting with the parameters, you'll discover that $n$ decreases with $p_U$. 
 
-You might choose to target a margin of error instead, $MOE = \pm z_{1-\alpha} \cdot SE$. Recall that $P(|p_s - p_U| < MOE) = 1 - \alpha$. `PracTools::nPropMoe()` and `PracTools::nContMoe()` calculate $n$ for MOEs.
+You might choose to target a margin of error instead.
 
-**Example**. Continuing from above, suppose you set a tolerance of a half percentage point, $MOE \pm 0.5\%$ for an expected proportion of around 1%.
+$$
+\begin{align}
+MOE &= z_{(1-\alpha/2)} \cdot SE(\bar{p}) \\
+    &= z_{(1-\alpha/2)} \cdot \sqrt{\frac{p(1-p)}{n}} \cdot \sqrt{\frac{N-n}{N-1}}
+\end{align}
+$$ {#eq-moe-prop}
+
+Solve @eq-moe-prop for the required sample size to achieve the targeted $MOE$.
+
+$$
+n = \frac{p_U(1-p_U) \cdot N}{(N-1) \cdot \left(\frac{MOE}{z_{(1-\alpha/2)}}\right)^2 + p_u(1-p_U)}
+$$ {#eq-moe-prop-n}
+
+Use `PracTools::nContMoe()` to calculate $n$.
+
+**Example**. Continuing from above, suppose you set a tolerance of one percentage point, $MOE \pm 1\%$ for an expected proportion of around 10%.
 
 ```{r}
 #| code-fold: false
 # moe.sw = 1 sets MOE based on SE; moe.sw = 2 sets MOE based on CV.
-PracTools::nPropMoe(moe.sw = 1, e = .005, alpha = .05, pU = .01)
+PracTools::nPropMoe(moe.sw = 1, e = .01, alpha = .05, pU = .10)
 ```
 
-Or you can use `nProp()` specifying the targeted variance of the esimated propotion (`v0`) with an estimate of the population proportion.
+Or you can use `nProp()` specifying the targeted variance of the estimated proportion (`v0`) with an estimate of the population proportion.
 
 ```{r}
 #| code-fold: false
